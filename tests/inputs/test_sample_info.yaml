@@ -1,0 +1,37 @@
+tests:
+  - description: measurement test
+    sample:
+      id: TEST:1
+      total particulate carbon: 5
+      alt: 2m
+      lat_lon: 68.3534 19.0472
+    # this is what is expected in the repaired blob
+    output:
+      alt:
+        has_value: 2.0
+        has_unit: meter
+        has_raw_value: 2m
+    must_pass: false
+    expected_failures:
+      missing-core: ">0"
+  - description: correct enumeration
+    sample:
+      id: TEST:enum
+      rel_to_oxygen: obligate anaerobe
+    expected_failures:
+      controlled-vocabulary: "0"
+  - description: incorrect enumeration
+    sample:
+      id: TEST:enum
+      rel_to_oxygen: blah blah
+    expected_failures:
+      controlled-vocabulary: ">0"
+  - description: another test
+    sample:
+      id: TEST:2
+      total particulate carbon: 7
+      depth: 8cm
+      lat_lon: 37.931388399999996 -122.0239394
+    must_pass: false
+    expected_failures: {}
+
