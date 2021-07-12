@@ -18,8 +18,8 @@ from linkml_runtime.linkml_model.meta import ClassDefinition, SchemaDefinition, 
 KEY_ENV_PACKAGE = nmdc_slots.env_package.name
 KEY_CHECKLIST = 'checklist'
 
-SAMPLE = dict[str, Any]
-STUDY = dict[str, Any]
+SAMPLE = Dict[str, Any]
+STUDY = Dict[str, Any]
 SCORE = float
 
 @unique
