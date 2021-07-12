@@ -2,6 +2,8 @@
 
 ## Installing
 
+### pipenv
+
 This requires python 3.7.x or later (as default python).
 
 If you have pipenv installed:
@@ -12,6 +14,8 @@ cd sample-annotator
 make test
 ```
 
+### venv
+
 For those using venv, you'll need something like:
 
 ```bash
@@ -21,6 +25,12 @@ python3.7 -m venv env
 source ./env/bin/activate
 pip install pipenv
 PIPENV_IGNORE_VIRTUALENVS=1 make test
+```
+
+While there may be more concise ways of running commands like those below, this works:
+
+```bash
+PIPENV_IGNORE_VIRTUALENVS=1 pipenv run python -m sample_annotator.sample_annotator -R examples/report.tsv examples/gold.json
 ```
 
 ## What is it?
