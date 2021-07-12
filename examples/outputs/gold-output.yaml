@@ -1,0 +1,77 @@
+- add_date: 30-OCT-14 12.00.00.000000000 AM
+  collection_date: '2012-07-20'
+  community: microbial communities
+  depth:
+    has_numeric_value: 0.0
+    has_raw_value: 0.0 m
+    has_unit: metre
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_subtype: Wetlands
+  ecosystem_type: Soil
+  env_broad_scale: ENVO:00000446
+  env_local_scale: ENVO:00000489
+  env_medium: ENVO:00000134
+  geo_loc_name: 'Sweden: Kiruna'
+  habitat: Thawing permafrost
+  id: gold:Gb0108335
+  identifier: studying carbon transformations
+  lat_lon:
+    latitude: 68.3534
+    longitude: 19.0472
+  location: from the Arctic
+  mod_date: 15-MAY-20 10.04.19.473000000 AM
+  name: Thawing permafrost microbial communities from the Arctic, studying carbon
+    transformations - Permafrost 712P3D
+  ncbi_taxonomy_name: permafrost metagenome
+  sample_collection_site: Palsa
+  specific_ecosystem: Permafrost
+  study_description: A fundamental challenge of microbial environmental science is
+    to understand how earth systems will respond to climate change. A parallel challenge
+    in biology is to unverstand how information encoded in organismal genes manifests
+    as biogeochemical processes at ecosystem-to-global scales. These grand challenges
+    intersect in the need to understand the glocal carbon (C) cycle, which is both
+    mediated by biological processes and a key driver of climate through the greenhouse
+    gases carbon dioxide (CO2) and methane (CH4). A key aspect of these challenges
+    is the C cycle implications of the predicted dramatic shrinkage in northern permafrost
+    in the coming century.
+  type: nmdc:Biosample
+- add_date: 30-OCT-14 12.00.00.000000000 AM
+  collection_date: '2012-06-03'
+  community: microbial communities
+  depth:
+    has_numeric_value: 0.0
+    has_raw_value: 0.0 m
+    has_unit: metre
+  description: permafrost soil where Sphagnum dominantly present
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_subtype: Wetlands
+  ecosystem_type: Soil
+  env_broad_scale: ENVO:00000446
+  env_local_scale: ENVO:00000044
+  env_medium: ENVO:00000134
+  geo_loc_name: 'Sweden: Kiruna'
+  habitat: Thawing permafrost
+  id: gold:Gb0108340
+  identifier: studying carbon transformations
+  lat_lon:
+    latitude: 68.3533
+    longitude: 19.0475
+  location: from the Arctic
+  mod_date: 20-MAY-20 08.16.56.747000000 PM
+  name: Thawing permafrost microbial communities from the Arctic, studying carbon
+    transformations - Permafrost 612S3M
+  ncbi_taxonomy_name: permafrost metagenome
+  sample_collection_site: permafrost soil where Sphagnum dominantly present
+  specific_ecosystem: Permafrost
+  study_description: A fundamental challenge of microbial environmental science is
+    to understand how earth systems will respond to climate change. A parallel challenge
+    in biology is to unverstand how information encoded in organismal genes manifests
+    as biogeochemical processes at ecosystem-to-global scales. These grand challenges
+    intersect in the need to understand the glocal carbon (C) cycle, which is both
+    mediated by biological processes and a key driver of climate through the greenhouse
+    gases carbon dioxide (CO2) and methane (CH4). A key aspect of these challenges
+    is the C cycle implications of the predicted dramatic shrinkage in northern permafrost
+    in the coming century.
+  type: nmdc:Biosample

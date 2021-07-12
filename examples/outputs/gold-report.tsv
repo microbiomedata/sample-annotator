@@ -1,0 +1,48 @@
+sample_id	description	severity	field	was_repaired	category
+gold:Gb0108335	Multiple ID fields: identifier=studying carbon transformations already set to gold:Gb0108335	1			Category.Unclassified
+gold:Gb0108335	ID gold:Gb0108335 does not match ^[A-Z][a-z][0-9]+$	1			Category.Identifier
+gold:Gb0108335	No package specified	1			Category.MissingCore
+gold:Gb0108335	No checklist specified	1			Category.Unclassified
+gold:Gb0108335	Invalid field: add_date	1			Category.UnknownField
+gold:Gb0108335	Invalid field: community	1			Category.UnknownField
+gold:Gb0108335	Invalid field: ecosystem	1			Category.UnknownField
+gold:Gb0108335	Invalid field: ecosystem_category	1			Category.UnknownField
+gold:Gb0108335	Invalid field: ecosystem_subtype	1			Category.UnknownField
+gold:Gb0108335	Invalid field: ecosystem_type	1			Category.UnknownField
+gold:Gb0108335	Invalid field: habitat	1			Category.UnknownField
+gold:Gb0108335	Invalid field: id	1			Category.UnknownField
+gold:Gb0108335	Invalid field: identifier	1			Category.UnknownField
+gold:Gb0108335	Invalid field: location	1			Category.UnknownField
+gold:Gb0108335	Invalid field: mod_date	1			Category.UnknownField
+gold:Gb0108335	Invalid field: name	1			Category.UnknownField
+gold:Gb0108335	Invalid field: ncbi_taxonomy_name	1			Category.UnknownField
+gold:Gb0108335	Invalid field: sample_collection_site	1			Category.UnknownField
+gold:Gb0108335	Invalid field: specific_ecosystem	1			Category.UnknownField
+gold:Gb0108335	Invalid field: study_description	1			Category.UnknownField
+gold:Gb0108335	Invalid field: type	1			Category.UnknownField
+gold:Gb0108335	Parsed unit-value: 0.0 metre	1			Category.Unclassified
+gold:Gb0108335	Skipping geo-checks	0			Category.Unclassified
+gold:Gb0108340	Multiple ID fields: identifier=studying carbon transformations already set to gold:Gb0108340	1			Category.Unclassified
+gold:Gb0108340	ID gold:Gb0108340 does not match ^[A-Z][a-z][0-9]+$	1			Category.Identifier
+gold:Gb0108340	No package specified	1			Category.MissingCore
+gold:Gb0108340	No checklist specified	1			Category.Unclassified
+gold:Gb0108340	Invalid field: add_date	1			Category.UnknownField
+gold:Gb0108340	Invalid field: community	1			Category.UnknownField
+gold:Gb0108340	Invalid field: description	1			Category.UnknownField
+gold:Gb0108340	Invalid field: ecosystem	1			Category.UnknownField
+gold:Gb0108340	Invalid field: ecosystem_category	1			Category.UnknownField
+gold:Gb0108340	Invalid field: ecosystem_subtype	1			Category.UnknownField
+gold:Gb0108340	Invalid field: ecosystem_type	1			Category.UnknownField
+gold:Gb0108340	Invalid field: habitat	1			Category.UnknownField
+gold:Gb0108340	Invalid field: id	1			Category.UnknownField
+gold:Gb0108340	Invalid field: identifier	1			Category.UnknownField
+gold:Gb0108340	Invalid field: location	1			Category.UnknownField
+gold:Gb0108340	Invalid field: mod_date	1			Category.UnknownField
+gold:Gb0108340	Invalid field: name	1			Category.UnknownField
+gold:Gb0108340	Invalid field: ncbi_taxonomy_name	1			Category.UnknownField
+gold:Gb0108340	Invalid field: sample_collection_site	1			Category.UnknownField
+gold:Gb0108340	Invalid field: specific_ecosystem	1			Category.UnknownField
+gold:Gb0108340	Invalid field: study_description	1			Category.UnknownField
+gold:Gb0108340	Invalid field: type	1			Category.UnknownField
+gold:Gb0108340	Parsed unit-value: 0.0 metre	1			Category.Unclassified
+gold:Gb0108340	Skipping geo-checks	0			Category.Unclassified
