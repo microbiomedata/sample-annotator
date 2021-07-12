@@ -2,10 +2,25 @@
 
 ## Installing
 
+This requires python 3.7.x or later (as default python).
+
+If you have pipenv installed:
+
 ```bash
 git clone ...
 cd sample-annotator
 make test
+```
+
+For those using venv, you'll need something like:
+
+```bash
+git clone ...
+cd sample-annotator
+python3.7 -m venv env
+source ./env/bin/activate
+pip install pipenv
+PIPENV_IGNORE_VIRTUALENVS=1 make test
 ```
 
 ## What is it?
