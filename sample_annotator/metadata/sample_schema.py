@@ -53,6 +53,9 @@ class SampleSchema:
         return None
 
     def is_measurement_field(self, k: str) -> bool:
+        if k == 'depth':
+            # this is a bug in the mixs spec - depth SHOULD be specified as QC
+            return True
         range = self.get_range(k)
         if range is not None and range == 'quantity value':
             return True

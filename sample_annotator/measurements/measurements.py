@@ -12,6 +12,12 @@ from sample_annotator.report_model import AnnotationReport
 
 LoQ = List[Quantity]
 
+def make_QuantityValue(unit: str, value: Any, verbatim: str = None) -> dict:
+    d = {'has_unit': unit, 'has_numeric_value': value}
+    if verbatim is not None:
+        d['has_raw_value'] = verbatim
+    return d
+
 @dataclass
 class MeasurementEngine():
 
@@ -36,17 +42,17 @@ class MeasurementEngine():
             else:
                 report.add_message(f'Adding default unit {measurement_verbatim} => {default_unit}',
                                    was_repaired=True)
-            return QuantityValue(has_unit=default_unit,
-                                 has_numeric_value=measurement_verbatim,
-                                 has_raw_value=str(measurement_verbatim))
+            return make_QuantityValue(default_unit,
+                                      measurement_verbatim,
+                                      verbatim=str(measurement_verbatim))
         m = q_parser.parse(measurement_verbatim)
         if len(m) == 0:
             return None
         q = m[0]
         report.add_message(f'Parsed unit-value: {q.value} {q.unit.name}')
-        return QuantityValue(has_unit=q.unit.name,
-                             has_numeric_value=q.value,
-                             has_raw_value=measurement_verbatim)
+        return make_QuantityValue(q.unit.name,
+                                  q.value,
+                                  verbatim=measurement_verbatim)
 
 
 

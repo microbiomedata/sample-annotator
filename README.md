@@ -16,31 +16,116 @@ The API takes as input a JSON object or dictionary representing a simple sample,
 
 It will attempt to tidy and infer missing data according to a specified schema (currently MIxS)
 
-## Examples
+## Command Line
 
-### Measurements normalization
+```bash
+pipenv run annotate-sample --help
 
-Input:
+Usage: annotate-samples [OPTIONS] SAMPLEFILE
 
-```yaml
-sample:
-  id: TEST:1
-  alt: 2m
-  ...
+  Annotate a file of samples, producing a "repaired"/enhanced sample file as
+  output, together with a report
+
+  The input file must be a JSON fine containing an array of dicts
+
+Options:
+  -v, --validateonly / -g, --generate
+                                  Just validate / generate output (default:
+                                  generate)
+
+  -s, --output TEXT               JSON for tidied samples
+  -R, --report-file TEXT          report file
+  -G, --googlemaps-api-key-path TEXT
+                                  path to file containing google maps API KEY
+  -B, --bioportal-api-key-path TEXT
+                                  path to file containing bioportal API KEY
+  --help                          Show this message and exit.
 ```
 
-Repair Output:
+E.g.
 
-```yaml
-sample:
-  id: TEST:1
-  alt:
-    has_numeric_value: 2.0
-    has_raw_value: 2m
-    has_unit: metre
-    ...
+```bash
+pipenv run annotate-sample -G config/googlemaps-api-key.txt -R examples/report.tsv examples/gold.json
 ```
 
+This will transform input such as:
+
+```json
+[
+    {
+        "id": "gold:Gb0108335",
+        "community": "microbial communities",
+        "depth": "0.0 m",
+        "ecosystem": "Environmental",
+        "ecosystem_category": "Terrestrial",
+        "ecosystem_subtype": "Wetlands",
+        "ecosystem_type": "Soil",
+        "env_broad_scale": "ENVO:00000446",
+        "env_local_scale": "ENVO:00000489",
+        "env_medium": "ENVO:00000134",
+        "geo_loc_name": "Sweden: Kiruna",
+        "habitat": "Thawing permafrost",
+        "identifier": "studying carbon transformations",
+        "lat_lon": "68.3534 19.0472",
+        "location": "from the Arctic",
+        "mod_date": "15-MAY-20 10.04.19.473000000 AM",
+        "name": "Thawing permafrost microbial communities from the Arctic, studying carbon transformations - Permafrost 712P3D",
+        "ncbi_taxonomy_name": "permafrost metagenome",
+        "sample_collection_site": "Palsa",
+        "specific_ecosystem": "Permafrost",
+        "study_description": "A fundamental challenge of microbial environmental science is to understand how earth systems will respond to climate change. A parallel challenge in biology is to unverstand how information encoded in organismal genes manifests as biogeochemical processes at ecosystem-to-global scales. These grand challenges intersect in the need to understand the glocal carbon (C) cycle, which is both mediated by biological processes and a key driver of climate through the greenhouse gases carbon dioxide (CO2) and methane (CH4). A key aspect of these challenges is the C cycle implications of the predicted dramatic shrinkage in northern permafrost in the coming century.",
+        "type": "nmdc:Biosample"
+    },
+```
+
+into:
+
+```json
+
+[
+    {
+        "id": "gold:Gb0108335",
+        "community": "microbial communities",
+        "depth": {
+            "has_numeric_value": 0.0,
+            "has_raw_value": "0.0 m",
+            "has_unit": "metre"
+        },
+        "ecosystem": "Environmental",
+        "ecosystem_category": "Terrestrial",
+        "ecosystem_subtype": "Wetlands",
+        "ecosystem_type": "Soil",
+        "elev": {
+            "has_numeric_value": 359,
+            "has_unit": "meter"
+        },
+        "env_broad_scale": "ENVO:00000446",
+        "env_local_scale": "ENVO:00000489",
+        "env_medium": "ENVO:00000134",
+        "geo_loc_name": "Sweden: Kiruna",
+        "habitat": "Thawing permafrost",
+        "identifier": "studying carbon transformations",
+        "lat_lon": {
+            "latitude": 68.3534,
+            "longitude": 19.0472
+        },
+        "location": "from the Arctic",
+        "mod_date": "15-MAY-20 10.04.19.473000000 AM",
+        "name": "Thawing permafrost microbial communities from the Arctic, studying carbon transformations - Permafrost 712P3D",
+        "ncbi_taxonomy_name": "permafrost metagenome",
+        "sample_collection_site": "Palsa",
+        "specific_ecosystem": "Permafrost",
+        "study_description": "A fundamental challenge of microbial environmental science is to understand how earth systems will respond to climate change. A parallel challenge in biology is to unverstand how information encoded in organismal genes manifests as biogeochemical processes at ecosystem-to-global scales. These grand challenges intersect in the need to understand the glocal carbon (C) cycle, which is both mediated by biological processes and a key driver of climate through the greenhouse gases carbon dioxide (CO2) and methane (CH4). A key aspect of these challenges is the C cycle implications of the predicted dramatic shrinkage in northern permafrost in the coming century.",
+
+```
+
+Differences between input and output:
+
+ * measurement fields are normalized
+ * information inferred from lat_lon (currently only `elev`)
+ * TODO: ENVO from text mining
+ * TODO: annotation sufficiency score
+ * TODO: more...
 
 ### Validation reports
 
@@ -95,9 +180,32 @@ from [mixs-source](https://github.com/cmungall/mixs-source) which will later be 
  * [ontology](sample_annotator/ontology)
      - LinkML enumerations to ontologies
 
-## Command Line
 
- - TODO: write the command line interface, follow clig.dev
+Each module will take care of different aspects
+
+For example, the measurement module will normalized all fields in the schema with range QuantityValue
+
+E.g. Input:
+
+```yaml
+sample:
+  id: TEST:1
+  alt: 2m
+  ...
+```
+
+Repair Output:
+
+```yaml
+sample:
+  id: TEST:1
+  alt:
+    has_numeric_value: 2.0
+    has_raw_value: 2m
+    has_unit: metre
+    ...
+```
+
 
 ## Starting the web API
 

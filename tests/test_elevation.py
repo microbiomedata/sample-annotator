@@ -16,5 +16,10 @@ class TestElevation(unittest.TestCase):
     def test_elevation(self):
         ge = GeoEngine()
         ge.load_key(KEYPATH)
-        e = ge.get_elevation((40.714224, -73.961452))
+        mtEverestCoord = (27.9881, 86.9250)
+        e = ge.get_elevation(mtEverestCoord)
         print(e)
+        # Wikipedia says 8,848.86m
+        e0 = e[0]
+        assert e0.get('elevation') > 8800
+        assert e0.get('elevation') < 8900

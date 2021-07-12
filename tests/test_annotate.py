@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
-from tests import MODEL_DIR, INPUT_DIR, OUTPUT_DIR
-
+from tests import MODEL_DIR, INPUT_DIR, OUTPUT_DIR, EXAMPLE_DIR, EXAMPLE_OUTDIR
+from os.path import isfile, join
 from sample_annotator import SampleAnnotator
 from sample_annotator.metadata.sample_schema import SampleSchema
 
@@ -9,6 +9,7 @@ from sample_annotator.metadata.sample_schema import SampleSchema
 
 import unittest
 import yaml
+import json
 
 TEST_DATA = os.path.join(INPUT_DIR, 'test_sample_info.yaml')
 REPORT_OUT = os.path.join(OUTPUT_DIR, 'report.tsv')
@@ -16,6 +17,21 @@ SAMPLES_OUT = os.path.join(OUTPUT_DIR, 'samples.yaml')
 
 class TestAnnotate(unittest.TestCase):
     """annotation test."""
+
+    def test_examples(self):
+        annotator = SampleAnnotator()
+        contents = [join(EXAMPLE_DIR,f) for f in os.listdir(EXAMPLE_DIR)]
+        json_files = [f for f in contents if f.endswith('.json')]
+        for file in json_files:
+            with open(file) as stream:
+                base = os.path.splitext(os.path.basename(file))[0]
+                samples = json.load(stream)
+                report = annotator.annotate_all(samples)
+                with open(os.path.join(EXAMPLE_OUTDIR, base + '-output.yaml'), 'w') as stream:
+                    yaml.safe_dump(report.all_outputs(), stream)
+                rpt_file = os.path.join(EXAMPLE_OUTDIR, base + '-report.tsv')
+                report.as_dataframe().to_csv(rpt_file, sep='\t', index=False)
+
 
     def test_annotate(self):
         annotator = SampleAnnotator()

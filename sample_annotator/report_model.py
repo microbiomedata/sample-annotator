@@ -1,5 +1,3 @@
-import json
-import click
 from typing import Optional, List, Set, Any, Dict
 from dataclasses import dataclass
 from enum import Enum, unique
@@ -21,6 +19,7 @@ KEY_ENV_PACKAGE = nmdc_slots.env_package.name
 KEY_CHECKLIST = 'checklist'
 
 SAMPLE = dict[str, Any]
+STUDY = dict[str, Any]
 SCORE = float
 
 @unique
@@ -30,6 +29,7 @@ class Category(Enum):
     Geo = 'geo'
     ControlledVocabulary = 'controlled-vocabulary'
     MissingCore = 'missing-core'
+    Identifier = 'identifier'
     MeasurementSyntax = 'measurement-syntax'
     Units = 'units'
     UnknownField = 'unknown-field'
@@ -116,3 +116,7 @@ class AnnotationMultiSampleReport:
                 item['sample_id'] = r.sample_id
                 items.append(item)
         return pd.DataFrame(items, columns=cols)
+
+    def all_outputs(self) -> List[SAMPLE]:
+        return [r.output for r in self.reports]
+

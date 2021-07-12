@@ -2,25 +2,28 @@ import json
 import click
 from typing import Optional, List, Set, Any
 from dataclasses import dataclass
+import sys
+import re
 import logging
 import pandas as pd
+import bioregistry
 
-from nmdc_schema.nmdc import Biosample, GeolocationValue
+
+from nmdc_schema.nmdc import Biosample, GeolocationValue, QuantityValue
 from nmdc_schema.nmdc import slots as nmdc_slots
 
 from .geolocation.geotools import GeoEngine
 from .measurements.measurements import MeasurementEngine
 from .metadata.sample_schema import SampleSchema, underscore
-from .report_model import AnnotationReport, Message, PackageCombo, AnnotationMultiSampleReport, Category
+from .report_model import AnnotationReport, Message, PackageCombo, AnnotationMultiSampleReport, Category, SAMPLE, STUDY
 
 
 from linkml_runtime.linkml_model.meta import ClassDefinition, SchemaDefinition, SlotDefinition, Definition
 
 KEY_ENV_PACKAGE = nmdc_slots.env_package.name
 KEY_CHECKLIST = 'checklist'
-
-SAMPLE = dict[str, Any]
-
+KEY_LAT_LON = nmdc_slots.lat_lon.name
+KEY_ELEV = nmdc_slots.elev.name
 
 @dataclass
 class SampleAnnotator():
@@ -34,17 +37,17 @@ class SampleAnnotator():
 
     schema: SampleSchema = SampleSchema()
 
-    def annotate_all(self, samples: List[SAMPLE]) -> AnnotationMultiSampleReport:
+    def annotate_all(self, samples: List[SAMPLE], study: STUDY = None) -> AnnotationMultiSampleReport:
         """
         Annotate a list of samples
         """
         reports = []
         amsr = AnnotationMultiSampleReport(reports=[])
         for sample in samples:
-            amsr.reports.append(self.annotate(sample))
+            amsr.reports.append(self.annotate(sample, study=study))
         return amsr
 
-    def annotate(self, sample: SAMPLE) -> AnnotationReport:
+    def annotate(self, sample: SAMPLE, study: STUDY = None) -> AnnotationReport:
         """
         Annotate a sample
 
@@ -57,6 +60,7 @@ class SampleAnnotator():
         report.messages = []
         report.input = sample
         sample = sample.copy()
+        self.validate_identifier(sample, report)
         self.infer_package(sample, report)
         self.tidy_nulls(sample, report)
         self.tidy_keys(sample, report)
@@ -67,6 +71,57 @@ class SampleAnnotator():
         self.perform_inference(sample, report)
         report.output = sample
         return report
+
+    def validate_identifier(self, sample: SAMPLE, report: AnnotationReport):
+        id_fields = ['id', 'source_mat_id', 'identifier']
+        id = None
+        id_field = None
+        for f in id_fields:
+            if f in sample:
+                if id is None:
+                    id = sample.get(f)
+                    id_field = f
+                else:
+                    report.add_message(f'Multiple ID fields: {f}={sample.get(f)} already set to {id}')
+        if id is None:
+            report.add_message(f'No identifier set', severity=2, category=Category.Identifier)
+        else:
+            if ':' in id:
+                parts = id.split(':')
+                if len(parts) > 2:
+                    report.add_message(f'Invalid CURIE syntax; multiple parts = {parts}',
+                                       severity=2,
+                                       category=Category.Identifier)
+                prefix = parts[0]
+                local_id = parts[1]
+                # TODO: cache to avoid multiple calls
+                normalized_prefix = bioregistry.normalize_prefix(prefix)
+                if normalized_prefix is None:
+                    report.add_message(f'No such prefix: {normalized_prefix}',
+                                       severity=2,
+                                       category=Category.Identifier)
+                else:
+                    if normalized_prefix != prefix:
+                        report.add_message(f'Normalizing prefix {prefix} => {normalized_prefix}',
+                                        severity=1,
+                                        was_repaired=True,
+                                        category=Category.Identifier)
+                        id = id.replace(prefix, normalized_prefix)
+                    pattern = bioregistry.get_pattern(normalized_prefix)
+                    if pattern is not None:
+                        logging.debug(f'Testing {id} against {pattern}')
+                        if not re.match(pattern, id):
+                            report.add_message(f'ID {id} does not match {pattern}',
+                                               severity=1,
+                                               category=Category.Identifier)
+            else:
+                report.add_message(f'ID is not a CURIE')
+            report.sample_id = id
+            sample['id'] = id
+
+
+
+
 
     def infer_package(self, sample: SAMPLE, report: AnnotationReport):
         """
@@ -160,9 +215,39 @@ class SampleAnnotator():
         Performs inference using geolocation information
         """
         # TODO: Stan to populate
-        if self.geoengine is None:
+        ll_str = sample.get(KEY_LAT_LON, None)
+        if ll_str is None:
+            report.add_message(f'No lat_long specified',
+                               severity=3,
+                               category=Category.MissingCore)
+            return
+        try:
+            lat_lon = tuple([float(x.strip()) for x in ll_str.split(' ')])
+        except:
+            report.add_message(f'Incorrect format for lat_lon: {ll_str}', severity=3)
+            return
+        sample[KEY_LAT_LON] = {'latitude': lat_lon[0], 'longitude': lat_lon[1]}
+        ge = self.geoengine
+        if ge is None:
             report.add_message('Skipping geo-checks', severity=0)
             return
+        logging.info('Using geoengine')
+        elevs = ge.get_elevation(lat_lon)
+        if len(elevs) != 1:
+            report.add_message(f'Something went wrong, elevs = {elevs}')
+        if len(elevs) > 0:
+            elev = elevs[0].get('elevation')
+            res = elevs[0].get('resolution')
+            if KEY_ELEV in sample:
+                curr = sample.get(KEY_ELEV)
+                if curr.has_unit == 'meter':
+                    if abs(curr.has_value - elev) > res:
+                        report.add_message(f'Conflicting values for elevation; current: {curr} Googlemaps: {elev} +/- {res}')
+            else:
+                report.add_message(f'Filling in missing value for elevation {elev}',
+                                   was_repaired=True)
+                sample[KEY_ELEV] = {'has_unit': 'meter',
+                                    'has_numeric_value': elev}
 
     def perform_inference(self, sample: SAMPLE, report: AnnotationReport):
         """
@@ -175,15 +260,42 @@ class SampleAnnotator():
 @click.command()
 @click.option("--validateonly/--generate", "-v/-g", default=False,
               help="Just validate / generate output (default: generate)")
-def cli(yamlfile, raw: bool, **args):
-    """ Validate input and produce fully resolved yaml equivalent """
-    if raw:
-        with open(yamlfile, 'r') as stream:
-            s = load_raw_schema(stream)
-            print(as_yaml(s))
+@click.option("--output", "-s",
+              help="JSON for tidied samples")
+@click.option("--report-file", "-R",
+              help="report file")
+@click.option("--googlemaps-api-key-path", "-G",
+              help="path to file containing google maps API KEY")
+@click.option("--bioportal-api-key-path", "-B",
+              help="path to file containing bioportal API KEY")
+@click.argument("samplefile")
+def cli(samplefile: str, output: str = None, report_file: str = None,
+        validateonly: bool = False,
+        googlemaps_api_key_path: str = None, bioportal_api_key_path: str = None):
+    """
+Annotate a file of samples, producing a "repaired"/enhanced sample file as output, together
+with a report
+
+The input file must be a JSON fine containing an array of dicts
+    """
+    annotator = SampleAnnotator()
+    if googlemaps_api_key_path:
+        annotator.geoengine = GeoEngine()
+        annotator.geoengine.load_key(googlemaps_api_key_path)
+    with open(samplefile) as stream:
+        samples = json.load(stream)
+    report = annotator.annotate_all(samples)
+    df = report.as_dataframe()
+    if report_file is not None:
+        df.to_csv(report_file, sep='\t', index=False)
     else:
-        gen = YAMLGenerator(yamlfile, **args)
-        print(gen.serialize(**args))
+        sys.stderr.write(df.to_csv(sep='\t', index=False))
+    out_json = json.dumps(report.all_outputs(), indent=4, sort_keys=True)
+    if output is not None:
+        with open(output, 'w') as stream:
+            stream.write(out_json)
+    else:
+        print(out_json)
 
 if __name__ == '__main__':
     cli()
