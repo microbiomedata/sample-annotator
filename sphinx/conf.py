@@ -67,6 +67,6 @@ html_context = {
 # "github_url": "https://github.com", # or your GitHub Enterprise interprise
 "github_user": "microbiomedata",
 "github_repo": "sample-annotator",
-"github_version": "create_rtd/sphinx/",
+"github_version": "main/sphinx/",
 "display_github": True, # Add 'Edit on Github' link instead of 'View page source'
 }
