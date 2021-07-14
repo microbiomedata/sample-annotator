@@ -1,3 +1,5 @@
+![Documentation](https://microbiomedata.github.io/sample-annotator/static/intro.html)
+
 # NMDC Sample Annotator API
 
 ## Installing
