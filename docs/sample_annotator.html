@@ -1,0 +1,556 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>sample_annotator package &mdash; sample-annotator 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="setup module" href="setup.html" />
+    <link rel="prev" title="sample-annotator" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> sample-annotator
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="static/intro.html">NMDC Sample Annotator API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">sample-annotator</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">sample_annotator package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-sample_annotator.report_model">sample_annotator.report_model module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-sample_annotator.sample_annotator">sample_annotator.sample_annotator module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-sample_annotator.sample_utils">sample_annotator.sample_utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-sample_annotator">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests.html">tests package</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">sample-annotator</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">sample-annotator</a> &raquo;</li>
+        
+      <li>sample_annotator package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/sample_annotator.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="sample-annotator-package">
+<h1>sample_annotator package<a class="headerlink" href="#sample-annotator-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-sample_annotator.report_model">
+<span id="sample-annotator-report-model-module"></span><h2>sample_annotator.report_model module<a class="headerlink" href="#module-sample_annotator.report_model" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="sample_annotator.report_model.AnnotationMultiSampleReport">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">sample_annotator.report_model.</span></span><span class="sig-name descname"><span class="pre">AnnotationMultiSampleReport</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reports</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#sample_annotator.report_model.AnnotationReport" title="sample_annotator.report_model.AnnotationReport"><span class="pre">sample_annotator.report_model.AnnotationReport</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sample_annotator.report_model.AnnotationMultiSampleReport" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Multi-report of a set of samples</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="sample_annotator.report_model.AnnotationMultiSampleReport.all_outputs">
+<span class="sig-name descname"><span class="pre">all_outputs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#sample_annotator.report_model.AnnotationMultiSampleReport.all_outputs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sample_annotator.report_model.AnnotationMultiSampleReport.as_dataframe">
+<span class="sig-name descname"><span class="pre">as_dataframe</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sample_annotator.report_model.AnnotationMultiSampleReport.as_dataframe" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sample_annotator.report_model.AnnotationMultiSampleReport.reports">
+<span class="sig-name descname"><span class="pre">reports</span></span><em class="property"><span class="pre">:</span> <span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#sample_annotator.report_model.AnnotationReport" title="sample_annotator.report_model.AnnotationReport"><span class="pre">sample_annotator.report_model.AnnotationReport</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#sample_annotator.report_model.AnnotationMultiSampleReport.reports" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sample_annotator.report_model.AnnotationReport">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">sample_annotator.report_model.</span></span><span class="sig-name descname"><span class="pre">AnnotationReport</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">messages</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#sample_annotator.report_model.Message" title="sample_annotator.report_model.Message"><span class="pre">sample_annotator.report_model.Message</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">package</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#sample_annotator.report_model.PackageCombo" title="sample_annotator.report_model.PackageCombo"><span class="pre">sample_annotator.report_model.PackageCombo</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sample_annotator.report_model.AnnotationReport" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Annotation report for a single sample</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="sample_annotator.report_model.AnnotationReport.add_message">
+<span class="sig-name descname"><span class="pre">add_message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sample_annotator.report_model.AnnotationReport.add_message" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sample_annotator.report_model.AnnotationReport.annotation_sufficiency_score">
+<span class="sig-name descname"><span class="pre">annotation_sufficiency_score</span></span><em class="property"> <span class="pre">=</span> <span class="pre">0.0</span></em><a class="headerlink" href="#sample_annotator.report_model.AnnotationReport.annotation_sufficiency_score" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sample_annotator.report_model.AnnotationReport.as_dataframe">
+<span class="sig-name descname"><span class="pre">as_dataframe</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sample_annotator.report_model.AnnotationReport.as_dataframe" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sample_annotator.report_model.AnnotationReport.input">
+<span class="sig-name descname"><span class="pre">input</span></span><em class="property"><span class="pre">:</span> <span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#sample_annotator.report_model.AnnotationReport.input" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sample_annotator.report_model.AnnotationReport.max_severity">
+<span class="sig-name descname"><span class="pre">max_severity</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sample_annotator.report_model.AnnotationReport.max_severity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sample_annotator.report_model.AnnotationReport.messages">
+<span class="sig-name descname"><span class="pre">messages</span></span><em class="property"><span class="pre">:</span> <span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#sample_annotator.report_model.Message" title="sample_annotator.report_model.Message"><span class="pre">sample_annotator.report_model.Message</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#sample_annotator.report_model.AnnotationReport.messages" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sample_annotator.report_model.AnnotationReport.messages_by_category">
+<span class="sig-name descname"><span class="pre">messages_by_category</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span></span></span><a class="headerlink" href="#sample_annotator.report_model.AnnotationReport.messages_by_category" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sample_annotator.report_model.AnnotationReport.output">
+<span class="sig-name descname"><span class="pre">output</span></span><em class="property"><span class="pre">:</span> <span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#sample_annotator.report_model.AnnotationReport.output" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sample_annotator.report_model.AnnotationReport.package">
+<span class="sig-name descname"><span class="pre">package</span></span><em class="property"><span class="pre">:</span> <a class="reference internal" href="#sample_annotator.report_model.PackageCombo" title="sample_annotator.report_model.PackageCombo"><span class="pre">sample_annotator.report_model.PackageCombo</span></a></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#sample_annotator.report_model.AnnotationReport.package" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sample_annotator.report_model.AnnotationReport.passes">
+<span class="sig-name descname"><span class="pre">passes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sample_annotator.report_model.AnnotationReport.passes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sample_annotator.report_model.AnnotationReport.sample_id">
+<span class="sig-name descname"><span class="pre">sample_id</span></span><em class="property"><span class="pre">:</span> <span class="pre">str</span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#sample_annotator.report_model.AnnotationReport.sample_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sample_annotator.report_model.Category">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">sample_annotator.report_model.</span></span><span class="sig-name descname"><span class="pre">Category</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sample_annotator.report_model.Category" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sample_annotator.report_model.Category.BadNull">
+<span class="sig-name descname"><span class="pre">BadNull</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'bad-null'</span></em><a class="headerlink" href="#sample_annotator.report_model.Category.BadNull" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sample_annotator.report_model.Category.ControlledVocabulary">
+<span class="sig-name descname"><span class="pre">ControlledVocabulary</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'controlled-vocabulary'</span></em><a class="headerlink" href="#sample_annotator.report_model.Category.ControlledVocabulary" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sample_annotator.report_model.Category.Core">
+<span class="sig-name descname"><span class="pre">Core</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'core'</span></em><a class="headerlink" href="#sample_annotator.report_model.Category.Core" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sample_annotator.report_model.Category.Geo">
+<span class="sig-name descname"><span class="pre">Geo</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'geo'</span></em><a class="headerlink" href="#sample_annotator.report_model.Category.Geo" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sample_annotator.report_model.Category.Identifier">
+<span class="sig-name descname"><span class="pre">Identifier</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'identifier'</span></em><a class="headerlink" href="#sample_annotator.report_model.Category.Identifier" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sample_annotator.report_model.Category.Inapplicable">
+<span class="sig-name descname"><span class="pre">Inapplicable</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'inapplicable'</span></em><a class="headerlink" href="#sample_annotator.report_model.Category.Inapplicable" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sample_annotator.report_model.Category.MeasurementSyntax">
+<span class="sig-name descname"><span class="pre">MeasurementSyntax</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'measurement-syntax'</span></em><a class="headerlink" href="#sample_annotator.report_model.Category.MeasurementSyntax" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sample_annotator.report_model.Category.MissingCore">
+<span class="sig-name descname"><span class="pre">MissingCore</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'missing-core'</span></em><a class="headerlink" href="#sample_annotator.report_model.Category.MissingCore" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sample_annotator.report_model.Category.Unclassified">
+<span class="sig-name descname"><span class="pre">Unclassified</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'unclassified'</span></em><a class="headerlink" href="#sample_annotator.report_model.Category.Unclassified" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sample_annotator.report_model.Category.Units">
+<span class="sig-name descname"><span class="pre">Units</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'units'</span></em><a class="headerlink" href="#sample_annotator.report_model.Category.Units" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sample_annotator.report_model.Category.UnknownField">
+<span class="sig-name descname"><span class="pre">UnknownField</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'unknown-field'</span></em><a class="headerlink" href="#sample_annotator.report_model.Category.UnknownField" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sample_annotator.report_model.Category.list">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sample_annotator.report_model.Category.list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sample_annotator.report_model.Message">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">sample_annotator.report_model.</span></span><span class="sig-name descname"><span class="pre">Message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">severity</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">was_repaired</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">category</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#sample_annotator.report_model.Category" title="sample_annotator.report_model.Category"><span class="pre">sample_annotator.report_model.Category</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">Category.Unclassified</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sample_annotator.report_model.Message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Individual report message</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="sample_annotator.report_model.Message.as_dict">
+<span class="sig-name descname"><span class="pre">as_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span></span></span><a class="headerlink" href="#sample_annotator.report_model.Message.as_dict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sample_annotator.report_model.Message.category">
+<span class="sig-name descname"><span class="pre">category</span></span><em class="property"><span class="pre">:</span> <a class="reference internal" href="#sample_annotator.report_model.Category" title="sample_annotator.report_model.Category"><span class="pre">sample_annotator.report_model.Category</span></a></em><em class="property"> <span class="pre">=</span> <span class="pre">'unclassified'</span></em><a class="headerlink" href="#sample_annotator.report_model.Message.category" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sample_annotator.report_model.Message.description">
+<span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="pre">:</span> <span class="pre">str</span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#sample_annotator.report_model.Message.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sample_annotator.report_model.Message.field">
+<span class="sig-name descname"><span class="pre">field</span></span><em class="property"><span class="pre">:</span> <span class="pre">str</span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#sample_annotator.report_model.Message.field" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sample_annotator.report_model.Message.severity">
+<span class="sig-name descname"><span class="pre">severity</span></span><em class="property"><span class="pre">:</span> <span class="pre">int</span></em><em class="property"> <span class="pre">=</span> <span class="pre">1</span></em><a class="headerlink" href="#sample_annotator.report_model.Message.severity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sample_annotator.report_model.Message.was_repaired">
+<span class="sig-name descname"><span class="pre">was_repaired</span></span><em class="property"><span class="pre">:</span> <span class="pre">bool</span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#sample_annotator.report_model.Message.was_repaired" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sample_annotator.report_model.PackageCombo">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">sample_annotator.report_model.</span></span><span class="sig-name descname"><span class="pre">PackageCombo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">environmental_package</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">checklist</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sample_annotator.report_model.PackageCombo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Tuple of environmental package and checklist</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sample_annotator.report_model.PackageCombo.checklist">
+<span class="sig-name descname"><span class="pre">checklist</span></span><em class="property"><span class="pre">:</span> <span class="pre">str</span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#sample_annotator.report_model.PackageCombo.checklist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sample_annotator.report_model.PackageCombo.environmental_package">
+<span class="sig-name descname"><span class="pre">environmental_package</span></span><em class="property"><span class="pre">:</span> <span class="pre">str</span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#sample_annotator.report_model.PackageCombo.environmental_package" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-sample_annotator.sample_annotator">
+<span id="sample-annotator-sample-annotator-module"></span><h2>sample_annotator.sample_annotator module<a class="headerlink" href="#module-sample_annotator.sample_annotator" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="sample_annotator.sample_annotator.SampleAnnotator">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">sample_annotator.sample_annotator.</span></span><span class="sig-name descname"><span class="pre">SampleAnnotator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_class</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">linkml_runtime.linkml_model.meta.ClassDefinition</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geoengine</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">sample_annotator.geolocation.geotools.GeoEngine</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">measurement_engine</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">sample_annotator.measurements.measurements.MeasurementEngine</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">MeasurementEngine()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">schema</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">sample_annotator.metadata.sample_schema.SampleSchema</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">SampleSchema(object=None)</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sample_annotator.sample_annotator.SampleAnnotator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>TODO</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="sample_annotator.sample_annotator.SampleAnnotator.annotate">
+<span class="sig-name descname"><span class="pre">annotate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">study</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#sample_annotator.report_model.AnnotationReport" title="sample_annotator.report_model.AnnotationReport"><span class="pre">sample_annotator.report_model.AnnotationReport</span></a></span></span><a class="headerlink" href="#sample_annotator.sample_annotator.SampleAnnotator.annotate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Annotate a sample</p>
+<p>Returns an AnnotationReport object that includes a transformed sample representation,
+plus reports of all errors/warnings found, and repairs made</p>
+<p>Performs a sequential series of tidy activities. Each report</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sample_annotator.sample_annotator.SampleAnnotator.annotate_all">
+<span class="sig-name descname"><span class="pre">annotate_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">samples</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">study</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#sample_annotator.report_model.AnnotationMultiSampleReport" title="sample_annotator.report_model.AnnotationMultiSampleReport"><span class="pre">sample_annotator.report_model.AnnotationMultiSampleReport</span></a></span></span><a class="headerlink" href="#sample_annotator.sample_annotator.SampleAnnotator.annotate_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>Annotate a list of samples</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sample_annotator.sample_annotator.SampleAnnotator.geoengine">
+<span class="sig-name descname"><span class="pre">geoengine</span></span><em class="property"><span class="pre">:</span> <span class="pre">sample_annotator.geolocation.geotools.GeoEngine</span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#sample_annotator.sample_annotator.SampleAnnotator.geoengine" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sample_annotator.sample_annotator.SampleAnnotator.infer_package">
+<span class="sig-name descname"><span class="pre">infer_package</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#sample_annotator.report_model.AnnotationReport" title="sample_annotator.report_model.AnnotationReport"><span class="pre">sample_annotator.report_model.AnnotationReport</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sample_annotator.sample_annotator.SampleAnnotator.infer_package" title="Permalink to this definition">¶</a></dt>
+<dd><p>Infer the environment package / checklist combo, either
+from directly asserted fields, or other means</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sample_annotator.sample_annotator.SampleAnnotator.measurement_engine">
+<span class="sig-name descname"><span class="pre">measurement_engine</span></span><em class="property"><span class="pre">:</span> <span class="pre">sample_annotator.measurements.measurements.MeasurementEngine</span></em><em class="property"> <span class="pre">=</span> <span class="pre">MeasurementEngine()</span></em><a class="headerlink" href="#sample_annotator.sample_annotator.SampleAnnotator.measurement_engine" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sample_annotator.sample_annotator.SampleAnnotator.perform_geolocation_inference">
+<span class="sig-name descname"><span class="pre">perform_geolocation_inference</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#sample_annotator.report_model.AnnotationReport" title="sample_annotator.report_model.AnnotationReport"><span class="pre">sample_annotator.report_model.AnnotationReport</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sample_annotator.sample_annotator.SampleAnnotator.perform_geolocation_inference" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs inference using geolocation information</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sample_annotator.sample_annotator.SampleAnnotator.perform_inference">
+<span class="sig-name descname"><span class="pre">perform_inference</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#sample_annotator.report_model.AnnotationReport" title="sample_annotator.report_model.AnnotationReport"><span class="pre">sample_annotator.report_model.AnnotationReport</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sample_annotator.sample_annotator.SampleAnnotator.perform_inference" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs Machine Learning inference</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sample_annotator.sample_annotator.SampleAnnotator.perform_text_mining">
+<span class="sig-name descname"><span class="pre">perform_text_mining</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#sample_annotator.report_model.AnnotationReport" title="sample_annotator.report_model.AnnotationReport"><span class="pre">sample_annotator.report_model.AnnotationReport</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sample_annotator.sample_annotator.SampleAnnotator.perform_text_mining" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs text mining</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sample_annotator.sample_annotator.SampleAnnotator.schema">
+<span class="sig-name descname"><span class="pre">schema</span></span><em class="property"><span class="pre">:</span> <span class="pre">sample_annotator.metadata.sample_schema.SampleSchema</span></em><em class="property"> <span class="pre">=</span> <span class="pre">SampleSchema(object=None)</span></em><a class="headerlink" href="#sample_annotator.sample_annotator.SampleAnnotator.schema" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sample_annotator.sample_annotator.SampleAnnotator.target_class">
+<span class="sig-name descname"><span class="pre">target_class</span></span><em class="property"><span class="pre">:</span> <span class="pre">linkml_runtime.linkml_model.meta.ClassDefinition</span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#sample_annotator.sample_annotator.SampleAnnotator.target_class" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sample_annotator.sample_annotator.SampleAnnotator.tidy_enumerations">
+<span class="sig-name descname"><span class="pre">tidy_enumerations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#sample_annotator.report_model.AnnotationReport" title="sample_annotator.report_model.AnnotationReport"><span class="pre">sample_annotator.report_model.AnnotationReport</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sample_annotator.sample_annotator.SampleAnnotator.tidy_enumerations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tidies measurement fields</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sample_annotator.sample_annotator.SampleAnnotator.tidy_keys">
+<span class="sig-name descname"><span class="pre">tidy_keys</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#sample_annotator.report_model.AnnotationReport" title="sample_annotator.report_model.AnnotationReport"><span class="pre">sample_annotator.report_model.AnnotationReport</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sample_annotator.sample_annotator.SampleAnnotator.tidy_keys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs tidying on all keys/fields/slots in the sample dictionary</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>uses mappings, e.g. between MIxS5 vs 6</p></li>
+<li><p>performs case normalization</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sample_annotator.sample_annotator.SampleAnnotator.tidy_measurements">
+<span class="sig-name descname"><span class="pre">tidy_measurements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#sample_annotator.report_model.AnnotationReport" title="sample_annotator.report_model.AnnotationReport"><span class="pre">sample_annotator.report_model.AnnotationReport</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sample_annotator.sample_annotator.SampleAnnotator.tidy_measurements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tidies measurement fields</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sample_annotator.sample_annotator.SampleAnnotator.tidy_nulls">
+<span class="sig-name descname"><span class="pre">tidy_nulls</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#sample_annotator.report_model.AnnotationReport" title="sample_annotator.report_model.AnnotationReport"><span class="pre">sample_annotator.report_model.AnnotationReport</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sample_annotator.sample_annotator.SampleAnnotator.tidy_nulls" title="Permalink to this definition">¶</a></dt>
+<dd><p>Normalizes to EBI standard null values</p>
+<p><a class="reference external" href="https://ena-docs.readthedocs.io/en/latest/submit/samples/missing-values.html">https://ena-docs.readthedocs.io/en/latest/submit/samples/missing-values.html</a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sample_annotator.sample_annotator.SampleAnnotator.validate_identifier">
+<span class="sig-name descname"><span class="pre">validate_identifier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#sample_annotator.report_model.AnnotationReport" title="sample_annotator.report_model.AnnotationReport"><span class="pre">sample_annotator.report_model.AnnotationReport</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sample_annotator.sample_annotator.SampleAnnotator.validate_identifier" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-sample_annotator.sample_utils">
+<span id="sample-annotator-sample-utils-module"></span><h2>sample_annotator.sample_utils module<a class="headerlink" href="#module-sample_annotator.sample_utils" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="sample_annotator.sample_utils.create_tests">
+<span class="sig-prename descclassname"><span class="pre">sample_annotator.sample_utils.</span></span><span class="sig-name descname"><span class="pre">create_tests</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">samples</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sample_annotator.sample_utils.create_tests" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes normalized samples and uses this to create tests</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-sample_annotator">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-sample_annotator" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="setup.html" class="btn btn-neutral float-right" title="setup module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="modules.html" class="btn btn-neutral float-left" title="sample-annotator" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Chris Mungall; Seth Carbon; Harshad Hegde; Bill Duncan; Mark Miller; Marcin Joachimiak.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
