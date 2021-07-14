@@ -1,5 +1,4 @@
-[![made-with-sphinx-doc](https://img.shields.io/badge/Made%20with-Sphinx-1f425f.svg)](https://microbiomedata.github.io/sample-annotator/static/intro.html)
-<!-- [![Documentation Status](https://readthedocs.org/projects/ansicolortags/badge/?version=latest)](https://microbiomedata.github.io/sample-annotator/static/intro.html) -->
+[![Documentation Status](https://readthedocs.org/projects/ansicolortags/badge/?version=latest)](https://microbiomedata.github.io/sample-annotator/static/intro.html)
 # NMDC Sample Annotator API
 
 ## Installing
