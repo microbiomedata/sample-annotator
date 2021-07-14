@@ -1,4 +1,3 @@
-[![Documentation Status](https://readthedocs.org/projects/ansicolortags/badge/?version=latest)](https://microbiomedata.github.io/sample-annotator/static/intro.html)
 # NMDC Sample Annotator API
 
 ## Installing
