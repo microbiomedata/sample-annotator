@@ -19,7 +19,7 @@ class TextMining():
 
     def create_settings_file(self, path: str = PATH, ontList: List = ['ENVO']) -> None: 
         """
-        Creates the settings.ini file for OGER to get parameters.
+        Dynamically creates the settings.ini file for OGER to get parameters.
 
         :param path: Path of the 'nlp' folder
         :param ontList: The ontology to be used as dictionary e.g. ['ENVO', 'CHEBI']
