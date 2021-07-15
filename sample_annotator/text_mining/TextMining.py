@@ -25,6 +25,8 @@ class TextMining():
         :param ontList: The ontology to be used as dictionary e.g. ['ENVO', 'CHEBI']
         :return: None.
 
+        -   Include header: Output file will have column names
+
         -   The 'Shared' section declares global variables that can be used in other sections
             e.g. Data root.
             root = location of the working directory
@@ -50,6 +52,8 @@ class TextMining():
         -   Multiple Termlists can be declared in separate sections
             e.g. [Termlist1], [Termlist2] ...[Termlistn] with each having
             their own paths
+
+        -   Normalization used: lowercase and stem-Porter
         """
 
         config = configparser.ConfigParser()
