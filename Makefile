@@ -16,3 +16,10 @@ $(SAMPLE_SCHEMA_JSON): $(SAMPLE_SCHEMA_YAML)
 test:
 	pipenv install --dev
 	pipenv run python -m unittest
+
+# NER files
+text_mining/input/%.json: text_mining/input/%_nodes.tsv
+	kgx transform $< --input-format obojson --output $@ --output-format tsv 
+
+text_mining/input/%_nodes.tsv: text_mining/terms/%_termlist.tsv
+	python -m runner.runner prepare-termlist -i $< -o $@
