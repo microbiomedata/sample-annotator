@@ -8,6 +8,7 @@ import os
 import configparser
 
 SETTINGS_FILENAME = 'settings.ini'
+PATH = '.'
 
 @dataclass
 class TextMining():
@@ -16,7 +17,7 @@ class TextMining():
     """
     
 
-    def create_settings_file(self, path: str = '', ontList: List = ['ENVO']) -> None: 
+    def create_settings_file(self, path: str = PATH, ontList: List = ['ENVO']) -> None: 
         """
         Creates the settings.ini file for OGER to get parameters.
 
