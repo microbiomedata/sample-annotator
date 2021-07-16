@@ -17,6 +17,10 @@ test:
 	pipenv install --dev
 	pipenv run python -m unittest
 
+# Lock requirements
+requirements.txt:
+	pipenv lock --requirements
+
 # NER files
 text_mining/input/%.json: text_mining/input/%_nodes.tsv
 	kgx transform $< --input-format obojson --output $@ --output-format tsv 
