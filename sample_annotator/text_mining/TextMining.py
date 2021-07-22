@@ -2,13 +2,15 @@ from datetime import datetime
 from typing import Optional, List, Set, Any
 from dataclasses import dataclass
 import logging
+from unittest import runner
 from nmdc_schema.nmdc import QuantityValue
 import re
 import os
 import configparser
+from runner import runner
 
 SETTINGS_FILENAME = 'settings.ini'
-PATH = '.'
+PWD = os.path.dirname(os.path.realpath(__file__))
 
 @dataclass
 class TextMining():
@@ -17,7 +19,7 @@ class TextMining():
     """
     
 
-    def create_settings_file(self, path: str = PATH, ontList: List = ['ENVO']) -> None: 
+    def create_settings_file(self, path: str = PWD, ontList: List = ['ENVO']) -> None: 
         """
         Dynamically creates the settings.ini file for OGER to get parameters.
 
@@ -76,13 +78,18 @@ class TextMining():
 
         # Iterate throough ontoList to register paths of corresponding termlists
         for idx, ont in enumerate(ontList):
-            termlist_path = 'terms/'+ont.lower()+'_termlist.tsv'
-            config.set('Main','termlist'+str(idx+1)+'_filename', termlist_path)
+            termlist_path = os.path.join(path,'terms/'+ont.lower()+'_termlist.tsv')
+            config.set('Main','termlist'+str(idx+1)+'_path', termlist_path)
         
         # Write
         with open(os.path.join(path, SETTINGS_FILENAME), 'w') as settings_file:
             config.write(settings_file)
+    
+    def mine(self, setting_file):
+        runner.run_oger(settings=setting_file)
+        
 
 if __name__ == '__main__':
     text_mining = TextMining()
-    text_mining.create_settings_file('.', ['ENVO'])
+    text_mining.create_settings_file(PWD, ['ENVO'])
+    text_mining.mine(setting_file=os.path.join(PWD,SETTINGS_FILENAME))
