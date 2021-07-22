@@ -98,4 +98,7 @@ tests/test_config.ini
 
 # Don't lock
 Pipfile.lock
+
 sphinx/_build/*
+tests/tmp/*
+*/settings.ini
