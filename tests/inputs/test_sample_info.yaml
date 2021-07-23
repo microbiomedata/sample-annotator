@@ -39,7 +39,6 @@ tests:
       id: TEST:NER_1
       description: It was found in soil.
       env_broad_scale: 
-
     # this is what is expected in the output
     output:
       id: TEST:NER_1
@@ -47,5 +46,17 @@ tests:
       term: soil
       entity_id: ENVO:00001998
       origin: envo.json
+    expected_failures: {}
+  - description: TEST(NER)
+    sample:
+      id: TEST:NER_2
+      env_broad_scale: terrestrial biome
+      env_local_scale: 
+    must_pass: false
+    # this is what is expected in the output
+    output:
+       env_broad_scale: ENVO:00000446
+       env_local_scale: 
+    expected_failures: {}
 
 
