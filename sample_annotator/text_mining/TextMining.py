@@ -8,9 +8,11 @@ import re
 import os
 import configparser
 from runner import runner
+import json
 
-SETTINGS_FILENAME = 'settings.ini'
 PWD = os.path.dirname(os.path.realpath(__file__))
+SETTINGS_JSON = 'settings.json'
+SETTINGS_FILENAME = 'settings.ini'
 
 @dataclass
 class TextMining():
@@ -63,20 +65,15 @@ class TextMining():
         config['Shared'] = {}
         
         # Settings required by OGER
-        config['Main'] = {
-            'include_header' : True,
-            'input-directory' : os.path.join(path,'input'),
-            'output-directory' : os.path.join(path,'output'),
-            'pointer-type' : 'glob',
-            'pointers' : '*.tsv',
-            'iter-mode' : 'collection',
-            'article-format' : 'txt_tsv',
-            'export_format': 'tsv',
-            'termlist_stopwords': os.path.join(path,'stopwords','stopWords.txt'),
-            'termlist_normalize': 'lowercase stem-Porter'
-        }
 
-        # Iterate throough ontoList to register paths of corresponding termlists
+        with open(os.path.join(PWD,SETTINGS_JSON)) as stream:
+            self.object = json.load(stream)
+        config['Main'] = self.object['Main']
+        config.set('Main','input-directory', os.path.join(path,self.object['Relative-Path']['input-dir']))
+        config.set('Main','output-directory', os.path.join(path,self.object['Relative-Path']['output-dir']))
+        config.set('Main','termlist_stopwords', os.path.join(path,self.object['Relative-Path']['stopwords']))
+
+        # Iterate through ontoList to register paths of corresponding termlists
         for idx, ont in enumerate(ontList):
             termlist_path = os.path.join(path,'terms/'+ont.lower()+'_termlist.tsv')
             config.set('Main','termlist'+str(idx+1)+'_path', termlist_path)
