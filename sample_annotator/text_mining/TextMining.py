@@ -65,8 +65,8 @@ class TextMining():
         config['Shared'] = {}
         
         # Settings required by OGER
-
-        with open(os.path.join(PWD,SETTINGS_JSON)) as stream:
+        
+        with open(os.path.join(path,SETTINGS_JSON)) as stream:
             self.object = json.load(stream)
         config['Main'] = self.object['Main']
         config.set('Main','input-directory', os.path.join(path,self.object['Relative-Path']['input-dir']))
@@ -79,6 +79,7 @@ class TextMining():
             config.set('Main','termlist'+str(idx+1)+'_path', termlist_path)
         
         # Write
+        
         with open(os.path.join(path, SETTINGS_FILENAME), 'w') as settings_file:
             config.write(settings_file)
     
