@@ -100,5 +100,5 @@ tests/test_config.ini
 Pipfile.lock
 
 sphinx/_build/*
-tests/tmp/*
 sample_annotator/text_mining/settings.ini
+sample_annotator/text_mining/input/*
