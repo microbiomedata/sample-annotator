@@ -9,7 +9,7 @@ tests:
     output:
       alt:
         has_value: 2.0
-        has_unit: meter
+        has_unit: metre
         has_raw_value: 2m
     must_pass: false
     expected_failures:
