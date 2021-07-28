@@ -207,7 +207,7 @@ class SampleAnnotator():
         """
         Performs text mining
         """
-        keys_of_interest = ['env_broad_scale', 'env_medium_scale', 'env_local_scale']
+        keys_of_interest = ['env_broad_scale', 'env_local_scale', 'env_medium']
         PWD = os.path.dirname(os.path.realpath(__file__))
         TEXT_MINING_DIR = os.path.join(PWD,'text_mining')
         NER_INPUT_FILE = os.path.join(TEXT_MINING_DIR,'input/input.tsv')
@@ -237,10 +237,9 @@ class SampleAnnotator():
             ner_result_df = pd.read_csv(NER_OUTPUT_FILE, sep='\t', low_memory=False)
             
             for key in sample_of_interest.keys():
-                if len(ner_result_df.loc[ner_result_df['MATCHED TERM'] == sample[key]]['ENTITY ID']) > 0:
-                    sample[key] = ner_result_df.loc[ner_result_df['MATCHED TERM'] == sample[key]]['ENTITY ID'][0]
-
-        
+                match = ner_result_df.loc[ner_result_df['PREFERRED FORM'] == sample[key]]['ENTITY ID']
+                if len(match) > 0:
+                    sample[key] = match[match.index[0]]
 
     def perform_geolocation_inference(self, sample: SAMPLE, report: AnnotationReport):
         """

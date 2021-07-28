@@ -37,26 +37,28 @@ tests:
   - description: TEST(NER)
     sample:
       id: TEST:NER_1
-      description: It was found in soil.
-      env_broad_scale: 
+      description: It was found in water.
+      env_broad_scale: aquatic biome
+      env_local_scale: coal mine
+      env_medium: underground water
     # this is what is expected in the output
     output:
-      id: TEST:NER_1
-      type: biolink:OntologyClass
-      term: soil
-      entity_id: ENVO:00001998
-      origin: envo.json
+      env_broad_scale: ENVO:00002030
+      env_local_scale: ENVO:00002169
+      env_medium: ENVO:00005792
     expected_failures: {}
   - description: TEST(NER)
     sample:
       id: TEST:NER_2
       env_broad_scale: terrestrial biome
-      env_local_scale: 
+      env_local_scale: oil reservoir
+      env_medium: oil
     must_pass: false
     # this is what is expected in the output
     output:
        env_broad_scale: ENVO:00000446
-       env_local_scale: 
+       env_local_scale: ENVO:00002185
+       env_medium: ENVO:00002985
     expected_failures: {}
 
 

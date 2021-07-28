@@ -36,6 +36,4 @@ class TestNER(unittest.TestCase):
                 # Assertions
                 for key in expected_df.keys():
                     assert sample[key] == expected_output[key]
-
-    
         
