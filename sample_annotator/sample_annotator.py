@@ -203,7 +203,7 @@ class SampleAnnotator():
                     pv = pvs.get(v)
                     # TODO: use meaning field
 
-    def perform_text_mining(self, sample: SAMPLE, report: AnnotationReport)-> OntologyClass:
+    def perform_text_mining(self, sample: SAMPLE, report: AnnotationReport):
         """
         Performs text mining
         """
@@ -212,9 +212,6 @@ class SampleAnnotator():
         TEXT_MINING_DIR = os.path.join(PWD,'text_mining')
         NER_INPUT_FILE = os.path.join(TEXT_MINING_DIR,'input/input.tsv')
         NER_OUTPUT_FILE = os.path.join(TEXT_MINING_DIR, 'output/runNER_Output.tsv')
-        #desc = sample.get(KEY_DESCRIPTION, None)
-        # if desc is None:
-        #     report.add_message('No description text for NER.')
         
         sample_of_interest = {key: sample[key] for key in keys_of_interest if key in sample.keys() and sample[key] is not None}
         if not sample_of_interest:
