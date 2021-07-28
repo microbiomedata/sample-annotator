@@ -17,7 +17,7 @@ from .measurements.measurements import MeasurementEngine
 from .metadata.sample_schema import SampleSchema, underscore
 from .report_model import AnnotationReport, Message, PackageCombo, AnnotationMultiSampleReport, Category, SAMPLE, STUDY
 
-from sample_annotator.text_mining.TextMining import PWD, SETTINGS_FILENAME, TextMining
+from sample_annotator.text_mining.TextMining import SETTINGS_FILENAME, TextMining
 from linkml_runtime.linkml_model.meta import ClassDefinition, SchemaDefinition, SlotDefinition, Definition
 
 KEY_ENV_PACKAGE = nmdc_slots.env_package.name
