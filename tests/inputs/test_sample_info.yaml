@@ -8,9 +8,16 @@ tests:
     # this is what is expected in the repaired blob
     output:
       alt:
-        has_value: 2.0
+        has_numeric_value: 2.0
         has_unit: metre
         has_raw_value: 2m
+      lat_lon:
+        latitude: 68.3534
+        longitude: 19.0472
+      tot_part_carb:
+        has_numeric_value: 5
+        has_raw_value: '5'
+
     must_pass: false
     expected_failures:
       missing-core: ">0"
