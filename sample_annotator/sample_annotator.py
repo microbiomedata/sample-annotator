@@ -7,9 +7,9 @@ import re
 import logging
 import pandas as pd
 import bioregistry
+import os
 
-
-from nmdc_schema.nmdc import Biosample, GeolocationValue, QuantityValue
+from nmdc_schema.nmdc import Biosample, GeolocationValue, QuantityValue, OntologyClass
 from nmdc_schema.nmdc import slots as nmdc_slots
 
 from .geolocation.geotools import GeoEngine
@@ -17,7 +17,7 @@ from .measurements.measurements import MeasurementEngine
 from .metadata.sample_schema import SampleSchema, underscore
 from .report_model import AnnotationReport, Message, PackageCombo, AnnotationMultiSampleReport, Category, SAMPLE, STUDY
 
-
+from sample_annotator.text_mining.TextMining import PWD, SETTINGS_FILENAME, TextMining
 from linkml_runtime.linkml_model.meta import ClassDefinition, SchemaDefinition, SlotDefinition, Definition
 
 KEY_ENV_PACKAGE = nmdc_slots.env_package.name
@@ -203,12 +203,44 @@ class SampleAnnotator():
                     pv = pvs.get(v)
                     # TODO: use meaning field
 
-    def perform_text_mining(self, sample: SAMPLE, report: AnnotationReport):
+    def perform_text_mining(self, sample: SAMPLE, report: AnnotationReport)-> OntologyClass:
         """
         Performs text mining
         """
-        # TODO: Mark and Harshad to populate
-        ...
+        keys_of_interest = ['env_broad_scale', 'env_medium_scale', 'env_local_scale']
+        PWD = os.path.dirname(os.path.realpath(__file__))
+        TEXT_MINING_DIR = os.path.join(PWD,'text_mining')
+        NER_INPUT_FILE = os.path.join(TEXT_MINING_DIR,'input/input.tsv')
+        NER_OUTPUT_FILE = os.path.join(TEXT_MINING_DIR, 'output/runNER_Output.tsv')
+        #desc = sample.get(KEY_DESCRIPTION, None)
+        # if desc is None:
+        #     report.add_message('No description text for NER.')
+        
+        sample_of_interest = {key: sample[key] for key in keys_of_interest if key in sample.keys() and sample[key] is not None}
+        if not sample_of_interest:
+            report.add_message('Nothing to NER.')
+        else:
+            sample_df = pd.DataFrame.from_dict(sample_of_interest, orient='index')\
+                                    .reset_index()\
+                                    .rename(columns={'index':'id', 0:'text'})
+            
+            sample_df.to_csv(NER_INPUT_FILE, index=None, sep='\t')
+
+        
+
+            # Steps that lead to NER
+            text_miner = TextMining()
+            text_miner.create_settings_file(path=TEXT_MINING_DIR)
+            text_miner.mine(os.path.join(TEXT_MINING_DIR, SETTINGS_FILENAME))
+
+            # Post-process NER
+            ner_result_df = pd.read_csv(NER_OUTPUT_FILE, sep='\t', low_memory=False)
+            
+            for key in sample_of_interest.keys():
+                if len(ner_result_df.loc[ner_result_df['MATCHED TERM'] == sample[key]]['ENTITY ID']) > 0:
+                    sample[key] = ner_result_df.loc[ner_result_df['MATCHED TERM'] == sample[key]]['ENTITY ID'][0]
+
+        
 
     def perform_geolocation_inference(self, sample: SAMPLE, report: AnnotationReport):
         """
