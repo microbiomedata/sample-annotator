@@ -51,7 +51,7 @@ class TestAnnotate(unittest.TestCase):
             output_samples.append(report.output)
             df = report.as_dataframe()
             #print(df)
-            import pdb; pdb.set_trace()
+            
             if t.get('output') is not None:
                 for key in t.get('output').keys():
                     # In case of output = dict of dicts
