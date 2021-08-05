@@ -35,5 +35,41 @@ class GeoEngine():
         results = self.get_client().elevation(latlon)
         return results
 
-    def get_fao_soil_type(self, latlon: LATLON):
+    # TODO: Stan to implement
+    def get_fao_soil_type(self, latlon: LATLON) -> str:
+        """
+        This should be one of the values dictated in the enum for `fao_class` in enum
+
+        Currently this is one of:
+
+        * Acrisols
+        * Andosols
+        * Arenosols
+        * Cambisols
+        * Chernozems
+        * Ferralsols
+        * Fluvisols
+        * Gleysols
+        * Greyzems
+        * Gypsisols
+        * Histosols
+        * Kastanozems
+        * Lithosols
+        * Luvisols
+        * Nitosols
+        * Phaeozems
+        * Planosols
+        * Podzols
+        * Podzoluvisols
+        * Rankers
+        * Regosols
+        * Rendzinas
+        * Solonchaks
+        * Solonetz
+        * Vertisols
+        * Yermosols
+
+        This list may change in future so ideally this will be configuration-driven
+
+        """
         ...
