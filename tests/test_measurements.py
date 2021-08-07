@@ -21,7 +21,7 @@ class TestMeasurements(unittest.TestCase):
 
 
     def test_salinity(self):
-        tsv_file = open("../biosample-analysis/target/column_summaries/salinity_summary.tsv")
+        tsv_file = open("./tests/inputs/salinity_summary.tsv")
         salinity_data = csv.reader(tsv_file, delimiter="\t")
 
         report = AnnotationReport(messages=[])
