@@ -1,0 +1,32 @@
+tidied_input	source	target
+air	mixs-source	air
+built environment	mixs-source	built environment
+host associated	mixs-source	host-associated
+human associated	mixs-source	human-associated
+human gut	mixs-source	human-gut
+human oral	mixs-source	human-oral
+human skin	mixs-source	human-skin
+human vaginal	mixs-source	human-vaginal
+hydrocarbon resources cores	mixs-source	hydrocarbon resources-cores
+hydrocarbon resources fluids swabs	mixs-source	hydrocarbon resources-fluids/swabs
+microbial mat biofilm	mixs-source	microbial mat/biofilm
+misc environment	mixs-source	misc environment
+plant associated	mixs-source	plant-associated
+sediment	mixs-source	sediment
+soil	mixs-source	soil
+wastewater sludge	mixs-source	wastewater/sludge
+water	mixs-source	water
+built	https://www.ncbi.nlm.nih.gov/biosample/docs/packages/?format=xml EnvPackage	built environment
+microbial	https://www.ncbi.nlm.nih.gov/biosample/docs/packages/?format=xml EnvPackage	microbial mat/biofilm
+miscellaneous	https://www.ncbi.nlm.nih.gov/biosample/docs/packages/?format=xml EnvPackage	misc environment
+wastewater	https://www.ncbi.nlm.nih.gov/biosample/docs/packages/?format=xml EnvPackage	wastewater/sludge
+miscellaneous or artificial	https://www.ncbi.nlm.nih.gov/biosample/docs/packages/?format=xml EnvPackageDisplay	misc environment
+default	common in ftp://ftp.ncbi.nlm.nih.gov//biosample/biosample_set.xml.gz	
+missing	common in ftp://ftp.ncbi.nlm.nih.gov//biosample/biosample_set.xml.gz	
+not applicable	common in ftp://ftp.ncbi.nlm.nih.gov//biosample/biosample_set.xml.gz	
+not available	common in ftp://ftp.ncbi.nlm.nih.gov//biosample/biosample_set.xml.gz	
+not collected	common in ftp://ftp.ncbi.nlm.nih.gov//biosample/biosample_set.xml.gz	
+unknown	common in ftp://ftp.ncbi.nlm.nih.gov//biosample/biosample_set.xml.gz	
+unspecified	common in ftp://ftp.ncbi.nlm.nih.gov//biosample/biosample_set.xml.gz	
+miscellaneous natural or artificial environment	common in ftp://ftp.ncbi.nlm.nih.gov//biosample/biosample_set.xml.gz	misc environment
+soil associated	common in ftp://ftp.ncbi.nlm.nih.gov//biosample/biosample_set.xml.gz	soil

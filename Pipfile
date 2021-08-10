@@ -17,6 +17,7 @@ bioregistry = "*"
 sphinx = "*"
 sphinx-rtd-theme = "*"
 recommonmark = "*"
+requests = "*"
 
 [dev-packages]
 tox = "*"

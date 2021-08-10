@@ -1,0 +1,97 @@
+env_package	count(1)
+	18375997
+host-associated	69981
+human-gut	54078
+water	17924
+built environment	14510
+misc environment	14502
+human-skin	14327
+soil	12303
+human-oral	8711
+missing	8453
+sediment	6226
+human-associated	5357
+MIGS/MIMS/MIMARKS.soil	3784
+MIGS/MIMS/MIMARKS.host-associated	2985
+plant-associated	2554
+MIGS/MIMS/MIMARKS.human-gut	2499
+microbial mat/biofilm	2146
+MIGS/MIMS/MIMARKS.water	1747
+MIGS/MIMS/MIMARKS.human-associated	1465
+MIGS/MIMS/MIMARKS.sediment	1177
+MIGS/MIMS/MIMARKS.human-oral	1154
+human-vaginal	1082
+MIGS/MIMS/MIMARKS.plant-associated	1063
+MIGS/MIMS/MIMARKS.microbial	732
+miscellaneous natural or artificial environment	611
+MIGS/MIMS/MIMARKS.miscellaneous	525
+mimarks	479
+wastewater|sludge	417
+mouse-gut	406
+MIGS/MIMS/MIMARKS.wastewater	385
+wastewater/sludge	374
+unknown	274
+air	234
+Human-associated	212
+MIGS/MIMS/MIMARKS.air	205
+Human-oral	201
+gut	172
+host_associated	171
+MIGS/MIMS/MIMARKS.human-skin	135
+not applicable	119
+biofilm	114
+Human-gut	111
+Host-associated	110
+human-not providedsopharyngeal	107
+wastewater sludge	90
+mice gut	87
+built	61
+CV	60
+human gut	59
+Human_Gut	59
+default	51
+microbial mat|biofilm	48
+home, outdoor environment	44
+fermentation-associated	42
+Unspecified	42
+soil-associated	36
+seawater	36
+sterile water	35
+miscellaneous	33
+human_skin	28
+Human-vaginal	28
+fresh water	27
+Mouse_Gut	27
+gut microbiome	23
+Water	21
+mims extension	19
+Soil	19
+wastewater	14
+control	14
+rock	12
+extreme habitat	10
+arctic	10
+freshwater sediment	9
+MIGS/MIMS/MIMARKS.human-vaginal	9
+misc-environment	7
+MIMARKS_water	6
+MIENS_16S	6
+cave	5
+Not available	4
+plant	3
+not collected	3
+MIGS.plant-associated	3
+sea water	2
+host associated	2
+env_package	2
+Sediment	2
+sea water, [ENVO:00002149]	1
+saliva	1
+ocean[ENVO:00000015]	1
+marine sediment (ENVO:00002113)	1
+Unknown	1
+Sea water	1
+MIMARKS_16S	1
+ENVO:00000016	1
+Deep-sea water	1
+Coastal water body (ENVO:02000049)	1
