@@ -18,6 +18,7 @@ sphinx = "*"
 sphinx-rtd-theme = "*"
 recommonmark = "*"
 requests = "*"
+curieutil = "*"
 
 [dev-packages]
 tox = "*"

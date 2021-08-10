@@ -27,26 +27,6 @@ MULTI_WHITESPACE = re.compile(r"\s+")
 # 	count(1) desc;
 
 # what to do with NULLs and empty strings?
-# prefix "MIGS/MIMS/MIMARKS."
-
-# manual overrides for common strings in NCBI but not mixs
-# put this in a config file?
-# or express these with patterns in executable code?
-env_package_overrides = {
-    "default": "no environmental package",
-    # ?
-    "microbial": "microbial mat/biofilm",
-    "miscellaneous natural or artificial environment": "misc environment",
-    "missing": "no environmental package",
-    "not applicable": "no environmental package",
-    "not available": "no environmental package",
-    "not collected": "no environmental package",
-    "soil associated": "soil",
-    "soil-associated": "soil",
-    "unknown": "no environmental package",
-    "unspecified": "no environmental package",
-}
-
 
 # examine https://github.com/cmungall/mixs-source with linkml methods to see what packages are allowed?
 #   or maybe just pyyaml if no fancy methods are required
