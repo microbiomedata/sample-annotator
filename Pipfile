@@ -19,6 +19,7 @@ sphinx-rtd-theme = "*"
 recommonmark = "*"
 requests = "*"
 curieutil = "*"
+strsimpy = "*"
 
 [dev-packages]
 tox = "*"

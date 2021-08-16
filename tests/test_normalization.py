@@ -21,7 +21,7 @@ class TestNormalizastions(unittest.TestCase):
 
     def test_env_package_failure(self):
         normalized = normalize_package("made up package")
-        assert normalized == ""
+        assert normalized is None
 
     def test_ebs_failure(self):
         normalized = normalize_triad_slot("ENVO:00001998 pile of dirt")

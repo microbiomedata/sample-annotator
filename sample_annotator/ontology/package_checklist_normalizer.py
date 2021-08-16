@@ -2,6 +2,8 @@
 # and that yaml is not listed in the project requirements
 # unsuccessful previous attempt to install nim plugin for code-formatting .cfg files
 # https://plugins.jetbrains.com/plugin/15128-nim
+from typing import Optional
+
 import yaml
 import requests
 import pandas as pd
@@ -10,6 +12,11 @@ import re
 from string import punctuation
 
 MULTI_WHITESPACE = re.compile(r"\s+")
+
+default_mixssource_terms_url = "https://raw.githubusercontent.com/cmungall/mixs-source/main/model/schema/terms.yaml"
+default_ncbi_packages_url = "https://www.ncbi.nlm.nih.gov/biosample/docs/packages/?format=xml"
+curated_env_packages_path = "../data/curated_env_packages.txt"
+
 
 # put some caching mechanism in place
 
@@ -28,16 +35,18 @@ MULTI_WHITESPACE = re.compile(r"\s+")
 
 # what to do with NULLs and empty strings?
 
-# examine https://github.com/cmungall/mixs-source with linkml methods to see what packages are allowed?
-#   or maybe just pyyaml if no fancy methods are required
-# env_package_enum is defined in in terms.yaml
-# and corresponds to EnvPackageDisplay in https://www.ncbi.nlm.nih.gov/biosample/docs/packages/?format=xml
-# ['air', 'built environment', 'host-associated', 'human-associated', 'human-skin', 'human-oral', 'human-gut',
-# 'human-vaginal', 'hydrocarbon resources-cores', 'hydrocarbon resources-fluids/swabs', 'microbial mat/biofilm',
-# 'misc environment', 'plant-associated', 'sediment', 'soil', 'wastewater/sludge', 'water']
+def get_envpacks_from_mixssource(mixssource_terms_url=default_mixssource_terms_url) -> [str]:
+    """
+    examine https://github.com/cmungall/mixs-source with yaml methods to see what packages are allowed
 
-def get_envpacks_from_mixssource(mixssource_terms_url="https://raw.githubusercontent.com/cmungall/mixs-source/main"
-                                                      "/model/schema/terms.yaml") -> [str]:
+    Simple, so not using limkml methods
+    env_package_enum is defined in in terms.yaml and corresponds to EnvPackageDisplay in
+    https://www.ncbi.nlm.nih.gov/biosample/docs/packages/?format=xml
+    values:
+    ['air', 'built environment', 'host-associated', 'human-associated', 'human-skin', 'human-oral', 'human-gut',
+    'human-vaginal', 'hydrocarbon resources-cores', 'hydrocarbon resources-fluids/swabs', 'microbial mat/biofilm',
+    'misc environment', 'plant-associated', 'sediment', 'soil', 'wastewater/sludge', 'water']
+    """
     r = requests.get(mixssource_terms_url)
     t = r.text
     model = yaml.safe_load(t)
@@ -45,14 +54,16 @@ def get_envpacks_from_mixssource(mixssource_terms_url="https://raw.githubusercon
     return enums
 
 
-# # also handy to look at https://www.ncbi.nlm.nih.gov/biosample/docs/packages/?format=xml
-# # because that has slightly EnvPackage and EnvPackageDisplay fields that can be matched against input
-# envpack_frame.columns
-# Index(['Name', 'DisplayName', 'ShortName', 'EnvPackage', 'EnvPackageDisplay',
-#        'NotAppropriateFor', 'Description', 'Example'],
-#       dtype='object')
-def get_envpack_frame_from_ncbi(ncbi_packages_url="https://www.ncbi.nlm.nih.gov/biosample/docs/packages/"
-                                                  "?format=xml") -> pd.DataFrame:
+def get_envpack_frame_from_ncbi(ncbi_packages_url=default_ncbi_packages_url) -> pd.DataFrame:
+    """
+    handy to check https://www.ncbi.nlm.nih.gov/biosample/docs/packages/?format=xml for reasonable env_package vals
+
+    It has slightly different EnvPackage and EnvPackageDisplay fields that can be matched against input
+    envpack_frame.columns:
+    Index(['Name', 'DisplayName', 'ShortName', 'EnvPackage', 'EnvPackageDisplay',
+           'NotAppropriateFor', 'Description', 'Example'],
+          dtype='object')
+    """
     bio_s_columns = ['Name', 'DisplayName', 'ShortName', 'EnvPackage', 'EnvPackageDisplay', 'NotAppropriateFor',
                      'Description', 'Example']
     bio_s_df = pd.DataFrame(columns=bio_s_columns)
@@ -71,8 +82,12 @@ def get_envpack_frame_from_ncbi(ncbi_packages_url="https://www.ncbi.nlm.nih.gov/
 
 
 def standard_tidy(raw_string: str) -> str:
+    """
+    Lowercase; replace all punctuation with whitespace and strip leading, trailing or multi whitespace
+
+    punctuation -> whitespace: thorough and easy to read. possible slow?
+    """
     placeholder = raw_string.lower()
-    # slow? but explicit and thorough
     for char in punctuation:
         placeholder = placeholder.replace(char, ' ')
     placeholder = MULTI_WHITESPACE.sub(" ", placeholder).strip()
@@ -98,35 +113,45 @@ def emphasize_envpack(entire_envpack_frame):
 #   OR
 # just pre-compose a curated mapping to
 #   https://raw.githubusercontent.com/cmungall/mixs-source/main/model/schema/terms.yaml
-def get_curated_env_package_mappings(filepath="../data/curated_env_packages.txt") -> pd.DataFrame:
+
+# enums = get_envpacks_from_mixssource()
+# tidy_enums = [standard_tidy(item) for item in enums]
+# # print(tidy_enums)
+# envpack_frame = get_envpack_frame_from_ncbi()
+# envpack_emphasized = emphasize_envpack(envpack_frame)
+# envpack_emphasized.to_clipboard()
+# print(envpack_emphasized)
+# # apply standard_tidy to both the INPUT AND MIXS SOURCE VALUES,
+# # so that they will both have punctuation replaced with whitespace!
+def get_curated_env_package_mappings(filepath=curated_env_packages_path) -> pd.DataFrame:
     curated_env_package = pd.read_csv(filepath, sep='\t')
     return curated_env_package
 
 
-def normalize_package(raw_package: str) -> str:
-    # bootstrapping off of env_package_nomralizastion in https://github.com/turbomam/scoped-mapping
-    # decompose_series from scoped mapping tries to detect and isolate CURIE term IDs
-    #   that requires knowing what patterns to look for
-    #   I had been determining patterns by importing rexpy from tdda and running that over entire ontology files
-    #   Can that be run over multiple patterns at a time? Had just been doing ENVO
-    #   This may not be worth it in terms of the number of unique env_package values containing an EnvO term
-    #
-    # # return an indicator of whether the normalized env_package is known to mixs?
-    # enums = get_envpacks_from_mixssource()
-    # tidy_enums = [standard_tidy(item) for item in enums]
-    # # print(tidy_enums)
-    # envpack_frame = get_envpack_frame_from_ncbi()
-    # envpack_emphasized = emphasize_envpack(envpack_frame)
-    # envpack_emphasized.to_clipboard()
-    # print(envpack_emphasized)
-    # # apply standard_tidy to INPUT AND MIXS SOURCE VALUES!
-    curated_env_package_mappings = get_curated_env_package_mappings()
+# is there a better place to do this globally?
+curated_env_package_mappings = get_curated_env_package_mappings()
+
+
+def normalize_package(raw_package: str) -> Optional[str]:
+    """
+    Inspect raw_package and return a matching MIxS environmental package term if possible
+
+    This could be based on the (misspelled) method
+    env_package_nomralizastion in https://github.com/turbomam/scoped-mapping
+    We could take the general approach of trying to parse out OBO foundry term IDs from label-like strings
+    decompose_series from scoped mapping an do the term ID isolation,
+    but it requires a specification of term ID patterns to look for
+    Those patterns can be deduced from a "large enough" set of valid IDs
+    by using rexpy from tdda
+    Could the term isolation be run over multiple patterns at a time? We have been just running it over ENVO
+    This is probably of more use in normalizing triad strings.
+    EnvO IDs don't appear very often in the env_package strings
+    TODO: return an indicator of whether the normalized env_package is known to mixs? Or None on failure?
+    """
     placeholder = standard_tidy(raw_package)
     placeholder = re.sub("^migs mims mimarks ", "", placeholder)
     match = curated_env_package_mappings.loc[curated_env_package_mappings['tidied_input'] == placeholder, "target"]
     if len(match) == 1:
         return match.squeeze()
-    # signature says return string
-    # option for returning None?
     else:
-        return ""
+        return None

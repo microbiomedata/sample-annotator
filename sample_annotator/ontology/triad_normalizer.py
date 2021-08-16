@@ -6,10 +6,13 @@ from sample_annotator.ontology.package_checklist_normalizer import standard_tidy
 import json
 import pandas as pd
 from src.curieutil import CurieUtil
+from strsimpy.cosine import Cosine
 
 prefix_commons_context_url = 'https://raw.githubusercontent.com/prefixcommons/biocontext/master/registry' \
                              '/obo_context.jsonld'
 envo_json_url = "http://purl.obolibrary.org/obo/envo.json"
+cosine_ngram_size = 2
+qualified_stringdist = Cosine(cosine_ngram_size)
 
 
 # put some caching mechanism in place
@@ -87,20 +90,22 @@ def extract_cuire(input_str, term_pattern=envo_patttern) -> dict:
     if term_search:
         # possibility of multiple matches?
         term_match = term_search.group(0)
-        # print(term_match)
         depleted = re.sub(term_match, '', input_str)
         depleted = standard_tidy(depleted)
         asserted_label = envo_label_frame.loc[envo_label_frame['curie'] == term_match, "lbl"]
-        # print(asserted_label)
         if len(asserted_label) == 1:
             al_val = asserted_label.squeeze()
-            print(al_val)
             return {"depleted": depleted, "term_match": term_match, "asserted_label": al_val}
         else:
             return {"depleted": depleted, "term_match": term_match}
     else:
         tidied = standard_tidy(input_str)
         return {"tidied": tidied}
+
+
+def calculate_cosine_dist(a: str, b: str) -> float:
+    stringdist_res = qualified_stringdist.distance(a, b)
+    return stringdist_res
 
 
 # returned pattern should contain
@@ -110,16 +115,21 @@ def extract_cuire(input_str, term_pattern=envo_patttern) -> dict:
 def normalize_triad_slot(raw_triad_value: str) -> str:
     # start by looking for exact matches with rdftab?
     # requires some setup
+    # try envo json file
     #
     # search over more ontologies in addition to envo?
     cuire_extract_res = extract_cuire(raw_triad_value, envo_patttern)
     if "term_match" in cuire_extract_res.keys():
         # confirm that the ID and the label match?
         # currently using envo's json ontology file. alternatives inc. rdftab.
+        depleted_asserted_dist = calculate_cosine_dist(cuire_extract_res['depleted'],
+                                                       standard_tidy(cuire_extract_res['asserted_label']))
+        print(cuire_extract_res['depleted'])
+        print(standard_tidy(cuire_extract_res['asserted_label']))
+        print(depleted_asserted_dist)
         placeholder = cuire_extract_res['asserted_label'] + " [" + cuire_extract_res['term_match'] + "]"
     else:
         placeholder = cuire_extract_res['tidied']
     # signature says return string
     # option for returning None?
-    # print(placeholder)
     return placeholder
