@@ -1,12 +1,28 @@
-# also see notes in sample_annotator/ontology/package_checklist_normalizer.py
+"""
+examine strings from biosample metadata and return matching MIxS traid terms if possible
 
-import requests
-import re
-from sample_annotator.ontology.package_checklist_normalizer import standard_tidy
+MIxS trad columns = env_broad_scale, env_local_scale, env_medium
+Might want to look at the harmonized_table.db created by https://github.com/INCATools/biosample-analysis
+path = XXX
+query = XXX
+
+Basic methods are provided fro extracting OBO foundry term IDs from strings,
+including obtaining label/term reference data
+Does not yet obtain synonyms etc.
+alternatives: deeper parse of JSON
+direct rdftab, semantic sql... setup
+ols, bioportal term lookup or search... slower
+"""
 import json
+import re
+from typing import Optional
+
 import pandas as pd
+import requests
 from src.curieutil import CurieUtil
 from strsimpy.cosine import Cosine
+
+from sample_annotator.ontology.package_checklist_normalizer import standard_tidy
 
 prefix_commons_context_url = 'https://raw.githubusercontent.com/prefixcommons/biocontext/master/registry' \
                              '/obo_context.jsonld'
@@ -16,15 +32,8 @@ qualified_stringdist = Cosine(cosine_ngram_size)
 
 
 # put some caching mechanism in place
-
-# # get/show the most common mixs triad values (broad, LOCAL, MEDIUM)
-# #   in harmonized_table.db ?
-# # created by https://github.com/INCATools/biosample-analysis
-# # file = XXX
-# # query = XXX
-
 # what to do with NULLs and empty strings?
-
+# also see notes in sample_annotator/ontology/package_checklist_normalizer.py
 
 def get_web_json(url: str) -> dict:
     r = requests.get(url)
@@ -38,11 +47,6 @@ prefix_commons_context_mapping = CurieUtil.parseContext(prefix_commons_context_r
 curie_mapper = CurieUtil(prefix_commons_context_mapping)
 
 envo_dict = get_web_json(envo_json_url)
-# really basic
-# doesn't include synonyms etc.
-# alternatives: deeper parse of JSON
-# direct rdftab, semantic sql... setup
-# ols, bioportal term lookup or search... slower
 envo_label_frame = pd.DataFrame(envo_dict['graphs'][0]['nodes'])
 envo_label_frame = envo_label_frame[['id', 'lbl']]
 # convert IRIs <-> CURIEs
@@ -61,13 +65,18 @@ bio_registry_content = get_bio_registry_content()
 
 
 def get_pattern_from_bioregistry(br_dict, prefix: str, authority="miriam") -> str:
-    # convert prefix and authority to lowercase?
-    # some authorities have patterns and others don't
-    # some may be more specific than others
-    # the pattern will probably be bookended by ^ and $
-    # will probably want to remove those
-    # could these tests be more compact?
-    # what will be returned in any of the fall-through cases?
+    """
+    Look in the bioregistry for a regular expression that describes the IDs in an ontology
+
+    convert prefix and authority to lowercase?
+    some authorities have patterns and others don't
+    some may be more specific than others
+    the pattern will probably be bookended by ^ and $
+    will probably want to remove those
+    could these tests be more compact?
+    what will be returned in any of the fall-through cases?
+    """
+
     if isinstance(br_dict, dict):
         if prefix in br_dict.keys():
             if isinstance(br_dict[prefix], dict) and authority in br_dict[prefix].keys():
@@ -82,13 +91,20 @@ envo_patttern = get_pattern_from_bioregistry(bio_registry_content, "envo")
 
 
 def extract_cuire(input_str, term_pattern=envo_patttern) -> dict:
+    """
+    if possible, extract an OBO foundry term ID from a string
+
+    return the ID and teh string separately
+    include or exclude brackets from match?
+    we have seen cases where envo was misspelled
+    or there was a textual local part
+    or other edge cases...
+
+    should we attempt to handle multiple matches?
+    """
     term_search = re.search(term_pattern, input_str)
-    # include or exclude brackets from match?
-    # we have seen cases where envo was misspelled
-    # or there was a alpha local part
-    # or ...
+
     if term_search:
-        # possibility of multiple matches?
         term_match = term_search.group(0)
         depleted = re.sub(term_match, '', input_str)
         depleted = standard_tidy(depleted)
@@ -108,16 +124,18 @@ def calculate_cosine_dist(a: str, b: str) -> float:
     return stringdist_res
 
 
-# returned pattern should contain
-# one or more pipe-delimited
-# OBO foundry label and [term id] (usually EnvO)
-# "terrestrial biome [ENVO:00000446]|marine biome [ENVO:00000447]"
-def normalize_triad_slot(raw_triad_value: str) -> str:
-    # start by looking for exact matches with rdftab?
-    # requires some setup
-    # try envo json file
-    #
-    # search over more ontologies in addition to envo?
+def normalize_triad_slot(raw_triad_value: str) -> Optional[str]:
+    """
+    This is the main method for normalizing strings about the environments from which biosamples were obtained
+
+    returned pattern should contain one or more pipe-delimited patterns like this:
+    OBO foundry label and [term id] (usually EnvO)
+    for example "terrestrial biome [ENVO:00000446]|marine biome [ENVO:00000447]"
+
+    Currently extracts embedded OBO foundry term IDs and pulls in matching label
+    Also for exact string matches with labels and synonyms in ontology JSON file or rdftab database?
+    Apply this to ontologies other than EnvO?
+    """
     cuire_extract_res = extract_cuire(raw_triad_value, envo_patttern)
     if "term_match" in cuire_extract_res.keys():
         # confirm that the ID and the label match?
@@ -130,6 +148,4 @@ def normalize_triad_slot(raw_triad_value: str) -> str:
         placeholder = cuire_extract_res['asserted_label'] + " [" + cuire_extract_res['term_match'] + "]"
     else:
         placeholder = cuire_extract_res['tidied']
-    # signature says return string
-    # option for returning None?
     return placeholder

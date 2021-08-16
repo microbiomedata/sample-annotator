@@ -2,14 +2,14 @@
 # and that yaml is not listed in the project requirements
 # unsuccessful previous attempt to install nim plugin for code-formatting .cfg files
 # https://plugins.jetbrains.com/plugin/15128-nim
-from typing import Optional
-
-import yaml
-import requests
-import pandas as pd
-from xml.etree import ElementTree
 import re
 from string import punctuation
+from typing import Optional
+from xml.etree import ElementTree
+
+import pandas as pd
+import requests
+import yaml
 
 MULTI_WHITESPACE = re.compile(r"\s+")
 
