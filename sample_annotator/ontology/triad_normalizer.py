@@ -90,11 +90,11 @@ def get_pattern_from_bioregistry(br_dict, prefix: str, authority="miriam") -> st
 envo_patttern = get_pattern_from_bioregistry(bio_registry_content, "envo")
 
 
-def extract_cuire(input_str, term_pattern=envo_patttern) -> dict:
+def extract_curie(input_str, term_pattern=envo_patttern) -> dict:
     """
     if possible, extract an OBO foundry term ID from a string
 
-    return the ID and teh string separately
+    return the ID and the string separately
     include or exclude brackets from match?
     we have seen cases where envo was misspelled
     or there was a textual local part
@@ -136,16 +136,16 @@ def normalize_triad_slot(raw_triad_value: str) -> Optional[str]:
     Also for exact string matches with labels and synonyms in ontology JSON file or rdftab database?
     Apply this to ontologies other than EnvO?
     """
-    cuire_extract_res = extract_cuire(raw_triad_value, envo_patttern)
-    if "term_match" in cuire_extract_res.keys():
+    curie_extract_res = extract_curie(raw_triad_value, envo_patttern)
+    if "term_match" in curie_extract_res.keys():
         # confirm that the ID and the label match?
         # currently using envo's json ontology file. alternatives inc. rdftab.
-        depleted_asserted_dist = calculate_cosine_dist(cuire_extract_res['depleted'],
-                                                       standard_tidy(cuire_extract_res['asserted_label']))
-        print(cuire_extract_res['depleted'])
-        print(standard_tidy(cuire_extract_res['asserted_label']))
+        depleted_asserted_dist = calculate_cosine_dist(curie_extract_res['depleted'],
+                                                       standard_tidy(curie_extract_res['asserted_label']))
+        print(curie_extract_res['depleted'])
+        print(standard_tidy(curie_extract_res['asserted_label']))
         print(depleted_asserted_dist)
-        placeholder = cuire_extract_res['asserted_label'] + " [" + cuire_extract_res['term_match'] + "]"
+        placeholder = curie_extract_res['asserted_label'] + " [" + curie_extract_res['term_match'] + "]"
     else:
-        placeholder = cuire_extract_res['tidied']
+        placeholder = curie_extract_res['tidied']
     return placeholder
