@@ -22,8 +22,8 @@ requirements.txt:
 	pipenv lock --requirements
 
 # NER files
-text_mining/input/%.json: text_mining/input/%_nodes.tsv
+text_mining/input/%_nodes.tsv: text_mining/input/%.json
 	kgx transform $< --input-format obojson --output $@ --output-format tsv 
 
-text_mining/input/%_nodes.tsv: text_mining/terms/%_termlist.tsv
+text_mining/terms/%_termlist.tsv: text_mining/input/%_nodes.tsv
 	python -m runner.runner prepare-termlist -i $< -o $@
