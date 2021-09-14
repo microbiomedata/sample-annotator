@@ -12,17 +12,32 @@ import unittest
 
 
 class TestNormalizastions(unittest.TestCase):
-    """annotation test."""
+    """Tests for normalization of various combinations of EnvO terms and label like strings"""
 
     def test_env_package_success(self):
-        normalized = normalize_package("MIGS/MIMS/MIMARKS.host-associated")
-        # print(normalized)
+        normalized = normalize_package("MIGS/MIMS/MIMARKS.host_associated")
         assert normalized == "host-associated"
 
     def test_env_package_failure(self):
         normalized = normalize_package("made up package")
         assert normalized is None
 
-    def test_ebs_failure(self):
+    def test_good_id_bad_label_for_triad(self):
         normalized = normalize_triad_slot("ENVO:00001998 pile of dirt")
         assert normalized == "soil [ENVO:00001998]"
+
+    def test_good_id_only_for_triad(self):
+        normalized = normalize_triad_slot("ENVO:00001998")
+        assert normalized == "soil [ENVO:00001998]"
+
+    def test_good_label_only_for_triad(self):
+        normalized = normalize_triad_slot("soil")
+        assert normalized == "soil [ENVO:00001998]"
+
+    def test_bad_label_only_for_triad(self):
+        normalized = normalize_triad_slot("pile of dirt")
+        assert normalized is None
+
+    def test_multi_good_label_only_for_triad(self):
+        normalized = normalize_triad_slot("soil|water")
+        assert normalized == "soil [ENVO:00001998]|water [CHEBI:15377]"

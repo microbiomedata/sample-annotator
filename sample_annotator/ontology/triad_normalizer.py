@@ -29,6 +29,7 @@ prefix_commons_context_url = 'https://raw.githubusercontent.com/prefixcommons/bi
 envo_json_url = "http://purl.obolibrary.org/obo/envo.json"
 cosine_ngram_size = 2
 qualified_stringdist = Cosine(cosine_ngram_size)
+max_cosine = 0.05
 
 
 # put some caching mechanism in place
@@ -124,6 +125,11 @@ def calculate_cosine_dist(a: str, b: str) -> float:
     return stringdist_res
 
 
+def split_someagg_on_somedelim(someagg: str, somedelim: str = "|") -> [str]:
+    splitted = someagg.split(somedelim)
+    return splitted
+
+
 def normalize_triad_slot(raw_triad_value: str) -> Optional[str]:
     """
     This is the main method for normalizing strings about the environments from which biosamples were obtained
@@ -136,16 +142,35 @@ def normalize_triad_slot(raw_triad_value: str) -> Optional[str]:
     Also for exact string matches with labels and synonyms in ontology JSON file or rdftab database?
     Apply this to ontologies other than EnvO?
     """
-    curie_extract_res = extract_curie(raw_triad_value, envo_patttern)
-    if "term_match" in curie_extract_res.keys():
-        # confirm that the ID and the label match?
-        # currently using envo's json ontology file. alternatives inc. rdftab.
-        depleted_asserted_dist = calculate_cosine_dist(curie_extract_res['depleted'],
-                                                       standard_tidy(curie_extract_res['asserted_label']))
-        print(curie_extract_res['depleted'])
-        print(standard_tidy(curie_extract_res['asserted_label']))
-        print(depleted_asserted_dist)
-        placeholder = curie_extract_res['asserted_label'] + " [" + curie_extract_res['term_match'] + "]"
+    splitted = split_someagg_on_somedelim(raw_triad_value)
+    placeholder = []
+    for morsel in splitted:
+        print(morsel)
+        curie_extract_res = extract_curie(morsel, envo_patttern)
+        if "term_match" in curie_extract_res.keys():
+            # confirm that the ID and the label match?
+            # currently using envo's json ontology file. alternatives inc. rdftab.
+            depleted_asserted_dist = calculate_cosine_dist(curie_extract_res['depleted'],
+                                                           standard_tidy(curie_extract_res['asserted_label']))
+            curie_extract_res["cosine_dist"] = depleted_asserted_dist
+            curie_extract_res["normalized"] = \
+                curie_extract_res['asserted_label'] + " [" + curie_extract_res['term_match'] + "]"
+            print(curie_extract_res)
+            placeholder.append(curie_extract_res["normalized"])
+        else:
+            index = envo_label_frame.tidied == curie_extract_res['tidied']
+            true_count = sum(list(index))
+            if true_count == 1:
+                curie_extract_res['found_term'] = envo_label_frame['curie'].loc[index].squeeze()
+                curie_extract_res["asserted_label"] = envo_label_frame['lbl'].loc[index].squeeze()
+                curie_extract_res["cosine_dist"] = \
+                    calculate_cosine_dist(curie_extract_res['tidied'], curie_extract_res["asserted_label"])
+                curie_extract_res["normalized"] = \
+                    curie_extract_res['asserted_label'] + " [" + curie_extract_res['found_term'] + "]"
+                placeholder.append(curie_extract_res["normalized"])
+    if len(placeholder) > 0:
+        joined = '|'.join(placeholder)
+        print(joined)
+        return joined
     else:
-        placeholder = curie_extract_res['tidied']
-    return placeholder
+        return None
