@@ -16,9 +16,11 @@ STUDY_LIST_PATH = os.path.join(INPUT_DIR, 'gold-studies-subset.tsv')
 
 TEST_STUDY_ID = 'Gs0144570' ## NEON
 TEST_BIOSAMPLE_IDS = ['Gb0255525', 'Gb0255899', 'Gb0255966',  ## in Gs0144570
-                      'Gb0011929']
+                      'Gb0011929',
+                      'Gb0051032'  ## sample with no study
+                      ]
 
-logging.basicConfig(level=logging.DEBUG)
+#logging.basicConfig(level=logging.DEBUG)
 
 class TestGoldClient(unittest.TestCase):
     """elevation test."""
@@ -45,10 +47,10 @@ class TestGoldClient(unittest.TestCase):
             gc.load_key(KEYPATH)
             studies = gc.fetch_studies_by_biosample_ids(TEST_BIOSAMPLE_IDS)
             print(len(studies))
-            print(studies[0])
-            print(studies[1])
+            #print(studies[0])
+            #print(studies[1])
 
-            assert len(studies) == 2
+            assert len(studies) == 3
         else:
             print(f'Skipping sample tests')
             print(f'To enable these, add your apikey to {KEYPATH}')

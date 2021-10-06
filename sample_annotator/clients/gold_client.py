@@ -96,7 +96,12 @@ class GoldClient:
         id = self._normalize_id(id)
         logging.info(f'Fetching study: {id}')
         results = self._call('studies', {'biosampleGoldId': id})
-        study = results[0]
+        if len(results) == 0:
+            # some samples do not have studies, e.g https://gold.jgi.doe.gov/biosample?id=Gb0051032
+            logging.error(f'No study for {id}; creating a stub')
+            study = {'studyGoldId': f'GsFAKE-{id}'}
+        else:
+            study = results[0]
         if include_biosamples:
             study['biosamples'] = self.fetch_biosamples_by_study(study['studyGoldId'])
             logging.info(f'  Fetched biosamples for {id} == {len(study["biosamples"])}')
