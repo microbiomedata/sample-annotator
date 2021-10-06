@@ -99,3 +99,7 @@ tests/test_config.ini
 # Don't lock
 Pipfile.lock
 sphinx/_build/*
+
+# Cacheing
+tests/cachedir/
+./cachedir/

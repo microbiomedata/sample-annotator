@@ -17,7 +17,7 @@ bioregistry = "*"
 sphinx = "*"
 sphinx-rtd-theme = "*"
 recommonmark = "*"
-runner = {path = "./../runner"}
+diskcache = "*"
 
 [dev-packages]
 tox = "*"

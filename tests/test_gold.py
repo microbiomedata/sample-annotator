@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import logging
 import os
+import time
+
 import yaml
 from tests import MODEL_DIR, INPUT_DIR, OUTPUT_DIR
 
@@ -27,6 +29,7 @@ class TestGoldClient(unittest.TestCase):
 
     def test_get_studies(self):
         gc = GoldClient()
+        gc.clear_cache()
         if os.path.exists(KEYPATH):
             gc.load_key(KEYPATH)
             samples = gc.fetch_biosamples_by_study(TEST_STUDY_ID)
@@ -43,6 +46,7 @@ class TestGoldClient(unittest.TestCase):
 
     def test_get_biosamples(self):
         gc = GoldClient()
+        gc.clear_cache()
         if os.path.exists(KEYPATH):
             gc.load_key(KEYPATH)
             studies = gc.fetch_studies_by_biosample_ids(TEST_BIOSAMPLE_IDS)
@@ -51,6 +55,16 @@ class TestGoldClient(unittest.TestCase):
             #print(studies[1])
 
             assert len(studies) == 3
+
+            print('Doing again: this time should be cached')
+            tic = time.perf_counter()
+            studies = gc.fetch_studies_by_biosample_ids(TEST_BIOSAMPLE_IDS)
+            toc = time.perf_counter()
+            elapsed = toc - tic
+            print(f'Time taken using cache = {elapsed}')
+            assert len(studies) == 3
+            assert elapsed < 0.1
+
         else:
             print(f'Skipping sample tests')
             print(f'To enable these, add your apikey to {KEYPATH}')

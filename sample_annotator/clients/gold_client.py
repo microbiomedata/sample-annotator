@@ -1,9 +1,11 @@
-import json
-import sys
-import yaml
 import logging
+import sys
+
+import yaml
+import json
 from typing import Tuple, List, Dict, Any, Union, TextIO
 
+from diskcache import Cache
 import click
 import requests
 from requests.auth import HTTPBasicAuth
@@ -14,6 +16,21 @@ URL = str
 JSON = Any
 SampleDict = JSON
 StudyDict = JSON
+
+CACHEDIR = "cachedir"
+cache = Cache(CACHEDIR)
+
+@cache.memoize()
+
+@cache.memoize()
+def _fetch_url(endpoint_url, params, user, passwd) -> JSON:
+    results = requests.get(endpoint_url,
+                           params=params,
+                           auth=HTTPBasicAuth(user, passwd))
+    logging.info(f'STATUS={results.status_code}')
+    if results.status_code != 200:
+        raise Exception(f'API call to {endpoint_url} failed, code={results.status_code}')
+    return results.json()
 
 class GoldClient:
     """
@@ -52,14 +69,12 @@ class GoldClient:
     def _call(self, endpoint: str, params: Dict = {}) -> JSON:
         (user, passwd) = self.gold_key
         endpoint_url = f'{self.url}/{endpoint}'
-        results = requests.get(endpoint_url,
-                               params=params,
-                               auth=HTTPBasicAuth(user, passwd))
-        logging.info(f'STATUS={results.status_code}')
-        if results.status_code != 200:
-            raise Exception(f'API call to {endpoint_url} failed, code={results.status_code}')
+        obj = _fetch_url(endpoint_url, params, user, passwd)
         self.num_calls += 1
-        return results.json()
+        return obj
+
+    def clear_cache(self) -> None:
+        cache.clear()
 
     def fetch_biosamples_by_study(self, id: str) -> List[SampleDict]:
         """
@@ -85,7 +100,7 @@ class GoldClient:
             study['biosamples'] = self.fetch_biosamples_by_study(id)
         return study
 
-    def fetch_study_by_biosample_id(self, id: str, include_biosamples=False) -> StudyDict:
+    def fetch_study_by_biosample_id(self, id: str, include_biosamples=False, directory: str = None) -> StudyDict:
         """
         given a biosample ID, fetch the containing study
 
@@ -98,7 +113,7 @@ class GoldClient:
         results = self._call('studies', {'biosampleGoldId': id})
         if len(results) == 0:
             # some samples do not have studies, e.g https://gold.jgi.doe.gov/biosample?id=Gb0051032
-            logging.error(f'No study for {id}; creating a stub')
+            logging.warning(f'No study for {id}; creating a stub')
             study = {'studyGoldId': f'GsFAKE-{id}'}
         else:
             study = results[0]
@@ -107,7 +122,7 @@ class GoldClient:
             logging.info(f'  Fetched biosamples for {id} == {len(study["biosamples"])}')
         return study
 
-    def fetch_studies_by_biosample_ids(self, ids: List[str]) -> List[StudyDict]:
+    def fetch_studies_by_biosample_ids(self, ids: List[str], directory: str = None) -> List[StudyDict]:
         """
         Given a list of biosample IDs, return the set of all studies that contain these
 
@@ -126,7 +141,7 @@ class GoldClient:
             if biosample_id in biosample_to_study:
                 logging.debug(f'Skipping {biosample_id} as already part of {biosample_to_study[biosample_id]}')
             else:
-                study = self.fetch_study_by_biosample_id(biosample_id, include_biosamples=True)
+                study = self.fetch_study_by_biosample_id(biosample_id, include_biosamples=True, directory=directory)
                 logging.info(f"Fetched study for {biosample_id} SAMPLES= {len(study['biosamples'])}")
                 for biosample in study['biosamples']:
                     sid = biosample['biosampleGoldId']
@@ -225,24 +240,21 @@ def fetch_studies(idfile, directory, output: TextIO, output_format, authenticati
             id_type = 'study'
     else:
         id_type = 'biosample'
-    if directory:
-        if id_type == 'study':
-            for id in ids:
-                study = gc.fetch_study(id, **args)
-                logging.info(f'Retrieved {id}')
-                outpath = f'{directory}/{id}.{output_format}'
-                with open(outpath, 'w') as stream:
-                    if output_format == 'yaml':
-                        yaml.dump(study, stream=stream, default_flow_style=False, sort_keys=False)
-                    else:
-                        json.dump(study, stream, indent=2, sort_keys=True)
-        else:
-            raise Exception(f'directory + biosamples not supported')
+    if directory and id_type == 'study':
+        for id in ids:
+            study = gc.fetch_study(id, **args)
+            logging.info(f'Retrieved {id}')
+            outpath = f'{directory}/{id}.{output_format}'
+            with open(outpath, 'w') as stream:
+                if output_format == 'yaml':
+                    yaml.dump(study, stream=stream, default_flow_style=False, sort_keys=False)
+                else:
+                    json.dump(study, stream, indent=2, sort_keys=True)
     else:
         if id_type == 'study':
             studies = gc.fetch_studies(ids, **args)
         else:
-            studies = gc.fetch_studies_by_biosample_ids(ids)
+            studies = gc.fetch_studies_by_biosample_ids(ids, directory=directory)
         logging.info(f'Retrieved {len(studies)} studies')
         with output as stream:
             if output_format == 'yaml':
