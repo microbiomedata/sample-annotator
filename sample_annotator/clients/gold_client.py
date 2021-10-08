@@ -3,6 +3,7 @@ import sys
 
 import yaml
 import json
+from time import  sleep
 from typing import Tuple, List, Dict, Any, Union, TextIO
 
 from diskcache import Cache
@@ -20,17 +21,29 @@ StudyDict = JSON
 CACHEDIR = "cachedir"
 cache = Cache(CACHEDIR)
 
+# this was for gold records that were known to cause the API
+# to repond with a 5xx. These have currently been fixed,
+# but leaving this in as a stub in case this happens again
+EXCLUSION_LIST = []
+
 @cache.memoize()
 
 @cache.memoize()
 def _fetch_url(endpoint_url, params, user, passwd) -> JSON:
-    results = requests.get(endpoint_url,
-                           params=params,
-                           auth=HTTPBasicAuth(user, passwd))
-    logging.info(f'STATUS={results.status_code}')
-    if results.status_code != 200:
-        raise Exception(f'API call to {endpoint_url} failed, code={results.status_code}')
-    return results.json()
+    attempt = 0
+    while attempt < 4:
+        results = requests.get(endpoint_url,
+                               params=params,
+                               auth=HTTPBasicAuth(user, passwd))
+        logging.info(f'STATUS={results.status_code}')
+        if results.status_code == 200:
+            return results.json()
+        else:
+            logging.error(f'API call to {endpoint_url} failed, code={results.status_code}; attempt={attempt} [pausing]')
+            sleep(5**attempt)
+            attempt += 1
+    raise Exception(f'API call to {endpoint_url} failed after {attempt} attempts')
+
 
 class GoldClient:
     """
@@ -76,15 +89,51 @@ class GoldClient:
     def clear_cache(self) -> None:
         cache.clear()
 
-    def fetch_biosamples_by_study(self, id: str) -> List[SampleDict]:
+    def fetch_projects_by_study(self, id: str) -> List[SampleDict]:
         """
 
-        :param id: e.g. Gs0144570
+        :param id: study id e.g Gs0144570
         :return: List of sample Dict objects
         """
         id = self._normalize_id(id)
-        results = self._call('biosamples', {'studyGoldId': id})
+        results = self._call('projects', {'studyGoldId': id})
         return results
+
+    def fetch_biosamples_by_study(self, id: str, include_project=True) -> List[SampleDict]:
+        """
+        Fetches all samples for a study
+
+        :param id: e.g. Gs0144570
+        :param include_project: if True, adds a field for the project object
+        :return: List of sample Dict objects
+        """
+        id = self._normalize_id(id)
+        if id in EXCLUSION_LIST:
+            biosamples = []
+        else:
+            biosamples = self._call('biosamples', {'studyGoldId': id})
+            if include_project:
+                projects = self.fetch_projects_by_study(id)
+                # weave projects in samples
+                samples_by_id = {sample['biosampleGoldId']: sample for sample in biosamples}
+                for project in projects:
+                    sample_id = project['biosampleGoldId']
+                    if sample_id is None:
+                        continue
+                    if sample_id not in samples_by_id:
+                        logging.error(f'Sample {sample_id} not not samples for {id}')
+                        logging.error(f'All samples: {samples_by_id.keys()}')
+                        logging.error(f'Projects: {len(projects)}')
+                        logging.error(f'Project: {project}')
+                        # known exceptions: Gb0096893
+                        #raise Exception(f'Sample {sample_id} is not in samples for {id}')
+                        continue
+                    sample = samples_by_id[sample_id]
+                    if 'project' in sample:
+                        logging.error(f'Multiple projects for sample {sample_id}')
+                    logging.debug(f'Adding project {project["projectGoldId"]} to {sample_id}')
+                    sample['project'] = project
+        return biosamples
 
     def fetch_study(self, id: str, include_biosamples=False) -> StudyDict:
         """
@@ -138,6 +187,8 @@ class GoldClient:
         for biosample_id in ids:
             n += 1
             logging.debug(f'{biosample_id} is {n} of {len(ids)} // TOT: {len(biosample_to_study.keys())}')
+            # NOTE: the logic here is intended to avoid repeated API calls
+            # no longer necessary as we cache API calls to disk
             if biosample_id in biosample_to_study:
                 logging.debug(f'Skipping {biosample_id} as already part of {biosample_to_study[biosample_id]}')
             else:
@@ -205,12 +256,30 @@ def main(verbose: int, quiet: bool):
 @click.option('--include-biosamples/--no-include-biosamples',
               default=False,
               help="if set, include full biosamples")
+@click.option('--clear-cache/--no-clear-cache',
+              default=False,
+              help="if set, will clear the API call cache")
 @click.option('--authentication-file', '-A',
               default='config/gold-key.txt',
               help="Path auth file. Contents should be user:pass")
-def fetch_studies(idfile, directory, output: TextIO, output_format, authentication_file, **args):
+def fetch_studies(idfile, directory, clear_cache, output: TextIO, output_format, authentication_file, **args):
     """
-    Fetch studies from gold
+    Fetch studies from gold, given a list of either
+
+      * GOLD biosample IDs
+      * GOLD study IDs
+
+    Cacheing to disk is used so that if an API call fails or the script stops, it can be resumed
+    and continue where it left off.
+
+    Querying the GOLD API requires a name and password. This should be encoded as USER:PASS and placed in
+    a file that can be passed via the command line (-A)
+
+    The data structure returned is a list of studies. Each study has a list of biosamples. Each
+    biosample may have a project nested under it.
+
+    Because the GOLD API doesn't return this as one payload, this script takes care of the logic
+    to weave multiple API calls together.
 
     E.g.
 
@@ -223,6 +292,8 @@ def fetch_studies(idfile, directory, output: TextIO, output_format, authenticati
     logging.info(f'Additional args: {args}')
     gc = GoldClient()
     gc.load_key(authentication_file)
+    if clear_cache:
+        gc.clear_cache()
     ids = []
     with open(idfile) as file:
         for line in file:

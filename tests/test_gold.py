@@ -34,6 +34,7 @@ class TestGoldClient(unittest.TestCase):
             gc.load_key(KEYPATH)
             samples = gc.fetch_biosamples_by_study(TEST_STUDY_ID)
             print(samples[0])
+            print(f'Sample project = {samples[0]["project"]}')
             study = gc.fetch_study(TEST_STUDY_ID, include_biosamples=True)
             assert study['studyGoldId'] == TEST_STUDY_ID
             assert len(study['biosamples']) > 100
@@ -64,6 +65,25 @@ class TestGoldClient(unittest.TestCase):
             print(f'Time taken using cache = {elapsed}')
             assert len(studies) == 3
             assert elapsed < 0.1
+
+            # Gb0011929 is in Gs0014886 which samples and projects that do not align;
+            # e.g. Gp0011347 has no biosample
+            biosamples = gc.fetch_biosamples_by_study('Gs0014886', include_project=True)
+            for biosample in biosamples:
+                print(f'Sample: f{biosample["biosampleGoldId"]} // f{biosample.get("project", None)}')
+
+            # unusual
+            UNUSUAL_ID = 'Gb0096893'
+            print(f'QUERYING STUDY BY SAMPLE: {UNUSUAL_ID}')
+            study = gc.fetch_study_by_biosample_id(UNUSUAL_ID, include_biosamples=True)
+            for biosample in study['biosamples']:
+                print(f'Sample: f{biosample["biosampleGoldId"]} // f{biosample.get("project", None)}')
+
+            print(f'QUERYING SAMPLES BY STUDY: Gs0047444')
+            biosamples = gc.fetch_biosamples_by_study('Gs0047444', include_project=True)
+            for biosample in biosamples:
+                print(f'Sample: f{biosample["biosampleGoldId"]} // f{biosample.get("project", None)}')
+
 
         else:
             print(f'Skipping sample tests')
