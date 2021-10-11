@@ -13,7 +13,9 @@ class TestSoilType(unittest.TestCase):
 
     def test_soil_type(self):
         ge = GeoEngine()
-        mtEverestCoord = (27.9881, 86.9250)
-        soil_type = ge.get_fao_soil_type(mtEverestCoord)
+        # https://www.neonscience.org/field-sites/tall
+        testLatLon = (32.95047, -87.393259)
+        soil_type = ge.get_fao_soil_type(testLatLon)
         print(soil_type)
+        # TODO: need to map CALCIC CAMBISOL => Cambisols
         assert soil_type == 'Cambisols'
