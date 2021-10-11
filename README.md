@@ -22,9 +22,11 @@ For those using venv, you'll need something like:
 ```bash
 git clone ...
 cd sample-annotator
-python3.7 -m venv env
+python3.9 -m venv env
 source ./env/bin/activate
 pip install pipenv
+pip install -r requirements.txt 
+pip install jupyter notebook (only required if you need notebooks)
 PIPENV_IGNORE_VIRTUALENVS=1 make test
 ```
 
