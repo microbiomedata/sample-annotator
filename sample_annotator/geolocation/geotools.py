@@ -37,9 +37,12 @@ class GeoEngine():
         
         return results
 
-    # TODO: Stan to implement
+    
     def get_fao_soil_type(self, latlon: LATLON) -> str:
+        #Need to put the import statments elsewhere - Bill?
         import xml.etree.ElementTree as ET
+        import csv
+        #Routine to calculate the locations from lat/long
         lat = latlon[0]
         lon = latlon[1]
         remX = (lon + 180)%0.5
@@ -48,6 +51,12 @@ class GeoEngine():
         maxX = lon - remX + 0.5
         minY = lat - remY
         maxY = lat - remY + 0.5
+        #Read in the mapping file note need to get this path right
+        with open('./sample_annotator/geolocation/zobler_540_MixS_lookup.csv') as mapper:
+            mapping = csv.reader(mapper)
+            map = list(mapping)
+      
+
         faosoilprefixurl = 'https://webmap.ornl.gov/cgi-bin/mapserv?&INFO_FORMAT=text/xml&WIDTH=5&originator=QAQCIdentify&HEIGHT=5&LAYERS=540_1_band1&REQUEST=GetFeatureInfo&SRS=EPSG:4326&BBOX='
         faosoilmidurl = faosoilprefixurl + str(minX) + ',' + str(minY) +',' + str(maxX) + ',' + str(maxY) 
         faosoilfinalurl = faosoilmidurl + '&VERSION=1.1.1&X=2&Y=2&SERVICE=WMS&QUERY_LAYERS=540_1_band1&map=/sdat/config/mapfile//540/540_1_wms.map'
@@ -57,41 +66,10 @@ class GeoEngine():
             root = ET.fromstring(faosoilxml)
             results =(root[5].text)
             results = results.split(':')
-            results = results[1]
-            return results
-        """
-        This should be one of the values dictated in the enum for `fao_class` in enum
-
-        Currently this is one of:
-
-        * Acrisols
-        * Andosols
-        * Arenosols
-        * Cambisols
-        * Chernozems
-        * Ferralsols
-        * Fluvisols
-        * Gleysols
-        * Greyzems
-        * Gypsisols
-        * Histosols
-        * Kastanozems
-        * Lithosols
-        * Luvisols
-        * Nitosols
-        * Phaeozems
-        * Planosols
-        * Podzols
-        * Podzoluvisols
-        * Rankers
-        * Regosols
-        * Rendzinas
-        * Solonchaks
-        * Solonetz
-        * Vertisols
-        * Yermosols
-
-        This list may change in future so ideally this will be configuration-driven
-
-        """
-        ...
+            results = results[1].strip()
+            for res in map:
+                if res[0] == results:
+                    results = res[1]
+                    return results
+        
+        
