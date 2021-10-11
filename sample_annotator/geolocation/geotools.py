@@ -40,10 +40,8 @@ class GeoEngine():
     # TODO: Stan to implement
     def get_fao_soil_type(self, latlon: LATLON) -> str:
         import xml.etree.ElementTree as ET
-        print(latlon)
         lat = latlon[0]
         lon = latlon[1]
-        print(lat)
         remX = (lon + 180)%0.5
         remY = (lat + 90)%0.5
         minX = lon-remX
@@ -56,12 +54,10 @@ class GeoEngine():
         response = requests.get(faosoilfinalurl)
         if response.status_code == 200:
             faosoilxml = response.content.decode('utf-8')
-            print(faosoilxml) 
             root = ET.fromstring(faosoilxml)
             results =(root[5].text)
             results = results.split(':')
             results = results[1]
-            print(results)
             return results
         """
         This should be one of the values dictated in the enum for `fao_class` in enum
