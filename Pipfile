@@ -20,6 +20,8 @@ recommonmark = "*"
 requests = "*"
 curieutil = "*"
 strsimpy = "*"
+diskcache = "*"
+uvicorn = {extras = ["standard"], version = "*"}
 
 [dev-packages]
 tox = "*"
