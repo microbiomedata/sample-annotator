@@ -129,10 +129,10 @@ class GoldClient:
                         #raise Exception(f'Sample {sample_id} is not in samples for {id}')
                         continue
                     sample = samples_by_id[sample_id]
-                    if 'project' in sample:
-                        logging.error(f'Multiple projects for sample {sample_id}')
                     logging.debug(f'Adding project {project["projectGoldId"]} to {sample_id}')
-                    sample['project'] = project
+                    if 'projects' not in sample:
+                        sample['projects'] = []
+                    sample['projects'].append(project)
         return biosamples
 
     def fetch_study(self, id: str, include_biosamples=False) -> StudyDict:
