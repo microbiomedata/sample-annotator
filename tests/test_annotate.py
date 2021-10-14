@@ -23,9 +23,11 @@ class TestAnnotate(unittest.TestCase):
         contents = [join(EXAMPLE_DIR,f) for f in os.listdir(EXAMPLE_DIR)]
         json_files = [f for f in contents if f.endswith('.json')]
         for file in json_files:
+            #print(f'Loading: {file}')
             with open(file) as stream:
                 base = os.path.splitext(os.path.basename(file))[0]
                 samples = json.load(stream)
+                #print(samples)
                 report = annotator.annotate_all(samples)
                 with open(os.path.join(EXAMPLE_OUTDIR, base + '-output.yaml'), 'w') as stream:
                     yaml.safe_dump(report.all_outputs(), stream)

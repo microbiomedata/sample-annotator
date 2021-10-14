@@ -13,6 +13,7 @@ KEYPATH = os.path.join(INPUT_DIR, 'googlemaps-api-key.txt')
 class TestElevation(unittest.TestCase):
     """elevation test."""
 
+    @unittest.skip
     def test_elevation(self):
         ge = GeoEngine()
         if os.path.exists(KEYPATH):
