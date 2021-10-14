@@ -17,6 +17,8 @@ bioregistry = "*"
 sphinx = "*"
 sphinx-rtd-theme = "*"
 recommonmark = "*"
+diskcache = "*"
+uvicorn = {extras = ["standard"], version = "*"}
 
 [dev-packages]
 tox = "*"
