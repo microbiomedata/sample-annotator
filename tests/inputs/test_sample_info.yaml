@@ -34,4 +34,9 @@ tests:
       lat_lon: 37.931388399999996 -122.0239394
     must_pass: false
     expected_failures: {}
-
+  - description: capitalization test
+    sample:
+      id: TEST:captest1
+      text: bill clinton
+    output:
+      text: Bill Clinton
