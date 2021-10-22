@@ -27,3 +27,4 @@ autopep8 = "*"
 
 [pipenv]
 allow_prereleases = true
+
