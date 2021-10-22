@@ -4,7 +4,8 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-linkml = ">=1.0.1"
+# linkml = ">=1.0.1"
+linkml = "*"
 linkml-runtime = "*"
 linkml-model = "*"
 funowl = "*"
@@ -22,6 +23,7 @@ curieutil = "*"
 strsimpy = "*"
 diskcache = "*"
 uvicorn = {extras = ["standard"], version = "*"}
+pytest = "*"
 
 [dev-packages]
 tox = "*"

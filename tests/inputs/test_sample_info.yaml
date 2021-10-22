@@ -40,3 +40,9 @@ tests:
       text: bill clinton
     output:
       text: Bill Clinton
+  - description: package repair test 1
+    sample:
+      id: TEST:packrep1
+      text: MIGS/MIMS/MIMARKS.host_associated
+    output:
+      text: Bill Clinton
