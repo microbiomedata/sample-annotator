@@ -10,9 +10,17 @@ $(SAMPLE_SCHEMA_YAML):
 $(SAMPLE_SCHEMA_JSON): $(SAMPLE_SCHEMA_YAML)
 	 ./utils/yaml2json.py $< > $@
 
+.PHONY: requirements-file
+requirement-files: requirements.txt requirements-dev.txt
+# calls pipenv to generate the requirements.txt and requirements-dev.txt files
+	pipenv run pipenv_to_requirements
+
+Pipfile.lock: Pipfile
+# generate Pipfile.lock if Pipfile changes
+	pipenv install --dev
+
 # ---------------------------------------
 # Test runner
 # ----------------------------------------
-test:
-	pipenv install --dev
+test: Pipfile.lock
 	pipenv run python -m unittest
