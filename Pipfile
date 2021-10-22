@@ -19,9 +19,12 @@ sphinx-rtd-theme = "*"
 recommonmark = "*"
 diskcache = "*"
 uvicorn = {extras = ["standard"], version = "*"}
+git-root = "*"
 
 [dev-packages]
 tox = "*"
+autopep8 = "*"
 
 [pipenv]
 allow_prereleases = true
+
