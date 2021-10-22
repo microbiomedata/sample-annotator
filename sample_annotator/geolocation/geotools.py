@@ -4,6 +4,9 @@ from typing import Optional, List, Set, Any, Tuple
 from dataclasses import dataclass
 import logging
 import requests
+import xml.etree.ElementTree as ET
+import csv
+from git_root import git_root        
 
 LATLON = Tuple[float, float]
 
@@ -39,9 +42,6 @@ class GeoEngine():
 
     
     def get_fao_soil_type(self, latlon: LATLON) -> str:
-        #Need to put the import statments elsewhere - Bill?
-        import xml.etree.ElementTree as ET
-        import csv
         #Routine to calculate the locations from lat/long
         lat = latlon[0]
         lon = latlon[1]
@@ -51,8 +51,9 @@ class GeoEngine():
         maxX = lon - remX + 0.5
         minY = lat - remY
         maxY = lat - remY + 0.5
+        
         #Read in the mapping file note need to get this path right
-        with open('./sample_annotator/geolocation/zobler_540_MixS_lookup.csv') as mapper:
+        with open(git_root('sample_annotator/geolocation/zobler_540_MixS_lookup.csv')) as mapper:
             mapping = csv.reader(mapper)
             map = list(mapping)
       
