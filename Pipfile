@@ -17,6 +17,9 @@ bioregistry = "*"
 sphinx = "*"
 sphinx-rtd-theme = "*"
 recommonmark = "*"
+requests = "*"
+curieutil = "*"
+strsimpy = "*"
 diskcache = "*"
 uvicorn = {extras = ["standard"], version = "*"}
 
