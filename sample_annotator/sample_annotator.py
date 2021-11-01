@@ -32,7 +32,7 @@ class SampleAnnotator():
     """
 
     target_class: ClassDefinition = None
-    geoengine: GeoEngine = None
+    geoengine: GeoEngine = GeoEngine()
     measurement_engine: MeasurementEngine = MeasurementEngine()
 
     schema: SampleSchema = SampleSchema()
@@ -227,10 +227,20 @@ class SampleAnnotator():
             report.add_message(f'Incorrect format for lat_lon: {ll_str}', severity=3)
             return
         sample[KEY_LAT_LON] = {'latitude': lat_lon[0], 'longitude': lat_lon[1]}
+        
+        
+
         ge = self.geoengine
-        if ge is None:
+        if ge is not None:
             report.add_message('Skipping geo-checks', severity=0)
             return
+
+        soiltype = ge.get_fao_soil_type(lat_lon)
+        print('Soil type is: ' + soiltype)
+        report.add_message('Soil type is ' + soiltype, severity=0)
+        
+
+        
         logging.info('Using geoengine')
         elevs = ge.get_elevation(lat_lon)
         if len(elevs) != 1:
@@ -248,7 +258,7 @@ class SampleAnnotator():
                                    was_repaired=True)
                 sample[KEY_ELEV] = {'has_unit': 'meter',
                                     'has_numeric_value': elev}
-
+        return
     def perform_inference(self, sample: SAMPLE, report: AnnotationReport):
         """
         Performs Machine Learning inference
@@ -295,7 +305,8 @@ The input file must be a JSON fine containing an array of dicts
         with open(output, 'w') as stream:
             stream.write(out_json)
     else:
-        print(out_json)
+        #print(out_json)
+        print('Done')
 
 if __name__ == '__main__':
     cli()
