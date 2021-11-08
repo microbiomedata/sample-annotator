@@ -57,12 +57,23 @@ class GeoEngine():
             mapping = csv.reader(mapper)
             map = list(mapping)
 
-        faosoilprefixurl = 'https://webmap.ornl.gov/cgi-bin/mapserv?&INFO_FORMAT=text/xml&WIDTH=5&originator=QAQCIdentify&HEIGHT=5&LAYERS=540_1_band1&REQUEST=GetFeatureInfo&SRS=EPSG:4326&BBOX='
-        faosoilmidurl = faosoilprefixurl + \
-            str(minX) + ',' + str(minY) + ',' + str(maxX) + ',' + str(maxY)
-        faosoilfinalurl = faosoilmidurl + \
-            '&VERSION=1.1.1&X=2&Y=2&SERVICE=WMS&QUERY_LAYERS=540_1_band1&map=/sdat/config/mapfile//540/540_1_wms.map'
-        response = requests.get(faosoilfinalurl)
+        BBoxstring = str(minX) + ',' + str(minY) + ',' + str(maxX) + ',' + str(maxY)
+       
+        faosoilparams = {'INFO_FORMAT': 'text/xml', 
+        'WIDTH' : '5',
+        'originator':'QAQCIdentify',
+        'HEIGHT':'5',
+        'LAYERS':'540_1_band1',
+        'REQUEST':'GetFeatureInfo',
+        'SRS':'EPSG:4326',
+        'BBOX':BBoxstring,
+        'VERSION':'1.1.1',
+        'X':'2',
+        'Y':'2',
+        'SERVICE':'WMS',
+        'QUERY_LAYERS':'540_1_band1',
+        'map':'/sdat/config/mapfile//540/540_1_wms.map'}
+        response = requests.get('https://webmap.ornl.gov/cgi-bin/mapserv', params = faosoilparams)
         if response.status_code == 200:
             faosoilxml = response.content.decode('utf-8')
             root = ET.fromstring(faosoilxml)
