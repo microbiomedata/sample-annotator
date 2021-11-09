@@ -36,10 +36,40 @@ class GeoEngine():
             self.client = googlemaps.Client(key=self.googlemaps_api_key)
         return self.client
 
-    def get_elevation(self, latlon: LATLON = (40.714224, -73.961452)):
-        results = self.get_client().elevation(latlon)
+    def get_elevation(self, latlon: LATLON) -> str:
+        lat = latlon[0]
+        lon = latlon[1]
+        remX = (lon + 180) % 0.008333333333333
+        remY = (lat + 90) %  0.008333333333333
+        minX = lon - remX
+        maxX = lon - remX + 0.008333333333333
+        minY = lat - remY
+        maxY = lat - remY + 0.008333333333333
+        BBOX = str(minX) + ',' + str(minY) +',' + str(maxX) + ',' + str(maxY)  
+        elevparams = {'originator':'QAQCIdentify',
+        'SERVICE': 'WMS',
+        'VERSION': '1.1.1',
+        'REQUEST': 'GetFeatureInfo',
+        'SRS': 'EPSG:4326',
+        'WIDTH':'5',
+        'HEIGHT':'5',
+        'LAYERS':'10003_1',
+        'QUERY_LAYERS':'10003_1',
+        'X':'2',
+        'Y':'2',
+        'INFO_FORMAT':'text/xml',
+        'BBOX':BBOX
 
-        return results
+        }       
+        response = requests.get('https://webmap.ornl.gov/ogcbroker/wms', params = elevparams)
+        if response.status_code == 200:
+            elevxml = response.content.decode('utf-8') 
+            root = ET.fromstring(elevxml)
+            results =(root[3].text)
+            return results
+        else:
+            results = 'failed'
+            return results
 
     def get_fao_soil_type(self, latlon: LATLON) -> str:
         # Routine to calculate the locations from lat/long

@@ -13,18 +13,13 @@ KEYPATH = os.path.join(INPUT_DIR, 'googlemaps-api-key.txt')
 class TestElevation(unittest.TestCase):
     """elevation test."""
 
-    @unittest.skip
+    #@unittest.skip
     def test_elevation(self):
         ge = GeoEngine()
-        if os.path.exists(KEYPATH):
-            ge.load_key(KEYPATH)
-            mtEverestCoord = (27.9881, 86.9250)
-            e = ge.get_elevation(mtEverestCoord)
-            print(e)
-            # Wikipedia says 8,848.86m
-            e0 = e[0]
-            assert e0.get('elevation') > 8800
-            assert e0.get('elevation') < 8900
-        else:
-            print(f'Skipping geolocation tests')
-            print(f'To enable these, add your apikey to {KEYPATH}')
+        mtEverestCoord = (27.9881, 86.9250)
+        e = ge.get_elevation(mtEverestCoord)
+        print(e)
+            # The GTOP30 elevation for Mount Everest is 8752
+        assert int(e) == 8752
+        
+        
