@@ -230,34 +230,17 @@ class SampleAnnotator():
         
         
 
-        ge = self.geoengine
-        if ge is not None:
-            report.add_message('Skipping geo-checks', severity=0)
-            return
-
+        ge = self.geoengine        
         soiltype = ge.get_fao_soil_type(lat_lon)
-        print('Soil type is: ' + soiltype)
         report.add_message('Soil type is ' + soiltype, severity=0)
         
-
-        
         logging.info('Using geoengine')
-        elevs = ge.get_elevation(lat_lon)
-        if len(elevs) != 1:
-            report.add_message(f'Something went wrong, elevs = {elevs}')
-        if len(elevs) > 0:
-            elev = elevs[0].get('elevation')
-            res = elevs[0].get('resolution')
-            if KEY_ELEV in sample:
-                curr = sample.get(KEY_ELEV)
-                if curr.has_unit == 'meter':
-                    if abs(curr.has_value - elev) > res:
-                        report.add_message(f'Conflicting values for elevation; current: {curr} Googlemaps: {elev} +/- {res}')
-            else:
-                report.add_message(f'Filling in missing value for elevation {elev}',
+        elev = ge.get_elevation(lat_lon)
+        if len(elev) > 0:
+            report.add_message(f'Filling in missing value for elevation {elev}',
                                    was_repaired=True)
-                sample[KEY_ELEV] = {'has_unit': 'meter',
-                                    'has_numeric_value': elev}
+            sample[KEY_ELEV] = {'has_unit': 'meter',
+                'has_numeric_value': elev}
         return
     def perform_inference(self, sample: SAMPLE, report: AnnotationReport):
         """

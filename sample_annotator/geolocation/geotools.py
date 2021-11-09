@@ -37,7 +37,6 @@ class GeoEngine():
         return self.client
 
     def get_elevation(self, latlon: LATLON) -> str:
-        elevprefixurl = 'https://webmap.ornl.gov/ogcbroker/wms?originator=QAQCIdentify&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&SRS=EPSG:4326&WIDTH=5&HEIGHT=5&LAYERS=10003_1&QUERY_LAYERS=10003_1&X=2&Y=2&INFO_FORMAT=text/xml&BBOX='
         lat = latlon[0]
         lon = latlon[1]
         remX = (lon + 180) % 0.008333333333333
@@ -46,8 +45,23 @@ class GeoEngine():
         maxX = lon - remX + 0.008333333333333
         minY = lat - remY
         maxY = lat - remY + 0.008333333333333
-        elevurl = elevprefixurl + str(minX) + ',' + str(minY) +',' + str(maxX) + ',' + str(maxY)         
-        response = requests.get(elevurl)
+        BBOX = str(minX) + ',' + str(minY) +',' + str(maxX) + ',' + str(maxY)  
+        elevparams = {'originator':'QAQCIdentify',
+        'SERVICE': 'WMS',
+        'VERSION': '1.1.1',
+        'REQUEST': 'GetFeatureInfo',
+        'SRS': 'EPSG:4326',
+        'WIDTH':'5',
+        'HEIGHT':'5',
+        'LAYERS':'10003_1',
+        'QUERY_LAYERS':'10003_1',
+        'X':'2',
+        'Y':'2',
+        'INFO_FORMAT':'text/xml',
+        'BBOX':BBOX
+
+        }       
+        response = requests.get('https://webmap.ornl.gov/ogcbroker/wms', params = elevparams)
         if response.status_code == 200:
             elevxml = response.content.decode('utf-8') 
             root = ET.fromstring(elevxml)
