@@ -24,6 +24,8 @@ git-root = "*"
 [dev-packages]
 tox = "*"
 autopep8 = "*"
+black = "*"
+pipenv-to-requirements = "*"
 
 [pipenv]
 allow_prereleases = true
