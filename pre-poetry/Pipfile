@@ -5,8 +5,7 @@ name = "pypi"
 
 [packages]
 linkml = ">=1.0.1"
-linkml-runtime = "*"
-linkml-model = "*"
+
 funowl = "*"
 nmdc-schema = "*"
 googlemaps = "*"
@@ -30,3 +29,5 @@ pipenv-to-requirements = "*"
 [pipenv]
 allow_prereleases = true
 
+linkml-runtime = "*"
+linkml-model = "*"

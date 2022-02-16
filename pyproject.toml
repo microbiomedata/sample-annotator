@@ -1,3 +1,33 @@
+[tool.poetry]
+name = "sample-annotator"
+version = "0.1.0"
+description = "NMDC Sample Annotator"
+authors = ["Chris Mungall <cjmungall@lbl.gov>"]
+license = "CC0 1.0 Universal"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+linkml = "^1.1.18"
+pandas = "^1.4.1"
+quantulum3 = "^0.7.10"
+bioregistry = "^0.4.59"
+Sphinx = "^4.4.0"
+sphinx-rtd-theme = "^1.0.0"
+funowl = "^0.1.11"
+nmdc-schema = "^2.0.0"
+googlemaps = "^4.6.0"
+Pint = "quantulum3"
+recommonmark = "^0.7.1"
+diskcache = "^5.4.0"
+uvicorn = "^0.17.4"
+git-root = "^0.1"
+
+[tool.poetry.dev-dependencies]
+tox = "^3.24.5"
+autopep8 = "^1.6.0"
+black = "^22.1.0"
+pipenv-to-requirements = "^0.9.0"
+
 [build-system]
-requires = ["setuptools", "wheel"]
-build-backend = "setuptools.build_meta:__legacy__"
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
