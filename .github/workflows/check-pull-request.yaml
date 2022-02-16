@@ -7,6 +7,7 @@ on:
       - main
   repository_dispatch:
     types: trigger-check-pull-request
+  workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -29,24 +30,35 @@ jobs:
     # Install pandoc
     - name: Install pandoc
       run: sudo apt-get install pandoc
-
-    # Install pipenv
-    - name: Install pipenv
-      run: python3 -m pip install --no-cache-dir pipenv
-        
-    # Load pipenv virtual environment from cache
-    # see: https://ianwhitestone.work/aws-serverless-deployments-with-github-actions/
-    - name: Load pipenv from cache
-      uses: actions/cache@v2
+      
+    - name: Run image
+      uses: abatilo/actions-poetry@v2.0.0
       with:
-        path: ~/.local/share/virtualenvs
-        key: ${{ runner.os }}-python-${{ steps.setup-python.outputs.python-version }}-pipenv-${{ hashFiles('Pipfile.lock') }}
+        poetry-version: 1.1.10
+        
+    - name: View poetry --help
+      run: poetry --help
+
+    - name: Poetry install deps
+      run: poetry install
+
+    # # Install pipenv
+    # - name: Install pipenv
+    #   run: python3 -m pip install --no-cache-dir pipenv
+        
+    # # Load pipenv virtual environment from cache
+    # # see: https://ianwhitestone.work/aws-serverless-deployments-with-github-actions/
+    # - name: Load pipenv from cache
+    #   uses: actions/cache@v2
+    #   with:
+    #     path: ~/.local/share/virtualenvs
+    #     key: ${{ runner.os }}-python-${{ steps.setup-python.outputs.python-version }}-pipenv-${{ hashFiles('Pipfile.lock') }}
 
 
-    # If cache was not loaded, install dependencies
-    - name: Install dependencies
-      if: steps.cache-pipenv.outputs.cache-hit != 'true'
-      run: pipenv install -d
+    # # If cache was not loaded, install dependencies
+    # - name: Install dependencies
+    #   if: steps.cache-pipenv.outputs.cache-hit != 'true'
+    #   run: pipenv install -d
 
     # tests are governed by the Makefile
     - name: Make Test

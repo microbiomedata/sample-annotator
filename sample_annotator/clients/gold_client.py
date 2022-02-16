@@ -3,7 +3,7 @@ import sys
 
 import yaml
 import json
-from time import  sleep
+from time import sleep
 from typing import Tuple, List, Dict, Any, Union, TextIO
 
 from diskcache import Cache
@@ -13,7 +13,7 @@ from requests.auth import HTTPBasicAuth
 
 USERPASS = Tuple[str, str]
 URL = str
-#JSON = Union[Dict[str, Any], List[Dict[str, Any]]]
+# JSON = Union[Dict[str, Any], List[Dict[str, Any]]]
 JSON = Any
 SampleDict = JSON
 StudyDict = JSON
@@ -26,8 +26,8 @@ cache = Cache(CACHEDIR)
 # but leaving this in as a stub in case this happens again
 EXCLUSION_LIST = []
 
-@cache.memoize()
 
+@cache.memoize()
 @cache.memoize()
 def _fetch_url(endpoint_url, params, user, passwd) -> JSON:
     attempt = 0
@@ -40,7 +40,7 @@ def _fetch_url(endpoint_url, params, user, passwd) -> JSON:
             return results.json()
         else:
             logging.error(f'API call to {endpoint_url} failed, code={results.status_code}; attempt={attempt} [pausing]')
-            sleep(5**attempt)
+            sleep(5 ** attempt)
             attempt += 1
     raise Exception(f'API call to {endpoint_url} failed after {attempt} attempts')
 
@@ -126,7 +126,7 @@ class GoldClient:
                         logging.error(f'Projects: {len(projects)}')
                         logging.error(f'Project: {project}')
                         # known exceptions: Gb0096893
-                        #raise Exception(f'Sample {sample_id} is not in samples for {id}')
+                        # raise Exception(f'Sample {sample_id} is not in samples for {id}')
                         continue
                     sample = samples_by_id[sample_id]
                     logging.debug(f'Adding project {project["projectGoldId"]} to {sample_id}')
@@ -226,6 +226,7 @@ class GoldClient:
                     ids.append(line.strip())
         return self.fetch_studies(ids, **kwargs)
 
+
 @click.group()
 @click.option("-v", "--verbose", count=True)
 @click.option("-q", "--quiet")
@@ -252,7 +253,7 @@ def main(verbose: int, quiet: bool):
 @click.option("-O",
               "--output-format",
               default='yaml',
-               help=f'Desired output format: json or yaml')
+              help=f'Desired output format: json or yaml')
 @click.option('--include-biosamples/--no-include-biosamples',
               default=False,
               help="if set, include full biosamples")

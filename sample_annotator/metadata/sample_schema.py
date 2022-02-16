@@ -8,8 +8,10 @@ from typing import Optional, List, Set, Any, Dict
 from dataclasses import dataclass
 import logging
 
+
 def underscore(t: str) -> str:
     return t.replace(' ', '_')
+
 
 @dataclass
 class SampleSchema:
@@ -66,11 +68,7 @@ class SampleSchema:
         range = self.get_range(k)
         return self.enumdict().get(range, None)
 
-
     def get_range(self, k) -> str:
         slot = self.get_slot(k)
         if slot is not None:
             return slot.get('range', None)
-
-
-

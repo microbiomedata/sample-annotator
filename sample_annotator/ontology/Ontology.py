@@ -4,7 +4,7 @@ from dataclasses import dataclass
 import logging
 from nmdc_schema.nmdc import QuantityValue
 import re
-import pint
+# import pint
 
 @dataclass
 class Ontology():

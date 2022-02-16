@@ -15,25 +15,25 @@ TEST_DATA = os.path.join(INPUT_DIR, 'test_sample_info.yaml')
 REPORT_OUT = os.path.join(OUTPUT_DIR, 'report.tsv')
 SAMPLES_OUT = os.path.join(OUTPUT_DIR, 'samples.yaml')
 
+
 class TestAnnotate(unittest.TestCase):
     """annotation test."""
 
     def test_examples(self):
         annotator = SampleAnnotator()
-        contents = [join(EXAMPLE_DIR,f) for f in os.listdir(EXAMPLE_DIR)]
+        contents = [join(EXAMPLE_DIR, f) for f in os.listdir(EXAMPLE_DIR)]
         json_files = [f for f in contents if f.endswith('.json')]
         for file in json_files:
-            #print(f'Loading: {file}')
+            # print(f'Loading: {file}')
             with open(file) as stream:
                 base = os.path.splitext(os.path.basename(file))[0]
                 samples = json.load(stream)
-                #print(samples)
+                # print(samples)
                 report = annotator.annotate_all(samples)
                 with open(os.path.join(EXAMPLE_OUTDIR, base + '-output.yaml'), 'w') as stream:
                     yaml.safe_dump(report.all_outputs(), stream)
                 rpt_file = os.path.join(EXAMPLE_OUTDIR, base + '-report.tsv')
                 report.as_dataframe().to_csv(rpt_file, sep='\t', index=False)
-
 
     def test_annotate(self):
         annotator = SampleAnnotator()
@@ -50,13 +50,13 @@ class TestAnnotate(unittest.TestCase):
             print(report)
             output_samples.append(report.output)
             df = report.as_dataframe()
-            #print(df)
+            # print(df)
 
             if 'must_pass' in t:
                 assert report.passes() == t.get('must_pass')
 
             mbc = report.messages_by_category()
-            #print(mbc)
+            # print(mbc)
             expected_failures = t.get('expected_failures', {})
             print(f'EF={expected_failures}')
             for category, num_expected in expected_failures.items():
@@ -65,14 +65,13 @@ class TestAnnotate(unittest.TestCase):
                 if isinstance(num_expected, int):
                     assert num_expected == num_actual_messages
                 elif num_expected.startswith(">"):
-                    assert num_actual_messages > int(num_expected.replace('>',''))
+                    assert num_actual_messages > int(num_expected.replace('>', ''))
                 elif num_expected.startswith("="):
-                    assert num_actual_messages == int(num_expected.replace('=',''))
+                    assert num_actual_messages == int(num_expected.replace('=', ''))
                 elif str(num_expected).isdigit():
                     assert num_actual_messages == int(num_expected)
                 else:
                     assert False
-
 
             if cumulative_df is None:
                 cumulative_df = df
@@ -81,5 +80,3 @@ class TestAnnotate(unittest.TestCase):
         cumulative_df.to_csv(REPORT_OUT, sep='\t', index=False)
         with open(SAMPLES_OUT, 'w') as stream:
             yaml.safe_dump(output_samples, stream)
-
-

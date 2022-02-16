@@ -1,10 +1,8 @@
-from datetime import datetime
-from typing import Optional, List, Set, Any
 from dataclasses import dataclass
-import logging
+from typing import List, Any
+
 from nmdc_schema.nmdc import QuantityValue
-import re
-#import pint
+# import pint
 from quantulum3 import parser as q_parser
 from quantulum3.classes import Quantity
 
@@ -12,17 +10,19 @@ from sample_annotator.report_model import AnnotationReport
 
 LoQ = List[Quantity]
 
+
 def make_QuantityValue(unit: str, value: Any, verbatim: str = None) -> dict:
     d = {'has_unit': unit, 'has_numeric_value': value}
     if verbatim is not None:
         d['has_raw_value'] = verbatim
     return d
 
+
 @dataclass
 class MeasurementEngine():
 
-
-    def repair(self, measurement_verbatim: Any, default_unit: str = None, report: AnnotationReport = None) -> QuantityValue:
+    def repair(self, measurement_verbatim: Any, default_unit: str = None,
+               report: AnnotationReport = None) -> QuantityValue:
         """
         Repair a measurement field
 
@@ -53,6 +53,3 @@ class MeasurementEngine():
         return make_QuantityValue(q.unit.name,
                                   q.value,
                                   verbatim=measurement_verbatim)
-
-
-

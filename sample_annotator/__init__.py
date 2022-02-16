@@ -6,4 +6,5 @@ MIXS_SCHEMA = os.path.join(MAIN_SCHEMA_DIR, 'mixs.json')
 
 from .sample_annotator import SampleAnnotator
 from .geolocation.geotools import GeoEngine
-from .sample_annotator import AnnotationReport, Message
+# , Message
+from .sample_annotator import AnnotationReport

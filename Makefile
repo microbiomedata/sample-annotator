@@ -1,26 +1,39 @@
+RUN = poetry run
 
-all: $(SAMPLE_SCHEMA_JSON)
-RUN = pipenv run
-SAMPLE_SCHEMA_YAML = sample_annotator/model/schema/mixs.yaml
-SAMPLE_SCHEMA_JSON = sample_annotator/model/schema/mixs.json
+.PHONY: test clean all
 
-$(SAMPLE_SCHEMA_YAML):
-	$(RUN) gen-yaml --mergeimports --no-metadata ../mixs-source/src/schema/mixs.yaml > $@.tmp && mv $@.tmp $@
-
-$(SAMPLE_SCHEMA_JSON): $(SAMPLE_SCHEMA_YAML)
-	 ./utils/yaml2json.py $< > $@
-
-.PHONY: requirements-file
-requirement-files: requirements.txt requirements-dev.txt
-# calls pipenv to generate the requirements.txt and requirements-dev.txt files
-	pipenv run pipenv_to_requirements
-
-Pipfile.lock: Pipfile
-# generate Pipfile.lock if Pipfile changes
-	pipenv install --dev
+all: clean test examples/outputs/report.tsv
 
 # ---------------------------------------
 # Test runner
 # ----------------------------------------
-test: Pipfile.lock
-	pipenv run python -m unittest
+test:
+	$(RUN) pytest 2>&1 | tee logs/tests.log
+	$(RUN) pytest -sv tests/test_capitalization.py
+
+
+clean:
+	find examples -name "*report.tsv" -exec rm -rf {} \;
+	rm -rf logs/*log
+	rm -rf examples/outputs/*
+
+
+examples/outputs/report.tsv: examples/gold.json
+	$(RUN) annotate-sample -R $@ $<
+
+downloads/mixs6_core.tsv:
+	curl -L -s 'https://docs.google.com/spreadsheets/d/1QDeeUcDqXes69Y2RjU2aWgOpCVWo5OVsBX9MKmMqi_o/export?format=tsv&gid=178015749' > $@
+
+
+biosample_sqlite_file = ~/biosample_basex_data_good_subset.db
+
+examples/outputs/non_attribute_metadata_sel_envs_partial.tsv:
+	$(RUN) sqlite_client_cli \
+		--sqlite_path $(biosample_sqlite_file) \
+		--query "select * from non_attribute_metadata_sel_envs limit 9" \
+		--tsv_out $@
+
+rel_to_oxygen_example: downloads/mixs6_core.tsv
+	$(RUN) rel_to_oxygen_example \
+		--sqlite_path $(biosample_sqlite_file) \
+		--mixs_core_path $<
