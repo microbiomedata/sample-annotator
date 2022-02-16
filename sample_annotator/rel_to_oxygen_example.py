@@ -27,9 +27,9 @@ def cli(sqlite_path: str, mixs_core_path: str):
 
     mixs_core_frame = pd.read_csv(mixs_core_path, sep="\t")
 
-    # .squash()
     rto_vs_str = mixs_core_frame.loc[
-        mixs_core_frame['Structured comment name'].eq("rel_to_oxygen"), "Value syntax"].squeeze()
+        mixs_core_frame["Structured comment name"].eq("rel_to_oxygen"), "Value syntax"
+    ].squeeze()
 
     temp = mixs_enum_to_list(rto_vs_str)
 
@@ -56,12 +56,12 @@ group by
     logger.info(r2o_count_res)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     cli()
 
 
 def mixs_enum_to_list(mixs_enum: str) -> List[str]:
-    temp1 = re.sub(r'^\[', '', mixs_enum)
-    temp2 = re.sub(r']$', '', temp1)
+    temp1 = re.sub(r"^\[", "", mixs_enum)
+    temp2 = re.sub(r"]$", "", temp1)
     as_list = temp2.split("|")
     return as_list
