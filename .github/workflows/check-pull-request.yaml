@@ -57,7 +57,7 @@ jobs:
     #   if: steps.cache-pipenv.outputs.cache-hit != 'true'
     #   run: pipenv install -d
 
-    # # tests are governed by the Makefile
-    # - name: Make Test
-    #   run: |
-    #     make test
+    # tests are governed by the Makefile
+    - name: Make Test
+      run: |
+        make test
