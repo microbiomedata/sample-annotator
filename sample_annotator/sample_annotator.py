@@ -8,7 +8,6 @@ import logging
 import pandas as pd
 import bioregistry
 
-
 from nmdc_schema.nmdc import Biosample, GeolocationValue, QuantityValue
 from nmdc_schema.nmdc import slots as nmdc_slots
 
@@ -17,13 +16,13 @@ from .measurements.measurements import MeasurementEngine
 from .metadata.sample_schema import SampleSchema, underscore
 from .report_model import AnnotationReport, Message, PackageCombo, AnnotationMultiSampleReport, Category, SAMPLE, STUDY
 
-
 from linkml_runtime.linkml_model.meta import ClassDefinition, SchemaDefinition, SlotDefinition, Definition
 
 KEY_ENV_PACKAGE = nmdc_slots.env_package.name
 KEY_CHECKLIST = 'checklist'
 KEY_LAT_LON = nmdc_slots.lat_lon.name
 KEY_ELEV = nmdc_slots.elev.name
+
 
 @dataclass
 class SampleAnnotator():
@@ -103,9 +102,9 @@ class SampleAnnotator():
                 else:
                     if normalized_prefix != prefix:
                         report.add_message(f'Normalizing prefix {prefix} => {normalized_prefix}',
-                                        severity=1,
-                                        was_repaired=True,
-                                        category=Category.Identifier)
+                                           severity=1,
+                                           was_repaired=True,
+                                           category=Category.Identifier)
                         id = id.replace(prefix, normalized_prefix)
                     pattern = bioregistry.get_pattern(normalized_prefix)
                     if pattern is not None:
@@ -118,10 +117,6 @@ class SampleAnnotator():
                 report.add_message(f'ID is not a CURIE')
             report.sample_id = id
             sample['id'] = id
-
-
-
-
 
     def infer_package(self, sample: SAMPLE, report: AnnotationReport):
         """
@@ -136,7 +131,6 @@ class SampleAnnotator():
             report.add_message(f'No checklist specified')
         report.package = PackageCombo(environmental_package=package,
                                       checklist=checklist)
-
 
     def tidy_nulls(self, sample: SAMPLE, report: AnnotationReport):
         """
@@ -227,21 +221,20 @@ class SampleAnnotator():
             report.add_message(f'Incorrect format for lat_lon: {ll_str}', severity=3)
             return
         sample[KEY_LAT_LON] = {'latitude': lat_lon[0], 'longitude': lat_lon[1]}
-        
-        
 
-        ge = self.geoengine        
+        ge = self.geoengine
         soiltype = ge.get_fao_soil_type(lat_lon)
         report.add_message('Soil type is ' + soiltype, severity=0)
-        
+
         logging.info('Using geoengine')
         elev = ge.get_elevation(lat_lon)
         if len(elev) > 0:
             report.add_message(f'Filling in missing value for elevation {elev}',
-                                   was_repaired=True)
+                               was_repaired=True)
             sample[KEY_ELEV] = {'has_unit': 'meter',
-                'has_numeric_value': elev}
+                                'has_numeric_value': elev}
         return
+
     def perform_inference(self, sample: SAMPLE, report: AnnotationReport):
         """
         Performs Machine Learning inference
@@ -288,8 +281,9 @@ The input file must be a JSON fine containing an array of dicts
         with open(output, 'w') as stream:
             stream.write(out_json)
     else:
-        #print(out_json)
+        # print(out_json)
         print('Done')
+
 
 if __name__ == '__main__':
     cli()
