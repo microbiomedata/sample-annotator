@@ -30,25 +30,25 @@ jobs:
     - name: Install pandoc
       run: sudo apt-get install pandoc
 
-    # Install pipenv
-    - name: Install pipenv
-      run: python3 -m pip install --no-cache-dir pipenv
+    # # Install pipenv
+    # - name: Install pipenv
+    #   run: python3 -m pip install --no-cache-dir pipenv
         
-    # Load pipenv virtual environment from cache
-    # see: https://ianwhitestone.work/aws-serverless-deployments-with-github-actions/
-    - name: Load pipenv from cache
-      uses: actions/cache@v2
-      with:
-        path: ~/.local/share/virtualenvs
-        key: ${{ runner.os }}-python-${{ steps.setup-python.outputs.python-version }}-pipenv-${{ hashFiles('Pipfile.lock') }}
+    # # Load pipenv virtual environment from cache
+    # # see: https://ianwhitestone.work/aws-serverless-deployments-with-github-actions/
+    # - name: Load pipenv from cache
+    #   uses: actions/cache@v2
+    #   with:
+    #     path: ~/.local/share/virtualenvs
+    #     key: ${{ runner.os }}-python-${{ steps.setup-python.outputs.python-version }}-pipenv-${{ hashFiles('Pipfile.lock') }}
 
 
-    # If cache was not loaded, install dependencies
-    - name: Install dependencies
-      if: steps.cache-pipenv.outputs.cache-hit != 'true'
-      run: pipenv install -d
+    # # If cache was not loaded, install dependencies
+    # - name: Install dependencies
+    #   if: steps.cache-pipenv.outputs.cache-hit != 'true'
+    #   run: pipenv install -d
 
-    # tests are governed by the Makefile
-    - name: Make Test
-      run: |
-        make test
+    # # tests are governed by the Makefile
+    # - name: Make Test
+    #   run: |
+    #     make test

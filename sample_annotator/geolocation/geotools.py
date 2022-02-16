@@ -28,7 +28,7 @@ class GeoEngine():
         with open(path) as stream:
             lines = stream.readlines()
             key = lines[0].strip()
-            #print(f'REMOVE THIS: {key}')
+            # print(f'REMOVE THIS: {key}')
             self.googlemaps_api_key = key
 
     def get_client(self):
@@ -40,32 +40,32 @@ class GeoEngine():
         lat = latlon[0]
         lon = latlon[1]
         remX = (lon + 180) % 0.008333333333333
-        remY = (lat + 90) %  0.008333333333333
+        remY = (lat + 90) % 0.008333333333333
         minX = lon - remX
         maxX = lon - remX + 0.008333333333333
         minY = lat - remY
         maxY = lat - remY + 0.008333333333333
-        BBOX = str(minX) + ',' + str(minY) +',' + str(maxX) + ',' + str(maxY)  
-        elevparams = {'originator':'QAQCIdentify',
-        'SERVICE': 'WMS',
-        'VERSION': '1.1.1',
-        'REQUEST': 'GetFeatureInfo',
-        'SRS': 'EPSG:4326',
-        'WIDTH':'5',
-        'HEIGHT':'5',
-        'LAYERS':'10003_1',
-        'QUERY_LAYERS':'10003_1',
-        'X':'2',
-        'Y':'2',
-        'INFO_FORMAT':'text/xml',
-        'BBOX':BBOX
+        BBOX = str(minX) + ',' + str(minY) + ',' + str(maxX) + ',' + str(maxY)
+        elevparams = {'originator': 'QAQCIdentify',
+                      'SERVICE': 'WMS',
+                      'VERSION': '1.1.1',
+                      'REQUEST': 'GetFeatureInfo',
+                      'SRS': 'EPSG:4326',
+                      'WIDTH': '5',
+                      'HEIGHT': '5',
+                      'LAYERS': '10003_1',
+                      'QUERY_LAYERS': '10003_1',
+                      'X': '2',
+                      'Y': '2',
+                      'INFO_FORMAT': 'text/xml',
+                      'BBOX': BBOX
 
-        }       
-        response = requests.get('https://webmap.ornl.gov/ogcbroker/wms', params = elevparams)
+                      }
+        response = requests.get('https://webmap.ornl.gov/ogcbroker/wms', params=elevparams)
         if response.status_code == 200:
-            elevxml = response.content.decode('utf-8') 
+            elevxml = response.content.decode('utf-8')
             root = ET.fromstring(elevxml)
-            results =(root[3].text)
+            results = (root[3].text)
             return results
         else:
             results = 'failed'
@@ -77,7 +77,7 @@ class GeoEngine():
         lon = latlon[1]
         remX = (lon + 180) % 0.5
         remY = (lat + 90) % 0.5
-        minX = lon-remX
+        minX = lon - remX
         maxX = lon - remX + 0.5
         minY = lat - remY
         maxY = lat - remY + 0.5
@@ -88,22 +88,22 @@ class GeoEngine():
             map = list(mapping)
 
         BBoxstring = str(minX) + ',' + str(minY) + ',' + str(maxX) + ',' + str(maxY)
-       
-        faosoilparams = {'INFO_FORMAT': 'text/xml', 
-        'WIDTH' : '5',
-        'originator':'QAQCIdentify',
-        'HEIGHT':'5',
-        'LAYERS':'540_1_band1',
-        'REQUEST':'GetFeatureInfo',
-        'SRS':'EPSG:4326',
-        'BBOX':BBoxstring,
-        'VERSION':'1.1.1',
-        'X':'2',
-        'Y':'2',
-        'SERVICE':'WMS',
-        'QUERY_LAYERS':'540_1_band1',
-        'map':'/sdat/config/mapfile//540/540_1_wms.map'}
-        response = requests.get('https://webmap.ornl.gov/cgi-bin/mapserv', params = faosoilparams)
+
+        faosoilparams = {'INFO_FORMAT': 'text/xml',
+                         'WIDTH': '5',
+                         'originator': 'QAQCIdentify',
+                         'HEIGHT': '5',
+                         'LAYERS': '540_1_band1',
+                         'REQUEST': 'GetFeatureInfo',
+                         'SRS': 'EPSG:4326',
+                         'BBOX': BBoxstring,
+                         'VERSION': '1.1.1',
+                         'X': '2',
+                         'Y': '2',
+                         'SERVICE': 'WMS',
+                         'QUERY_LAYERS': '540_1_band1',
+                         'map': '/sdat/config/mapfile//540/540_1_wms.map'}
+        response = requests.get('https://webmap.ornl.gov/cgi-bin/mapserv', params=faosoilparams)
         if response.status_code == 200:
             faosoilxml = response.content.decode('utf-8')
             root = ET.fromstring(faosoilxml)

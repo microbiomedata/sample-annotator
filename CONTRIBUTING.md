@@ -10,8 +10,9 @@ Before you get started please be sure to review the [Contributing Guidelines](CO
 
 ### Developing
 
-Take a look at the project's [README.md](README.md) for instructions on setting up a dev environment. We recommend using 
-Python `venv` for setting up your virtual environment. 
+Take a look at the project's [README.md](README.md) for instructions on setting up a dev environment.
+
+This repo has a system requirement of python poetry
 
 In addition, you can find the technical documentation at [sample-annotator.readthedocs.io](https://sample-annotator.readthedocs.io/)
 
