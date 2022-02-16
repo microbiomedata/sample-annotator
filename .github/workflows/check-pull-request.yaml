@@ -39,6 +39,9 @@ jobs:
     - name: View poetry --help
       run: poetry --help
 
+    - name: Poetry install deps
+      run: poetry install
+
     # # Install pipenv
     # - name: Install pipenv
     #   run: python3 -m pip install --no-cache-dir pipenv
