@@ -5,6 +5,7 @@
       <excludeFolder url="file://$MODULE_DIR$/tests/cachedir" />
       <excludeFolder url="file://$MODULE_DIR$/examples/outputs" />
       <excludeFolder url="file://$MODULE_DIR$/cachedir" />
+      <excludeFolder url="file://$MODULE_DIR$/.pytest_cache" />
     </content>
     <orderEntry type="jdk" jdkName="Poetry (sample-annotator)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />

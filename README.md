@@ -7,7 +7,7 @@
 ## Command Line
 
 ```bash
-poetry run python -m sample_annotator.sample_annotator -R examples/report.tsv examples/gold.json
+poetry run annotate-sample -R examples/outputs/report.tsv examples/gold.json
 ```
 
 ### Details:

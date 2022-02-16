@@ -4,27 +4,26 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-linkml = ">=1.0.1"
-
+bioregistry = "*"
+diskcache = "*"
 funowl = "*"
-nmdc-schema = "*"
+git-root = "*"
 googlemaps = "*"
+linkml = ">=1.0.1"
+nmdc-schema = "*"
 pandas = "*"
 pint = "*"
 quantulum3 = "*"
-bioregistry = "*"
+recommonmark = "*"
 sphinx = "*"
 sphinx-rtd-theme = "*"
-recommonmark = "*"
-diskcache = "*"
 uvicorn = {extras = ["standard"], version = "*"}
-git-root = "*"
 
 [dev-packages]
-tox = "*"
 autopep8 = "*"
 black = "*"
 pipenv-to-requirements = "*"
+tox = "*"
 
 [pipenv]
 allow_prereleases = true

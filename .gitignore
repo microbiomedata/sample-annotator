@@ -9,7 +9,6 @@ output/
 
 # Distribution / packaging
 .Python
-env/
 build/
 develop-eggs/
 dist/
@@ -25,21 +24,11 @@ var/
 .installed.cfg
 *.egg
 
-
 # pyenv
 .python-version
 
-# dotenv
-.env
-
-# virtualenv
-venv/
-ENV/
-
-
 # old stuff
 *.old
-
 
 # Eclipse
 .project
