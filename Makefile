@@ -19,7 +19,7 @@ clean:
 
 
 examples/outputs/report.tsv: examples/gold.json
-	$(RUN) sa_sa -R $@ $<
+	$(RUN) annotate-sample -R $@ $<
 
 biosample_sqlite_file = ~/biosample_basex_data_good_subset.db
 
