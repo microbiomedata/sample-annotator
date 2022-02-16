@@ -21,9 +21,19 @@ clean:
 examples/outputs/report.tsv: examples/gold.json
 	$(RUN) annotate-sample -R $@ $<
 
+downloads/mixs6_core.tsv:
+	curl -L -s 'https://docs.google.com/spreadsheets/d/1QDeeUcDqXes69Y2RjU2aWgOpCVWo5OVsBX9MKmMqi_o/export?format=tsv&gid=178015749' > $@
+
+
 biosample_sqlite_file = ~/biosample_basex_data_good_subset.db
 
-# todo: isolate client from application code
-biosample_sqlite_poetry_script:
-	$(RUN) sqlite_client_cli --sqlite_path $(biosample_sqlite_file)
+examples/outputs/non_attribute_metadata_sel_envs_partial.tsv:
+	$(RUN) sqlite_client_cli \
+		--sqlite_path $(biosample_sqlite_file) \
+		--query "select * from non_attribute_metadata_sel_envs limit 9" \
+		--tsv_out $@
 
+rel_to_oxygen_example: downloads/mixs6_core.tsv
+	$(RUN) rel_to_oxygen_example \
+		--sqlite_path $(biosample_sqlite_file) \
+		--mixs_core_path $<
