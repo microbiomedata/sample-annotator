@@ -12,7 +12,6 @@ from nmdc_schema.nmdc import slots as nmdc_slots
 from .geolocation.geotools import GeoEngine
 from .metadata.sample_schema import SampleSchema, underscore
 
-
 from linkml_runtime.linkml_model.meta import ClassDefinition, SchemaDefinition, SlotDefinition, Definition
 
 KEY_ENV_PACKAGE = nmdc_slots.env_package.name
@@ -21,6 +20,7 @@ KEY_CHECKLIST = 'checklist'
 SAMPLE = Dict[str, Any]
 STUDY = Dict[str, Any]
 SCORE = float
+
 
 @unique
 class Category(Enum):
@@ -40,6 +40,7 @@ class Category(Enum):
     def list():
         return list(map(lambda c: c.value, Category))
 
+
 @dataclass
 class PackageCombo:
     """
@@ -47,6 +48,7 @@ class PackageCombo:
     """
     environmental_package: str = None
     checklist: str = None
+
 
 @dataclass
 class Message:
@@ -63,7 +65,6 @@ class Message:
 
     def as_dict(self) -> Dict:
         return {v: self.__getattribute__(v) for v in vars(self)}
-
 
 
 @dataclass
@@ -100,6 +101,7 @@ class AnnotationReport:
             res[m.category.value].append(m)
         return res
 
+
 @dataclass
 class AnnotationMultiSampleReport:
     """
@@ -119,4 +121,3 @@ class AnnotationMultiSampleReport:
 
     def all_outputs(self) -> List[SAMPLE]:
         return [r.output for r in self.reports]
-
