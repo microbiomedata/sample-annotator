@@ -15,7 +15,8 @@ test:
 clean:
 	find examples -name "*report.tsv" -exec rm -rf {} \;
 	rm -rf logs/*log
-	rm -rf examples/outputs/*
+	rm -rf examples/outputs/*yaml
+	rm -rf examples/outputs/*tsv
 
 
 examples/outputs/report.tsv: examples/gold.json
