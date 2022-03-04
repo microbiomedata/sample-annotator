@@ -1,6 +1,8 @@
 ## NEVER EVER COMMIT THIS
 googlemaps-api-key.txt
 
+bin
+
 cachedir
 examples/outputs
 
