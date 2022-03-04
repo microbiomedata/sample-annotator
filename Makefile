@@ -17,11 +17,15 @@ test:
 
 clean:
 	find examples -name "*report.tsv" -exec rm -rf {} \;
-	rm -rf assets/*tsv
 	rm -rf assets/*bak
+	rm -rf assets/*tsv
 	rm -rf bin/*jar
-	rm -rf downloads/*
-	rm -rf examples/outputs/*
+	rm -rf downloads/*db
+	rm -rf downloads/*gz
+	rm -rf downloads/*owl
+	rm -rf downloads/*tsv
+	rm -rf downloads/*zip
+	rm -rf examples/outputs/*tsv
 	rm -rf logs/*log
 	rm -rf target/*
 
