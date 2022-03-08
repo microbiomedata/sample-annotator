@@ -2,7 +2,24 @@
 
 # NMDC Sample Annotator API
 
-## Installing
+## Setup
+1. requires python 3.9... should we try to make this compatible with something earlier?
+2. install [poetry application](https://python-poetry.org/docs/#installation)
+3. `git clone git@github.com:microbiomedata/sample-annotator.git`
+4. `cd sample-annotator`
+5. `poetry install`
+6. `mkdir bin`... that directory _should_ already be in the repo with a placeholder.txt file, or it should be created by the Makefile
+
+test your setup with `make all`
+
+## Contributing?
+_Please_
+1. create an issue describing the problem you plan to address or the contribution you intend to make
+2. create a fork of the repo in your own GitHub account, or create a branch here in microbiomedata/sample-annotator. The name of the branch should be brief but include your issue number and a keyword or two from the issue's title
+3. start adding code, probably in the `sample_annotator` subdirectory
+4. save, `git add`, `git commit -m`, and `git push`
+5. create a pull request
+6. ask questions **any** time
 
 ## Command Line
 
