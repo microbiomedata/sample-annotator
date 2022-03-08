@@ -8,7 +8,7 @@
 3. `git clone git@github.com:microbiomedata/sample-annotator.git`
 4. `cd sample-annotator`
 5. `poetry install`
-6. `mkdir bin`... that directory _should_ already be in the repo with a placeholder.txt file, or it should be created by the Makefile
+6. `mkdir bin` (this step will be removed in the future)
 
 test your setup with `make all`
 
