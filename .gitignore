@@ -9,6 +9,8 @@ examples/outputs
 temp/
 output/
 
+__MACOSX/
+
 # Distribution / packaging
 .Python
 build/
