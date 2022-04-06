@@ -1,7 +1,6 @@
-from asyncio.log import logger
-import imp
 import io
 import logging
+import os
 import pkgutil
 import sys
 
@@ -28,6 +27,8 @@ URL = str
 JSON = Any
 SampleDict = JSON
 StudyDict = JSON
+
+FILENAME = Union[str, bytes, os.PathLike]
 
 CACHEDIR = "cachedir"
 cache = Cache(CACHEDIR)
@@ -257,8 +258,19 @@ class GoldClient:
                     ids.append(line.strip())
         return self.fetch_studies(ids, **kwargs)
 
-    def validate_nmdc(self, file_name: str, database_set: str = None):
-        nmdc_json_schema_bytes = io.BytesIO(pkgutil.get_data("nmdc_schema", "nmdc.schema.json"))
+    def validate_nmdc(self, file_name: FILENAME, database_set: str = None) -> bool:
+        """Validate JSON files against the NMDC Schema using the
+        jsonschema library.
+
+        :param file_name: path to input JSON file
+        :param database_set: optional top level database set
+            (e.g, study_set, biosample_set) that contains the data,
+            defaults to None
+        :return: True if no validation errors are raised, else False
+        """
+        nmdc_json_schema_bytes = io.BytesIO(
+            pkgutil.get_data("nmdc_schema", "nmdc.schema.json")
+        )
         nmdc_json_schema = json.loads(nmdc_json_schema_bytes.getvalue())
 
         with open(file_name, "r") as fh:
@@ -270,16 +282,23 @@ class GoldClient:
                 else:
                     json_data = {f"{database_set}": [json_data]}
         try:
-            jsonschema.validate(
-                instance=json_data, schema=nmdc_json_schema
-            )
+            jsonschema.validate(instance=json_data, schema=nmdc_json_schema)
         except jsonschema.exceptions.ValidationError as err:
-            print(err.message)
+            logging.error(err.message)
+
             return False
 
-    def fetch_nmdc_emp500(self, study_id: str, file_name: str) -> str:
+        return True
+
+    def transform_emp500_nmdc(self, study_id: str, file_name: FILENAME = None) -> str:
         """Transform EMP500 data fetched from GOLD Database into
-        NMDC Schema compliant JSON data."""
+        NMDC Schema compliant JSON data.
+
+        :param study_id: Gold study id
+        :param file_name: optional file name argument to write JSON dump
+            output to
+        :return: JSON string
+        """
         projects = self.fetch_projects_by_study(study_id)
 
         biosamples = self.fetch_biosamples_by_study(study_id)
@@ -312,7 +331,9 @@ class GoldClient:
                     )
                 )
             except:
-                logging.error(f'Biosample not annotated: {biosample["biosampleGoldId"]}')
+                logging.error(
+                    f'Biosample not annotated: {biosample["biosampleGoldId"]}'
+                )
 
         if file_name:
             json_dumper.dump(nmdc_db, file_name)
