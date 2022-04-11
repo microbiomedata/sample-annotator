@@ -16,6 +16,8 @@ import jsonschema
 
 from requests.auth import HTTPBasicAuth
 
+from linkml_runtime.linkml_model.types import XSDDateTime
+
 import nmdc_schema.nmdc as nmdc
 
 from linkml_runtime.dumpers import json_dumper
@@ -299,25 +301,78 @@ class GoldClient:
             output to
         :return: JSON string
         """
-        projects = self.fetch_projects_by_study(study_id)
-
         biosamples = self.fetch_biosamples_by_study(study_id)
 
         nmdc_db = nmdc.Database()
 
-        for project, biosample in zip(projects, biosamples):
+        nmdc_db.study_set.append(
+            nmdc.Study(id=study_id, GOLD_study_identifiers=study_id)
+        )
 
+        for biosample in biosamples:
             try:
-                nmdc_db.study_set.append(
-                    nmdc.Study(
-                        id=study_id, GOLD_study_identifiers=project["studyGoldId"]
-                    )
-                )
-
                 nmdc_db.biosample_set.append(
                     nmdc.Biosample(
-                        id=project["projectGoldId"],
+                        # biosample identifiers
+                        id=biosample["biosampleGoldId"],
+                        GOLD_sample_identifiers=biosample["biosampleGoldId"],
+
+                        # metadata fields
+                        description=biosample["description"],
+                        name=biosample["biosampleName"],
                         part_of=study_id,
+                        ncbi_taxonomy_name=biosample["ncbiTaxName"],
+
+                        # biosample date information
+                        add_date=XSDDateTime(biosample["addDate"]),
+                        collection_date=nmdc.TimestampValue(
+                            has_raw_value=biosample["dateCollected"]
+                        ),
+                        mod_date=XSDDateTime(biosample["modDate"]),
+
+                        # Earth fields
+                        depth=nmdc.QuantityValue(
+                            has_numeric_value=biosample["depthInMeters"],
+                            has_unit="m2"
+                        ),
+                        depth2=nmdc.QuantityValue(
+                            has_numeric_value=biosample["depthInMeters2"],
+                            has_unit="m2"
+                        ),
+                        temp=nmdc.QuantityValue(
+                            has_numeric_value=biosample["sampleCollectionTemperature"]
+                        ),
+
+                        # ecosystem collected from fields
+                        ecosystem=biosample["ecosystem"],
+                        ecosystem_category=biosample["ecosystemCategory"],
+                        ecosystem_subtype=biosample["ecosystemSubtype"],
+                        ecosystem_type=biosample["ecosystemType"],
+
+                        # collection site metadata
+                        geo_loc_name=nmdc.TextValue(
+                            has_raw_value=biosample["geoLocation"]
+                        ),
+                        lat_lon=nmdc.GeolocationValue(
+                            latitude=biosample["latitude"],
+                            longitude=biosample["longitude"],
+                        ),
+                        habitat=biosample["habitat"],
+                        location=biosample["isoCountry"],
+
+                        # collection metadata fields
+                        host_name=biosample["hostName"],
+                        sample_collection_site=biosample["sampleBodySite"],
+
+                        # chemical metadata fields
+                        nitrate=nmdc.QuantityValue(
+                            has_numeric_value=biosample["nitrateConcentration"]
+                        ),
+                        salinity=nmdc.QuantityValue(
+                            has_numeric_value=biosample["salinityConcentration"]
+                        ),
+
+                        # environment metadata fields
                         env_broad_scale=nmdc.ControlledTermValue(
                             has_raw_value=biosample["envoBroadScale"]["id"],
                         ),
@@ -327,18 +382,17 @@ class GoldClient:
                         env_medium=nmdc.ControlledTermValue(
                             has_raw_value=biosample["envoMedium"]["id"]
                         ),
-                        GOLD_sample_identifiers=biosample["biosampleGoldId"],
                     )
                 )
             except:
                 logging.error(
-                    f'Biosample not annotated: {biosample["biosampleGoldId"]}'
+                    f'Biosample not properly annotated: {biosample["biosampleGoldId"]}'
                 )
 
         if file_name:
             json_dumper.dump(nmdc_db, file_name)
 
-        return json_dumper.dumps(nmdc_db)
+        return json_dumper.dumps(nmdc_db, inject_type=False)
 
 
 @click.group()
