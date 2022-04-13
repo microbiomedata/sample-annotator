@@ -1,7 +1,5 @@
-import io
 import logging
 import os
-import pkgutil
 import sys
 
 import yaml
@@ -12,15 +10,8 @@ from typing import Tuple, List, Dict, Any, Union, TextIO
 from diskcache import Cache
 import click
 import requests
-import jsonschema
 
 from requests.auth import HTTPBasicAuth
-
-from linkml_runtime.linkml_model.types import XSDDateTime
-
-import nmdc_schema.nmdc as nmdc
-
-from linkml_runtime.dumpers import json_dumper
 
 
 USERPASS = Tuple[str, str]
@@ -259,140 +250,6 @@ class GoldClient:
                 if line.startswith("Gs"):
                     ids.append(line.strip())
         return self.fetch_studies(ids, **kwargs)
-
-    def validate_nmdc(self, file_name: FILENAME, database_set: str = None) -> bool:
-        """Validate JSON files against the NMDC Schema using the
-        jsonschema library.
-
-        :param file_name: path to input JSON file
-        :param database_set: optional top level database set
-            (e.g, study_set, biosample_set) that contains the data,
-            defaults to None
-        :return: True if no validation errors are raised, else False
-        """
-        nmdc_json_schema_bytes = io.BytesIO(
-            pkgutil.get_data("nmdc_schema", "nmdc.schema.json")
-        )
-        nmdc_json_schema = json.loads(nmdc_json_schema_bytes.getvalue())
-
-        with open(file_name, "r") as fh:
-            json_data = json.load(fh)
-
-            if database_set:
-                if type(json_data) == list:
-                    json_data = {f"{database_set}": json_data}
-                else:
-                    json_data = {f"{database_set}": [json_data]}
-        try:
-            jsonschema.validate(instance=json_data, schema=nmdc_json_schema)
-        except jsonschema.exceptions.ValidationError as err:
-            logging.error(err.message)
-
-            return False
-
-        return True
-
-    def transform_emp500_nmdc(self, study_id: str, file_name: FILENAME = None) -> str:
-        """Transform EMP500 data fetched from GOLD Database into
-        NMDC Schema compliant JSON data.
-
-        :param study_id: Gold study id
-        :param file_name: optional file name argument to write JSON dump
-            output to
-        :return: JSON string
-        """
-        biosamples = self.fetch_biosamples_by_study(study_id)
-
-        nmdc_db = nmdc.Database()
-
-        nmdc_db.study_set.append(
-            nmdc.Study(id=study_id, GOLD_study_identifiers=study_id)
-        )
-
-        for biosample in biosamples:
-            try:
-                nmdc_db.biosample_set.append(
-                    nmdc.Biosample(
-                        # biosample identifiers
-                        id=biosample["biosampleGoldId"],
-                        GOLD_sample_identifiers=biosample["biosampleGoldId"],
-
-                        # metadata fields
-                        description=biosample["description"],
-                        name=biosample["biosampleName"],
-                        part_of=study_id,
-                        ncbi_taxonomy_name=biosample["ncbiTaxName"],
-
-                        # biosample date information
-                        add_date=XSDDateTime(biosample["addDate"]),
-                        collection_date=nmdc.TimestampValue(
-                            has_raw_value=biosample["dateCollected"]
-                        ),
-                        mod_date=XSDDateTime(biosample["modDate"]),
-
-                        # Earth fields
-                        depth=nmdc.QuantityValue(
-                            has_numeric_value=biosample["depthInMeters"],
-                            has_unit="m2"
-                        ),
-                        depth2=nmdc.QuantityValue(
-                            has_numeric_value=biosample["depthInMeters2"],
-                            has_unit="m2"
-                        ),
-                        temp=nmdc.QuantityValue(
-                            has_numeric_value=biosample["sampleCollectionTemperature"]
-                        ),
-
-                        # ecosystem collected from fields
-                        ecosystem=biosample["ecosystem"],
-                        ecosystem_category=biosample["ecosystemCategory"],
-                        ecosystem_subtype=biosample["ecosystemSubtype"],
-                        ecosystem_type=biosample["ecosystemType"],
-
-                        # collection site metadata
-                        geo_loc_name=nmdc.TextValue(
-                            has_raw_value=biosample["geoLocation"]
-                        ),
-                        lat_lon=nmdc.GeolocationValue(
-                            latitude=biosample["latitude"],
-                            longitude=biosample["longitude"],
-                        ),
-                        habitat=biosample["habitat"],
-                        location=biosample["isoCountry"],
-
-                        # collection metadata fields
-                        host_name=biosample["hostName"],
-                        sample_collection_site=biosample["sampleBodySite"],
-
-                        # chemical metadata fields
-                        nitrate=nmdc.QuantityValue(
-                            has_numeric_value=biosample["nitrateConcentration"]
-                        ),
-                        salinity=nmdc.QuantityValue(
-                            has_numeric_value=biosample["salinityConcentration"]
-                        ),
-
-                        # environment metadata fields
-                        env_broad_scale=nmdc.ControlledTermValue(
-                            has_raw_value=biosample["envoBroadScale"]["id"],
-                        ),
-                        env_local_scale=nmdc.ControlledTermValue(
-                            has_raw_value=biosample["envoLocalScale"]["id"]
-                        ),
-                        env_medium=nmdc.ControlledTermValue(
-                            has_raw_value=biosample["envoMedium"]["id"]
-                        ),
-                    )
-                )
-            except:
-                logging.error(
-                    f'Biosample not properly annotated: {biosample["biosampleGoldId"]}'
-                )
-
-        if file_name:
-            json_dumper.dump(nmdc_db, file_name)
-
-        return json_dumper.dumps(nmdc_db, inject_type=False)
 
 
 @click.group()
