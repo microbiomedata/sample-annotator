@@ -14,7 +14,7 @@ from linkml_runtime.linkml_model.types import XSDDateTime
 from sample_annotator.clients.gold_client import GoldClient
 
 
-logger = logging.getLogger(__name__)    # module level logger
+logger = logging.getLogger(__name__)  # module level logger
 
 
 class GoldNMDC(GoldClient):
@@ -25,7 +25,7 @@ class GoldNMDC(GoldClient):
 
         # set the GOLD study id
         self.study_id = study_id
-        
+
     def validate_nmdc(
         self, file_name: Union[str, bytes, os.PathLike], database_set: str = None
     ) -> bool:
@@ -102,15 +102,17 @@ class GoldNMDC(GoldClient):
                         
                         # Earth fields
                         depth=nmdc.QuantityValue(
-                            has_numeric_value=biosample["depthInMeters"], has_unit="meters"
+                            has_numeric_value=biosample["depthInMeters"],
+                            has_unit="meters",
                         ),
                         depth2=nmdc.QuantityValue(
-                            has_numeric_value=biosample["depthInMeters2"], has_unit="meters"
+                            has_numeric_value=biosample["depthInMeters2"],
+                            has_unit="meters",
                         ),
                         temp=nmdc.QuantityValue(
                             has_numeric_value=biosample["sampleCollectionTemperature"]
                         ),
-
+                        
                         # ecosystem collected from fields
                         ecosystem=biosample["ecosystem"],
                         ecosystem_category=biosample["ecosystemCategory"],
@@ -143,13 +145,19 @@ class GoldNMDC(GoldClient):
                         
                         # environment metadata fields
                         env_broad_scale=nmdc.ControlledTermValue(
-                            term=nmdc.OntologyClass(biosample["envoBroadScale"]["id"].replace("_", ":"))
+                            term=nmdc.OntologyClass(
+                                biosample["envoBroadScale"]["id"].replace("_", ":")
+                            )
                         ),
                         env_local_scale=nmdc.ControlledTermValue(
-                            term=nmdc.OntologyClass(biosample["envoLocalScale"]["id"].replace("_", ":"))
+                            term=nmdc.OntologyClass(
+                                biosample["envoLocalScale"]["id"].replace("_", ":")
+                            )
                         ),
                         env_medium=nmdc.ControlledTermValue(
-                            term=nmdc.OntologyClass(biosample["envoMedium"]["id"].replace("_", ":"))
+                            term=nmdc.OntologyClass(
+                                biosample["envoMedium"]["id"].replace("_", ":")
+                            )
                         ),
                     )
                 )
@@ -165,7 +173,8 @@ class GoldNMDC(GoldClient):
                         # omics processing metadata
                         id="gold:" + project["projectGoldId"],
                         name=project["projectName"],
-                        GOLD_sequencing_project_identifiers="gold:" + project["biosampleGoldId"],
+                        GOLD_sequencing_project_identifiers="gold:"
+                        + project["biosampleGoldId"],
                         
                         # omics processing date fields
                         add_date=XSDDateTime(project["addDate"]),
@@ -187,7 +196,7 @@ class GoldNMDC(GoldClient):
 
         # dump JSON string serialization of NMDC Schema object
         json_str = json_dumper.dumps(self.nmdc_db, inject_type=False)
-        
+
         # if file_name is provided then additionally write to file at path
         if file_name:
             with open(file_name, "w", encoding="utf-8") as f:
