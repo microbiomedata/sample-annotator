@@ -18,10 +18,14 @@ logger = logging.getLogger(__name__)    # module level logger
 
 
 class GoldNMDC(GoldClient):
-    def __init__(self) -> None:
+    def __init__(self, study_id: str) -> None:
 
         # construct MongoDB with study_set, biosample_set, omics_processing_set
         self.nmdc_db = nmdc.Database()
+        
+        # get the GOLD study id
+        if "gold:" in study_id:
+            self.study_id = study_id.replace("gold:", "")
 
     def validate_nmdc(
         self, file_name: Union[str, bytes, os.PathLike], database_set: str = None
@@ -58,7 +62,7 @@ class GoldNMDC(GoldClient):
         return True
 
     def transform_emp500_nmdc(
-        self, study_id: str, file_name: Union[str, bytes, os.PathLike] = None
+        self, file_name: Union[str, bytes, os.PathLike] = None
     ) -> str:
         """Transform EMP500 data fetched from GOLD Database into
         NMDC Schema compliant JSON data.
@@ -68,12 +72,12 @@ class GoldNMDC(GoldClient):
             output to
         :return: JSON string
         """
-        projects = self.fetch_projects_by_study(study_id)
+        projects = self.fetch_projects_by_study(self.study_id)
 
-        biosamples = self.fetch_biosamples_by_study(study_id)
+        biosamples = self.fetch_biosamples_by_study(self.study_id)
 
         self.nmdc_db.study_set.append(
-            nmdc.Study(id=study_id, GOLD_study_identifiers=study_id)
+            nmdc.Study(id=self.study_id, GOLD_study_identifiers=self.study_id)
         )
 
         for biosample in biosamples:
@@ -87,7 +91,7 @@ class GoldNMDC(GoldClient):
                         # metadata fields
                         description=biosample["description"],
                         name=biosample["biosampleName"],
-                        part_of=study_id,
+                        part_of=self.study_id,
                         ncbi_taxonomy_name=biosample["ncbiTaxName"],
                         
                         # biosample date information
@@ -182,8 +186,12 @@ class GoldNMDC(GoldClient):
                     f"Omics processing set not properly annotated: {project['projectGoldId']}"
                 )
 
+        # dump JSON string serialization of NMDC Schema object
+        json_str = json_dumper.dumps(self.nmdc_db, inject_type=False)
+        
         # if file_name is provided then additionally write to file at path
         if file_name:
-            json_dumper.dump(self.nmdc_db, file_name)
+            with open(file_name, "w", encoding="utf-8") as f:
+                json.dump(json.loads(json_str), f, ensure_ascii=False, indent=4)
 
-        return json_dumper.dumps(self.nmdc_db, inject_type=False)
+        return json_str
