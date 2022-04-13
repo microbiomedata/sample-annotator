@@ -22,11 +22,10 @@ class GoldNMDC(GoldClient):
 
         # construct MongoDB with study_set, biosample_set, omics_processing_set
         self.nmdc_db = nmdc.Database()
-        
-        # get the GOLD study id
-        if "gold:" in study_id:
-            self.study_id = study_id.replace("gold:", "")
 
+        # set the GOLD study id
+        self.study_id = study_id
+        
     def validate_nmdc(
         self, file_name: Union[str, bytes, os.PathLike], database_set: str = None
     ) -> bool:
@@ -85,8 +84,8 @@ class GoldNMDC(GoldClient):
                 self.nmdc_db.biosample_set.append(
                     nmdc.Biosample(
                         # biosample identifiers
-                        id=biosample["biosampleGoldId"],
-                        GOLD_sample_identifiers=biosample["biosampleGoldId"],
+                        id="gold:" + biosample["biosampleGoldId"],
+                        GOLD_sample_identifiers="gold:" + biosample["biosampleGoldId"],
                         
                         # metadata fields
                         description=biosample["description"],
@@ -103,10 +102,10 @@ class GoldNMDC(GoldClient):
                         
                         # Earth fields
                         depth=nmdc.QuantityValue(
-                            has_numeric_value=biosample["depthInMeters"], has_unit="m2"
+                            has_numeric_value=biosample["depthInMeters"], has_unit="meters"
                         ),
                         depth2=nmdc.QuantityValue(
-                            has_numeric_value=biosample["depthInMeters2"], has_unit="m2"
+                            has_numeric_value=biosample["depthInMeters2"], has_unit="meters"
                         ),
                         temp=nmdc.QuantityValue(
                             has_numeric_value=biosample["sampleCollectionTemperature"]
@@ -144,13 +143,13 @@ class GoldNMDC(GoldClient):
                         
                         # environment metadata fields
                         env_broad_scale=nmdc.ControlledTermValue(
-                            has_raw_value=biosample["envoBroadScale"]["id"],
+                            term=nmdc.OntologyClass(biosample["envoBroadScale"]["id"].replace("_", ":"))
                         ),
                         env_local_scale=nmdc.ControlledTermValue(
-                            has_raw_value=biosample["envoLocalScale"]["id"]
+                            term=nmdc.OntologyClass(biosample["envoLocalScale"]["id"].replace("_", ":"))
                         ),
                         env_medium=nmdc.ControlledTermValue(
-                            has_raw_value=biosample["envoMedium"]["id"]
+                            term=nmdc.OntologyClass(biosample["envoMedium"]["id"].replace("_", ":"))
                         ),
                     )
                 )
@@ -164,15 +163,15 @@ class GoldNMDC(GoldClient):
                 self.nmdc_db.omics_processing_set.append(
                     nmdc.OmicsProcessing(
                         # omics processing metadata
-                        id=project["projectGoldId"],
+                        id="gold:" + project["projectGoldId"],
                         name=project["projectName"],
-                        GOLD_sequencing_project_identifiers=project["biosampleGoldId"],
+                        GOLD_sequencing_project_identifiers="gold:" + project["biosampleGoldId"],
                         
                         # omics processing date fields
                         add_date=XSDDateTime(project["addDate"]),
                         
                         # sequencing details fields
-                        has_input=project["biosampleGoldId"],
+                        has_input="gold:" + project["biosampleGoldId"],
                         omics_type=nmdc.ControlledTermValue(
                             has_raw_value=project["sequencingStrategy"]
                         ),
