@@ -30,7 +30,7 @@
                 "has_raw_value": "USA: Pennsylvania,Borough of Centralia"
             },
             "lat_lon": {
-                "has_raw_value": "-35.54048",
+                "has_raw_value": "40.7988 -76.33928",
                 "latitude": 40.7988,
                 "longitude": -76.33928
             },
@@ -80,7 +80,7 @@
                 "has_raw_value": "USA: Pennsylvania,Borough of Centralia"
             },
             "lat_lon": {
-                "has_raw_value": "-35.54185",
+                "has_raw_value": "40.8013 -76.34315",
                 "latitude": 40.8013,
                 "longitude": -76.34315
             },
@@ -130,7 +130,7 @@
                 "has_raw_value": "Singapore"
             },
             "lat_lon": {
-                "has_raw_value": "105.146505114",
+                "has_raw_value": "1.435145214 103.7113599",
                 "latitude": 1.435145214,
                 "longitude": 103.7113599
             },
@@ -180,7 +180,7 @@
                 "has_raw_value": "Spain: Province of Huelva, Reserva de la Biosfera y Paraje Natural de las Marismas del Odiel"
             },
             "lat_lon": {
-                "has_raw_value": "30.250327",
+                "has_raw_value": "37.207687 -6.95736",
                 "latitude": 37.207687,
                 "longitude": -6.95736
             },
@@ -230,7 +230,7 @@
                 "has_raw_value": "Spain: Province of Huelva, Reserva de la Biosfera y Paraje Natural de las Marismas del Odiel"
             },
             "lat_lon": {
-                "has_raw_value": "30.250402",
+                "has_raw_value": "37.20772 -6.957318",
                 "latitude": 37.20772,
                 "longitude": -6.957318
             },
@@ -280,7 +280,7 @@
                 "has_raw_value": "Peru: Puca Glacier"
             },
             "lat_lon": {
-                "has_raw_value": "-84.84472199999999",
+                "has_raw_value": "-13.773333 -71.071389",
                 "latitude": -13.773333,
                 "longitude": -71.071389
             },
@@ -330,7 +330,7 @@
                 "has_raw_value": "USA: Alaska, Fairbanks"
             },
             "lat_lon": {
-                "has_raw_value": "-82.32456325999999",
+                "has_raw_value": "65.16140744 -147.4859707",
                 "latitude": 65.16140744,
                 "longitude": -147.4859707
             },
@@ -380,7 +380,7 @@
                 "has_raw_value": "USA: Oregon, Lane County"
             },
             "lat_lon": {
-                "has_raw_value": "-77.96090799999999",
+                "has_raw_value": "44.230556 -122.191464",
                 "latitude": 44.230556,
                 "longitude": -122.191464
             },
@@ -430,7 +430,7 @@
                 "has_raw_value": "USA: Oregon, Tillamook County"
             },
             "lat_lon": {
-                "has_raw_value": "-78.848514",
+                "has_raw_value": "45.044492 -123.893006",
                 "latitude": 45.044492,
                 "longitude": -123.893006
             },
@@ -480,7 +480,7 @@
                 "has_raw_value": "Arctic Ocean: Luigi island"
             },
             "lat_lon": {
-                "has_raw_value": "135.4166666667",
+                "has_raw_value": "80.7666666667 54.65",
                 "latitude": 80.7666666667,
                 "longitude": 54.65
             },
@@ -530,7 +530,7 @@
                 "has_raw_value": "Singapore"
             },
             "lat_lon": {
-                "has_raw_value": "105.146761868",
+                "has_raw_value": "1.435380168 103.7113817",
                 "latitude": 1.435380168,
                 "longitude": 103.7113817
             },
@@ -580,7 +580,7 @@
                 "has_raw_value": "Singapore"
             },
             "lat_lon": {
-                "has_raw_value": "105.071416",
+                "has_raw_value": "1.294588 103.776828",
                 "latitude": 1.294588,
                 "longitude": 103.776828
             },
@@ -630,7 +630,7 @@
                 "has_raw_value": "Spain: Province of Huelva, Reserva de la Biosfera y Paraje Natural de las Marismas del Odiel"
             },
             "lat_lon": {
-                "has_raw_value": "30.241077999999998",
+                "has_raw_value": "37.207299 -6.966221",
                 "latitude": 37.207299,
                 "longitude": -6.966221
             },
@@ -680,7 +680,7 @@
                 "has_raw_value": "Spain: Province of Huelva, Reserva de la Biosfera y Paraje Natural de las Marismas del Odiel"
             },
             "lat_lon": {
-                "has_raw_value": "30.259354000000002",
+                "has_raw_value": "37.221457 -6.962103",
                 "latitude": 37.221457,
                 "longitude": -6.962103
             },
@@ -730,7 +730,7 @@
                 "has_raw_value": "Spain: Province of Huelva, Reserva de la Biosfera y Paraje Natural de las Marismas del Odiel"
             },
             "lat_lon": {
-                "has_raw_value": "30.240828",
+                "has_raw_value": "37.207427 -6.966599",
                 "latitude": 37.207427,
                 "longitude": -6.966599
             },
@@ -780,7 +780,7 @@
                 "has_raw_value": "Spain: Province of Huelva, Reserva de la Biosfera y Paraje Natural de las Marismas del Odiel"
             },
             "lat_lon": {
-                "has_raw_value": "30.259354000000002",
+                "has_raw_value": "37.221457 -6.962103",
                 "latitude": 37.221457,
                 "longitude": -6.962103
             },
@@ -830,7 +830,7 @@
                 "has_raw_value": "Spain: Province of Huelva, Reserva de la Biosfera y Paraje Natural de las Marismas del Odiel"
             },
             "lat_lon": {
-                "has_raw_value": "30.25134",
+                "has_raw_value": "37.206429 -6.955089",
                 "latitude": 37.206429,
                 "longitude": -6.955089
             },
@@ -880,7 +880,7 @@
                 "has_raw_value": "Nepal: Mustang Region"
             },
             "lat_lon": {
-                "has_raw_value": "112.63622122",
+                "has_raw_value": "28.72152826 83.91469296",
                 "latitude": 28.72152826,
                 "longitude": 83.91469296
             },
@@ -930,7 +930,7 @@
                 "has_raw_value": "Peru: Puca Glacier"
             },
             "lat_lon": {
-                "has_raw_value": "-84.84472199999999",
+                "has_raw_value": "-13.773333 -71.071389",
                 "latitude": -13.773333,
                 "longitude": -71.071389
             },
@@ -980,7 +980,7 @@
                 "has_raw_value": "USA: Alaska, Fairbanks"
             },
             "lat_lon": {
-                "has_raw_value": "-82.32240214000001",
+                "has_raw_value": "65.16108566 -147.4834878",
                 "latitude": 65.16108566,
                 "longitude": -147.4834878
             },
@@ -1030,7 +1030,7 @@
                 "has_raw_value": "USA: Alaska, Fairbanks"
             },
             "lat_lon": {
-                "has_raw_value": "-82.32269717",
+                "has_raw_value": "65.16112503 -147.4838222",
                 "latitude": 65.16112503,
                 "longitude": -147.4838222
             },
@@ -1080,7 +1080,7 @@
                 "has_raw_value": "USA: Alaska, Fairbanks"
             },
             "lat_lon": {
-                "has_raw_value": "-82.32309374",
+                "has_raw_value": "65.16118836 -147.4842821",
                 "latitude": 65.16118836,
                 "longitude": -147.4842821
             },
@@ -1130,7 +1130,7 @@
                 "has_raw_value": "USA: Alaska, Fairbanks"
             },
             "lat_lon": {
-                "has_raw_value": "-82.32434955",
+                "has_raw_value": "65.16128615 -147.4856357",
                 "latitude": 65.16128615,
                 "longitude": -147.4856357
             },
@@ -1180,7 +1180,7 @@
                 "has_raw_value": "USA: Alaska, Fairbanks"
             },
             "lat_lon": {
-                "has_raw_value": "-82.32447504000001",
+                "has_raw_value": "65.16131206 -147.4857871",
                 "latitude": 65.16131206,
                 "longitude": -147.4857871
             },
@@ -1230,7 +1230,7 @@
                 "has_raw_value": "USA: Alaska, Fairbanks"
             },
             "lat_lon": {
-                "has_raw_value": "-82.32466337999999",
+                "has_raw_value": "65.16135092 -147.4860143",
                 "latitude": 65.16135092,
                 "longitude": -147.4860143
             },
@@ -1280,7 +1280,7 @@
                 "has_raw_value": "USA: Alaska, Fairbanks"
             },
             "lat_lon": {
-                "has_raw_value": "-82.32499571000001",
+                "has_raw_value": "65.16140989 -147.4864056",
                 "latitude": 65.16140989,
                 "longitude": -147.4864056
             },
@@ -1330,7 +1330,7 @@
                 "has_raw_value": "USA: Oregon, Grant County"
             },
             "lat_lon": {
-                "has_raw_value": "-73.72218",
+                "has_raw_value": "44.57589 -118.29807",
                 "latitude": 44.57589,
                 "longitude": -118.29807
             },
@@ -1380,7 +1380,7 @@
                 "has_raw_value": "USA: Oregon, Klamath County"
             },
             "lat_lon": {
-                "has_raw_value": "-78.56614099999999",
+                "has_raw_value": "43.228761 -121.794902",
                 "latitude": 43.228761,
                 "longitude": -121.794902
             },
@@ -1430,7 +1430,7 @@
                 "has_raw_value": "USA: Colorado, Boulder"
             },
             "lat_lon": {
-                "has_raw_value": "-65.255",
+                "has_raw_value": "40.015 -105.27",
                 "latitude": 40.015,
                 "longitude": -105.27
             },
@@ -1480,7 +1480,7 @@
                 "has_raw_value": "USA: Oregon, Deschutes County"
             },
             "lat_lon": {
-                "has_raw_value": "-76.220515",
+                "has_raw_value": "43.410408 -119.630923",
                 "latitude": 43.410408,
                 "longitude": -119.630923
             },
@@ -1530,7 +1530,7 @@
                 "has_raw_value": "Namibia"
             },
             "lat_lon": {
-                "has_raw_value": "-8.703000000000001",
+                "has_raw_value": "-23.7834 15.0804",
                 "latitude": -23.7834,
                 "longitude": 15.0804
             },
@@ -1580,7 +1580,7 @@
                 "has_raw_value": "USA: Hawaii, Kilauea Volcano"
             },
             "lat_lon": {
-                "has_raw_value": "-135.859195",
+                "has_raw_value": "19.389305 -155.2485",
                 "latitude": 19.389305,
                 "longitude": -155.2485
             },
@@ -1630,7 +1630,7 @@
                 "has_raw_value": "USA: Pennsylvania,Borough of Centralia"
             },
             "lat_lon": {
-                "has_raw_value": "-35.544366000000004",
+                "has_raw_value": "40.7974 -76.341766",
                 "latitude": 40.7974,
                 "longitude": -76.341766
             },
@@ -1682,7 +1682,7 @@
                 "has_raw_value": "USA: Washington, Richland, Columbia River"
             },
             "lat_lon": {
-                "has_raw_value": "-72.89981338999999",
+                "has_raw_value": "46.37177951 -119.2715929",
                 "latitude": 46.37177951,
                 "longitude": -119.2715929
             },
@@ -1735,7 +1735,7 @@
                 "has_raw_value": "USA: Washington, Richland, Columbia River"
             },
             "lat_lon": {
-                "has_raw_value": "-72.89345786999999",
+                "has_raw_value": "46.38010583 -119.2735637",
                 "latitude": 46.38010583,
                 "longitude": -119.2735637
             },
@@ -1786,7 +1786,7 @@
                 "has_raw_value": "Namibia"
             },
             "lat_lon": {
-                "has_raw_value": "-8.085249999999998",
+                "has_raw_value": "-23.0352333333 14.9499833333",
                 "latitude": -23.0352333333,
                 "longitude": 14.9499833333
             },
@@ -1836,7 +1836,7 @@
                 "has_raw_value": "Namibia"
             },
             "lat_lon": {
-                "has_raw_value": "-7.697066666700001",
+                "has_raw_value": "-23.32035 15.6232833333",
                 "latitude": -23.32035,
                 "longitude": 15.6232833333
             },
@@ -1886,7 +1886,7 @@
                 "has_raw_value": "Mongolia"
             },
             "lat_lon": {
-                "has_raw_value": "151.46",
+                "has_raw_value": "51.01 100.45",
                 "latitude": 51.01,
                 "longitude": 100.45
             },
@@ -1936,7 +1936,7 @@
                 "has_raw_value": "USA: Oregon, Coos County"
             },
             "lat_lon": {
-                "has_raw_value": "-81.14256",
+                "has_raw_value": "43.2122 -124.35476",
                 "latitude": 43.2122,
                 "longitude": -124.35476
             },
@@ -1986,7 +1986,7 @@
                 "has_raw_value": "USA: Colorado, Boulder"
             },
             "lat_lon": {
-                "has_raw_value": "-65.255",
+                "has_raw_value": "40.015 -105.27",
                 "latitude": 40.015,
                 "longitude": -105.27
             },
@@ -2036,7 +2036,7 @@
                 "has_raw_value": "USA: Oregon, Sherman County"
             },
             "lat_lon": {
-                "has_raw_value": "-75.49377",
+                "has_raw_value": "45.16543 -120.6592",
                 "latitude": 45.16543,
                 "longitude": -120.6592
             },
@@ -2086,7 +2086,7 @@
                 "has_raw_value": "Mongolia"
             },
             "lat_lon": {
-                "has_raw_value": "151.46",
+                "has_raw_value": "51.01 100.45",
                 "latitude": 51.01,
                 "longitude": 100.45
             },
@@ -2136,7 +2136,7 @@
                 "has_raw_value": "Mongolia"
             },
             "lat_lon": {
-                "has_raw_value": "151.46",
+                "has_raw_value": "51.01 100.45",
                 "latitude": 51.01,
                 "longitude": 100.45
             },
@@ -2186,7 +2186,7 @@
                 "has_raw_value": "Spain: Province of Huelva:Reserva de la Biosfera y Paraje Natural de las Marismas del Odiel"
             },
             "lat_lon": {
-                "has_raw_value": "30.25134",
+                "has_raw_value": "37.206429 -6.955089",
                 "latitude": 37.206429,
                 "longitude": -6.955089
             },
@@ -2236,7 +2236,7 @@
                 "has_raw_value": "Nepal: Mustang Region"
             },
             "lat_lon": {
-                "has_raw_value": "112.63561605",
+                "has_raw_value": "28.72122816 83.91438789",
                 "latitude": 28.72122816,
                 "longitude": 83.91438789
             },
@@ -2286,7 +2286,7 @@
                 "has_raw_value": "Nepal: Mustang Region"
             },
             "lat_lon": {
-                "has_raw_value": "112.63561605",
+                "has_raw_value": "28.72122816 83.91438789",
                 "latitude": 28.72122816,
                 "longitude": 83.91438789
             },
@@ -2336,7 +2336,7 @@
                 "has_raw_value": "Peru: Puca Glacier"
             },
             "lat_lon": {
-                "has_raw_value": "-84.84472199999999",
+                "has_raw_value": "-13.773333 -71.071389",
                 "latitude": -13.773333,
                 "longitude": -71.071389
             },
@@ -2386,7 +2386,7 @@
                 "has_raw_value": "Singapore: West Coast Park"
             },
             "lat_lon": {
-                "has_raw_value": "105.059414",
+                "has_raw_value": "1.29545 103.763964",
                 "latitude": 1.29545,
                 "longitude": 103.763964
             },
@@ -2436,7 +2436,7 @@
                 "has_raw_value": "USA: Alaska, Fairbanks"
             },
             "lat_lon": {
-                "has_raw_value": "-82.32291662",
+                "has_raw_value": "65.16115158 -147.4840682",
                 "latitude": 65.16115158,
                 "longitude": -147.4840682
             },
@@ -2486,7 +2486,7 @@
                 "has_raw_value": "USA: Alaska, Fairbanks"
             },
             "lat_lon": {
-                "has_raw_value": "-82.32303648999999",
+                "has_raw_value": "65.16117961 -147.4842161",
                 "latitude": 65.16117961,
                 "longitude": -147.4842161
             },
@@ -2536,7 +2536,7 @@
                 "has_raw_value": "USA: Alaska, Fairbanks"
             },
             "lat_lon": {
-                "has_raw_value": "-82.32323601000002",
+                "has_raw_value": "65.16121249 -147.4844485",
                 "latitude": 65.16121249,
                 "longitude": -147.4844485
             },
@@ -2586,7 +2586,7 @@
                 "has_raw_value": "USA: Alaska, Fairbanks"
             },
             "lat_lon": {
-                "has_raw_value": "-82.32406581000001",
+                "has_raw_value": "65.16130539 -147.4853712",
                 "latitude": 65.16130539,
                 "longitude": -147.4853712
             },
@@ -2636,7 +2636,7 @@
                 "has_raw_value": "USA: Colorado, Boulder"
             },
             "lat_lon": {
-                "has_raw_value": "-65.255",
+                "has_raw_value": "40.015 -105.27",
                 "latitude": 40.015,
                 "longitude": -105.27
             },
@@ -2686,7 +2686,7 @@
                 "has_raw_value": "USA: Oregon, Benton County"
             },
             "lat_lon": {
-                "has_raw_value": "-78.58381",
+                "has_raw_value": "44.62691 -123.21072",
                 "latitude": 44.62691,
                 "longitude": -123.21072
             },
@@ -2736,7 +2736,7 @@
                 "has_raw_value": "USA: Oregon, Umatilla County"
             },
             "lat_lon": {
-                "has_raw_value": "-72.90637000000001",
+                "has_raw_value": "45.71948 -118.62585",
                 "latitude": 45.71948,
                 "longitude": -118.62585
             },
@@ -2786,7 +2786,7 @@
                 "has_raw_value": "Namibia"
             },
             "lat_lon": {
-                "has_raw_value": "-8.982149999999999",
+                "has_raw_value": "-23.8200166667 14.8378666667",
                 "latitude": -23.8200166667,
                 "longitude": 14.8378666667
             },
@@ -2836,7 +2836,7 @@
                 "has_raw_value": "USA: Hawaii, Kilauea Volcano"
             },
             "lat_lon": {
-                "has_raw_value": "-135.860639",
+                "has_raw_value": "19.388694 -155.249333",
                 "latitude": 19.388694,
                 "longitude": -155.249333
             },
@@ -2886,7 +2886,7 @@
                 "has_raw_value": "USA: Hawaii, Kilauea Volcano"
             },
             "lat_lon": {
-                "has_raw_value": "-135.860611",
+                "has_raw_value": "19.389389 -155.25",
                 "latitude": 19.389389,
                 "longitude": -155.25
             },
@@ -2936,7 +2936,7 @@
                 "has_raw_value": "USA: Pennsylvania,Borough of Centralia"
             },
             "lat_lon": {
-                "has_raw_value": "-35.54064999999999",
+                "has_raw_value": "40.8008 -76.34145",
                 "latitude": 40.8008,
                 "longitude": -76.34145
             },
@@ -2986,7 +2986,7 @@
                 "has_raw_value": "USA: Pennsylvania,Borough of Centralia"
             },
             "lat_lon": {
-                "has_raw_value": "-35.54030660000001",
+                "has_raw_value": "40.79996 -76.3402666",
                 "latitude": 40.79996,
                 "longitude": -76.3402666
             },
@@ -3036,7 +3036,7 @@
                 "has_raw_value": "Singapore"
             },
             "lat_lon": {
-                "has_raw_value": "105.14698800000001",
+                "has_raw_value": "1.435314 103.711674",
                 "latitude": 1.435314,
                 "longitude": 103.711674
             },
@@ -3086,7 +3086,7 @@
                 "has_raw_value": "Spain: Province of Huelva, Reserva de la Biosfera y Paraje Natural de las Marismas del Odiel"
             },
             "lat_lon": {
-                "has_raw_value": "30.259354000000002",
+                "has_raw_value": "37.221457 -6.962103",
                 "latitude": 37.221457,
                 "longitude": -6.962103
             },
@@ -3136,7 +3136,7 @@
                 "has_raw_value": "Spain: Province of Huelva, Reserva de la Biosfera y Paraje Natural de las Marismas del Odiel"
             },
             "lat_lon": {
-                "has_raw_value": "30.259286999999997",
+                "has_raw_value": "37.221464 -6.962177",
                 "latitude": 37.221464,
                 "longitude": -6.962177
             },
@@ -3186,7 +3186,7 @@
                 "has_raw_value": "USA: Oregon, Lincoln County"
             },
             "lat_lon": {
-                "has_raw_value": "-79.24475",
+                "has_raw_value": "44.52175 -123.7665",
                 "latitude": 44.52175,
                 "longitude": -123.7665
             },
@@ -3236,7 +3236,7 @@
                 "has_raw_value": "USA: Oregon, Lane County"
             },
             "lat_lon": {
-                "has_raw_value": "-77.96211699999999",
+                "has_raw_value": "44.229297 -122.191414",
                 "latitude": 44.229297,
                 "longitude": -122.191414
             },
@@ -3286,7 +3286,7 @@
                 "has_raw_value": "Arctic Ocean: Luigi island"
             },
             "lat_lon": {
-                "has_raw_value": "135.4166666667",
+                "has_raw_value": "80.7666666667 54.65",
                 "latitude": 80.7666666667,
                 "longitude": 54.65
             },
@@ -3336,7 +3336,7 @@
                 "has_raw_value": "Arctic Ocean: Luigi island"
             },
             "lat_lon": {
-                "has_raw_value": "135.4166666667",
+                "has_raw_value": "80.7666666667 54.65",
                 "latitude": 80.7666666667,
                 "longitude": 54.65
             },
@@ -3386,7 +3386,7 @@
                 "has_raw_value": "Arctic Ocean: Luigi island"
             },
             "lat_lon": {
-                "has_raw_value": "135.4166666667",
+                "has_raw_value": "80.7666666667 54.65",
                 "latitude": 80.7666666667,
                 "longitude": 54.65
             },
@@ -3436,7 +3436,7 @@
                 "has_raw_value": "Singapore"
             },
             "lat_lon": {
-                "has_raw_value": "105.146902035",
+                "has_raw_value": "1.435343635 103.7115584",
                 "latitude": 1.435343635,
                 "longitude": 103.7115584
             },
@@ -3486,7 +3486,7 @@
                 "has_raw_value": "Namibia"
             },
             "lat_lon": {
-                "has_raw_value": "-8.3955833333",
+                "has_raw_value": "-22.9791833333 14.5836",
                 "latitude": -22.9791833333,
                 "longitude": 14.5836
             },
@@ -3536,7 +3536,7 @@
                 "has_raw_value": "Namibia"
             },
             "lat_lon": {
-                "has_raw_value": "-8.248216666700001",
+                "has_raw_value": "-23.0148666667 14.76665",
                 "latitude": -23.0148666667,
                 "longitude": 14.76665
             },
@@ -3586,7 +3586,7 @@
                 "has_raw_value": "Mongolia"
             },
             "lat_lon": {
-                "has_raw_value": "151.46",
+                "has_raw_value": "51.01 100.45",
                 "latitude": 51.01,
                 "longitude": 100.45
             },
@@ -3636,7 +3636,7 @@
                 "has_raw_value": "Spain: Province of Huelva, Reserva de la Biosfera y Paraje Natural de las Marismas del Odiel"
             },
             "lat_lon": {
-                "has_raw_value": "30.25134",
+                "has_raw_value": "37.206429 -6.955089",
                 "latitude": 37.206429,
                 "longitude": -6.955089
             },
@@ -3686,7 +3686,7 @@
                 "has_raw_value": "Nepal: Mustang Region"
             },
             "lat_lon": {
-                "has_raw_value": "112.63561605",
+                "has_raw_value": "28.72122816 83.91438789",
                 "latitude": 28.72122816,
                 "longitude": 83.91438789
             },
@@ -3736,7 +3736,7 @@
                 "has_raw_value": "Peru: Puca Glacier"
             },
             "lat_lon": {
-                "has_raw_value": "-84.84472199999999",
+                "has_raw_value": "-13.773333 -71.071389",
                 "latitude": -13.773333,
                 "longitude": -71.071389
             },
@@ -3786,7 +3786,7 @@
                 "has_raw_value": "Peru: Puca Glacier"
             },
             "lat_lon": {
-                "has_raw_value": "-84.84472199999999",
+                "has_raw_value": "-13.773333 -71.071389",
                 "latitude": -13.773333,
                 "longitude": -71.071389
             },
@@ -3836,7 +3836,7 @@
                 "has_raw_value": "Singapore: West Coast Park"
             },
             "lat_lon": {
-                "has_raw_value": "105.059414",
+                "has_raw_value": "1.29545 103.763964",
                 "latitude": 1.29545,
                 "longitude": 103.763964
             },
@@ -3886,7 +3886,7 @@
                 "has_raw_value": "USA: Alaska, Fairbanks"
             },
             "lat_lon": {
-                "has_raw_value": "-82.32234759999999",
+                "has_raw_value": "65.161071 -147.4834186",
                 "latitude": 65.161071,
                 "longitude": -147.4834186
             },
@@ -3936,7 +3936,7 @@
                 "has_raw_value": "USA: Alaska, Fairbanks"
             },
             "lat_lon": {
-                "has_raw_value": "-82.32416131",
+                "has_raw_value": "65.16124729 -147.4854086",
                 "latitude": 65.16124729,
                 "longitude": -147.4854086
             },
@@ -3986,7 +3986,7 @@
                 "has_raw_value": "USA: Alaska, Fairbanks"
             },
             "lat_lon": {
-                "has_raw_value": "-82.32441697",
+                "has_raw_value": "65.16137743 -147.4857944",
                 "latitude": 65.16137743,
                 "longitude": -147.4857944
             },
@@ -4036,7 +4036,7 @@
                 "has_raw_value": "USA: Colorado, Boulder"
             },
             "lat_lon": {
-                "has_raw_value": "-65.255",
+                "has_raw_value": "40.015 -105.27",
                 "latitude": 40.015,
                 "longitude": -105.27
             },
@@ -4086,7 +4086,7 @@
                 "has_raw_value": "USA: Oregon, Union County"
             },
             "lat_lon": {
-                "has_raw_value": "-72.691195",
+                "has_raw_value": "45.093472 -117.784667",
                 "latitude": 45.093472,
                 "longitude": -117.784667
             },
@@ -4136,7 +4136,7 @@
                 "has_raw_value": "Namibia"
             },
             "lat_lon": {
-                "has_raw_value": "-9.167983333399999",
+                "has_raw_value": "-23.6707166667 14.5027333333",
                 "latitude": -23.6707166667,
                 "longitude": 14.5027333333
             },
@@ -4186,7 +4186,7 @@
                 "has_raw_value": "USA: Hawaii, Kilauea Volcano"
             },
             "lat_lon": {
-                "has_raw_value": "-135.859195",
+                "has_raw_value": "19.389305 -155.2485",
                 "latitude": 19.389305,
                 "longitude": -155.2485
             },
@@ -4236,7 +4236,7 @@
                 "has_raw_value": "Arctic Ocean: Hook Island"
             },
             "lat_lon": {
-                "has_raw_value": "133.1166666666",
+                "has_raw_value": "80.3333333333 52.7833333333",
                 "latitude": 80.3333333333,
                 "longitude": 52.7833333333
             },
@@ -4288,7 +4288,7 @@
                 "has_raw_value": "USA: Washington, Richland, Columbia River"
             },
             "lat_lon": {
-                "has_raw_value": "-72.8934482",
+                "has_raw_value": "46.3801157 -119.2735639",
                 "latitude": 46.3801157,
                 "longitude": -119.2735639
             },
@@ -4341,7 +4341,7 @@
                 "has_raw_value": "USA: Washington, Richland, Columbia River"
             },
             "lat_lon": {
-                "has_raw_value": "-72.89980334",
+                "has_raw_value": "46.37178996 -119.2715933",
                 "latitude": 46.37178996,
                 "longitude": -119.2715933
             },
@@ -4392,7 +4392,7 @@
                 "has_raw_value": "Singapore"
             },
             "lat_lon": {
-                "has_raw_value": "105.14621726",
+                "has_raw_value": "1.43492266 103.7112946",
                 "latitude": 1.43492266,
                 "longitude": 103.7112946
             },
@@ -4442,7 +4442,7 @@
                 "has_raw_value": "USA: Pennsylvania,Borough of Centralia"
             },
             "lat_lon": {
-                "has_raw_value": "-35.54045",
+                "has_raw_value": "40.8007 -76.34115",
                 "latitude": 40.8007,
                 "longitude": -76.34115
             },
@@ -4492,7 +4492,7 @@
                 "has_raw_value": "Mongolia"
             },
             "lat_lon": {
-                "has_raw_value": "151.46",
+                "has_raw_value": "51.01 100.45",
                 "latitude": 51.01,
                 "longitude": 100.45
             },
@@ -4542,7 +4542,7 @@
                 "has_raw_value": "Nepal: Mustang Region"
             },
             "lat_lon": {
-                "has_raw_value": "112.63561605",
+                "has_raw_value": "28.72122816 83.91438789",
                 "latitude": 28.72122816,
                 "longitude": 83.91438789
             },
@@ -4592,7 +4592,7 @@
                 "has_raw_value": "USA: Oregon, Klamath County"
             },
             "lat_lon": {
-                "has_raw_value": "-78.857061",
+                "has_raw_value": "42.881698 -121.738759",
                 "latitude": 42.881698,
                 "longitude": -121.738759
             },
@@ -4642,7 +4642,7 @@
                 "has_raw_value": "USA: Hawaii, Kilauea Volcano"
             },
             "lat_lon": {
-                "has_raw_value": "-135.860639",
+                "has_raw_value": "19.388694 -155.249333",
                 "latitude": 19.388694,
                 "longitude": -155.249333
             },
@@ -4692,7 +4692,7 @@
                 "has_raw_value": "USA: Hawaii, Kilauea Volcano"
             },
             "lat_lon": {
-                "has_raw_value": "-135.860611",
+                "has_raw_value": "19.389389 -155.25",
                 "latitude": 19.389389,
                 "longitude": -155.25
             },
@@ -4742,7 +4742,7 @@
                 "has_raw_value": "Namibia"
             },
             "lat_lon": {
-                "has_raw_value": "-9.167783333300001",
+                "has_raw_value": "-23.6706833333 14.5029",
                 "latitude": -23.6706833333,
                 "longitude": 14.5029
             },
@@ -4792,7 +4792,7 @@
                 "has_raw_value": "Mongolia"
             },
             "lat_lon": {
-                "has_raw_value": "151.46",
+                "has_raw_value": "51.01 100.45",
                 "latitude": 51.01,
                 "longitude": 100.45
             },
@@ -4842,7 +4842,7 @@
                 "has_raw_value": "Spain: Province of Huelva, Reserva de la Biosfera y Paraje Natural de las Marismas del Odiel"
             },
             "lat_lon": {
-                "has_raw_value": "30.250327",
+                "has_raw_value": "37.207687 -6.95736",
                 "latitude": 37.207687,
                 "longitude": -6.95736
             },
@@ -4892,7 +4892,7 @@
                 "has_raw_value": "Spain: Province of Huelva, Reserva de la Biosfera y Paraje Natural de las Marismas del Odiel"
             },
             "lat_lon": {
-                "has_raw_value": "30.25134",
+                "has_raw_value": "37.206429 -6.955089",
                 "latitude": 37.206429,
                 "longitude": -6.955089
             },
@@ -4942,7 +4942,7 @@
                 "has_raw_value": "Spain: Province of Huelva, Reserva de la Biosfera y Paraje Natural de las Marismas del Odiel"
             },
             "lat_lon": {
-                "has_raw_value": "30.240828",
+                "has_raw_value": "37.207427 -6.966599",
                 "latitude": 37.207427,
                 "longitude": -6.966599
             },
@@ -4992,7 +4992,7 @@
                 "has_raw_value": "Spain: Province of Huelva, Reserva de la Biosfera y Paraje Natural de las Marismas del Odiel"
             },
             "lat_lon": {
-                "has_raw_value": "30.240828",
+                "has_raw_value": "37.207427 -6.966599",
                 "latitude": 37.207427,
                 "longitude": -6.966599
             },
@@ -5042,7 +5042,7 @@
                 "has_raw_value": "Singapore"
             },
             "lat_lon": {
-                "has_raw_value": "105.071416",
+                "has_raw_value": "1.294588 103.776828",
                 "latitude": 1.294588,
                 "longitude": 103.776828
             },
@@ -5092,7 +5092,7 @@
                 "has_raw_value": "USA: Alaska, Fairbanks"
             },
             "lat_lon": {
-                "has_raw_value": "-82.32221949",
+                "has_raw_value": "65.16104591 -147.4832654",
                 "latitude": 65.16104591,
                 "longitude": -147.4832654
             },
@@ -5142,7 +5142,7 @@
                 "has_raw_value": "USA: Alaska, Fairbanks"
             },
             "lat_lon": {
-                "has_raw_value": "-82.32336417",
+                "has_raw_value": "65.16124063 -147.4846048",
                 "latitude": 65.16124063,
                 "longitude": -147.4846048
             },
@@ -5192,7 +5192,7 @@
                 "has_raw_value": "USA: Alaska, Fairbanks"
             },
             "lat_lon": {
-                "has_raw_value": "-82.32513367",
+                "has_raw_value": "65.16143193 -147.4865656",
                 "latitude": 65.16143193,
                 "longitude": -147.4865656
             },
@@ -5242,7 +5242,7 @@
                 "has_raw_value": "USA: Alaska, Fairbanks"
             },
             "lat_lon": {
-                "has_raw_value": "-82.32477602",
+                "has_raw_value": "65.16166658 -147.4864426",
                 "latitude": 65.16166658,
                 "longitude": -147.4864426
             },
@@ -5292,7 +5292,7 @@
                 "has_raw_value": "USA: Oregon, Lane County"
             },
             "lat_lon": {
-                "has_raw_value": "-77.961873",
+                "has_raw_value": "44.229294 -122.191167",
                 "latitude": 44.229294,
                 "longitude": -122.191167
             },
@@ -5342,7 +5342,7 @@
                 "has_raw_value": "USA: Oregon, Lane County"
             },
             "lat_lon": {
-                "has_raw_value": "-77.93712",
+                "has_raw_value": "44.226658 -122.163778",
                 "latitude": 44.226658,
                 "longitude": -122.163778
             },
@@ -5392,7 +5392,7 @@
                 "has_raw_value": "USA: Oregon, Tillamook County"
             },
             "lat_lon": {
-                "has_raw_value": "-78.850475",
+                "has_raw_value": "45.044433 -123.894908",
                 "latitude": 45.044433,
                 "longitude": -123.894908
             },
@@ -5442,7 +5442,7 @@
                 "has_raw_value": "USA: Oregon, Marion County"
             },
             "lat_lon": {
-                "has_raw_value": "-77.81988",
+                "has_raw_value": "45.2505 -123.07038",
                 "latitude": 45.2505,
                 "longitude": -123.07038
             },
@@ -5492,7 +5492,7 @@
                 "has_raw_value": "USA: Oregon, Crook County"
             },
             "lat_lon": {
-                "has_raw_value": "-75.90093300000001",
+                "has_raw_value": "43.97827 -119.879203",
                 "latitude": 43.97827,
                 "longitude": -119.879203
             },
@@ -5542,7 +5542,7 @@
                 "has_raw_value": "USA: Hawaii, Kilauea Volcano"
             },
             "lat_lon": {
-                "has_raw_value": "-135.859195",
+                "has_raw_value": "19.389305 -155.2485",
                 "latitude": 19.389305,
                 "longitude": -155.2485
             },
@@ -5592,7 +5592,7 @@
                 "has_raw_value": "USA: Hawaii, Kilauea Volcano"
             },
             "lat_lon": {
-                "has_raw_value": "-135.860611",
+                "has_raw_value": "19.389389 -155.25",
                 "latitude": 19.389389,
                 "longitude": -155.25
             },
@@ -5642,7 +5642,7 @@
                 "has_raw_value": "Nepal: Mustang Region"
             },
             "lat_lon": {
-                "has_raw_value": "112.63561605",
+                "has_raw_value": "28.72122816 83.91438789",
                 "latitude": 28.72122816,
                 "longitude": 83.91438789
             },
@@ -5692,7 +5692,7 @@
                 "has_raw_value": "Peru: Puca Glacier"
             },
             "lat_lon": {
-                "has_raw_value": "-84.84472199999999",
+                "has_raw_value": "-13.773333 -71.071389",
                 "latitude": -13.773333,
                 "longitude": -71.071389
             },
@@ -5742,7 +5742,7 @@
                 "has_raw_value": "Spain: Province of Huelva, Reserva de la Biosfera y Paraje Natural de las Marismas del Odiel"
             },
             "lat_lon": {
-                "has_raw_value": "30.259354000000002",
+                "has_raw_value": "37.221457 -6.962103",
                 "latitude": 37.221457,
                 "longitude": -6.962103
             },
@@ -5792,7 +5792,7 @@
                 "has_raw_value": "Spain: Province of Huelva, Reserva de la Biosfera y Paraje Natural de las Marismas del Odiel"
             },
             "lat_lon": {
-                "has_raw_value": "30.250552",
+                "has_raw_value": "37.207736 -6.957184",
                 "latitude": 37.207736,
                 "longitude": -6.957184
             },
@@ -5842,7 +5842,7 @@
                 "has_raw_value": "Nepal: Mustang Region"
             },
             "lat_lon": {
-                "has_raw_value": "112.63561605",
+                "has_raw_value": "28.72122816 83.91438789",
                 "latitude": 28.72122816,
                 "longitude": 83.91438789
             },
@@ -5892,7 +5892,7 @@
                 "has_raw_value": "Peru: Puca Glacier"
             },
             "lat_lon": {
-                "has_raw_value": "-84.84472199999999",
+                "has_raw_value": "-13.773333 -71.071389",
                 "latitude": -13.773333,
                 "longitude": -71.071389
             },
@@ -5942,7 +5942,7 @@
                 "has_raw_value": "Singapore"
             },
             "lat_lon": {
-                "has_raw_value": "105.071416",
+                "has_raw_value": "1.294588 103.776828",
                 "latitude": 1.294588,
                 "longitude": 103.776828
             },
@@ -5992,7 +5992,7 @@
                 "has_raw_value": "USA: Alaska, Fairbanks"
             },
             "lat_lon": {
-                "has_raw_value": "-82.32254309000001",
+                "has_raw_value": "65.16111741 -147.4836605",
                 "latitude": 65.16111741,
                 "longitude": -147.4836605
             },
@@ -6042,7 +6042,7 @@
                 "has_raw_value": "USA: Alaska, Fairbanks"
             },
             "lat_lon": {
-                "has_raw_value": "-82.32374626",
+                "has_raw_value": "65.16146914 -147.4852154",
                 "latitude": 65.16146914,
                 "longitude": -147.4852154
             },
@@ -6092,7 +6092,7 @@
                 "has_raw_value": "USA: Alaska, Fairbanks"
             },
             "lat_lon": {
-                "has_raw_value": "-82.32393535",
+                "has_raw_value": "65.16151055 -147.4854459",
                 "latitude": 65.16151055,
                 "longitude": -147.4854459
             },
@@ -6142,7 +6142,7 @@
                 "has_raw_value": "USA: Colorado, Boulder"
             },
             "lat_lon": {
-                "has_raw_value": "-65.255",
+                "has_raw_value": "40.015 -105.27",
                 "latitude": 40.015,
                 "longitude": -105.27
             },
@@ -6192,7 +6192,7 @@
                 "has_raw_value": "USA: Oregon, Lane County"
             },
             "lat_lon": {
-                "has_raw_value": "-77.960905",
+                "has_raw_value": "44.230317 -122.191222",
                 "latitude": 44.230317,
                 "longitude": -122.191222
             },
@@ -6242,7 +6242,7 @@
                 "has_raw_value": "USA: Oregon, Tillamook County"
             },
             "lat_lon": {
-                "has_raw_value": "-78.848525",
+                "has_raw_value": "45.046708 -123.895233",
                 "latitude": 45.046708,
                 "longitude": -123.895233
             },
@@ -6292,7 +6292,7 @@
                 "has_raw_value": "USA: Texas, Huntsville"
             },
             "lat_lon": {
-                "has_raw_value": "-64.83691999999999",
+                "has_raw_value": "30.71308 -95.55",
                 "latitude": 30.71308,
                 "longitude": -95.55
             },
@@ -6342,7 +6342,7 @@
                 "has_raw_value": "USA: Colorado, Boulder"
             },
             "lat_lon": {
-                "has_raw_value": "-65.255",
+                "has_raw_value": "40.015 -105.27",
                 "latitude": 40.015,
                 "longitude": -105.27
             },
@@ -6392,7 +6392,7 @@
                 "has_raw_value": "USA: Colorado, Boulder"
             },
             "lat_lon": {
-                "has_raw_value": "-65.255",
+                "has_raw_value": "40.015 -105.27",
                 "latitude": 40.015,
                 "longitude": -105.27
             },
@@ -6442,7 +6442,7 @@
                 "has_raw_value": "USA: Colorado, Boulder"
             },
             "lat_lon": {
-                "has_raw_value": "-65.255",
+                "has_raw_value": "40.015 -105.27",
                 "latitude": 40.015,
                 "longitude": -105.27
             },
@@ -6492,7 +6492,7 @@
                 "has_raw_value": "USA: Oregon, Sherman County"
             },
             "lat_lon": {
-                "has_raw_value": "-75.33711",
+                "has_raw_value": "45.24199 -120.5791",
                 "latitude": 45.24199,
                 "longitude": -120.5791
             },
@@ -6542,7 +6542,7 @@
                 "has_raw_value": "Namibia"
             },
             "lat_lon": {
-                "has_raw_value": "-8.7051",
+                "has_raw_value": "-23.7852 15.0801",
                 "latitude": -23.7852,
                 "longitude": 15.0801
             },
@@ -6592,7 +6592,7 @@
                 "has_raw_value": "USA: Hawaii, Kilauea Volcano"
             },
             "lat_lon": {
-                "has_raw_value": "-135.85725000000002",
+                "has_raw_value": "19.390167 -155.247417",
                 "latitude": 19.390167,
                 "longitude": -155.247417
             },
@@ -6642,7 +6642,7 @@
                 "has_raw_value": "Arctic Ocean: Hook Island"
             },
             "lat_lon": {
-                "has_raw_value": "133.1166666666",
+                "has_raw_value": "80.3333333333 52.7833333333",
                 "latitude": 80.3333333333,
                 "longitude": 52.7833333333
             },
@@ -6694,7 +6694,7 @@
                 "has_raw_value": "USA: Washington, Richland, Columbia River"
             },
             "lat_lon": {
-                "has_raw_value": "-72.89347832",
+                "has_raw_value": "46.38008918 -119.2735675",
                 "latitude": 46.38008918,
                 "longitude": -119.2735675
             },
@@ -6747,7 +6747,7 @@
                 "has_raw_value": "USA: Washington, Richland, Columbia River"
             },
             "lat_lon": {
-                "has_raw_value": "-72.8934685",
+                "has_raw_value": "46.3800964 -119.2735649",
                 "latitude": 46.3800964,
                 "longitude": -119.2735649
             },
@@ -6798,7 +6798,7 @@
                 "has_raw_value": "USA: Hawaii, Kilauea Volcano"
             },
             "lat_lon": {
-                "has_raw_value": "-135.860611",
+                "has_raw_value": "19.389389 -155.25",
                 "latitude": 19.389389,
                 "longitude": -155.25
             },
@@ -6848,7 +6848,7 @@
                 "has_raw_value": "USA: Pennsylvania,Borough of Centralia"
             },
             "lat_lon": {
-                "has_raw_value": "-35.5407366",
+                "has_raw_value": "40.80078 -76.3415166",
                 "latitude": 40.80078,
                 "longitude": -76.3415166
             },
@@ -6898,7 +6898,7 @@
                 "has_raw_value": "Arctic Ocean: Hook Island"
             },
             "lat_lon": {
-                "has_raw_value": "133.1166666666",
+                "has_raw_value": "80.3333333333 52.7833333333",
                 "latitude": 80.3333333333,
                 "longitude": 52.7833333333
             },
@@ -6948,7 +6948,7 @@
                 "has_raw_value": "Namibia"
             },
             "lat_lon": {
-                "has_raw_value": "-7.424449999999998",
+                "has_raw_value": "-23.3438666667 15.9194166667",
                 "latitude": -23.3438666667,
                 "longitude": 15.9194166667
             },
@@ -6998,7 +6998,7 @@
                 "has_raw_value": "Singapore"
             },
             "lat_lon": {
-                "has_raw_value": "105.071416",
+                "has_raw_value": "1.294588 103.776828",
                 "latitude": 1.294588,
                 "longitude": 103.776828
             },
@@ -7048,7 +7048,7 @@
                 "has_raw_value": "Spain: Province of Huelva, Reserva de la Biosfera y Paraje Natural de las Marismas del Odiel"
             },
             "lat_lon": {
-                "has_raw_value": "30.259286999999997",
+                "has_raw_value": "37.221464 -6.962177",
                 "latitude": 37.221464,
                 "longitude": -6.962177
             },
@@ -7098,7 +7098,7 @@
                 "has_raw_value": "Spain: Province of Huelva, Reserva de la Biosfera y Paraje Natural de las Marismas del Odiel"
             },
             "lat_lon": {
-                "has_raw_value": "30.250402",
+                "has_raw_value": "37.20772 -6.957318",
                 "latitude": 37.20772,
                 "longitude": -6.957318
             },
@@ -7148,7 +7148,7 @@
                 "has_raw_value": "Nepal: Mustang Region"
             },
             "lat_lon": {
-                "has_raw_value": "112.63561605",
+                "has_raw_value": "28.72122816 83.91438789",
                 "latitude": 28.72122816,
                 "longitude": 83.91438789
             },
@@ -7198,7 +7198,7 @@
                 "has_raw_value": "USA: Oregon, Tillamook County"
             },
             "lat_lon": {
-                "has_raw_value": "-78.850678",
+                "has_raw_value": "45.0437 -123.894378",
                 "latitude": 45.0437,
                 "longitude": -123.894378
             },
@@ -7248,7 +7248,7 @@
                 "has_raw_value": "USA: Colorado, Boulder"
             },
             "lat_lon": {
-                "has_raw_value": "-65.255",
+                "has_raw_value": "40.015 -105.27",
                 "latitude": 40.015,
                 "longitude": -105.27
             },
@@ -7298,7 +7298,7 @@
                 "has_raw_value": "USA: Oregon, Jackson County"
             },
             "lat_lon": {
-                "has_raw_value": "-80.672166",
+                "has_raw_value": "42.311278 -122.983444",
                 "latitude": 42.311278,
                 "longitude": -122.983444
             },
@@ -7348,7 +7348,7 @@
                 "has_raw_value": "USA: Hawaii, Kilauea Volcano"
             },
             "lat_lon": {
-                "has_raw_value": "-135.860639",
+                "has_raw_value": "19.388694 -155.249333",
                 "latitude": 19.388694,
                 "longitude": -155.249333
             },
@@ -7398,7 +7398,7 @@
                 "has_raw_value": "USA: Hawaii, Kilauea Volcano"
             },
             "lat_lon": {
-                "has_raw_value": "-135.859195",
+                "has_raw_value": "19.389305 -155.2485",
                 "latitude": 19.389305,
                 "longitude": -155.2485
             },
@@ -7448,7 +7448,7 @@
                 "has_raw_value": "Mongolia"
             },
             "lat_lon": {
-                "has_raw_value": "151.46",
+                "has_raw_value": "51.01 100.45",
                 "latitude": 51.01,
                 "longitude": 100.45
             },
@@ -7498,7 +7498,7 @@
                 "has_raw_value": "Spain: Province of Huelva, Reserva de la Biosfera y Paraje Natural de las Marismas del Odiel"
             },
             "lat_lon": {
-                "has_raw_value": "30.241077999999998",
+                "has_raw_value": "37.207299 -6.966221",
                 "latitude": 37.207299,
                 "longitude": -6.966221
             },
@@ -7548,7 +7548,7 @@
                 "has_raw_value": "Spain: Province of Huelva, Reserva de la Biosfera y Paraje Natural de las Marismas del Odiel"
             },
             "lat_lon": {
-                "has_raw_value": "30.25134",
+                "has_raw_value": "37.206429 -6.955089",
                 "latitude": 37.206429,
                 "longitude": -6.955089
             },
@@ -7598,7 +7598,7 @@
                 "has_raw_value": "Spain: Province of Huelva, Reserva de la Biosfera y Paraje Natural de las Marismas del Odiel"
             },
             "lat_lon": {
-                "has_raw_value": "30.25134",
+                "has_raw_value": "37.206429 -6.955089",
                 "latitude": 37.206429,
                 "longitude": -6.955089
             },
@@ -7648,7 +7648,7 @@
                 "has_raw_value": "Nepal: Mustang Region"
             },
             "lat_lon": {
-                "has_raw_value": "112.63561605",
+                "has_raw_value": "28.72122816 83.91438789",
                 "latitude": 28.72122816,
                 "longitude": 83.91438789
             },
@@ -7698,7 +7698,7 @@
                 "has_raw_value": "Nepal: Mustang Region"
             },
             "lat_lon": {
-                "has_raw_value": "112.63561605",
+                "has_raw_value": "28.72122816 83.91438789",
                 "latitude": 28.72122816,
                 "longitude": 83.91438789
             },
@@ -7748,7 +7748,7 @@
                 "has_raw_value": "Singapore"
             },
             "lat_lon": {
-                "has_raw_value": "105.071416",
+                "has_raw_value": "1.294588 103.776828",
                 "latitude": 1.294588,
                 "longitude": 103.776828
             },
@@ -7798,7 +7798,7 @@
                 "has_raw_value": "USA: Alaska, Fairbanks"
             },
             "lat_lon": {
-                "has_raw_value": "-82.32168553",
+                "has_raw_value": "65.16098807 -147.4826736",
                 "latitude": 65.16098807,
                 "longitude": -147.4826736
             },
@@ -7848,7 +7848,7 @@
                 "has_raw_value": "USA: Alaska, Fairbanks"
             },
             "lat_lon": {
-                "has_raw_value": "-82.32276472000001",
+                "has_raw_value": "65.16113288 -147.4838976",
                 "latitude": 65.16113288,
                 "longitude": -147.4838976
             },
@@ -7898,7 +7898,7 @@
                 "has_raw_value": "USA: Alaska, Fairbanks"
             },
             "lat_lon": {
-                "has_raw_value": "-82.3234288",
+                "has_raw_value": "65.1612536 -147.4846824",
                 "latitude": 65.1612536,
                 "longitude": -147.4846824
             },
@@ -7948,7 +7948,7 @@
                 "has_raw_value": "USA: Alaska, Fairbanks"
             },
             "lat_lon": {
-                "has_raw_value": "-82.32380934999999",
+                "has_raw_value": "65.16148295 -147.4852923",
                 "latitude": 65.16148295,
                 "longitude": -147.4852923
             },
@@ -7998,7 +7998,7 @@
                 "has_raw_value": "USA: Alaska, Fairbanks"
             },
             "lat_lon": {
-                "has_raw_value": "-82.32406144",
+                "has_raw_value": "65.16153816 -147.4855996",
                 "latitude": 65.16153816,
                 "longitude": -147.4855996
             },
@@ -8048,7 +8048,7 @@
                 "has_raw_value": "USA: Alaska, Fairbanks"
             },
             "lat_lon": {
-                "has_raw_value": "-82.32470942",
+                "has_raw_value": "65.16165668 -147.4863661",
                 "latitude": 65.16165668,
                 "longitude": -147.4863661
             },
@@ -8098,7 +8098,7 @@
                 "has_raw_value": "USA: Colorado, Boulder"
             },
             "lat_lon": {
-                "has_raw_value": "-65.255",
+                "has_raw_value": "40.015 -105.27",
                 "latitude": 40.015,
                 "longitude": -105.27
             },
@@ -8148,7 +8148,7 @@
                 "has_raw_value": "USA: Oregon, Benton County"
             },
             "lat_lon": {
-                "has_raw_value": "-78.59293",
+                "has_raw_value": "44.62484 -123.21777",
                 "latitude": 44.62484,
                 "longitude": -123.21777
             },
@@ -8198,7 +8198,7 @@
                 "has_raw_value": "USA: Oregon, Umatilla County"
             },
             "lat_lon": {
-                "has_raw_value": "-73.81344",
+                "has_raw_value": "45.65347 -119.46691",
                 "latitude": 45.65347,
                 "longitude": -119.46691
             },
@@ -8248,7 +8248,7 @@
                 "has_raw_value": "Namibia"
             },
             "lat_lon": {
-                "has_raw_value": "-8.980849999999998",
+                "has_raw_value": "-23.8200166667 14.8391666667",
                 "latitude": -23.8200166667,
                 "longitude": 14.8391666667
             },
@@ -8298,7 +8298,7 @@
                 "has_raw_value": "USA: Hawaii, Kilauea Volcano"
             },
             "lat_lon": {
-                "has_raw_value": "-135.859195",
+                "has_raw_value": "19.389305 -155.2485",
                 "latitude": 19.389305,
                 "longitude": -155.2485
             },
@@ -8348,7 +8348,7 @@
                 "has_raw_value": "USA: Hawaii, Kilauea Volcano"
             },
             "lat_lon": {
-                "has_raw_value": "-135.860611",
+                "has_raw_value": "19.389389 -155.25",
                 "latitude": 19.389389,
                 "longitude": -155.25
             },
@@ -8398,7 +8398,7 @@
                 "has_raw_value": "USA: Pennsylvania,Borough of Centralia"
             },
             "lat_lon": {
-                "has_raw_value": "-35.54136666",
+                "has_raw_value": "40.8012 -76.34256666",
                 "latitude": 40.8012,
                 "longitude": -76.34256666
             },
@@ -8448,7 +8448,7 @@
                 "has_raw_value": "USA: Pennsylvania,Borough of Centralia"
             },
             "lat_lon": {
-                "has_raw_value": "-35.54068329999999",
+                "has_raw_value": "40.8008 -76.3414833",
                 "latitude": 40.8008,
                 "longitude": -76.3414833
             },
@@ -8498,7 +8498,7 @@
                 "has_raw_value": "Nepal: Mustang Region"
             },
             "lat_lon": {
-                "has_raw_value": "112.63561605",
+                "has_raw_value": "28.72122816 83.91438789",
                 "latitude": 28.72122816,
                 "longitude": 83.91438789
             },
@@ -8548,7 +8548,7 @@
                 "has_raw_value": "Nepal: Mustang Region"
             },
             "lat_lon": {
-                "has_raw_value": "112.63561605",
+                "has_raw_value": "28.72122816 83.91438789",
                 "latitude": 28.72122816,
                 "longitude": 83.91438789
             },
@@ -8598,7 +8598,7 @@
                 "has_raw_value": "Peru: Puca Glacier"
             },
             "lat_lon": {
-                "has_raw_value": "-84.84472199999999",
+                "has_raw_value": "-13.773333 -71.071389",
                 "latitude": -13.773333,
                 "longitude": -71.071389
             },
@@ -8648,7 +8648,7 @@
                 "has_raw_value": "Singapore: West Coast Park"
             },
             "lat_lon": {
-                "has_raw_value": "105.059414",
+                "has_raw_value": "1.29545 103.763964",
                 "latitude": 1.29545,
                 "longitude": 103.763964
             },
@@ -8698,7 +8698,7 @@
                 "has_raw_value": "USA: Hawaii, Kilauea Volcano"
             },
             "lat_lon": {
-                "has_raw_value": "-135.860611",
+                "has_raw_value": "19.389389 -155.25",
                 "latitude": 19.389389,
                 "longitude": -155.25
             },
@@ -8748,7 +8748,7 @@
                 "has_raw_value": "Namibia"
             },
             "lat_lon": {
-                "has_raw_value": "-7.1019833333000015",
+                "has_raw_value": "-23.2453 16.1433166667",
                 "latitude": -23.2453,
                 "longitude": 16.1433166667
             },
@@ -8798,7 +8798,7 @@
                 "has_raw_value": "Mongolia"
             },
             "lat_lon": {
-                "has_raw_value": "151.46",
+                "has_raw_value": "51.01 100.45",
                 "latitude": 51.01,
                 "longitude": 100.45
             },
@@ -8848,7 +8848,7 @@
                 "has_raw_value": "Peru: Puca Glacier"
             },
             "lat_lon": {
-                "has_raw_value": "-84.84472199999999",
+                "has_raw_value": "-13.773333 -71.071389",
                 "latitude": -13.773333,
                 "longitude": -71.071389
             },
@@ -8898,7 +8898,7 @@
                 "has_raw_value": "USA: Alaska, Fairbanks"
             },
             "lat_lon": {
-                "has_raw_value": "-82.32485785000001",
+                "has_raw_value": "65.16138785 -147.4862457",
                 "latitude": 65.16138785,
                 "longitude": -147.4862457
             },
@@ -8948,7 +8948,7 @@
                 "has_raw_value": "USA: Alaska, Fairbanks"
             },
             "lat_lon": {
-                "has_raw_value": "-82.32465105",
+                "has_raw_value": "65.16142545 -147.4860765",
                 "latitude": 65.16142545,
                 "longitude": -147.4860765
             },
@@ -8998,7 +8998,7 @@
                 "has_raw_value": "USA: Oregon, Lane County"
             },
             "lat_lon": {
-                "has_raw_value": "-77.937369",
+                "has_raw_value": "44.226456 -122.163825",
                 "latitude": 44.226456,
                 "longitude": -122.163825
             },
@@ -9048,7 +9048,7 @@
                 "has_raw_value": "USA: Oregon, Tillamook County"
             },
             "lat_lon": {
-                "has_raw_value": "-78.84970799999999",
+                "has_raw_value": "45.046103 -123.895811",
                 "latitude": 45.046103,
                 "longitude": -123.895811
             },
@@ -9098,7 +9098,7 @@
                 "has_raw_value": "USA: Oregon, Tillamook County"
             },
             "lat_lon": {
-                "has_raw_value": "-78.848244",
+                "has_raw_value": "45.045375 -123.893619",
                 "latitude": 45.045375,
                 "longitude": -123.893619
             },
@@ -9148,7 +9148,7 @@
                 "has_raw_value": "USA: Oregon, Josephine County"
             },
             "lat_lon": {
-                "has_raw_value": "-81.41738800000002",
+                "has_raw_value": "42.237306 -123.654694",
                 "latitude": 42.237306,
                 "longitude": -123.654694
             },
@@ -9198,7 +9198,7 @@
                 "has_raw_value": "USA: Oregon, Benton County"
             },
             "lat_lon": {
-                "has_raw_value": "-78.631393",
+                "has_raw_value": "44.60695 -123.238343",
                 "latitude": 44.60695,
                 "longitude": -123.238343
             },
@@ -9248,7 +9248,7 @@
                 "has_raw_value": "USA: Oregon, Morrow County"
             },
             "lat_lon": {
-                "has_raw_value": "-73.7041",
+                "has_raw_value": "45.87244 -119.57654",
                 "latitude": 45.87244,
                 "longitude": -119.57654
             },
@@ -9298,7 +9298,7 @@
                 "has_raw_value": "USA: Oregon, Tillamook County"
             },
             "lat_lon": {
-                "has_raw_value": "-78.36410000000001",
+                "has_raw_value": "45.47756 -123.84166",
                 "latitude": 45.47756,
                 "longitude": -123.84166
             },
@@ -9348,7 +9348,7 @@
                 "has_raw_value": "Namibia"
             },
             "lat_lon": {
-                "has_raw_value": "-8.9841333333",
+                "has_raw_value": "-23.8200833333 14.83595",
                 "latitude": -23.8200833333,
                 "longitude": 14.83595
             },
@@ -9398,7 +9398,7 @@
                 "has_raw_value": "Namibia"
             },
             "lat_lon": {
-                "has_raw_value": "-9.168349999999998",
+                "has_raw_value": "-23.6707166667 14.5023666667",
                 "latitude": -23.6707166667,
                 "longitude": 14.5023666667
             },
@@ -9448,7 +9448,7 @@
                 "has_raw_value": "USA: Hawaii, Kilauea Volcano"
             },
             "lat_lon": {
-                "has_raw_value": "-135.860639",
+                "has_raw_value": "19.388694 -155.249333",
                 "latitude": 19.388694,
                 "longitude": -155.249333
             },
@@ -9498,7 +9498,7 @@
                 "has_raw_value": "USA: Hawaii, Kilauea Volcano"
             },
             "lat_lon": {
-                "has_raw_value": "-135.85725000000002",
+                "has_raw_value": "19.390167 -155.247417",
                 "latitude": 19.390167,
                 "longitude": -155.247417
             },
@@ -9550,7 +9550,7 @@
                 "has_raw_value": "USA: Washington, Richland, Columbia River"
             },
             "lat_lon": {
-                "has_raw_value": "-72.89982413999999",
+                "has_raw_value": "46.37176746 -119.2715916",
                 "latitude": 46.37176746,
                 "longitude": -119.2715916
             },
@@ -9603,7 +9603,7 @@
                 "has_raw_value": "USA: Washington, Richland, Columbia River"
             },
             "lat_lon": {
-                "has_raw_value": "-72.89343808",
+                "has_raw_value": "46.38012542 -119.2735635",
                 "latitude": 46.38012542,
                 "longitude": -119.2735635
             },
@@ -9654,7 +9654,7 @@
                 "has_raw_value": "Mongolia"
             },
             "lat_lon": {
-                "has_raw_value": "151.46",
+                "has_raw_value": "51.01 100.45",
                 "latitude": 51.01,
                 "longitude": 100.45
             },
@@ -9704,7 +9704,7 @@
                 "has_raw_value": "Namibia"
             },
             "lat_lon": {
-                "has_raw_value": "-7.971450000000001",
+                "has_raw_value": "-23.0995833333 15.1281333333",
                 "latitude": -23.0995833333,
                 "longitude": 15.1281333333
             },
@@ -9754,7 +9754,7 @@
                 "has_raw_value": "Spain: Province of Huelva, Reserva de la Biosfera y Paraje Natural de las Marismas del Odiel"
             },
             "lat_lon": {
-                "has_raw_value": "30.240828",
+                "has_raw_value": "37.207427 -6.966599",
                 "latitude": 37.207427,
                 "longitude": -6.966599
             },
@@ -9804,7 +9804,7 @@
                 "has_raw_value": "USA: Texas, Huntsville"
             },
             "lat_lon": {
-                "has_raw_value": "-64.83691999999999",
+                "has_raw_value": "30.71308 -95.55",
                 "latitude": 30.71308,
                 "longitude": -95.55
             },
@@ -9854,7 +9854,7 @@
                 "has_raw_value": "USA: Oregon, Benton County"
             },
             "lat_lon": {
-                "has_raw_value": "-78.55096",
+                "has_raw_value": "44.63881 -123.18977",
                 "latitude": 44.63881,
                 "longitude": -123.18977
             },
@@ -9904,7 +9904,7 @@
                 "has_raw_value": "USA: Hawaii, Kilauea Volcano"
             },
             "lat_lon": {
-                "has_raw_value": "-135.860639",
+                "has_raw_value": "19.388694 -155.249333",
                 "latitude": 19.388694,
                 "longitude": -155.249333
             },
@@ -9954,7 +9954,7 @@
                 "has_raw_value": "Singapore"
             },
             "lat_lon": {
-                "has_raw_value": "105.14601077600001",
+                "has_raw_value": "1.434767476 103.7112433",
                 "latitude": 1.434767476,
                 "longitude": 103.7112433
             },
@@ -10004,7 +10004,7 @@
                 "has_raw_value": "Namibia"
             },
             "lat_lon": {
-                "has_raw_value": "-7.9178166667",
+                "has_raw_value": "-23.1960166667 15.2782",
                 "latitude": -23.1960166667,
                 "longitude": 15.2782
             },
@@ -10054,7 +10054,7 @@
                 "has_raw_value": "Namibia"
             },
             "lat_lon": {
-                "has_raw_value": "-7.8485",
+                "has_raw_value": "-23.2912 15.4427",
                 "latitude": -23.2912,
                 "longitude": 15.4427
             },
@@ -10104,7 +10104,7 @@
                 "has_raw_value": "Namibia"
             },
             "lat_lon": {
-                "has_raw_value": "-7.5116166667",
+                "has_raw_value": "-23.3021 15.7904833333",
                 "latitude": -23.3021,
                 "longitude": 15.7904833333
             },
@@ -10154,7 +10154,7 @@
                 "has_raw_value": "Mongolia"
             },
             "lat_lon": {
-                "has_raw_value": "151.46",
+                "has_raw_value": "51.01 100.45",
                 "latitude": 51.01,
                 "longitude": 100.45
             },
@@ -10204,7 +10204,7 @@
                 "has_raw_value": "Mongolia"
             },
             "lat_lon": {
-                "has_raw_value": "151.46",
+                "has_raw_value": "51.01 100.45",
                 "latitude": 51.01,
                 "longitude": 100.45
             },
@@ -10254,7 +10254,7 @@
                 "has_raw_value": "Mongolia"
             },
             "lat_lon": {
-                "has_raw_value": "151.46",
+                "has_raw_value": "51.01 100.45",
                 "latitude": 51.01,
                 "longitude": 100.45
             },
@@ -10304,7 +10304,7 @@
                 "has_raw_value": "Arctic Ocean: Hook Island"
             },
             "lat_lon": {
-                "has_raw_value": "133.11666666",
+                "has_raw_value": "80.33333333 52.78333333",
                 "latitude": 80.33333333,
                 "longitude": 52.78333333
             },
@@ -10354,7 +10354,7 @@
                 "has_raw_value": "Spain: Province of Huelva, Reserva de la Biosfera y Paraje Natural de las Marismas del Odiel"
             },
             "lat_lon": {
-                "has_raw_value": "30.250552",
+                "has_raw_value": "37.207736 -6.957184",
                 "latitude": 37.207736,
                 "longitude": -6.957184
             },
@@ -10404,7 +10404,7 @@
                 "has_raw_value": "Nepal: Mustang Region"
             },
             "lat_lon": {
-                "has_raw_value": "112.63561605",
+                "has_raw_value": "28.72122816 83.91438789",
                 "latitude": 28.72122816,
                 "longitude": 83.91438789
             },
@@ -10454,7 +10454,7 @@
                 "has_raw_value": "Nepal: Mustang Region"
             },
             "lat_lon": {
-                "has_raw_value": "112.63597923",
+                "has_raw_value": "28.72143219 83.91454704",
                 "latitude": 28.72143219,
                 "longitude": 83.91454704
             },
@@ -10504,7 +10504,7 @@
                 "has_raw_value": "Peru: Puca Glacier"
             },
             "lat_lon": {
-                "has_raw_value": "-84.84472199999999",
+                "has_raw_value": "-13.773333 -71.071389",
                 "latitude": -13.773333,
                 "longitude": -71.071389
             },
@@ -10554,7 +10554,7 @@
                 "has_raw_value": "Peru: Puca Glacier"
             },
             "lat_lon": {
-                "has_raw_value": "-84.84472199999999",
+                "has_raw_value": "-13.773333 -71.071389",
                 "latitude": -13.773333,
                 "longitude": -71.071389
             },
@@ -10604,7 +10604,7 @@
                 "has_raw_value": "Peru: Puca Glacier"
             },
             "lat_lon": {
-                "has_raw_value": "-84.84472199999999",
+                "has_raw_value": "-13.773333 -71.071389",
                 "latitude": -13.773333,
                 "longitude": -71.071389
             },
@@ -10654,7 +10654,7 @@
                 "has_raw_value": "USA: Alaska, Fairbanks"
             },
             "lat_lon": {
-                "has_raw_value": "-82.32162081",
+                "has_raw_value": "65.16098469 -147.4826055",
                 "latitude": 65.16098469,
                 "longitude": -147.4826055
             },
@@ -10704,7 +10704,7 @@
                 "has_raw_value": "USA: Alaska, Fairbanks"
             },
             "lat_lon": {
-                "has_raw_value": "-82.32181865",
+                "has_raw_value": "65.16100485 -147.4828235",
                 "latitude": 65.16100485,
                 "longitude": -147.4828235
             },
@@ -10754,7 +10754,7 @@
                 "has_raw_value": "USA: Alaska, Fairbanks"
             },
             "lat_lon": {
-                "has_raw_value": "-82.32412431",
+                "has_raw_value": "65.16131739 -147.4854417",
                 "latitude": 65.16131739,
                 "longitude": -147.4854417
             },
@@ -10804,7 +10804,7 @@
                 "has_raw_value": "USA: Colorado, Boulder"
             },
             "lat_lon": {
-                "has_raw_value": "-65.255",
+                "has_raw_value": "40.015 -105.27",
                 "latitude": 40.015,
                 "longitude": -105.27
             },
@@ -10854,7 +10854,7 @@
                 "has_raw_value": "USA: Colorado, Boulder"
             },
             "lat_lon": {
-                "has_raw_value": "-65.255",
+                "has_raw_value": "40.015 -105.27",
                 "latitude": 40.015,
                 "longitude": -105.27
             },
@@ -10904,7 +10904,7 @@
                 "has_raw_value": "USA: Oregon, Harney County"
             },
             "lat_lon": {
-                "has_raw_value": "-76.34807",
+                "has_raw_value": "42.26074 -118.60881",
                 "latitude": 42.26074,
                 "longitude": -118.60881
             },
@@ -10954,7 +10954,7 @@
                 "has_raw_value": "Namibia"
             },
             "lat_lon": {
-                "has_raw_value": "-8.7074333334",
+                "has_raw_value": "-23.7880166667 15.0805833333",
                 "latitude": -23.7880166667,
                 "longitude": 15.0805833333
             },
@@ -11004,7 +11004,7 @@
                 "has_raw_value": "USA: Hawaii, Kilauea Volcano"
             },
             "lat_lon": {
-                "has_raw_value": "-135.860639",
+                "has_raw_value": "19.388694 -155.249333",
                 "latitude": 19.388694,
                 "longitude": -155.249333
             },
@@ -11054,7 +11054,7 @@
                 "has_raw_value": "USA: Hawaii, Kilauea Volcano"
             },
             "lat_lon": {
-                "has_raw_value": "-135.85725000000002",
+                "has_raw_value": "19.390167 -155.247417",
                 "latitude": 19.390167,
                 "longitude": -155.247417
             },
@@ -11104,7 +11104,7 @@
                 "has_raw_value": "USA: Hawaii, Kilauea Volcano"
             },
             "lat_lon": {
-                "has_raw_value": "-135.859195",
+                "has_raw_value": "19.389305 -155.2485",
                 "latitude": 19.389305,
                 "longitude": -155.2485
             },
@@ -11154,7 +11154,7 @@
                 "has_raw_value": "USA: Pennsylvania,Borough of Centralia"
             },
             "lat_lon": {
-                "has_raw_value": "-35.543133",
+                "has_raw_value": "40.798 -76.341133",
                 "latitude": 40.798,
                 "longitude": -76.341133
             },
@@ -11206,7 +11206,7 @@
                 "has_raw_value": "USA: Washington, Richland, Columbia River"
             },
             "lat_lon": {
-                "has_raw_value": "-72.89982692000001",
+                "has_raw_value": "46.37174948 -119.2715764",
                 "latitude": 46.37174948,
                 "longitude": -119.2715764
             },
@@ -11259,7 +11259,7 @@
                 "has_raw_value": "USA: Washington, Richland, Columbia River"
             },
             "lat_lon": {
-                "has_raw_value": "-72.8998345",
+                "has_raw_value": "46.3717435 -119.271578",
                 "latitude": 46.3717435,
                 "longitude": -119.271578
             },

@@ -133,8 +133,8 @@ class GoldNMDC(GoldClient):
                             has_raw_value=biosample["geoLocation"]
                         ),
                         lat_lon=nmdc.GeolocationValue(
-                            has_raw_value=biosample["latitude"]
-                            + biosample["longitude"],
+                            has_raw_value=str(biosample["latitude"])
+                            + " " + str(biosample["longitude"]),
                             latitude=biosample["latitude"],
                             longitude=biosample["longitude"],
                         ),
