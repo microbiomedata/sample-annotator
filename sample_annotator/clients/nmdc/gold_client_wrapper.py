@@ -4,10 +4,10 @@ import json
 import pkgutil
 import logging
 
-from typing import Union
-from attr import has
+from typing import List, Union
 
 import jsonschema
+import pandas as pd
 import nmdc_schema.nmdc as nmdc
 
 from linkml_runtime.dumpers import json_dumper
@@ -26,6 +26,21 @@ class GoldNMDC(GoldClient):
 
         # set the GOLD study id
         self.study_id = study_id
+
+    def soil_projects(self) -> List[str]:
+        """Get all project ids associated with soil samples from the
+        EMP500 study on GOLD.
+
+        :return: list of soil sample project ids
+        """
+        path_to_soil_ids = os.path.join(
+            os.path.dirname(os.path.abspath(__file__)), "input", "soil_ids.txt"
+        )
+        df = pd.read_csv(path_to_soil_ids)
+
+        # this assumes that at all times there is only one
+        # column in the soil_ids.txt file
+        return df[df.columns.values[0]].to_list()
 
     def validate_nmdc(
         self, file_name: Union[str, bytes, os.PathLike], database_set: str = None
@@ -74,7 +89,21 @@ class GoldNMDC(GoldClient):
         """
         projects = self.fetch_projects_by_study(self.study_id)
 
+        soil_projects = self.soil_projects()
+
+        # subsetted list of projects filtered
+        # only for soil related GOLD project IDs
+        projects = [proj for proj in projects if proj["projectGoldId"] in soil_projects]
+
+        soil_biosamples = [proj["biosampleGoldId"] for proj in projects]
+
         biosamples = self.fetch_biosamples_by_study(self.study_id)
+
+        # subsetted list of biosamples filtered
+        # only for soil related GOLD project IDs
+        biosamples = [
+            samp for samp in biosamples if samp["biosampleGoldId"] in soil_biosamples
+        ]
 
         self.nmdc_db.study_set.append(
             nmdc.Study(
@@ -134,7 +163,8 @@ class GoldNMDC(GoldClient):
                         ),
                         lat_lon=nmdc.GeolocationValue(
                             has_raw_value=str(biosample["latitude"])
-                            + " " + str(biosample["longitude"]),
+                            + " "
+                            + str(biosample["longitude"]),
                             latitude=biosample["latitude"],
                             longitude=biosample["longitude"],
                         ),
@@ -179,7 +209,11 @@ class GoldNMDC(GoldClient):
         for project in projects:
             try:
                 pi_dict = next(
-                    (contact for contact in project["contacts"] if contact["roles"] == ["PI"])
+                    (
+                        contact
+                        for contact in project["contacts"]
+                        if contact["roles"] == ["PI"]
+                    )
                 )
 
                 self.nmdc_db.omics_processing_set.append(
