@@ -242,7 +242,6 @@ class GoldNMDC(GoldClient):
                         ),
                         instrument_name=project["itsSequencingProductName"],
                         processing_institution=project["sequencingCenters"][0],
-                        seq_meth=nmdc.TextValue(has_raw_value=project["seqMethod"]),
                     )
                 )
             except:

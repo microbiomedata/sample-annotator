@@ -8412,10 +8412,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0239918"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452547",
@@ -8438,10 +8435,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0239921"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452575",
@@ -8464,10 +8458,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0239949"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452615",
@@ -8490,10 +8481,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0239989"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452715",
@@ -8516,10 +8504,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240089"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452578",
@@ -8542,10 +8527,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0239952"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452623",
@@ -8568,10 +8550,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0239997"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452626",
@@ -8594,10 +8573,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240000"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452635",
@@ -8620,10 +8596,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240009"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452636",
@@ -8646,10 +8619,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240010"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452648",
@@ -8672,10 +8642,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240022"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452652",
@@ -8698,10 +8665,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240026"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452654",
@@ -8724,10 +8688,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240028"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452657",
@@ -8750,10 +8711,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240031"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452667",
@@ -8776,10 +8734,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240041"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452690",
@@ -8802,10 +8757,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240064"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452698",
@@ -8828,10 +8780,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240072"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452710",
@@ -8854,10 +8803,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240084"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452723",
@@ -8880,10 +8826,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240097"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452726",
@@ -8906,10 +8849,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240100"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452745",
@@ -8932,10 +8872,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240119"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452749",
@@ -8958,10 +8895,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240123"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452754",
@@ -8984,10 +8918,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240128"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452757",
@@ -9010,10 +8941,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240131"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452569",
@@ -9036,10 +8964,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0239943"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452618",
@@ -9062,10 +8987,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0239992"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452628",
@@ -9088,10 +9010,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240002"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452638",
@@ -9114,10 +9033,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240012"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452672",
@@ -9140,10 +9056,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240046"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452719",
@@ -9166,10 +9079,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240093"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452737",
@@ -9192,10 +9102,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240111"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452752",
@@ -9218,10 +9125,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240126"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452736",
@@ -9244,10 +9148,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240110"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452616",
@@ -9270,10 +9171,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0239990"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452617",
@@ -9296,10 +9194,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0239991"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452625",
@@ -9322,10 +9217,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0239999"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452647",
@@ -9348,10 +9240,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240021"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452658",
@@ -9374,10 +9263,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240032"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452665",
@@ -9400,10 +9286,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240039"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452678",
@@ -9426,10 +9309,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240052"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452681",
@@ -9452,10 +9332,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240055"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452689",
@@ -9478,10 +9355,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240063"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452717",
@@ -9504,10 +9378,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240091"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452732",
@@ -9530,10 +9401,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240106"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452740",
@@ -9556,10 +9424,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240114"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452751",
@@ -9582,10 +9447,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240125"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452546",
@@ -9608,10 +9470,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0239920"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452553",
@@ -9634,10 +9493,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0239927"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452755",
@@ -9660,10 +9516,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240129"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452549",
@@ -9686,10 +9539,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0239923"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452551",
@@ -9712,10 +9562,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0239925"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452573",
@@ -9738,10 +9585,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0239947"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452577",
@@ -9764,10 +9608,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0239951"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452619",
@@ -9790,10 +9631,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0239993"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452692",
@@ -9816,10 +9654,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240066"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452653",
@@ -9842,10 +9677,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240027"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452660",
@@ -9868,10 +9700,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240034"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452662",
@@ -9894,10 +9723,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240036"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452670",
@@ -9920,10 +9746,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240044"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452694",
@@ -9946,10 +9769,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240068"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452697",
@@ -9972,10 +9792,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240071"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452699",
@@ -9998,10 +9815,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240073"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452714",
@@ -10024,10 +9838,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240088"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452718",
@@ -10050,10 +9861,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240092"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452743",
@@ -10076,10 +9884,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240117"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452748",
@@ -10102,10 +9907,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240122"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452548",
@@ -10128,10 +9930,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0239922"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452570",
@@ -10154,10 +9953,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0239944"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452646",
@@ -10180,10 +9976,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240020"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452562",
@@ -10206,10 +9999,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0239936"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452645",
@@ -10232,10 +10022,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240019"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452649",
@@ -10258,10 +10045,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240023"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452651",
@@ -10284,10 +10068,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240025"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452656",
@@ -10310,10 +10091,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240030"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452659",
@@ -10336,10 +10114,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240033"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452673",
@@ -10362,10 +10137,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240047"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452676",
@@ -10388,10 +10160,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240050"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452677",
@@ -10414,10 +10183,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240051"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452711",
@@ -10440,10 +10206,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240085"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452721",
@@ -10466,10 +10229,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240095"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452735",
@@ -10492,10 +10252,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240109"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452550",
@@ -10518,10 +10275,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0239924"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452621",
@@ -10544,10 +10298,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0239995"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452680",
@@ -10570,10 +10321,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240054"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452683",
@@ -10596,10 +10344,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240057"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452696",
@@ -10622,10 +10367,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240070"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452725",
@@ -10648,10 +10390,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240099"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452739",
@@ -10674,10 +10413,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240113"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452567",
@@ -10700,10 +10436,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0239941"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452571",
@@ -10726,10 +10459,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0239945"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452572",
@@ -10752,10 +10482,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0239946"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452576",
@@ -10778,10 +10505,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0239950"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452634",
@@ -10804,10 +10528,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240008"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452639",
@@ -10830,10 +10551,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240013"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452642",
@@ -10856,10 +10574,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240016"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452643",
@@ -10882,10 +10597,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240017"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452655",
@@ -10908,10 +10620,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240029"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452663",
@@ -10934,10 +10643,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240037"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452675",
@@ -10960,10 +10666,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240049"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452716",
@@ -10986,10 +10689,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240090"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452720",
@@ -11012,10 +10712,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240094"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452722",
@@ -11038,10 +10735,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240096"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452729",
@@ -11064,10 +10758,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240103"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452734",
@@ -11090,10 +10781,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240108"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452741",
@@ -11116,10 +10804,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240115"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452552",
@@ -11142,10 +10827,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0239926"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452563",
@@ -11168,10 +10850,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0239937"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452632",
@@ -11194,10 +10873,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240006"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452747",
@@ -11220,10 +10896,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240121"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452564",
@@ -11246,10 +10919,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0239938"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452620",
@@ -11272,10 +10942,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0239994"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452622",
@@ -11298,10 +10965,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0239996"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452624",
@@ -11324,10 +10988,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0239998"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452627",
@@ -11350,10 +11011,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240001"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452631",
@@ -11376,10 +11034,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240005"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452637",
@@ -11402,10 +11057,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240011"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452640",
@@ -11428,10 +11080,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240014"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452641",
@@ -11454,10 +11103,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240015"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452650",
@@ -11480,10 +11126,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240024"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452668",
@@ -11506,10 +11149,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240042"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452669",
@@ -11532,10 +11172,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240043"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452671",
@@ -11558,10 +11195,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240045"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452679",
@@ -11584,10 +11218,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240053"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452682",
@@ -11610,10 +11241,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240056"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452688",
@@ -11636,10 +11264,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240062"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452713",
@@ -11662,10 +11287,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240087"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452724",
@@ -11688,10 +11310,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240098"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452731",
@@ -11714,10 +11333,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240105"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452733",
@@ -11740,10 +11356,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240107"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452738",
@@ -11766,10 +11379,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240112"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452746",
@@ -11792,10 +11402,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240120"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452750",
@@ -11818,10 +11425,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240124"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452756",
@@ -11844,10 +11448,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240130"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452545",
@@ -11870,10 +11471,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0239919"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452566",
@@ -11896,10 +11494,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0239940"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452630",
@@ -11922,10 +11517,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240004"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452691",
@@ -11948,10 +11540,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240065"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452695",
@@ -11974,10 +11563,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240069"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452742",
@@ -12000,10 +11586,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240116"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452753",
@@ -12026,10 +11609,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240127"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452561",
@@ -12052,10 +11632,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0239935"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452574",
@@ -12078,10 +11655,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0239948"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452629",
@@ -12104,10 +11678,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240003"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452644",
@@ -12130,10 +11701,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240018"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452664",
@@ -12156,10 +11724,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240038"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452666",
@@ -12182,10 +11747,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240040"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452727",
@@ -12208,10 +11770,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240101"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452728",
@@ -12234,10 +11793,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240102"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452730",
@@ -12260,10 +11816,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240104"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452744",
@@ -12286,10 +11839,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240118"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452565",
@@ -12312,10 +11862,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0239939"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452712",
@@ -12338,10 +11885,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240086"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452568",
@@ -12364,10 +11908,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0239942"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452633",
@@ -12390,10 +11931,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240007"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452661",
@@ -12416,10 +11954,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240035"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452674",
@@ -12442,10 +11977,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240048"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         },
         {
             "id": "gold:Gp0452693",
@@ -12468,10 +12000,7 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240067"
-            ],
-            "seq_meth": {
-                "has_raw_value": "['ILLUMINA_NOVA_SEQ_6000', 'Illumina NovaSeq']"
-            }
+            ]
         }
     ]
 }
