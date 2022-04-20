@@ -229,6 +229,8 @@ class GoldNMDC(GoldClient):
                         + project["biosampleGoldId"],
                         ncbi_project_name=project["projectName"],
                         type="nmdc:OmicsProcessing",
+                        has_input="gold:" + project["biosampleGoldId"],
+                        part_of="gold:" + self.study_id,
                         
                         # omics processing date fields
                         add_date=XSDDateTime(project["addDate"]),
@@ -240,7 +242,6 @@ class GoldNMDC(GoldClient):
                         ),
                         
                         # sequencing details fields
-                        has_input="gold:" + project["biosampleGoldId"],
                         omics_type=nmdc.ControlledTermValue(
                             has_raw_value=project["sequencingStrategy"]
                         ),
