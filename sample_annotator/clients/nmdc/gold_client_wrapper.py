@@ -104,11 +104,15 @@ class GoldNMDC(GoldClient):
         biosamples = [
             samp for samp in biosamples if samp["biosampleGoldId"] in soil_biosamples
         ]
+        
+        study_data = self.fetch_study(id=self.study_id)
 
         self.nmdc_db.study_set.append(
             nmdc.Study(
-                id=self.study_id,
-                GOLD_study_identifiers=self.study_id,
+                id=study_data["studyGoldId"],
+                description=study_data["description"],
+                title=study_data["studyName"],
+                GOLD_study_identifiers=study_data["studyGoldId"],
                 type="nmdc:Study",
             )
         )

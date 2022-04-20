@@ -8383,10 +8383,12 @@
     ],
     "study_set": [
         {
-            "id": "gold:Gs0154244",
+            "id": "Gs0154244",
+            "description": "The Earth Microbiome Project Multi-omics component (EMP500) involves amplicon and shotgun metagenomic sequencing and metabolomic profiling of over five hundred microbial communities from diverse environments on our planet. We developed new protocols for shotgun metagenomic sequencing and assembly, with the goal of applying this workflow to a range of environmental samples, combined with metabolomic profiling. 16S, 18S, and ITS amplicon sequencing was done in addition. We acquired a set of >500 fresh environmental samples across a range of habitats, with the help of the EMP network of collaborators. A biobank of frozen aliquots for all samples is maintained at UCSD (soil samples stored at the Pacific Northwest National Laboratory) for future methods testing and analysis.",
+            "title": "Earth Microbiome Project Multi-omics (EMP500)",
             "type": "nmdc:Study",
             "GOLD_study_identifiers": [
-                "gold:Gs0154244"
+                "Gs0154244"
             ]
         }
     ],
