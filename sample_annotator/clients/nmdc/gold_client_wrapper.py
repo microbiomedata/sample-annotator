@@ -146,10 +146,10 @@ class GoldNMDC(GoldClient):
 
         self.nmdc_db.study_set.append(
             nmdc.Study(
-                id=study_data["studyGoldId"],
+                id="gold:" + study_data["studyGoldId"],
                 description=study_data["description"],
                 title=study_data["studyName"],
-                GOLD_study_identifiers=study_data["studyGoldId"],
+                GOLD_study_identifiers="gold:" + study_data["studyGoldId"],
                 principal_investigator=nmdc.PersonValue(
                     has_raw_value=pi_dict["name"],
                     name=pi_dict["name"],
