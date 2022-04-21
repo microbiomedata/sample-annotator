@@ -4,7 +4,7 @@ import json
 import pkgutil
 import logging
 
-from typing import List, Union
+from typing import Dict, List, Union
 
 import jsonschema
 import pandas as pd
@@ -75,6 +75,34 @@ class GoldNMDC(GoldClient):
             return False
 
         return True
+
+    def project_has_output_dict(self) -> List[Dict[str, str]]:
+        """Get list of dictionaries as {"projectGoldId": ["has_input_ids"]}
+
+        :return: List of dicts
+        """
+        read_qc_path = os.path.join(
+            os.path.dirname(os.path.abspath(__file__)), "input", "EMP_soil_readQC.json"
+        )
+
+        with open(read_qc_path) as f:
+            read_qc_array = json.load(f)
+        
+        read_qc_list = []
+
+        for item in read_qc_array:
+            has_output_dict = {}
+            has_output_dict[item["was_informed_by"].replace("gold:", "")] = item[
+                "has_input"
+            ][0]
+            read_qc_list.append(has_output_dict)
+
+        project_has_output_list = {
+            k: [d.get(k) for d in read_qc_list if k in d]
+            for k in set().union(*read_qc_list)
+        }
+
+        return project_has_output_list
 
     def transform_emp500_nmdc(
         self, file_name: Union[str, bytes, os.PathLike] = None
@@ -240,6 +268,11 @@ class GoldNMDC(GoldClient):
                     else XSDDateTime(project["modDate"])
                 )
 
+                project_has_output_dict = self.project_has_output_dict()
+                # create value for has_output attribute
+                if project["projectGoldId"] in self.project_has_output_dict():
+                    has_output = project_has_output_dict[project["projectGoldId"]]
+
                 self.nmdc_db.omics_processing_set.append(
                     nmdc.OmicsProcessing(
                         # omics processing metadata
@@ -250,6 +283,7 @@ class GoldNMDC(GoldClient):
                         ncbi_project_name=project["projectName"],
                         type="nmdc:OmicsProcessing",
                         has_input="gold:" + project["biosampleGoldId"],
+                        has_output=has_output,
                         part_of="gold:" + self.study_id,
                         
                         # omics processing date fields
