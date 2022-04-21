@@ -145,6 +145,9 @@ class GoldNMDC(GoldClient):
                             has_numeric_value=biosample["depthInMeters"],
                             has_unit="meter",
                         ),
+
+                        # TODO: this is temporary non MIxS that can
+                        # hopefully be eliminated sooner rather than later
                         depth2=nmdc.QuantityValue(
                             has_raw_value=biosample["depthInMeters2"],
                             has_numeric_value=biosample["depthInMeters2"],
