@@ -4306,6 +4306,32 @@
             ]
         },
         {
+            "id": "gold:Gp0618759",
+            "name": "Sediment microbial communities from Columbia River, Richland, WA, USA - 13114.stegen.37.s008",
+            "has_input": [
+                "gold:Gb0315665"
+            ],
+            "add_date": "2022-04-01T00:00:00",
+            "mod_date": "2022-04-01T00:00:00",
+            "ncbi_project_name": "Sediment microbial communities from Columbia River, Richland, WA, USA - 13114.stegen.37.s008",
+            "omics_type": {
+                "has_raw_value": "Metagenome"
+            },
+            "part_of": [
+                "gold:gold:Gs0154244"
+            ],
+            "principal_investigator": {
+                "has_raw_value": "Janet Jansson",
+                "email": "janet.jansson@pnnl.gov",
+                "name": "Janet Jansson"
+            },
+            "processing_institution": "University of California, San Diego",
+            "type": "nmdc:OmicsProcessing",
+            "GOLD_sequencing_project_identifiers": [
+                "gold:Gb0315665"
+            ]
+        },
+        {
             "id": "gold:Gp0452628",
             "name": "Montane desert soil microbial communities from Mustang Region, Nepal - Schmidt56.soil.Nepal.NearCoral",
             "has_input": [
@@ -4745,6 +4771,32 @@
             "type": "nmdc:OmicsProcessing",
             "GOLD_sequencing_project_identifiers": [
                 "gold:Gb0240122"
+            ]
+        },
+        {
+            "id": "gold:Gp0618755",
+            "name": "Sediment microbial communities from Columbia River, Richland, WA, USA - 13114.stegen.37.s004",
+            "has_input": [
+                "gold:Gb0315661"
+            ],
+            "add_date": "2022-04-01T00:00:00",
+            "mod_date": "2022-04-01T00:00:00",
+            "ncbi_project_name": "Sediment microbial communities from Columbia River, Richland, WA, USA - 13114.stegen.37.s004",
+            "omics_type": {
+                "has_raw_value": "Metagenome"
+            },
+            "part_of": [
+                "gold:gold:Gs0154244"
+            ],
+            "principal_investigator": {
+                "has_raw_value": "Janet Jansson",
+                "email": "janet.jansson@pnnl.gov",
+                "name": "Janet Jansson"
+            },
+            "processing_institution": "University of California, San Diego",
+            "type": "nmdc:OmicsProcessing",
+            "GOLD_sequencing_project_identifiers": [
+                "gold:Gb0315661"
             ]
         },
         {

@@ -119,6 +119,14 @@ class GoldNMDC(GoldClient):
 
         for biosample in biosamples:
             try:
+                # use below logic to determine modDate if it is not
+                # populated in GOLD
+                mod_date = (
+                    XSDDateTime(biosample["addDate"])
+                    if biosample["modDate"] is None
+                    else XSDDateTime(biosample["modDate"])
+                )
+
                 self.nmdc_db.biosample_set.append(
                     nmdc.Biosample(
                         # biosample identifiers
@@ -137,7 +145,7 @@ class GoldNMDC(GoldClient):
                         collection_date=nmdc.TimestampValue(
                             has_raw_value=biosample["dateCollected"]
                         ),
-                        mod_date=XSDDateTime(biosample["modDate"]),
+                        mod_date=mod_date,
                         
                         # Earth fields
                         depth=nmdc.QuantityValue(
@@ -215,12 +223,21 @@ class GoldNMDC(GoldClient):
 
         for project in projects:
             try:
+                # construct Principal Investigator term
                 pi_dict = next(
                     (
                         contact
                         for contact in project["contacts"]
-                        if contact["roles"] == ["PI"]
+                        if "PI" in contact["roles"]
                     )
+                )
+
+                # use below logic to determine modDate if it is not
+                # populated in GOLD
+                mod_date = (
+                    XSDDateTime(project["addDate"])
+                    if project["modDate"] is None
+                    else XSDDateTime(project["modDate"])
                 )
 
                 self.nmdc_db.omics_processing_set.append(
@@ -237,7 +254,7 @@ class GoldNMDC(GoldClient):
                         
                         # omics processing date fields
                         add_date=XSDDateTime(project["addDate"]),
-                        mod_date=XSDDateTime(project["modDate"]),
+                        mod_date=mod_date,
                         principal_investigator=nmdc.PersonValue(
                             has_raw_value=pi_dict["name"],
                             name=pi_dict["name"],
