@@ -5,7 +5,6 @@ import pkgutil
 import logging
 
 from typing import Dict, List, Union
-from attr import has
 
 import jsonschema
 import pandas as pd
@@ -88,7 +87,7 @@ class GoldNMDC(GoldClient):
 
         with open(read_qc_path) as f:
             read_qc_array = json.load(f)
-        
+
         read_qc_list = []
 
         for item in read_qc_array:
@@ -133,15 +132,11 @@ class GoldNMDC(GoldClient):
         biosamples = [
             samp for samp in biosamples if samp["biosampleGoldId"] in soil_biosamples
         ]
-        
+
         study_data = self.fetch_study(id=self.study_id)
 
         pi_dict = next(
-            (
-                contact
-                for contact in study_data["contacts"]
-                if "PI" in contact["roles"]
-            )
+            (contact for contact in study_data["contacts"] if "PI" in contact["roles"])
         )
 
         self.nmdc_db.study_set.append(
@@ -153,7 +148,7 @@ class GoldNMDC(GoldClient):
                 principal_investigator=nmdc.PersonValue(
                     has_raw_value=pi_dict["name"],
                     name=pi_dict["name"],
-                    email=pi_dict["email"]
+                    email=pi_dict["email"],
                 ),
                 type="nmdc:Study",
             )
@@ -195,7 +190,7 @@ class GoldNMDC(GoldClient):
                             has_numeric_value=biosample["depthInMeters"],
                             has_unit="meter",
                         ),
-
+                        
                         # TODO: this is temporary non MIxS that can
                         # hopefully be eliminated sooner rather than later
                         depth2=nmdc.QuantityValue(
@@ -242,18 +237,18 @@ class GoldNMDC(GoldClient):
                         
                         # environment metadata fields
                         env_broad_scale=nmdc.ControlledTermValue(
-                            term=nmdc.OntologyClass(
-                                biosample["envoBroadScale"]["id"].replace("_", ":")
+                            has_raw_value=biosample["envoBroadScale"]["id"].replace(
+                                "_", ":"
                             )
                         ),
                         env_local_scale=nmdc.ControlledTermValue(
-                            term=nmdc.OntologyClass(
-                                biosample["envoLocalScale"]["id"].replace("_", ":")
+                            has_raw_value=biosample["envoLocalScale"]["id"].replace(
+                                "_", ":"
                             )
                         ),
                         env_medium=nmdc.ControlledTermValue(
-                            term=nmdc.OntologyClass(
-                                biosample["envoMedium"]["id"].replace("_", ":")
+                            has_raw_value=biosample["envoMedium"]["id"].replace(
+                                "_", ":"
                             )
                         ),
                     )
@@ -283,6 +278,7 @@ class GoldNMDC(GoldClient):
                 )
 
                 project_has_output_dict = self.project_has_output_dict()
+                
                 # create value for has_output attribute
                 if project["projectGoldId"] in self.project_has_output_dict():
                     has_output = project_has_output_dict[project["projectGoldId"]]
@@ -298,7 +294,7 @@ class GoldNMDC(GoldClient):
                         type="nmdc:OmicsProcessing",
                         has_input="gold:" + project["biosampleGoldId"],
                         has_output=has_output,
-                        part_of="gold:" + self.study_id,
+                        part_of=self.study_id,
                         
                         # omics processing date fields
                         add_date=XSDDateTime(project["addDate"]),
