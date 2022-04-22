@@ -8,19 +8,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000219"
-                }
+                "has_raw_value": "ENVO:01000219"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:00002204"
-                }
+                "has_raw_value": "ENVO:00002204"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00001998"
-                }
+                "has_raw_value": "ENVO:00001998"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -58,19 +52,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000219"
-                }
+                "has_raw_value": "ENVO:01000219"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:00002204"
-                }
+                "has_raw_value": "ENVO:00002204"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00001998"
-                }
+                "has_raw_value": "ENVO:00001998"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -108,19 +96,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000245"
-                }
+                "has_raw_value": "ENVO:01000245"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:00000119"
-                }
+                "has_raw_value": "ENVO:00000119"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:02000059"
-                }
+                "has_raw_value": "ENVO:02000059"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -158,19 +140,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000179"
-                }
+                "has_raw_value": "ENVO:01000179"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000185"
-                }
+                "has_raw_value": "ENVO:01000185"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00005741"
-                }
+                "has_raw_value": "ENVO:00005741"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -208,19 +184,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000250"
-                }
+                "has_raw_value": "ENVO:01000250"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000355"
-                }
+                "has_raw_value": "ENVO:01000355"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00005774"
-                }
+                "has_raw_value": "ENVO:00005774"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -258,19 +228,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000211"
-                }
+                "has_raw_value": "ENVO:01000211"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000211"
-                }
+                "has_raw_value": "ENVO:01000211"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00001998"
-                }
+                "has_raw_value": "ENVO:00001998"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -308,19 +272,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000245"
-                }
+                "has_raw_value": "ENVO:01000245"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:00000161"
-                }
+                "has_raw_value": "ENVO:00000161"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:02000059"
-                }
+                "has_raw_value": "ENVO:02000059"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -358,19 +316,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000250"
-                }
+                "has_raw_value": "ENVO:01000250"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000174"
-                }
+                "has_raw_value": "ENVO:01000174"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00001998"
-                }
+                "has_raw_value": "ENVO:00001998"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -408,19 +360,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000250"
-                }
+                "has_raw_value": "ENVO:01000250"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000174"
-                }
+                "has_raw_value": "ENVO:01000174"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00001998"
-                }
+                "has_raw_value": "ENVO:00001998"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -458,19 +404,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000250"
-                }
+                "has_raw_value": "ENVO:01000250"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000174"
-                }
+                "has_raw_value": "ENVO:01000174"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00001998"
-                }
+                "has_raw_value": "ENVO:00001998"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -508,19 +448,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000250"
-                }
+                "has_raw_value": "ENVO:01000250"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000355"
-                }
+                "has_raw_value": "ENVO:01000355"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00005774"
-                }
+                "has_raw_value": "ENVO:00005774"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -558,19 +492,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000250"
-                }
+                "has_raw_value": "ENVO:01000250"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000355"
-                }
+                "has_raw_value": "ENVO:01000355"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00005774"
-                }
+                "has_raw_value": "ENVO:00005774"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -608,19 +536,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000250"
-                }
+                "has_raw_value": "ENVO:01000250"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000355"
-                }
+                "has_raw_value": "ENVO:01000355"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00005774"
-                }
+                "has_raw_value": "ENVO:00005774"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -658,19 +580,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000250"
-                }
+                "has_raw_value": "ENVO:01000250"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000355"
-                }
+                "has_raw_value": "ENVO:01000355"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00005774"
-                }
+                "has_raw_value": "ENVO:00005774"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -708,19 +624,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000247"
-                }
+                "has_raw_value": "ENVO:01000247"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000247"
-                }
+                "has_raw_value": "ENVO:01000247"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00001998"
-                }
+                "has_raw_value": "ENVO:00001998"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -758,19 +668,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000183"
-                }
+                "has_raw_value": "ENVO:01000183"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:00000170"
-                }
+                "has_raw_value": "ENVO:00000170"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00005800"
-                }
+                "has_raw_value": "ENVO:00005800"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -808,19 +712,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000219"
-                }
+                "has_raw_value": "ENVO:01000219"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:00002204"
-                }
+                "has_raw_value": "ENVO:00002204"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00001998"
-                }
+                "has_raw_value": "ENVO:00001998"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -858,19 +756,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000211"
-                }
+                "has_raw_value": "ENVO:01000211"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000211"
-                }
+                "has_raw_value": "ENVO:01000211"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00001998"
-                }
+                "has_raw_value": "ENVO:00001998"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -908,19 +800,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000179"
-                }
+                "has_raw_value": "ENVO:01000179"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000185"
-                }
+                "has_raw_value": "ENVO:01000185"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00005741"
-                }
+                "has_raw_value": "ENVO:00005741"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -958,19 +844,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000249"
-                }
+                "has_raw_value": "ENVO:01000249"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:00000120"
-                }
+                "has_raw_value": "ENVO:00000120"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:02000059"
-                }
+                "has_raw_value": "ENVO:02000059"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -1008,19 +888,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000250"
-                }
+                "has_raw_value": "ENVO:01000250"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000174"
-                }
+                "has_raw_value": "ENVO:01000174"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00001998"
-                }
+                "has_raw_value": "ENVO:00001998"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -1058,19 +932,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000250"
-                }
+                "has_raw_value": "ENVO:01000250"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000174"
-                }
+                "has_raw_value": "ENVO:01000174"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00001998"
-                }
+                "has_raw_value": "ENVO:00001998"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -1108,19 +976,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000250"
-                }
+                "has_raw_value": "ENVO:01000250"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000174"
-                }
+                "has_raw_value": "ENVO:01000174"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00001998"
-                }
+                "has_raw_value": "ENVO:00001998"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -1158,19 +1020,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000250"
-                }
+                "has_raw_value": "ENVO:01000250"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000355"
-                }
+                "has_raw_value": "ENVO:01000355"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00005774"
-                }
+                "has_raw_value": "ENVO:00005774"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -1208,19 +1064,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000245"
-                }
+                "has_raw_value": "ENVO:01000245"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000892"
-                }
+                "has_raw_value": "ENVO:01000892"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00001998"
-                }
+                "has_raw_value": "ENVO:00001998"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -1258,19 +1108,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000245"
-                }
+                "has_raw_value": "ENVO:01000245"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000892"
-                }
+                "has_raw_value": "ENVO:01000892"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00001998"
-                }
+                "has_raw_value": "ENVO:00001998"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -1308,19 +1152,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000219"
-                }
+                "has_raw_value": "ENVO:01000219"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:00002204"
-                }
+                "has_raw_value": "ENVO:00002204"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00001998"
-                }
+                "has_raw_value": "ENVO:00001998"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -1358,19 +1196,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000219"
-                }
+                "has_raw_value": "ENVO:01000219"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:00002204"
-                }
+                "has_raw_value": "ENVO:00002204"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00001998"
-                }
+                "has_raw_value": "ENVO:00001998"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -1408,19 +1240,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000245"
-                }
+                "has_raw_value": "ENVO:01000245"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:00000161"
-                }
+                "has_raw_value": "ENVO:00000161"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:02000059"
-                }
+                "has_raw_value": "ENVO:02000059"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -1458,19 +1284,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000245"
-                }
+                "has_raw_value": "ENVO:01000245"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:00000161"
-                }
+                "has_raw_value": "ENVO:00000161"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:02000059"
-                }
+                "has_raw_value": "ENVO:02000059"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -1508,19 +1328,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000249"
-                }
+                "has_raw_value": "ENVO:01000249"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:00000120"
-                }
+                "has_raw_value": "ENVO:00000120"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:02000059"
-                }
+                "has_raw_value": "ENVO:02000059"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -1558,19 +1372,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000250"
-                }
+                "has_raw_value": "ENVO:01000250"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000174"
-                }
+                "has_raw_value": "ENVO:01000174"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00001998"
-                }
+                "has_raw_value": "ENVO:00001998"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -1608,19 +1416,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000250"
-                }
+                "has_raw_value": "ENVO:01000250"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000355"
-                }
+                "has_raw_value": "ENVO:01000355"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00005774"
-                }
+                "has_raw_value": "ENVO:00005774"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -1658,19 +1460,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000250"
-                }
+                "has_raw_value": "ENVO:01000250"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000355"
-                }
+                "has_raw_value": "ENVO:01000355"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00005774"
-                }
+                "has_raw_value": "ENVO:00005774"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -1708,19 +1504,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000247"
-                }
+                "has_raw_value": "ENVO:01000247"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000247"
-                }
+                "has_raw_value": "ENVO:01000247"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00001998"
-                }
+                "has_raw_value": "ENVO:00001998"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -1758,19 +1548,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000245"
-                }
+                "has_raw_value": "ENVO:01000245"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:00000119"
-                }
+                "has_raw_value": "ENVO:00000119"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:02000059"
-                }
+                "has_raw_value": "ENVO:02000059"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -1808,19 +1592,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000219"
-                }
+                "has_raw_value": "ENVO:01000219"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:00002204"
-                }
+                "has_raw_value": "ENVO:00002204"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00001998"
-                }
+                "has_raw_value": "ENVO:00001998"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -1858,19 +1636,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000249"
-                }
+                "has_raw_value": "ENVO:01000249"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:00000120"
-                }
+                "has_raw_value": "ENVO:00000120"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:02000059"
-                }
+                "has_raw_value": "ENVO:02000059"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -1908,19 +1680,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000250"
-                }
+                "has_raw_value": "ENVO:01000250"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000174"
-                }
+                "has_raw_value": "ENVO:01000174"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00001998"
-                }
+                "has_raw_value": "ENVO:00001998"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -1958,19 +1724,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000250"
-                }
+                "has_raw_value": "ENVO:01000250"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000174"
-                }
+                "has_raw_value": "ENVO:01000174"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00001998"
-                }
+                "has_raw_value": "ENVO:00001998"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -2008,19 +1768,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000250"
-                }
+                "has_raw_value": "ENVO:01000250"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000355"
-                }
+                "has_raw_value": "ENVO:01000355"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00005774"
-                }
+                "has_raw_value": "ENVO:00005774"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -2058,19 +1812,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000250"
-                }
+                "has_raw_value": "ENVO:01000250"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000355"
-                }
+                "has_raw_value": "ENVO:01000355"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00005774"
-                }
+                "has_raw_value": "ENVO:00005774"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -2108,19 +1856,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000179"
-                }
+                "has_raw_value": "ENVO:01000179"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000185"
-                }
+                "has_raw_value": "ENVO:01000185"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00005741"
-                }
+                "has_raw_value": "ENVO:00005741"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -2158,19 +1900,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000179"
-                }
+                "has_raw_value": "ENVO:01000179"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000185"
-                }
+                "has_raw_value": "ENVO:01000185"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00005741"
-                }
+                "has_raw_value": "ENVO:00005741"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -2208,19 +1944,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000249"
-                }
+                "has_raw_value": "ENVO:01000249"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:00000120"
-                }
+                "has_raw_value": "ENVO:00000120"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:02000059"
-                }
+                "has_raw_value": "ENVO:02000059"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -2258,19 +1988,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000250"
-                }
+                "has_raw_value": "ENVO:01000250"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000355"
-                }
+                "has_raw_value": "ENVO:01000355"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00005774"
-                }
+                "has_raw_value": "ENVO:00005774"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -2308,19 +2032,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000250"
-                }
+                "has_raw_value": "ENVO:01000250"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000355"
-                }
+                "has_raw_value": "ENVO:01000355"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00005774"
-                }
+                "has_raw_value": "ENVO:00005774"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -2358,19 +2076,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000247"
-                }
+                "has_raw_value": "ENVO:01000247"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000247"
-                }
+                "has_raw_value": "ENVO:01000247"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00001998"
-                }
+                "has_raw_value": "ENVO:00001998"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -2408,19 +2120,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:00000873"
-                }
+                "has_raw_value": "ENVO:00000873"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000687"
-                }
+                "has_raw_value": "ENVO:01000687"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00002007"
-                }
+                "has_raw_value": "ENVO:00002007"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -2461,19 +2167,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000219"
-                }
+                "has_raw_value": "ENVO:01000219"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:00002204"
-                }
+                "has_raw_value": "ENVO:00002204"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00001998"
-                }
+                "has_raw_value": "ENVO:00001998"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -2511,19 +2211,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000249"
-                }
+                "has_raw_value": "ENVO:01000249"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:00000119"
-                }
+                "has_raw_value": "ENVO:00000119"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:02000059"
-                }
+                "has_raw_value": "ENVO:02000059"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -2561,19 +2255,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000221"
-                }
+                "has_raw_value": "ENVO:01000221"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000221"
-                }
+                "has_raw_value": "ENVO:01000221"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00001998"
-                }
+                "has_raw_value": "ENVO:00001998"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -2611,19 +2299,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000174"
-                }
+                "has_raw_value": "ENVO:01000174"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:00000094"
-                }
+                "has_raw_value": "ENVO:00000094"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:01001841"
-                }
+                "has_raw_value": "ENVO:01001841"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -2661,19 +2343,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000249"
-                }
+                "has_raw_value": "ENVO:01000249"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:00000120"
-                }
+                "has_raw_value": "ENVO:00000120"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:02000059"
-                }
+                "has_raw_value": "ENVO:02000059"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -2711,19 +2387,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000250"
-                }
+                "has_raw_value": "ENVO:01000250"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000174"
-                }
+                "has_raw_value": "ENVO:01000174"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00001998"
-                }
+                "has_raw_value": "ENVO:00001998"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -2761,19 +2431,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000250"
-                }
+                "has_raw_value": "ENVO:01000250"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000174"
-                }
+                "has_raw_value": "ENVO:01000174"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00001998"
-                }
+                "has_raw_value": "ENVO:00001998"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -2811,19 +2475,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000250"
-                }
+                "has_raw_value": "ENVO:01000250"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000174"
-                }
+                "has_raw_value": "ENVO:01000174"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00001998"
-                }
+                "has_raw_value": "ENVO:00001998"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -2861,19 +2519,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000250"
-                }
+                "has_raw_value": "ENVO:01000250"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000355"
-                }
+                "has_raw_value": "ENVO:01000355"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00005774"
-                }
+                "has_raw_value": "ENVO:00005774"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -2911,19 +2563,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000250"
-                }
+                "has_raw_value": "ENVO:01000250"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000355"
-                }
+                "has_raw_value": "ENVO:01000355"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00005774"
-                }
+                "has_raw_value": "ENVO:00005774"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -2961,19 +2607,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000250"
-                }
+                "has_raw_value": "ENVO:01000250"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000355"
-                }
+                "has_raw_value": "ENVO:01000355"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00005774"
-                }
+                "has_raw_value": "ENVO:00005774"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -3011,19 +2651,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000174"
-                }
+                "has_raw_value": "ENVO:01000174"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:00000094"
-                }
+                "has_raw_value": "ENVO:00000094"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:01001841"
-                }
+                "has_raw_value": "ENVO:01001841"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -3061,19 +2695,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000219"
-                }
+                "has_raw_value": "ENVO:01000219"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:00002204"
-                }
+                "has_raw_value": "ENVO:00002204"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00001998"
-                }
+                "has_raw_value": "ENVO:00001998"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -3111,19 +2739,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000219"
-                }
+                "has_raw_value": "ENVO:01000219"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:00002204"
-                }
+                "has_raw_value": "ENVO:00002204"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00001998"
-                }
+                "has_raw_value": "ENVO:00001998"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -3161,19 +2783,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000249"
-                }
+                "has_raw_value": "ENVO:01000249"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:00000120"
-                }
+                "has_raw_value": "ENVO:00000120"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:02000059"
-                }
+                "has_raw_value": "ENVO:02000059"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -3211,19 +2827,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000183"
-                }
+                "has_raw_value": "ENVO:01000183"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:00000548"
-                }
+                "has_raw_value": "ENVO:00000548"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:01000018"
-                }
+                "has_raw_value": "ENVO:01000018"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -3261,19 +2871,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000250"
-                }
+                "has_raw_value": "ENVO:01000250"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000355"
-                }
+                "has_raw_value": "ENVO:01000355"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00005774"
-                }
+                "has_raw_value": "ENVO:00005774"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -3311,19 +2915,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000250"
-                }
+                "has_raw_value": "ENVO:01000250"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000355"
-                }
+                "has_raw_value": "ENVO:01000355"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00005774"
-                }
+                "has_raw_value": "ENVO:00005774"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -3361,19 +2959,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000211"
-                }
+                "has_raw_value": "ENVO:01000211"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000211"
-                }
+                "has_raw_value": "ENVO:01000211"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00001998"
-                }
+                "has_raw_value": "ENVO:00001998"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -3411,19 +3003,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000215"
-                }
+                "has_raw_value": "ENVO:01000215"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000215"
-                }
+                "has_raw_value": "ENVO:01000215"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00001998"
-                }
+                "has_raw_value": "ENVO:00001998"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -3461,19 +3047,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000221"
-                }
+                "has_raw_value": "ENVO:01000221"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000221"
-                }
+                "has_raw_value": "ENVO:01000221"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00001998"
-                }
+                "has_raw_value": "ENVO:00001998"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -3511,19 +3091,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000245"
-                }
+                "has_raw_value": "ENVO:01000245"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000892"
-                }
+                "has_raw_value": "ENVO:01000892"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00001998"
-                }
+                "has_raw_value": "ENVO:00001998"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -3561,19 +3135,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:00000873"
-                }
+                "has_raw_value": "ENVO:00000873"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000687"
-                }
+                "has_raw_value": "ENVO:01000687"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00002007"
-                }
+                "has_raw_value": "ENVO:00002007"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -3614,19 +3182,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000245"
-                }
+                "has_raw_value": "ENVO:01000245"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:00000119"
-                }
+                "has_raw_value": "ENVO:00000119"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:02000059"
-                }
+                "has_raw_value": "ENVO:02000059"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -3664,19 +3226,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000179"
-                }
+                "has_raw_value": "ENVO:01000179"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000185"
-                }
+                "has_raw_value": "ENVO:01000185"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00005741"
-                }
+                "has_raw_value": "ENVO:00005741"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -3714,19 +3270,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000179"
-                }
+                "has_raw_value": "ENVO:01000179"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000185"
-                }
+                "has_raw_value": "ENVO:01000185"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00005741"
-                }
+                "has_raw_value": "ENVO:00005741"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -3764,19 +3314,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000250"
-                }
+                "has_raw_value": "ENVO:01000250"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000174"
-                }
+                "has_raw_value": "ENVO:01000174"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00001998"
-                }
+                "has_raw_value": "ENVO:00001998"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -3814,19 +3358,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000250"
-                }
+                "has_raw_value": "ENVO:01000250"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:01000355"
-                }
+                "has_raw_value": "ENVO:01000355"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00005774"
-                }
+                "has_raw_value": "ENVO:00005774"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -3864,19 +3402,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000174"
-                }
+                "has_raw_value": "ENVO:01000174"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:00000094"
-                }
+                "has_raw_value": "ENVO:00000094"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:01001841"
-                }
+                "has_raw_value": "ENVO:01001841"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -3914,19 +3446,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000174"
-                }
+                "has_raw_value": "ENVO:01000174"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:00000094"
-                }
+                "has_raw_value": "ENVO:00000094"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:01001841"
-                }
+                "has_raw_value": "ENVO:01001841"
             },
             "type": "nmdc:Biosample",
             "depth": {
@@ -3964,19 +3490,13 @@
                 "gold:Gs0154244"
             ],
             "env_broad_scale": {
-                "term": {
-                    "id": "ENVO:01000219"
-                }
+                "has_raw_value": "ENVO:01000219"
             },
             "env_local_scale": {
-                "term": {
-                    "id": "ENVO:00002204"
-                }
+                "has_raw_value": "ENVO:00002204"
             },
             "env_medium": {
-                "term": {
-                    "id": "ENVO:00001998"
-                }
+                "has_raw_value": "ENVO:00001998"
             },
             "type": "nmdc:Biosample",
             "depth": {
