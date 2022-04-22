@@ -5,7 +5,6 @@ import pkgutil
 import logging
 
 from typing import Dict, List, Union
-from attr import has
 
 import jsonschema
 import pandas as pd
@@ -298,7 +297,7 @@ class GoldNMDC(GoldClient):
                         type="nmdc:OmicsProcessing",
                         has_input="gold:" + project["biosampleGoldId"],
                         has_output=has_output,
-                        part_of="gold:" + self.study_id,
+                        part_of=self.study_id,
                         
                         # omics processing date fields
                         add_date=XSDDateTime(project["addDate"]),
