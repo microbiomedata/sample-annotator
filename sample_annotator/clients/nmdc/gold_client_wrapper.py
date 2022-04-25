@@ -177,8 +177,8 @@ class GoldNMDC(GoldClient):
 
                 if biosample["depthInMeters2"] is not None:
                     depth2 = nmdc.QuantityValue(
-                                has_raw_value=biosample["depthInMeters"],
-                                has_numeric_value=biosample["depthInMeters"],
+                                has_raw_value=biosample["depthInMeters2"],
+                                has_numeric_value=biosample["depthInMeters2"],
                                 has_unit="meter",
                             )
                 else:
