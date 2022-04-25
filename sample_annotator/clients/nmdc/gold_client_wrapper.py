@@ -164,6 +164,26 @@ class GoldNMDC(GoldClient):
                     else XSDDateTime(biosample["modDate"])
                 )
 
+                # use the logic in if conditional to populate value for
+                # depth, when depth can be retreived from GOLD API
+                if biosample["depthInMeters"] is not None:
+                    depth = nmdc.QuantityValue(
+                                has_raw_value=biosample["depthInMeters"],
+                                has_numeric_value=biosample["depthInMeters"],
+                                has_unit="meter",
+                            )
+                else:
+                    depth = {}
+
+                if biosample["depthInMeters2"] is not None:
+                    depth2 = nmdc.QuantityValue(
+                                has_raw_value=biosample["depthInMeters"],
+                                has_numeric_value=biosample["depthInMeters"],
+                                has_unit="meter",
+                            )
+                else:
+                    depth2 = {}
+
                 self.nmdc_db.biosample_set.append(
                     nmdc.Biosample(
                         # biosample identifiers
@@ -185,19 +205,11 @@ class GoldNMDC(GoldClient):
                         mod_date=mod_date,
                         
                         # Earth fields
-                        depth=nmdc.QuantityValue(
-                            has_raw_value=biosample["depthInMeters"],
-                            has_numeric_value=biosample["depthInMeters"],
-                            has_unit="meter",
-                        ),
+                        depth=depth,
                         
                         # TODO: this is temporary non MIxS that can
                         # hopefully be eliminated sooner rather than later
-                        depth2=nmdc.QuantityValue(
-                            has_raw_value=biosample["depthInMeters2"],
-                            has_numeric_value=biosample["depthInMeters2"],
-                            has_unit="meter",
-                        ),
+                        depth2=depth2,
                         temp=nmdc.QuantityValue(
                             has_numeric_value=biosample["sampleCollectionTemperature"]
                         ),
