@@ -57,3 +57,19 @@ downloads/bibo.owl:
 assets/bibo_DocumentStatus.tsv: downloads/bibo.owl bin/robot.jar
 	java -jar bin/robot.jar query --input $< --query sparql/bibo_DocumentStatus.sparql $@
 	sed --in-place=.bak 's/^\?//' $@
+
+.PHONY: say_hello cleanup_hellos run_hello_yaml
+
+say_hello:
+	python sample_annotator/hello_standalone.py
+
+hello.txt:
+	python sample_annotator/hello_standalone.py > hello.txt
+
+cleanup_hellos:
+	rm -f hello*txt
+	rm -f hello*yaml
+
+hello.yaml:
+	python sample_annotator/hello_yaml.py
+
