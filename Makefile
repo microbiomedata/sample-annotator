@@ -35,6 +35,9 @@ examples/outputs/report.tsv: examples/gold.json
 downloads/mixs6_core.tsv:
 	curl -L -s 'https://docs.google.com/spreadsheets/d/1QDeeUcDqXes69Y2RjU2aWgOpCVWo5OVsBX9MKmMqi_o/export?format=tsv&gid=178015749' > $@
 
+downloads/mixs6_packages.tsv:
+	curl -L -s 'https://docs.google.com/spreadsheets/d/1QDeeUcDqXes69Y2RjU2aWgOpCVWo5OVsBX9MKmMqi_o/export?format=tsv&gid=750683809' > $@
+
 examples/outputs/non_attribute_metadata_sel_envs_partial.tsv:
 	$(RUN) sqlite_client_cli \
 		--sqlite_path $(biosample_sqlite_file) \
@@ -45,6 +48,13 @@ rel_to_oxygen_example: downloads/mixs6_core.tsv
 	$(RUN) rel_to_oxygen_example \
 		--sqlite_path $(biosample_sqlite_file) \
 		--mixs_core_path $<
+
+
+fao_terms: downloads/mixs6_packages.tsv
+	$(RUN) fao_terms \
+		--sqlite_path $(biosample_sqlite_file) \
+		--mixs_packages_path $<
+
 
 
 bin/robot.jar:
