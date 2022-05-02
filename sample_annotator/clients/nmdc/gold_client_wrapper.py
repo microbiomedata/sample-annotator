@@ -1,3 +1,4 @@
+from csv import excel
 import io
 import os
 import json
@@ -5,6 +6,7 @@ import pkgutil
 import logging
 
 from typing import Dict, List, Union
+from attr import has
 
 import jsonschema
 import pandas as pd
@@ -104,6 +106,46 @@ class GoldNMDC(GoldClient):
 
         return project_has_output_list
 
+    def emp500_paired_end_merge(
+        self, file_name: Union[str, bytes, os.PathLike] = None
+    ) -> List[Dict[str, str]]:
+        """Read in paired end summary data from the EMP500
+        study generated from a Bioinformatics workflow, and do
+        merge with all the soil sample metadata.
+
+        :param file_name: path to the file with summary data, defaults to None
+        :return: merge paired end and soil sample metadata as a pd dataframe
+        """
+        pe_summary_path = os.path.join(
+            os.path.dirname(os.path.abspath(__file__)),
+            "input",
+            "emp500_paired_end_summary.tsv",
+        )
+
+        pe_summary_df = pd.read_csv(pe_summary_path, sep="\t", header=0)
+
+        soil_projects = self.soil_projects()
+
+        projects = self.fetch_projects_by_study(self.study_id)
+
+        # subsetted list of projects filtered
+        # only for soil related GOLD project IDs
+        projects = [proj for proj in projects if proj["projectGoldId"] in soil_projects]
+
+        projects_df = pd.DataFrame(projects)
+
+        # left merge on pe_summary_df to append columns from
+        # common data between pe_summary_df and projects_df
+        pe_gold_df = pd.merge(
+            projects_df,
+            pe_summary_df,
+            how="left",
+            left_on=["ncbiBioSampleAccession"],
+            right_on=["Biosample"],
+        )
+
+        return pe_gold_df.to_dict("records")
+
     def transform_emp500_nmdc(
         self, file_name: Union[str, bytes, os.PathLike] = None
     ) -> str:
@@ -168,19 +210,19 @@ class GoldNMDC(GoldClient):
                 # depth, when depth can be retreived from GOLD API
                 if biosample["depthInMeters"] is not None:
                     depth = nmdc.QuantityValue(
-                                has_raw_value=biosample["depthInMeters"],
-                                has_numeric_value=biosample["depthInMeters"],
-                                has_unit="meter",
-                            )
+                        has_raw_value=biosample["depthInMeters"],
+                        has_numeric_value=biosample["depthInMeters"],
+                        has_unit="meter",
+                    )
                 else:
                     depth = {}
 
                 if biosample["depthInMeters2"] is not None:
                     depth2 = nmdc.QuantityValue(
-                                has_raw_value=biosample["depthInMeters2"],
-                                has_numeric_value=biosample["depthInMeters2"],
-                                has_unit="meter",
-                            )
+                        has_raw_value=biosample["depthInMeters2"],
+                        has_numeric_value=biosample["depthInMeters2"],
+                        has_unit="meter",
+                    )
                 else:
                     depth2 = {}
 
@@ -290,7 +332,7 @@ class GoldNMDC(GoldClient):
                 )
 
                 project_has_output_dict = self.project_has_output_dict()
-                
+
                 # create value for has_output attribute
                 if project["projectGoldId"] in self.project_has_output_dict():
                     has_output = project_has_output_dict[project["projectGoldId"]]
@@ -328,6 +370,51 @@ class GoldNMDC(GoldClient):
             except:
                 logger.error(
                     f"Omics processing set not properly annotated: {project['projectGoldId']}"
+                )
+
+        # populate read_QC_analysis_activity_set attribute
+        read_qc_data = self.emp500_paired_end_merge()
+
+        for pe_soil in read_qc_data:
+
+            try:
+                project_has_output_dict = self.project_has_output_dict()
+
+                # create value for has_output attribute
+                if pe_soil["projectGoldId"] in self.project_has_output_dict():
+                    has_output = project_has_output_dict[pe_soil["projectGoldId"]]
+
+                mod_date = (
+                    XSDDateTime(project["addDate"])
+                    if project["modDate"] is None
+                    else XSDDateTime(project["modDate"])
+                )
+
+                self.nmdc_db.read_QC_analysis_activity_set.append(
+                    nmdc.ReadQCAnalysisActivity(
+                        id="gold:" + pe_soil["projectGoldId"],
+                        
+                        has_input="gold:" + project["biosampleGoldId"],
+                        has_output=has_output,
+                        
+                        execution_resource=pe_soil["sequencingCenters"][0],
+                        was_informed_by="gold:" + pe_soil["projectGoldId"],
+                        
+                        # TODO: hardcode Git url if you can find one
+                        git_url="",
+                        
+                        started_at_time=XSDDateTime(pe_soil["addDate"]),
+                        ended_at_time=mod_date,
+                        
+                        input_read_count=pe_soil["Reads"],
+                        input_base_count=pe_soil["Bases"],
+                        
+                        type="nmdc:ReadQCAnalysisActivity",
+                    )
+                )
+            except:
+                logger.error(
+                    f"Read QC analysis record not properly annotated: {pe_soil['Biosample']}"
                 )
 
         # dump JSON string serialization of NMDC Schema object
