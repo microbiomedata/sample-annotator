@@ -1,4 +1,23 @@
 # This is the Python script to produce summary statistics for numerical variables.
+# Additionally this script cleans a numerical column
+#######################################
+## Authors: Aaron Lee, Jihee Choo    ##
+#######################################
+
+''' 
+Instructions for running the script:
+1. Set 2 variables: the directory of the location with the csv data: "DATA_DIR"
+(may need to run to_csv() with the biosample_basex_data_good_subset.db in
+the current directory) and "column_" the column of the csv file that you'd like
+to fix.
+2. Optionally, if the dataframe is already loaded can just do 
+"from num_summary import *" 
+3. the script automatically runs clean_fast on the specified column, and
+produces visualizations, and the function clean_fast can be used outside
+of the script (see step 2)
+4. Optionally, run air_temp_visualizations() or depth_visualizations() for 
+manually made visualizations for the respective columns.
+'''
 
 import sqlite3
 import pandas as pd
@@ -37,7 +56,14 @@ def clean_fast(df, col, force_numeric=False, verbose=False):
   '''takes in a dataframe and a column and returns a new dataframe with
   that column cleaned -> 'cleaned_' + col and the units for that value.
   if force_numeric, will make sure there are no strings by making any value
-  that couldn't be cleaned NaN. '''
+  that couldn't be cleaned NaN. 
+  @params: 
+  df pandas dataframe
+  col column to clean
+  force_numeric turns any column that couldn't be converted to a numerical value
+  to NaN, otherwise just returns the uncleaned string
+  verbose print
+  '''
   df = df.copy()
   series = df[col]
   cleaned = np.array([])
@@ -52,7 +78,7 @@ def clean_fast(df, col, force_numeric=False, verbose=False):
           return np.NaN
         return item
       if len(quants) > 1 and verbose:
-        print('multiple unit types detected will be using first unit type detected')
+        print('multiple unit types detected will be using first unit type detected', item)
       return quants[0].value
     except:
       try:
@@ -87,11 +113,14 @@ def depth_visualizations(data):
   # removing extreme values
   depth = depth[depth['cleaned_depth']<20000]
   plt.boxplot(x=depth["cleaned_depth"].dropna())
+  plt.show()
   depth_cleaned_low = depth[(depth['depth'] < 1000) & (depth['depth'] > -1)]
   depth_cleaned_high = depth[depth['depth'] >= 1000]
   # does appear to be noticeable difference
   plt.boxplot(x=depth_cleaned_low["depth"])
+  plt.show()
   plt.boxplot(x=depth_cleaned_high["depth"])
+  plt.show()
 
   # all of the larger depths come from aerobe
   import seaborn as sns
@@ -104,6 +133,7 @@ def depth_visualizations(data):
 def air_temp_visualizations(data):
   air_temp = clean_fast(data, 'air_temp')
   plt.hist(air_temp['cleaned_air_temp'])
+  plt.show()
   plt.boxplot(air_temp['cleaned_air_temp'].dropna())
   plt.show()
 
