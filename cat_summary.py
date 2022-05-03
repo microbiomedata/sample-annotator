@@ -1,5 +1,17 @@
 # This is the Python script to produce summary statistics for categorical variables.
 
+''' 
+Instructions for running the script:
+1. Set 2 variables: the directory of the location with the csv data: "DATA_DIR"
+(may need to run to_csv() with the biosample_basex_data_good_subset.db in
+the current directory) and "column_" the categorical column of the csv file that 
+you'd like to visualize.
+2. Optionally, if the dataframe is already loaded can just do 
+"from num_summary import *" 
+3. Optionally, run air_temp_visualizations() or depth_visualizations() for 
+manually made visualizations for the respective columns.
+'''
+
 import sqlite3
 import pandas as pd
 import numpy as np
