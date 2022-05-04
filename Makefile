@@ -57,3 +57,8 @@ downloads/bibo.owl:
 assets/bibo_DocumentStatus.tsv: downloads/bibo.owl bin/robot.jar
 	java -jar bin/robot.jar query --input $< --query sparql/bibo_DocumentStatus.sparql $@
 	sed --in-place=.bak 's/^\?//' $@
+
+.PHONY: batch_q3
+batch_q3:
+	poetry run python sample_annotator/batch_q3.py \
+		--database_file /Users/MAM/biosample_basex_data_good_subset.db
