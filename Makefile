@@ -1,6 +1,7 @@
 RUN = poetry run
 
-biosample_sqlite_file = ~/biosample_basex_data_good_subset.db
+#biosample_sqlite_file = ~/Documents/biosample_basex_data_good_subset.db
+biosample_sqlite_file = ~/Documents/biosample_basex.db
 
 .PHONY: test clean all
 
@@ -38,7 +39,7 @@ downloads/mixs6_core.tsv:
 examples/outputs/non_attribute_metadata_sel_envs_partial.tsv:
 	$(RUN) sqlite_client_cli \
 		--sqlite_path $(biosample_sqlite_file) \
-		--query "select * from non_attribute_metadata_sel_envs limit 9" \
+		--query_string "select * from non_attribute_metadata_sel_envs limit 9" \
 		--tsv_out $@
 
 rel_to_oxygen_example: downloads/mixs6_core.tsv
@@ -57,3 +58,24 @@ downloads/bibo.owl:
 assets/bibo_DocumentStatus.tsv: downloads/bibo.owl bin/robot.jar
 	java -jar bin/robot.jar query --input $< --query sparql/bibo_DocumentStatus.sparql $@
 	sed --in-place=.bak 's/^\?//' $@
+
+.PHONY: batch_q3
+# /Users/MAM/biosample_basex_data_good_subset.db
+# harmonized_wide_sel_envs
+# harmonized_wide
+# need any additional indexing?
+# ~ 2 minutes per column (may be highly variable)
+# X columns
+# currently repairing unique values per column. what if there are a lot of common values?
+#   would be more efficient to gather all values, make them unique, and repair the unique set?
+batch_q3:
+	$(RUN) python sample_annotator/batch_q3.py \
+		--database_file $(biosample_sqlite_file) \
+		--input_table harmonized_wide
+
+#depends on batch_q3 but don't want to re-trigger
+assets/unit_count_in_column.tsv:
+	$(RUN) sqlite_client_cli \
+		--sqlite_path $(biosample_sqlite_file) \
+		--query_file sql/unit_count_in_column.sql \
+		--tsv_out $@
