@@ -1,7 +1,7 @@
 RUN = poetry run
 
-biosample_sqlite_file = ~/Documents/biosample_basex_data_good_subset.db
-#biosample_sqlite_file = ~/Documents/biosample_basex.db
+#biosample_sqlite_file = ~/Documents/biosample_basex_data_good_subset.db
+biosample_sqlite_file = ~/Documents/biosample_basex.db
 
 .PHONY: test clean all
 
@@ -71,7 +71,7 @@ assets/bibo_DocumentStatus.tsv: downloads/bibo.owl bin/robot.jar
 batch_q3:
 	$(RUN) python sample_annotator/batch_q3.py \
 		--database_file $(biosample_sqlite_file) \
-		--input_table harmonized_wide_sel_envs
+		--input_table harmonized_wide
 
 #depends on batch_q3 but don't want to re-trigger
 assets/unit_count_in_column.tsv:

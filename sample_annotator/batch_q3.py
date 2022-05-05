@@ -6,6 +6,8 @@ import logging
 import pandas as pd
 import sqlite3
 
+import datetime
+
 logger = logging.getLogger(__name__)
 click_log.basic_config(logger)
 
@@ -185,7 +187,11 @@ def batch_q3(
     observed_mvs.sort()
 
     df_list = []
+    # 108 columns in 2 hours (120 minutes)
     for i in observed_mvs:
+        ts = datetime.datetime.now().timestamp()
+        readable = datetime.datetime.fromtimestamp(ts).isoformat()
+        print(readable)
         df_list.append(bu.do_q3_one_col(i, con, input_table))
     catted = pd.concat(df_list)
 
