@@ -7,6 +7,8 @@
 import pandas as pd
 from quantulum3 import parser
 
+import re
+
 
 # also implement something similar for getting slot attributes from LinkML
 def get_df_from_gsheets_csv(sheet_id, tab_gid):
@@ -63,6 +65,15 @@ def do_q3_one_col(col_name, con, table):
                     "char_coverage": 0,
                     "column": col_name,
                 }
+
+            if (
+                    re.match("^missing", i, re.IGNORECASE)
+                    or re.match("^not", i, re.IGNORECASE)
+                    or re.match("^unk", i, re.IGNORECASE)
+                    or i.lower() in ["na", "n/a", "null", "nd", "none", "-"]
+            ):
+                current_dict["inferred_NA"] = True
+
             q3_lod.append(current_dict)
         q3_df = pd.DataFrame(q3_lod)
 

@@ -16,7 +16,6 @@ pd.set_option("display.max_columns", None)
 @click_log.simple_verbosity_option(logger)
 @click.option("--output_table", default="q3_lookup")
 @click.option("--input_table", default="harmonized_wide_sel_envs")
-# "/Users/MAM/biosample_basex_data_good_subset.db"
 @click.option("--database_file", type=click.Path(exists=True), required=True)
 @click.option("--if_exists", default="replace")
 @click.option("--sheet_id", default="1QDeeUcDqXes69Y2RjU2aWgOpCVWo5OVsBX9MKmMqi_o")
@@ -145,6 +144,7 @@ def batch_q3(output_table, if_exists, input_table, database_file, sheet_id, core
     mixs_all_mvs = mixs_all_mvs + curated_mvs
     mixs_all_mvs.sort()
 
+    print(database_file)
     con = sqlite3.connect(database_file)
     observed_cols = bu.get_sqlite_colnames(con, input_table)
 
@@ -172,6 +172,63 @@ def batch_q3(output_table, if_exists, input_table, database_file, sheet_id, core
 # char_coverage: what fraction of raw is covered by the surface?
 # calc_min: if quantulum3 saw a range of values, what is the lower bound of that range?
 # calc_max: if quantulum3 saw a range of values, what is the upper bound of that range
+
+# edge cases
+#  prioritize efforts on rows with
+#    high col_row_count
+#    null unit_name
+#    hit_count != 1
+#    uncertainly is not null
+#    char_coverage < 1
+#  NAs:
+#    "-"
+#    "?"
+
+# missing
+# Missing: Not applicable
+# Missing: Not collected
+# missing: not collected
+# Missing: Not provide
+# Missing: Not Provided
+# Missing: Not provided
+# Missing: Not reported
+# Missing:Not provided
+# Missing:not provided
+# Missing:Not reported
+
+
+# lower(raw) like "not%"
+# not applicable
+# Not Applicable
+# Not applicable
+# not collected
+# not knoiwn
+# not provided
+# Not provided
+# not recorded
+
+# N/A
+# NA
+# None
+# NULL
+
+# n/a
+# nd
+# none
+
+# %kno% but not %knot%
+
+# comas or underscores instead of decimal points
+# depth relative to surface
+# elev relative to sea level etc.
+#   lake level... need to get elev for lat_lon?
+
+# micro molar
+# microMolePerLiter
+# logH+
+# micromolar
+# santimeters
+# from soil surface (ignoring OK)
 
 
 if __name__ == "__main__":
