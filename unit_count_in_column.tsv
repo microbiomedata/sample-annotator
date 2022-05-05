@@ -1,0 +1,1134 @@
+column	unit_name	unit_count_in_column
+abs_air_humidity	dimensionless	283
+abs_air_humidity		12
+abs_air_humidity	kilogram per cubic metre	1
+abs_air_humidity	percentage	1
+air_temp	dimensionless	210
+air_temp	degree Celsius	45
+air_temp		22
+air_temp	coulomb	4
+air_temp	degree angle	1
+al_sat		132
+al_sat	dimensionless	92
+al_sat	percentage	7
+al_sat	milligram per hectare	4
+al_sat	gram	1
+al_sat	megayear per year to the 2016	1
+al_sat	megayear per year to the 2017	1
+alkalinity	dimensionless	747
+alkalinity		41
+alkalinity	milligram per litre	31
+alkalinity	unk	14
+alkalinity	metre	6
+alkalinity	atomic mass unit mole per litre	5
+alkalinity	milligram	3
+alkalinity	atomic mass unit mole per kilogram	2
+alkalinity	degree Celsius	1
+alkyl_diethers	dimensionless	72
+alkyl_diethers		10
+aminopept_act	dimensionless	185
+aminopept_act		10
+ammonium	dimensionless	2224
+ammonium	milligram per litre	281
+ammonium	unk mole per litre	101
+ammonium		86
+ammonium	unk	37
+ammonium	atomic mass unit gram per litre	30
+ammonium	milligram per kilogram	26
+ammonium	atomic mass unit mole per kilogram	24
+ammonium	micrometre	21
+ammonium	parts-per-million	21
+ammonium	microgram per litre	20
+ammonium	gram per litre	7
+ammonium	microsecond mole per litre	3
+ammonium	gram	2
+ammonium	metre	2
+ammonium	atomic mass unit mole per litre	1
+ammonium	milligram	1
+ammonium	mole per litre	1
+bac_prod	dimensionless	436
+bac_prod		13
+bac_resp	dimensionless	40
+bac_resp		7
+bacteria_carb_prod	dimensionless	267
+bacteria_carb_prod		72
+bacteria_carb_prod	microgram coulomb per litre per day	15
+bacteria_carb_prod	penny mole	12
+barometric_press	millimeter of mercury	137
+barometric_press	dimensionless	40
+barometric_press		4
+barometric_press	kilopascal	4
+biochem_oxygen_dem	dimensionless	92
+biochem_oxygen_dem		8
+biochem_oxygen_dem	milligram per litre	4
+bishomohopanol		8
+bromide	dimensionless	79
+bromide	unk	19
+bromide	milligram per litre	16
+bromide		11
+bromide	atomic mass unit mole per litre	6
+bromide	micrometre	1
+bromide	parts-per-million	1
+calcium	dimensionless	2790
+calcium	milligram per litre	160
+calcium	parts-per-million	77
+calcium	unk	41
+calcium		26
+calcium	atomic mass unit mole per kilogram	9
+calcium	atomic mass unit mole per litre	6
+calcium	gram per litre	4
+calcium	metre	1
+calcium	percentage	1
+carb_dioxide	dimensionless	81
+carb_dioxide		14
+carb_dioxide	kilopascal	6
+carb_dioxide	percentage	1
+carb_nitro_ratio	dimensionless	704
+carb_nitro_ratio		41
+carb_nitro_ratio	microgram	3
+chem_oxygen_dem	dimensionless	129
+chem_oxygen_dem	milligram per litre	30
+chem_oxygen_dem	kilogram	12
+chem_oxygen_dem		11
+chem_oxygen_dem	milligram per cubic centimetre	2
+chem_oxygen_dem	percentage	1
+chloride	dimensionless	855
+chloride	milligram per litre	275
+chloride	unk	154
+chloride	milligram centilitre per litre	22
+chloride	milligram per kilogram	22
+chloride		17
+chloride	atomic mass unit mole per kilogram	9
+chloride	metre	9
+chloride	parts-per-million	9
+chloride	atomic mass unit mole per litre	6
+chloride	micrometre	5
+chloride	gram per litre	3
+chlorophyll	dimensionless	2268
+chlorophyll	milligram per cubic metre	362
+chlorophyll	atomic mass unit gram per litre	286
+chlorophyll	microgram per litre	190
+chlorophyll	milligram per litre	105
+chlorophyll	unk per litre	104
+chlorophyll	gram per litre	102
+chlorophyll		77
+chlorophyll	atomic mass unit gram per kilogram	57
+chlorophyll	atomic mass unit gram	32
+chlorophyll	ampere	16
+chlorophyll	atomic mass unit gram per square centimetre	7
+chlorophyll	microgram	6
+chlorophyll	microsecond mole per litre	3
+conduc	dimensionless	3787
+conduc	microsecond per centimetre	250
+conduc	millisecond per centimetre	160
+conduc	siemens per centimetre	106
+conduc	millivolt	61
+conduc	millisecond	37
+conduc	millisecond per metre	21
+conduc		17
+conduc	microsecond	16
+conduc	metre per siemens	8
+conduc	siemens per metre	8
+conduc	milligram per litre	2
+conduc	atomic mass unit siemens per centimetre	1
+conduc	siemens	1
+density	dimensionless	852
+density	kilogram per cubic metre	75
+density		46
+density	gram per cubic centimetre	22
+density	kilogram per cubic decimetre	12
+density	kilogram per square metre	6
+density	microsecond per centimetre	5
+depth	dimensionless	7246
+depth	metre	3678
+depth	centimetre	1978
+depth		1869
+depth	millibarn second farad	209
+depth	millimetre	91
+depth	foot	70
+depth	centimetre barn second farad	60
+depth	inch	34
+depth	minute of arc	15
+depth	swiss franc watt	13
+depth	atomic mass unit metre	12
+depth	giga base pair	12
+depth	kilometre	8
+depth	centimetre bit second farad	7
+depth	per metre to the 600 metre	5
+depth	square centimetre	5
+depth	cubic centimetre	4
+depth	megabyte siemens farad	4
+depth	millibarn second litre	4
+depth	per centimetre	4
+depth	per centimetre to the 10	4
+depth	per centimetre to the 11	4
+depth	per centimetre to the 12	4
+depth	per centimetre to the 13	4
+depth	per centimetre to the 14	4
+depth	per centimetre to the 15	4
+depth	per centimetre to the 16	4
+depth	per centimetre to the 17	4
+depth	per centimetre to the 18	4
+depth	per centimetre to the 19	4
+depth	per centimetre to the 20	4
+depth	per centimetre to the 21	4
+depth	per centimetre to the 4	4
+depth	per centimetre to the 5	4
+depth	per centimetre to the 6	4
+depth	per centimetre to the 7	4
+depth	per centimetre to the 8	4
+depth	per centimetre to the 9	4
+depth	per cubic centimetre	4
+depth	per square centimetre	4
+depth	per centimetre to the 22	3
+depth	per centimetre to the 23	3
+depth	per centimetre to the 24	3
+depth	per centimetre to the 25	3
+depth	per centimetre to the 26	3
+depth	per metre to the 200 metre	3
+depth	per metre to the 30 metre	3
+depth	per metre to the 550 metre	3
+depth	second of arc	3
+depth	centimetre to the 10	2
+depth	centimetre to the 11	2
+depth	centimetre to the 12	2
+depth	centimetre to the 13	2
+depth	centimetre to the 14	2
+depth	centimetre to the 15	2
+depth	centimetre to the 16	2
+depth	centimetre to the 17	2
+depth	centimetre to the 18	2
+depth	centimetre to the 19	2
+depth	centimetre to the 20	2
+depth	centimetre to the 21	2
+depth	centimetre to the 22	2
+depth	centimetre to the 23	2
+depth	centimetre to the 24	2
+depth	centimetre to the 25	2
+depth	centimetre to the 26	2
+depth	centimetre to the 27	2
+depth	centimetre to the 4	2
+depth	centimetre to the 5	2
+depth	centimetre to the 6	2
+depth	centimetre to the 7	2
+depth	centimetre to the 8	2
+depth	centimetre to the 9	2
+depth	megaton	2
+depth	metre barn	2
+depth	mile	2
+depth	per metre to the 1000 metre	2
+depth	per metre to the 1200 metre	2
+depth	per metre to the 1500 metre	2
+depth	per metre to the 2020 metre	2
+depth	per metre to the 500 metre	2
+depth	per metre to the 750 metre	2
+depth	speed of light	2
+depth		1
+depth	cent metre	1
+depth	centimetre oersted	1
+depth	centimetre second	1
+depth	centimetre to the 100	1
+depth	centimetre to the 101	1
+depth	centimetre to the 102	1
+depth	centimetre to the 103	1
+depth	centimetre to the 104	1
+depth	centimetre to the 105	1
+depth	centimetre to the 106	1
+depth	centimetre to the 107	1
+depth	centimetre to the 108	1
+depth	centimetre to the 109	1
+depth	centimetre to the 110	1
+depth	centimetre to the 111	1
+depth	centimetre to the 112	1
+depth	centimetre to the 113	1
+depth	centimetre to the 114	1
+depth	centimetre to the 115	1
+depth	centimetre to the 116	1
+depth	centimetre to the 117	1
+depth	centimetre to the 118	1
+depth	centimetre to the 119	1
+depth	centimetre to the 120	1
+depth	centimetre to the 121	1
+depth	centimetre to the 122	1
+depth	centimetre to the 123	1
+depth	centimetre to the 124	1
+depth	centimetre to the 125	1
+depth	centimetre to the 126	1
+depth	centimetre to the 127	1
+depth	centimetre to the 128	1
+depth	centimetre to the 129	1
+depth	centimetre to the 130	1
+depth	centimetre to the 131	1
+depth	centimetre to the 132	1
+depth	centimetre to the 133	1
+depth	centimetre to the 134	1
+depth	centimetre to the 135	1
+depth	centimetre to the 136	1
+depth	centimetre to the 137	1
+depth	centimetre to the 138	1
+depth	centimetre to the 139	1
+depth	centimetre to the 140	1
+depth	centimetre to the 141	1
+depth	centimetre to the 142	1
+depth	centimetre to the 143	1
+depth	centimetre to the 144	1
+depth	centimetre to the 145	1
+depth	centimetre to the 146	1
+depth	centimetre to the 147	1
+depth	centimetre to the 148	1
+depth	centimetre to the 149	1
+depth	centimetre to the 150	1
+depth	centimetre to the 151	1
+depth	centimetre to the 152	1
+depth	centimetre to the 153	1
+depth	centimetre to the 154	1
+depth	centimetre to the 155	1
+depth	centimetre to the 156	1
+depth	centimetre to the 157	1
+depth	centimetre to the 158	1
+depth	centimetre to the 159	1
+depth	centimetre to the 160	1
+depth	centimetre to the 161	1
+depth	centimetre to the 162	1
+depth	centimetre to the 163	1
+depth	centimetre to the 164	1
+depth	centimetre to the 165	1
+depth	centimetre to the 166	1
+depth	centimetre to the 167	1
+depth	centimetre to the 168	1
+depth	centimetre to the 169	1
+depth	centimetre to the 170	1
+depth	centimetre to the 171	1
+depth	centimetre to the 172	1
+depth	centimetre to the 173	1
+depth	centimetre to the 174	1
+depth	centimetre to the 175	1
+depth	centimetre to the 176	1
+depth	centimetre to the 177	1
+depth	centimetre to the 178	1
+depth	centimetre to the 179	1
+depth	centimetre to the 180	1
+depth	centimetre to the 28	1
+depth	centimetre to the 29	1
+depth	centimetre to the 30	1
+depth	centimetre to the 31	1
+depth	centimetre to the 32	1
+depth	centimetre to the 33	1
+depth	centimetre to the 34	1
+depth	centimetre to the 35	1
+depth	centimetre to the 36	1
+depth	centimetre to the 37	1
+depth	centimetre to the 38	1
+depth	centimetre to the 39	1
+depth	centimetre to the 40	1
+depth	centimetre to the 41	1
+depth	centimetre to the 42	1
+depth	centimetre to the 43	1
+depth	centimetre to the 44	1
+depth	centimetre to the 45	1
+depth	centimetre to the 46	1
+depth	centimetre to the 47	1
+depth	centimetre to the 48	1
+depth	centimetre to the 49	1
+depth	centimetre to the 50	1
+depth	centimetre to the 51	1
+depth	centimetre to the 52	1
+depth	centimetre to the 53	1
+depth	centimetre to the 54	1
+depth	centimetre to the 55	1
+depth	centimetre to the 56	1
+depth	centimetre to the 57	1
+depth	centimetre to the 58	1
+depth	centimetre to the 59	1
+depth	centimetre to the 60	1
+depth	centimetre to the 61	1
+depth	centimetre to the 62	1
+depth	centimetre to the 63	1
+depth	centimetre to the 64	1
+depth	centimetre to the 65	1
+depth	centimetre to the 66	1
+depth	centimetre to the 67	1
+depth	centimetre to the 68	1
+depth	centimetre to the 69	1
+depth	centimetre to the 70	1
+depth	centimetre to the 71	1
+depth	centimetre to the 72	1
+depth	centimetre to the 73	1
+depth	centimetre to the 74	1
+depth	centimetre to the 75	1
+depth	centimetre to the 76	1
+depth	centimetre to the 77	1
+depth	centimetre to the 78	1
+depth	centimetre to the 79	1
+depth	centimetre to the 80	1
+depth	centimetre to the 81	1
+depth	centimetre to the 82	1
+depth	centimetre to the 83	1
+depth	centimetre to the 84	1
+depth	centimetre to the 85	1
+depth	centimetre to the 86	1
+depth	centimetre to the 87	1
+depth	centimetre to the 88	1
+depth	centimetre to the 89	1
+depth	centimetre to the 90	1
+depth	centimetre to the 91	1
+depth	centimetre to the 92	1
+depth	centimetre to the 93	1
+depth	centimetre to the 94	1
+depth	centimetre to the 95	1
+depth	centimetre to the 96	1
+depth	centimetre to the 97	1
+depth	centimetre to the 98	1
+depth	centimetre to the 99	1
+depth	kelvin	1
+depth	league	1
+depth	litre	1
+depth	megaton roentgen	1
+depth	metre day	1
+depth	millisecond board-foot	1
+depth	millisecond litre	1
+depth	minute of arc minute of arc	1
+depth	newton	1
+depth	per centimetre centimetre	1
+depth	per centimetre to the 13 centimetre	1
+depth	per centimetre to the 18 centimetre	1
+depth	per centimetre to the 20 centimetre	1
+depth	per centimetre to the 5 centimetre	1
+depth	per cubic centimetre centimetre	1
+depth	per metre to the 100 metre	1
+depth	per metre to the 106 metre	1
+depth	per metre to the 1245 metre	1
+depth	per metre to the 1940 metre	1
+depth	per metre to the 197	1
+depth	per metre to the 2000 metre	1
+depth	per metre to the 2070 metre	1
+depth	per metre to the 2115 metre	1
+depth	per metre to the 215 metre	1
+depth	per metre to the 2205 metre	1
+depth	per metre to the 250 metre	1
+depth	per metre to the 2606 metre	1
+depth	per metre to the 2731 metre	1
+depth	per metre to the 3050 metre	1
+depth	per metre to the 3051 metre	1
+depth	per metre to the 40 metre	1
+depth	per metre to the 520 metre	1
+depth	per metre to the 850 metre	1
+depth	per second of arc to the 6 second of arc	1
+depth	volt metre	1
+dew_point	dimensionless	89
+dew_point		3
+diss_carb_dioxide	dimensionless	410
+diss_carb_dioxide	unk	35
+diss_carb_dioxide		11
+diss_carb_dioxide	milligram per litre	8
+diss_carb_dioxide	parts-per-million	4
+diss_carb_dioxide	percentage	2
+diss_carb_dioxide	parts-per-million volt	1
+diss_hydrogen	dimensionless	132
+diss_hydrogen	unk	18
+diss_hydrogen		10
+diss_hydrogen	metre	1
+diss_hydrogen	percentage	1
+diss_inorg_carb	dimensionless	1363
+diss_inorg_carb	milligram per litre	45
+diss_inorg_carb		20
+diss_inorg_carb	atomic mass unit mole per litre	14
+diss_inorg_carb	atomic mass unit mole	12
+diss_inorg_carb	unk	6
+diss_inorg_carb	microsecond mole per kilogram	4
+diss_inorg_carb	metre	3
+diss_inorg_carb	atomic mass unit mole per kilogram	2
+diss_inorg_nitro	dimensionless	358
+diss_inorg_nitro	unk mole per litre	114
+diss_inorg_nitro	micrometre	43
+diss_inorg_nitro		6
+diss_inorg_nitro	mole per litre	1
+diss_inorg_phosp	dimensionless	551
+diss_inorg_phosp	unk mole per litre	87
+diss_inorg_phosp		19
+diss_inorg_phosp	mole per litre	1
+diss_org_carb	dimensionless	1981
+diss_org_carb	milligram per litre	279
+diss_org_carb	micrometre coulomb	136
+diss_org_carb	mole per litre	95
+diss_org_carb		61
+diss_org_carb	parts-per-million	32
+diss_org_carb	micrometre	31
+diss_org_carb	microgram per litre	29
+diss_org_carb	milligram	29
+diss_org_carb	milligram per cubic decimetre	17
+diss_org_carb	microsecond mole per litre	8
+diss_org_carb	metre	5
+diss_org_carb	gram per litre	1
+diss_org_nitro	dimensionless	384
+diss_org_nitro	milligram per litre	88
+diss_org_nitro	micrometre	50
+diss_org_nitro		10
+diss_org_nitro	percentage	4
+diss_org_nitro	microsecond mole per litre	3
+diss_org_nitro	mole per litre	1
+diss_oxygen	dimensionless	2523
+diss_oxygen	milligram per litre	876
+diss_oxygen	mole per kilogram	421
+diss_oxygen	percentage	289
+diss_oxygen	unk mole per litre	125
+diss_oxygen	unk	105
+diss_oxygen		70
+diss_oxygen	set	51
+diss_oxygen	milligram litre	47
+diss_oxygen	atomic mass unit mole per litre	29
+diss_oxygen	micrometre	22
+diss_oxygen	cubic centimetre per litre	16
+diss_oxygen	metre	8
+diss_oxygen	atomic mass unit mole per kilogram	6
+diss_oxygen	metre mole	5
+diss_oxygen	microsecond mole	5
+diss_oxygen	milligram	2
+diss_oxygen	parts-per-million	1
+down_par	microsecond mole per square metre per second	47
+down_par	dimensionless	38
+down_par		4
+efficiency_percent	percentage	46
+efficiency_percent	dimensionless	14
+efficiency_percent		9
+efficiency_percent	per percentage to the 90 percentage	1
+elev	dimensionless	9441
+elev	metre	4097
+elev		601
+elev	foot	298
+elev	unk second litre	58
+elev	centimetre	48
+elev	millibarn second litre	20
+elev	metre ampere-turn	10
+elev	minute of arc	10
+elev	millisecond litre	8
+elev	megaampere siemens litre	7
+elev	kilometre	4
+elev	metre second	2
+elev	millibarn second farad	2
+elev	hour	1
+elev	inch	1
+elev	megaampere millisecond litre	1
+elev	megaton	1
+elev	millimetre	1
+elev	millisecond metre	1
+elev	millisecond nanometre	1
+elev	minute	1
+elev	per percentage to the 7	1
+elev	second of arc	1
+elev	square kilometre	1
+elev	unk	1
+elev	year second litre	1
+fluor	dimensionless	921
+fluor	milligram per cubic metre	39
+fluor		31
+fluor	milligram per litre	4
+fluor	parts-per-million	3
+glucosidase_act		8
+host_body_mass_index	dimensionless	13873
+host_body_mass_index		127
+host_body_mass_index	kilogram per square metre	25
+host_body_mass_index	gram	19
+host_body_mass_index	percentage	13
+host_body_temp	dimensionless	260
+host_body_temp		170
+host_body_temp	degree Celsius	148
+host_body_temp	coulomb	22
+host_body_temp	farad	3
+host_dry_mass	dimensionless	166
+host_dry_mass	milligram	110
+host_dry_mass	gram	16
+host_dry_mass		11
+host_height	dimensionless	1409
+host_height	centimetre	320
+host_height	metre	73
+host_height		49
+host_height	parts-per-million	2
+host_height	cubic unk	1
+host_height	foot	1
+host_height	gram	1
+host_height	unk to the 8	1
+host_length	dimensionless	393
+host_length	millimetre	273
+host_length		102
+host_length	centimetre	74
+host_length	metre	2
+host_pulse		201
+host_pulse	dimensionless	137
+host_pulse	base pair metre	1
+host_tot_mass	dimensionless	2834
+host_tot_mass	kilogram	335
+host_tot_mass	gram	285
+host_tot_mass		124
+host_tot_mass	milligram	24
+host_tot_mass	gram atomic mass unit tonne second	1
+host_tot_mass	pound-mass	1
+host_wet_mass		6
+host_wet_mass	gram	1
+humidity	dimensionless	73
+humidity	percentage	12
+humidity		6
+indust_eff_percent		9
+indust_eff_percent	dimensionless	2
+indust_eff_percent	percentage	2
+light_intensity	dimensionless	24
+light_intensity		14
+light_intensity	atomic mass unit mole per square metre per second	13
+light_intensity	lux	5
+light_intensity	mile speed of light roentgen oersted	2
+light_intensity	unk mole per square metre	1
+magnesium	dimensionless	2563
+magnesium	milligram per litre	169
+magnesium	parts-per-million	85
+magnesium	unk	38
+magnesium		11
+magnesium	atomic mass unit mole per litre	6
+magnesium	metre	4
+magnesium	gram per litre	1
+magnesium	microgram per litre	1
+magnesium	micrometre	1
+magnesium	milligram per kilogram	1
+magnesium	percentage	1
+mean_frict_vel		9
+mean_frict_vel	dimensionless	1
+mean_frict_vel	metre per second	1
+mean_peak_frict_vel		9
+mean_peak_frict_vel	dimensionless	1
+mean_peak_frict_vel	metre per second	1
+methane	dimensionless	426
+methane	newton mole per litre	39
+methane	unk	34
+methane	milligram per litre	14
+methane	percentage	14
+methane		13
+methane	coulomb	2
+methane	metre	1
+microbial_biomass	dimensionless	1760
+microbial_biomass	milligram coulomb	132
+microbial_biomass	milligram coulomb per kilogram	113
+microbial_biomass	milligram per kilogram	43
+microbial_biomass		41
+microbial_biomass	atomic mass unit gram per gram	2
+microbial_biomass	milligram coulomb per litre	2
+nitrate	dimensionless	3076
+nitrate	milligram per litre	384
+nitrate	mole per litre	309
+nitrate	unk mole per litre	241
+nitrate	micrometre	118
+nitrate		110
+nitrate	unk	67
+nitrate	metre	33
+nitrate	microsecond mole per cubic decimetre	32
+nitrate	microgram per litre	28
+nitrate	atomic mass unit mole per litre	25
+nitrate	milligram newton per litre	22
+nitrate	milligram per kilogram	21
+nitrate	parts-per-million	20
+nitrate	milligram	9
+nitrate	atomic mass unit gram per litre	4
+nitrate	atomic mass unit mole	4
+nitrate	microsecond mole per litre	3
+nitrate	hour	2
+nitrate	gram per kilogram	1
+nitrite	dimensionless	1062
+nitrite	milligram per litre	162
+nitrite	unk mole per litre	86
+nitrite	micrometre	65
+nitrite		52
+nitrite	atomic mass unit mole per litre	25
+nitrite	microsecond mole per cubic decimetre	25
+nitrite	unk	12
+nitrite	milligram per kilogram	10
+nitrite	metre	7
+nitrite	milligram	5
+nitrite	atomic mass unit mole	4
+nitrite	parts-per-million	4
+nitrite	atomic mass unit gram per litre	3
+nitrite	microsecond mole per litre	3
+nitrite	mole per litre	1
+nitro	dimensionless	671
+nitro	atomic mass unit mole per litre	112
+nitro	milligram per litre	108
+nitro		25
+nitro	percentage	16
+nitro	gram per litre	5
+nitro	gram per square metre	2
+nitro	kilogram	2
+nitro	newton henry to the 4	2
+nitro	atomic mass unit roentgen unk	1
+nitro	gram per kilogram	1
+occup_samp	dimensionless	13
+occup_samp		7
+org_carb	dimensionless	313
+org_carb	milligram per litre	155
+org_carb	percentage	40
+org_carb		16
+org_carb	gram per litre	6
+org_carb	watt per watt	1
+org_matter	dimensionless	904
+org_matter	percentage	104
+org_matter	gram per kilogram	29
+org_matter		24
+org_matter	milligram per litre	16
+org_matter	milligram per kilogram	12
+org_matter	gram per gram	2
+org_matter	unk	2
+org_nitro	dimensionless	77
+org_nitro	atomic mass unit mole per kilogram	29
+org_nitro		11
+org_nitro	milligram per litre	6
+oxygen	dimensionless	859
+oxygen		56
+oxygen	kilopascal	13
+oxygen	milligram per litre	5
+oxygen	percentage	3
+oxygen	cubic centimetre per litre	2
+oxygen	micrometre	2
+part_org_carb	dimensionless	315
+part_org_carb	mole per litre	152
+part_org_carb	microgram per litre	124
+part_org_carb	atomic mass unit mole per litre	78
+part_org_carb	micrometre	62
+part_org_carb		21
+part_org_carb	microgram per cubic centimetre	4
+part_org_carb	microgram	3
+part_org_nitro	microgram per litre	119
+part_org_nitro	dimensionless	109
+part_org_nitro	mole per litre	81
+part_org_nitro	atomic mass unit mole per litre	70
+part_org_nitro	micrometre	48
+part_org_nitro		18
+part_org_nitro	microgram	3
+part_org_nitro	microgram per cubic centimetre	3
+petroleum_hydrocarb	milligram per litre	17
+petroleum_hydrocarb		16
+petroleum_hydrocarb	dimensionless	12
+petroleum_hydrocarb	gram per kilogram	3
+petroleum_hydrocarb	percentage volt per volt	3
+petroleum_hydrocarb	percentage	2
+ph	dimensionless	3848
+ph		321
+ph	milligram per litre	91
+ph	minute of arc	11
+ph	second	1
+phosphate	dimensionless	1896
+phosphate	atomic mass unit mole per litre	384
+phosphate	micrometre	191
+phosphate	milligram per litre	135
+phosphate	unk mole per litre	118
+phosphate		70
+phosphate	atomic mass unit mole per kilogram	39
+phosphate	microsecond mole per cubic decimetre	34
+phosphate	atomic mass unit gram per litre	33
+phosphate	unk	31
+phosphate	milligram per kilogram	21
+phosphate	microgram per litre	17
+phosphate	parts-per-million	13
+phosphate	gram per kilogram	6
+phosphate	microsecond mole per litre	5
+phosphate	atomic mass unit mole	4
+phosphate	gram per litre	2
+phosphate	milligram	2
+phosphate	metre	1
+phosphate	mole per litre	1
+photon_flux		4
+photon_flux	dimensionless	1
+potassium	dimensionless	1501
+potassium	milligram per litre	183
+potassium	parts-per-million	93
+potassium		17
+potassium	atomic mass unit mole per kilogram	9
+potassium	unk	9
+potassium	atomic mass unit mole per litre	6
+potassium	gram per kilogram	6
+potassium	metre	6
+potassium	gram per litre	2
+potassium	milligram per kilogram	1
+potassium	percentage	1
+pressure	dimensionless	648
+pressure	decibel year south african rand	64
+pressure	decibel year roentgen	29
+pressure	decibel	22
+pressure		13
+pressure	standard atmosphere	3
+pressure	bar	2
+pressure	millibarn year roentgen	2
+primary_prod	dimensionless	87
+primary_prod	microsecond mole coulomb per litre	21
+primary_prod		10
+redox_potential	millivolt	760
+redox_potential	dimensionless	363
+redox_potential		14
+rel_air_humidity	dimensionless	229
+rel_air_humidity		9
+rel_air_humidity	percentage	3
+salinity	dimensionless	5360
+salinity	penny second atomic mass unit	718
+salinity	poise siemens atomic mass unit	447
+salinity	parts-per-trillion	440
+salinity		149
+salinity	percentage	86
+salinity	gram per litre	47
+salinity	minute of arc	23
+salinity	gram per cubic decimetre	14
+salinity	milligram per litre	11
+salinity	parts-per-million	10
+salinity	per mille	4
+salinity	milligram per kilogram	2
+salinity	gram per kilogram	1
+salinity	litre	1
+salinity	per nanoampere	1
+salinity	per per mille to the 10 per mille	1
+salinity	per percentage to the 7	1
+salinity	poise siemens per siemens to the 78	1
+salinity	siemens	1
+samp_salinity	milligram per litre	62
+samp_salinity	siemens per metre	35
+samp_salinity	dimensionless	34
+samp_salinity		22
+samp_salinity	metre mole per litre	16
+samp_salinity	percentage	6
+samp_salinity	penny second atomic mass unit	5
+samp_salinity	millisecond per centimetre	3
+samp_salinity	parts-per-trillion	3
+samp_salinity	per mille	3
+samp_salinity	per per mille to the 10 per mille	1
+samp_salinity	poise siemens atomic mass unit	1
+samp_size	dimensionless	4095
+samp_size		1921
+samp_size	gram	1171
+samp_size	cubic centimetre	764
+samp_size	litre	537
+samp_size	milligram	467
+samp_size	centimetre	153
+samp_size	gross	143
+samp_size	cubic metre	104
+samp_size	megabyte	92
+samp_size	square centimetre	72
+samp_size	kilogram	59
+samp_size	atomic mass unit litre	57
+samp_size	base pair	56
+samp_size	megabarn	43
+samp_size	cubic millimetre	32
+samp_size	unk	28
+samp_size	millimetre	24
+samp_size	mega base pair	23
+samp_size	gauss	20
+samp_size	kilobarn	20
+samp_size	set	19
+samp_size	megapixel barn	17
+samp_size	square metre	15
+samp_size	giga base pair	9
+samp_size	micrometre	9
+samp_size	metre	8
+samp_size	gallon	7
+samp_size	atomic mass unit gram	5
+samp_size	gram atomic mass unit tonne second	5
+samp_size	microgram	5
+samp_size	speed of light year stere second	5
+samp_size	atomic mass unit metre	4
+samp_size	day	4
+samp_size	nanometre	4
+samp_size	pound-mass	3
+samp_size	coulomb farad atomic mass unit	2
+samp_size	cubic gram	2
+samp_size	gram second	2
+samp_size	gram to the 10	2
+samp_size	gram to the 11	2
+samp_size	gram to the 12	2
+samp_size	gram to the 4	2
+samp_size	gram to the 5	2
+samp_size	gram to the 6	2
+samp_size	gram to the 7	2
+samp_size	gram to the 8	2
+samp_size	gram to the 9	2
+samp_size	newton gram	2
+samp_size	ounce	2
+samp_size	percentage	2
+samp_size	second	2
+samp_size	second quintal centimetre	2
+samp_size	second watt attobarn second	2
+samp_size	square gram	2
+samp_size	astronomical unit per gram to the 12	1
+samp_size	bushel day second	1
+samp_size	byte	1
+samp_size	centimetre to the 10	1
+samp_size	centimetre to the 11	1
+samp_size	centimetre to the 12	1
+samp_size	centimetre to the 13	1
+samp_size	centimetre to the 14	1
+samp_size	centimetre to the 15	1
+samp_size	centimetre to the 16	1
+samp_size	centimetre to the 17	1
+samp_size	centimetre to the 18	1
+samp_size	centimetre to the 19	1
+samp_size	centimetre to the 4	1
+samp_size	centimetre to the 5	1
+samp_size	centimetre to the 6	1
+samp_size	centimetre to the 7	1
+samp_size	centimetre to the 8	1
+samp_size	centimetre to the 9	1
+samp_size	cubic centimetre ampere-turn	1
+samp_size	cubic centimetre second	1
+samp_size	cubic metre per day	1
+samp_size	cubic millimetre set	1
+samp_size	farad atomic mass unit newton gallon	1
+samp_size	gal	1
+samp_size	gauss atomic mass unit tonne second	1
+samp_size	gigametre	1
+samp_size	gram atomic mass unit tonne	1
+samp_size	gram millisecond	1
+samp_size	gram per square metre	1
+samp_size	gram to the 13	1
+samp_size	gram to the 14	1
+samp_size	gram to the 15	1
+samp_size	inch stere year roentgen	1
+samp_size	kelvin	1
+samp_size	kilobit	1
+samp_size	litre tonne	1
+samp_size	metre cubic metre	1
+samp_size	metre maxwell to the 6 millimetre	1
+samp_size	millibarn	1
+samp_size	milligram second	1
+samp_size	minute of arc	1
+samp_size	per litre to the 7 litre	1
+samp_size	roentgen	1
+samp_size	second of arc	1
+samp_size	second watt attobarn	1
+samp_size	set kelvin	1
+samp_size	siemens	1
+samp_size	south african rand	1
+samp_size	speed of light speed of light	1
+samp_size	square millimetre	1
+samp_size	ton	1
+samp_store_temp	dimensionless	90
+samp_store_temp		65
+samp_store_temp	degree Celsius	45
+samp_store_temp	coulomb	38
+samp_store_temp	degree angle	17
+samp_store_temp	degree angle coulomb	15
+samp_store_temp	kelvin	3
+samp_store_temp	ampere-turn	1
+samp_store_temp	farad	1
+samp_store_temp	speed of light	1
+samp_vol_we_dna_ext	dimensionless	867
+samp_vol_we_dna_ext	gram	235
+samp_vol_we_dna_ext	cubic centimetre	152
+samp_vol_we_dna_ext		122
+samp_vol_we_dna_ext	milligram	58
+samp_vol_we_dna_ext	litre	34
+samp_vol_we_dna_ext	cubic millimetre	9
+samp_vol_we_dna_ext	atomic mass unit litre	4
+samp_vol_we_dna_ext	newton gram	3
+samp_vol_we_dna_ext	cubic metre	2
+samp_vol_we_dna_ext	gross	2
+samp_vol_we_dna_ext	hour	1
+samp_vol_we_dna_ext	kilogram	1
+samp_vol_we_dna_ext	microgram	1
+samp_vol_we_dna_ext	millimetre	1
+samp_vol_we_dna_ext	newton gram per atomic mass unit per litre	1
+samp_vol_we_dna_ext	unk	1
+silicate	dimensionless	2178
+silicate	mole per litre	242
+silicate	unk mole per litre	234
+silicate	atomic mass unit mole per litre	164
+silicate	micrometre	136
+silicate		78
+silicate	microsecond mole per cubic decimetre	35
+silicate	atomic mass unit mole per kilogram	31
+silicate	microgram per litre	29
+silicate	milligram per litre	29
+silicate	unk	22
+silicate	microsecond mole per litre	6
+silicate	parts-per-million	1
+silicate	percentage	1
+size_frac	micrometre	39
+size_frac	dimensionless	32
+size_frac		22
+size_frac	millimetre	18
+size_frac	atomic mass unit metre	7
+size_frac	metre	4
+size_frac	unk	3
+size_frac	centimetre	2
+size_frac	base pair	1
+size_frac	cubic centimetre	1
+size_frac	kilobarn	1
+size_frac	unk micrometre	1
+slope_aspect	dimensionless	235
+slope_aspect	degree angle	22
+slope_aspect		19
+slope_aspect	ångström	2
+slope_aspect	percentage	1
+slope_gradient	dimensionless	296
+slope_gradient	percentage	7
+slope_gradient		6
+slope_gradient	degree angle	2
+sludge_retent_time	day	90
+sludge_retent_time	dimensionless	19
+sludge_retent_time		10
+sludge_retent_time	hour	2
+sludge_retent_time	month	2
+sludge_retent_time	dime	1
+sodium	dimensionless	890
+sodium	milligram per litre	170
+sodium	parts-per-million	49
+sodium	unk	45
+sodium		19
+sodium	metre	10
+sodium	atomic mass unit mole per kilogram	9
+sodium	atomic mass unit mole per litre	6
+sodium	percentage	2
+sodium	gram per litre	1
+solar_irradiance	dimensionless	6
+soluble_react_phosp	mole per litre	305
+soluble_react_phosp	microgram per litre	69
+soluble_react_phosp	dimensionless	53
+soluble_react_phosp	milligram per litre	15
+soluble_react_phosp	micrometre	6
+soluble_react_phosp		4
+sulfate	dimensionless	1077
+sulfate	milligram per litre	357
+sulfate	unk	162
+sulfate		26
+sulfate	milligram per kilogram	23
+sulfate	atomic mass unit mole per kilogram	9
+sulfate	parts-per-million	9
+sulfate	atomic mass unit mole per litre	6
+sulfate	micrometre	6
+sulfate	metre	4
+sulfate	gram per litre	2
+sulfate	atomic mass unit gram per litre	1
+sulfate	milligram	1
+sulfide	dimensionless	160
+sulfide	milligram per litre	27
+sulfide		25
+sulfide	micrometre	25
+sulfide	atomic mass unit mole per litre	18
+sulfide	unk	12
+sulfide	atomic mass unit mole per kilogram	8
+sulfide	microsecond mole per litre	3
+sulfide	parts-per-million	2
+surf_humidity		2
+surf_moisture		5
+surf_moisture_ph		2
+surf_temp	degree angle coulomb	342
+surf_temp		2
+suspend_part_matter	dimensionless	158
+suspend_part_matter		109
+suspend_part_matter	milligram per litre	95
+suspend_part_matter	nucleotide atomic mass unit	95
+suspend_part_matter	candela per square metre atomic mass unit	80
+suspend_part_matter	per square metre	19
+suspend_part_matter	newton gram per atomic mass unit per litre	3
+temp	dimensionless	10866
+temp	coulomb	2059
+temp		1746
+temp	degree Celsius	859
+temp	degree angle coulomb	396
+temp	degree angle	146
+temp	minute of arc	145
+temp	degree Celsius degree angle	14
+temp	farad	13
+temp	speed of light	9
+temp	day	6
+temp	hour	5
+temp	kelvin	5
+temp	minute of arc coulomb	4
+temp	coulomb degree angle	2
+temp	coulomb newton	2
+temp	degree angle byte	2
+temp	degree angle coulomb day	2
+temp	degree angle degree Celsius	2
+temp	coulomb ampere-turn	1
+temp	coulomb day	1
+temp	day gram coulomb	1
+temp	degree angle farad	1
+temp	degree angle roentgen	1
+temp	degree angle roentgen coulomb	1
+temp	degree angle speed of light	1
+temp	gauss litre atomic mass unit	1
+temp	micrometre	1
+temp	nanoampere penny	1
+temp	per nanoampere	1
+temp	per unk to the 16 degree Celsius	1
+temp	petayear	1
+temp	siemens	1
+temp	siemens to the 24	1
+temp	year	1
+texture	dimensionless	661
+texture		539
+texture	percentage	2
+tot_carb	dimensionless	635
+tot_carb	percentage	101
+tot_carb		16
+tot_depth_water_col	dimensionless	572
+tot_depth_water_col	metre	222
+tot_depth_water_col	centimetre	12
+tot_depth_water_col		7
+tot_depth_water_col	foot	1
+tot_diss_nitro	dimensionless	631
+tot_diss_nitro	microgram per litre	29
+tot_diss_nitro	milligram per litre	27
+tot_diss_nitro		5
+tot_diss_nitro	mole per litre	1
+tot_inorg_nitro		13
+tot_nitro	dimensionless	6371
+tot_nitro		235
+tot_nitro	percentage	212
+tot_nitro	milligram per litre	92
+tot_nitro	parts-per-million	70
+tot_nitro	kilogram per hectare	39
+tot_nitro	microsecond mole per cubic decimetre	35
+tot_nitro	milligram per kilogram	26
+tot_nitro	milligram per gram	21
+tot_nitro	gram per kilogram	18
+tot_nitro	microgram per litre	12
+tot_nitro	gram per litre	6
+tot_nitro	gram newton	4
+tot_nitro	milligram newton per gram	1
+tot_nitro	pound-mass	1
+tot_nitro	unk	1
+tot_org_carb	dimensionless	4927
+tot_org_carb	percentage	306
+tot_org_carb	parts-per-million	88
+tot_org_carb	gram per kilogram	69
+tot_org_carb		43
+tot_org_carb	milligram per kilogram	27
+tot_org_carb	milligram per gram	17
+tot_org_carb	coulomb per kilogram	12
+tot_org_carb	micrometre	12
+tot_org_carb	gram coulomb per kilogram	3
+tot_org_carb	milligram per litre	2
+tot_org_carb	milligram coulomb per gram	1
+tot_part_carb	dimensionless	184
+tot_part_carb		5
+tot_phosp	dimensionless	1104
+tot_phosp	milligram per litre	71
+tot_phosp		65
+tot_phosp	microsecond mole per cubic decimetre	31
+tot_phosp	gram	21
+tot_phosp	atomic mass unit gram per litre	12
+tot_phosp	microgram per litre	10
+tot_phosp	atomic mass unit mole per litre	1
+tot_phosphate	dimensionless	98
+tot_phosphate		11
+tot_phosphate	milligram per litre	7
+turbidity	dimensionless	442
+turbidity	nucleotide atomic mass unit	49
+turbidity	candela per square metre atomic mass unit	10
+turbidity		9
+turbidity	farad newton atomic mass unit	1
+turbidity	metre	1
+ventilation_rate		1
+ventilation_rate	hour	1
+water_content	dimensionless	1546
+water_content	percentage	63
+water_content		21
+water_content	hour	2
+water_current		11
+water_current	dimensionless	10
+water_current	volt	1
+wind_speed	dimensionless	80
+wind_speed	knot	37
+wind_speed	metre per second	14
+wind_speed		6

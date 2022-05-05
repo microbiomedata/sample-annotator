@@ -21,7 +21,15 @@ pd.set_option("display.max_columns", None)
 @click.option("--sheet_id", default="1QDeeUcDqXes69Y2RjU2aWgOpCVWo5OVsBX9MKmMqi_o")
 @click.option("--core_tab_gid", default="178015749")
 @click.option("--env_packs_tab_gid", default="750683809")
-def batch_q3(output_table, if_exists, input_table, database_file, sheet_id, core_tab_gid, env_packs_tab_gid):
+def batch_q3(
+        output_table,
+        if_exists,
+        input_table,
+        database_file,
+        sheet_id,
+        core_tab_gid,
+        env_packs_tab_gid,
+):
     # """
     # Gets slots, listed in config_tsv, from source_model and puts them in recipient_model
     # :param recipient_model:
@@ -30,6 +38,7 @@ def batch_q3(output_table, if_exists, input_table, database_file, sheet_id, core
     # :return:
     # """
 
+    print("setting options")
     pd.set_option("display.max_columns", None)
 
     # determine which INDC biosample fields/columns are applicable to q3 extraction
@@ -48,7 +57,9 @@ def batch_q3(output_table, if_exists, input_table, database_file, sheet_id, core
     curated_mvs = ["size_frac"]
 
     # parameterize these?
+    print("getting core")
     mixs_core_df = bu.get_df_from_gsheets_csv(sheet_id, core_tab_gid)
+    print("getting packages")
     mixs_env_packs_df = bu.get_df_from_gsheets_csv(sheet_id, env_packs_tab_gid)
 
     # print(mixs_core_df.columns)
@@ -60,6 +71,7 @@ def batch_q3(output_table, if_exists, input_table, database_file, sheet_id, core
     #       dtype='object')
 
     # what are the different kinds of Expected values and Value syntaxes?
+    print("tabulating expected values")
     temp = mixs_core_df["Expected value"].value_counts()
     temp = temp[temp > 1]
     # print(temp)
@@ -110,6 +122,7 @@ def batch_q3(output_table, if_exists, input_table, database_file, sheet_id, core
             "Expected value",
             "Value syntax",
             "Section",
+            "Preferred unit",
         ],
     ]
     mixs_core_mvs_df["Environmental package"] = None
@@ -133,6 +146,7 @@ def batch_q3(output_table, if_exists, input_table, database_file, sheet_id, core
             "Expected value",
             "Value syntax",
             "Section",
+            "Preferred unit",
             "Environmental package",
         ],
     ]
@@ -140,11 +154,30 @@ def batch_q3(output_table, if_exists, input_table, database_file, sheet_id, core
 
     mixs_all_mvs_df = pd.concat([mixs_core_mvs_df, mixs_env_packs_mvs_df])
 
+    # get unique pairs of fields and preferred units
+    mixs_pref_units = mixs_all_mvs_df[["Structured comment name", "Preferred unit"]]
+    mixs_pref_units.drop_duplicates(inplace=True)
+    mixs_pref_units.rename(columns={"Structured comment name": "column", "Preferred unit": "mixs_pref_unit"},
+                           inplace=True)
+    mixs_pref_units['mixs_pref_unit_split'] = mixs_pref_units['mixs_pref_unit'].str.split(',|;', regex=True)
+    mixs_pref_units_exploded = mixs_pref_units.explode(column="mixs_pref_unit_split")
+    mixs_pref_units_exploded = mixs_pref_units_exploded[['column', 'mixs_pref_unit_split']]
+    mixs_pref_units_exploded['mixs_pref_unit_split'] = mixs_pref_units_exploded['mixs_pref_unit_split'].str.strip()
+    mixs_pref_units_exploded.drop_duplicates(inplace=True)
+    mixs_pref_units_exploded.sort_values(by=['column', 'mixs_pref_unit_split'], ascending=[True, True], inplace=True)
+    mixs_pref_units_exploded.dropna(inplace=True)
+    mixs_pref_units_exploded.reset_index(drop=True, inplace=True)
+
+    # rejoin, for a single row per column and a pipe separated list of preferred units
+    mixs_pref_units = mixs_pref_units_exploded.groupby('column', as_index=False).agg({'mixs_pref_unit_split': '|'.join})
+    print(mixs_pref_units)
+    mixs_pref_units.rename(columns={"mixs_pref_unit_split": "mixs_pref_unit"},
+                           inplace=True)
+
     mixs_all_mvs = list(set(mixs_all_mvs_df["Structured comment name"]))
     mixs_all_mvs = mixs_all_mvs + curated_mvs
     mixs_all_mvs.sort()
 
-    print(database_file)
     con = sqlite3.connect(database_file)
     observed_cols = bu.get_sqlite_colnames(con, input_table)
 
@@ -156,7 +189,9 @@ def batch_q3(output_table, if_exists, input_table, database_file, sheet_id, core
         df_list.append(bu.do_q3_one_col(i, con, input_table))
     catted = pd.concat(df_list)
 
-    catted.to_sql(output_table, con, if_exists=if_exists, index=False)
+    merged = catted.merge(right=mixs_pref_units)
+
+    merged.to_sql(output_table, con, if_exists=if_exists, index=False)
 
 
 # if quantulum3 thought it saw multiple quantities with units, only the first is reported in this database table
