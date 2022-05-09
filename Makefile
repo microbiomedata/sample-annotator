@@ -1,6 +1,7 @@
 RUN = poetry run
 
-biosample_sqlite_file = ~/biosample_basex_data_good_subset.db
+#biosample_sqlite_file = ~/biosample_basex_data_good_subset.db
+biosample_sqlite_file = ~/Documents/biosample_basex.db
 
 .PHONY: test clean all
 
@@ -57,3 +58,8 @@ downloads/bibo.owl:
 assets/bibo_DocumentStatus.tsv: downloads/bibo.owl bin/robot.jar
 	java -jar bin/robot.jar query --input $< --query sparql/bibo_DocumentStatus.sparql $@
 	sed --in-place=.bak 's/^\?//' $@
+
+.PHONY: also_present
+
+also_present:
+	poetry run python3 utils/also-present.py $(biosample_sqlite_file)
