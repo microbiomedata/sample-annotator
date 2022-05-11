@@ -1,4 +1,5 @@
 import os
+import logging
 
 import pandas as pd
 
@@ -8,6 +9,11 @@ from tests import INPUT_DIR
 
 # path to GOLD API credentials file
 KEYPATH = os.path.join(INPUT_DIR, "gold-key.txt")
+
+
+logging.basicConfig(level=logging.INFO, format="%(message)s")
+logger = logging.getLogger(__name__)
+
 
 if __name__ == "__main__":
 
@@ -19,11 +25,15 @@ if __name__ == "__main__":
     )
 
     # load in csv into pandas df
-    pe_summary_df1 = pd.read_csv(emp500_pe_sheet1_path, sep="\t")
+    pe_summary_df1 = pd.read_csv(emp500_pe_sheet1_path, sep="\t", header=0)
 
     # remove underscore on Biosamples
-    pe_summary_df1["Biosample"] = pe_summary_df1["Biosample"].apply(
+    pe_summary_df1["Biosample"] = pe_summary_df1["Biosample_RunID"].apply(
         lambda x: x.split("_")[0]
+    )
+
+    pe_summary_df1["Run ID"] = pe_summary_df1["Biosample_RunID"].apply(
+        lambda x: x.split("_")[1]
     )
 
     # path to sheet2 of paired end EMP500 data
@@ -72,15 +82,18 @@ if __name__ == "__main__":
 
     cols_for_sheet1 = [
         "Biosample",
-        "colA",
-        "colB",
-        "colC",
+        "Run ID",
+        "Reads",
+        "Bases",
+        "Avg_Length",
         "projectGoldId",
         "biosampleGoldId",
         "sequencingStrategy",
     ]
 
     pe_gold_df1.to_csv(emp500_pe_merged_sheet1, columns=cols_for_sheet1, index=False)
+
+    logger.info(f"Results of merge on sheet1 can be found at: {emp500_pe_merged_sheet1}")
 
     # path to merged output for sheet2
     emp500_pe_merged_sheet2 = os.path.join(
@@ -109,3 +122,5 @@ if __name__ == "__main__":
     )
 
     pe_gold_df2.to_csv(emp500_pe_merged_sheet2, columns=cols_for_sheet2, index=False)
+    
+    logger.info(f"Results of merge on sheet2 can be found at: {emp500_pe_merged_sheet2}")
