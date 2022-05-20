@@ -1,38 +1,56 @@
 import requests
 import pandas as pd
 
-# get this from user
-session_cookie_val = ""
+import logging
 
-url = "https://data.dev.microbiomedata.org/api/metadata_submission"
+import click
+import click_log
 
-cookies = {"session": session_cookie_val}
-params = {'offset': 0,
-          'limit': 3}
+logger = logging.getLogger(__name__)
+click_log.basic_config(logger)
 
-response = requests.get(url, cookies=cookies)
-rj = response.json()
 
-# print(rj.keys())
-# # dict_keys(['count', 'results'])
+@click.command()
+@click_log.simple_verbosity_option(logger)
+@click.option("--session_cookie", required=True)
+def cli(session_cookie: str):
+    """
+    :param session_cookie:
+    :return:
+    """
 
-total_submissions = rj['count']
-submissions_list = rj['results']
+    url = "https://data.dev.microbiomedata.org/api/metadata_submission"
 
-# print(submissions_list[0].keys())
-# # dict_keys(['metadata_submission', 'status', 'id', 'author_orcid', 'created'])
+    cookies = {"session": session_cookie}
+    params = {"offset": 0, "limit": 3}
 
-external_keys = ['status', 'id', 'author_orcid', 'created']
-inner_key = 'metadata_submission'
+    response = requests.get(url, cookies=cookies)
+    rj = response.json()
 
-# print(submissions_list[0][inner_key].keys())
-# # ['template', 'studyForm', 'sampleData', 'multiOmicsForm'
+    # print(rj.keys())
+    # # dict_keys(['count', 'results'])
 
-# print(submissions_list[0][inner_key]['sampleData'])
-# # list of lists
+    total_submissions = rj["count"]
+    submissions_list = rj["results"]
 
-df = pd.DataFrame(submissions_list[0][inner_key]['sampleData'])
+    # print(submissions_list[0].keys())
+    # # dict_keys(['metadata_submission', 'status', 'id', 'author_orcid', 'created'])
 
-print(df)
+    external_keys = ["status", "id", "author_orcid", "created"]
+    inner_key = "metadata_submission"
 
-# for i in
+    # print(submissions_list[0][inner_key].keys())
+    # # ['template', 'studyForm', 'sampleData', 'multiOmicsForm'
+
+    # print(submissions_list[0][inner_key]['sampleData'])
+    # # list of lists
+
+    df = pd.DataFrame(submissions_list[0][inner_key]["sampleData"])
+
+    print(df)
+
+    # for i in
+
+
+if __name__ == '__main__':
+    cli()
