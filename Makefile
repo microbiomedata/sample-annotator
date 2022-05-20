@@ -1,6 +1,6 @@
 RUN = poetry run
 # SESSION_COOKIE? See https://github.com/microbiomedata/sample-annotator/issues/90
-SESSION_COOKIE = ""
+SESSION_COOKIE = $(shell cat local/SESSION_COOKIE.txt)
 
 biosample_sqlite_file = ~/biosample_basex_data_good_subset.db
 
@@ -61,6 +61,6 @@ assets/bibo_DocumentStatus.tsv: downloads/bibo.owl bin/robot.jar
 	sed --in-place=.bak 's/^\?//' $@
 
 .PHONY: get_metadata_submissions
-get_metadata_submissions.py:
+get_metadata_submissions:
 	$(RUN) python sample_annotator/clients/nmdc/get_metadata_submissions.py \
 		--session_cookie $(SESSION_COOKIE)
