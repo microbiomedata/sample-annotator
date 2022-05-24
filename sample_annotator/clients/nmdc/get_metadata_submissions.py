@@ -101,6 +101,10 @@ def cli(session_cookie: str):
         schema_source="https://raw.githubusercontent.com/microbiomedata/nmdc-schema/main/src/schema/nmdc.yaml"
     )
 
+    mixs_view = get_schema_view(
+        schema_source="https://raw.githubusercontent.com/GenomicsStandardsConsortium/mixs/main/model/schema/mixs.yaml"
+    )
+
     known_templates = get_known_templates()
 
     # david sparse 33d31996-171a-4fdf-b2ea-d3936b649529
@@ -109,6 +113,7 @@ def cli(session_cookie: str):
         metadata_dict=metadata_dict,
         study_id="822e290d-6837-4956-abb9-996dd5f6d8b9",
         dh_view=nmdc_dh_view,
+        mixs_view=mixs_view,
         nmdc_view=nmdc_view,
         known_templates=known_templates,
     )
@@ -138,11 +143,12 @@ def get_col_order(view: SchemaView, selected_class_name: str):
 
 
 def lol_to_frame(
-        metadata_dict,
-        study_id: str,
-        dh_view: SchemaView,
-        nmdc_view: SchemaView,
-        known_templates,
+    metadata_dict,
+    study_id: str,
+    dh_view: SchemaView,
+    mixs_view: SchemaView,
+    nmdc_view: SchemaView,
+    known_templates,
 ):
     re_mappings = {
         "samp_name": "name",
@@ -229,9 +235,17 @@ def lol_to_frame(
             bs_db.biosample_set.append(bs_attempt)
         # print(yaml_dumper.dumps(bs_db))
         print(json_dumper.dumps(bs_db))
-        print(f"unmapped: {unmapped}")
         print(f"string_slots: {string_slots}")
         print(f"other_ranges: {other_ranges}")
+
+        print(f"unmapped: {unmapped}")
+
+        mixs_classes = mixs_view.all_classes()
+        mixs_class_names = list(mixs_classes.keys())
+
+        mixs_defines = unmapped.intersection(set(mixs_class_names))
+
+        print(f"mixs_defines: {mixs_defines}")
 
 
 def get_known_orcids():
