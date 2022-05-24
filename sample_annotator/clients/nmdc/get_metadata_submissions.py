@@ -45,6 +45,7 @@ def cli(session_cookie: str):
     params = {"offset": 0, "limit": 99}
 
     response = requests.get(url, cookies=cookies, params=params)
+
     rj = response.json()
 
     # print(rj.keys())
@@ -105,13 +106,16 @@ def cli(session_cookie: str):
 
     # david sparse 33d31996-171a-4fdf-b2ea-d3936b649529
     # pajau 822e290d-6837-4956-abb9-996dd5f6d8b9
-    lol_to_frame(
+    bs_db = lol_to_validatable(
         metadata_dict=metadata_dict,
         study_id="822e290d-6837-4956-abb9-996dd5f6d8b9",
         dh_view=nmdc_dh_view,
         nmdc_view=nmdc_view,
         known_templates=known_templates,
     )
+
+    # print(yaml_dumper.dumps(bs_db))
+    json_dumper.dump(element=bs_db, to_file="bs_db.json")
 
 
 def get_schema_view(schema_source: str):
@@ -137,13 +141,13 @@ def get_col_order(view: SchemaView, selected_class_name: str):
     return list(final_frame["slot"])
 
 
-def lol_to_frame(
-        metadata_dict,
-        study_id: str,
-        dh_view: SchemaView,
-        nmdc_view: SchemaView,
-        known_templates,
-):
+def lol_to_validatable(
+    metadata_dict,
+    study_id: str,
+    dh_view: SchemaView,
+    nmdc_view: SchemaView,
+    known_templates,
+) -> Database:
     re_mappings = {
         "samp_name": "name",
         "soil_horizon": "horizon",
@@ -227,11 +231,12 @@ def lol_to_frame(
                 else:
                     unmapped.add(k)
             bs_db.biosample_set.append(bs_attempt)
-        # print(yaml_dumper.dumps(bs_db))
-        print(json_dumper.dumps(bs_db))
+
         print(f"unmapped: {unmapped}")
         print(f"string_slots: {string_slots}")
         print(f"other_ranges: {other_ranges}")
+
+        return bs_db
 
 
 def get_known_orcids():
