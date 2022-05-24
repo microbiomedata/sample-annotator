@@ -1,3 +1,5 @@
+import pprint
+
 import requests
 import pandas as pd
 
@@ -18,10 +20,14 @@ from nmdc_schema.nmdc import (
     Database,
 )
 
+import yaml
+
 logger = logging.getLogger(__name__)
 click_log.basic_config(logger)
 
 pd.set_option("display.max_columns", None)
+
+# todo: lots of hardcoded file names etc
 
 
 # todo where does this warning come from?
@@ -102,17 +108,26 @@ def cli(session_cookie: str):
         schema_source="https://raw.githubusercontent.com/microbiomedata/nmdc-schema/main/src/schema/nmdc.yaml"
     )
 
+    mixs_view = get_schema_view(
+        schema_source="https://raw.githubusercontent.com/GenomicsStandardsConsortium/mixs/main/model/schema/mixs.yaml"
+    )
+
     known_templates = get_known_templates()
 
     # david sparse 33d31996-171a-4fdf-b2ea-d3936b649529
     # pajau 822e290d-6837-4956-abb9-996dd5f6d8b9
-    bs_db = lol_to_validatable(
+
+    bs_db, instantiation_log = lol_to_validatable(
         metadata_dict=metadata_dict,
         study_id="822e290d-6837-4956-abb9-996dd5f6d8b9",
         dh_view=nmdc_dh_view,
+        mixs_view=mixs_view,
         nmdc_view=nmdc_view,
         known_templates=known_templates,
     )
+
+    with open('instantiation_log.yml', 'w') as outfile:
+        yaml.dump(instantiation_log, outfile, default_flow_style=False)
 
     # print(yaml_dumper.dumps(bs_db))
     json_dumper.dump(element=bs_db, to_file="bs_db.json")
@@ -145,9 +160,11 @@ def lol_to_validatable(
     metadata_dict,
     study_id: str,
     dh_view: SchemaView,
+    mixs_view: SchemaView,
     nmdc_view: SchemaView,
     known_templates,
-) -> Database:
+):
+    # -> Database
     re_mappings = {
         "samp_name": "name",
         "soil_horizon": "horizon",
@@ -232,11 +249,32 @@ def lol_to_validatable(
                     unmapped.add(k)
             bs_db.biosample_set.append(bs_attempt)
 
-        print(f"unmapped: {unmapped}")
-        print(f"string_slots: {string_slots}")
-        print(f"other_ranges: {other_ranges}")
+        string_slots = set_to_list(string_slots)
 
-        return bs_db
+        mixs_slots = mixs_view.all_slots()
+        mixs_slot_names = list(mixs_slots.keys())
+        mixs_defines = unmapped.intersection(set(mixs_slot_names))
+        dh_defines = unmapped - mixs_defines
+
+        dh_defines = set_to_list(dh_defines)
+        mixs_defines = set_to_list(mixs_defines)
+
+        instantiation_log = {
+            "template": known_template,
+            "string_slots": string_slots,
+            "other_ranges": other_ranges,
+            "mixs_defines": mixs_defines,
+            "dh_defines": dh_defines,
+        }
+
+        return bs_db, instantiation_log
+
+
+def set_to_list(set_input, do_sort=True):
+    temp = list(set_input)
+    if do_sort:
+        temp.sort()
+    return temp
 
 
 def get_known_orcids():
