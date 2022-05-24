@@ -60,7 +60,7 @@ assets/bibo_DocumentStatus.tsv: downloads/bibo.owl bin/robot.jar
 	java -jar bin/robot.jar query --input $< --query sparql/bibo_DocumentStatus.sparql $@
 	sed --in-place=.bak 's/^\?//' $@
 
-.PHONY: get_metadata_submissions
-get_metadata_submissions:
+bs_db.json:
 	$(RUN) python sample_annotator/clients/nmdc/get_metadata_submissions.py \
-		--session_cookie $(SESSION_COOKIE)
+		--session_cookie $(SESSION_COOKIE) \
+		--study_id "822e290d-6837-4956-abb9-996dd5f6d8b9"

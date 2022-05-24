@@ -36,12 +36,18 @@ pd.set_option("display.max_columns", None)
 
 # todo add click help and better docstrings
 #  turn the requests params into click options (with defaults)
+# david sparse 33d31996-171a-4fdf-b2ea-d3936b649529
+# pajau 822e290d-6837-4956-abb9-996dd5f6d8b9
 @click.command()
 @click_log.simple_verbosity_option(logger)
 @click.option("--session_cookie", required=True)
-def cli(session_cookie: str):
+@click.option("--study_id", required=True)
+@click.option("--data_out", default="bs_db.json")
+def cli(session_cookie: str, study_id: str, data_out: str):
     """
     :param session_cookie:
+    :param study_id:
+    :param data_out:
     :return:
     """
 
@@ -114,23 +120,20 @@ def cli(session_cookie: str):
 
     known_templates = get_known_templates()
 
-    # david sparse 33d31996-171a-4fdf-b2ea-d3936b649529
-    # pajau 822e290d-6837-4956-abb9-996dd5f6d8b9
-
     bs_db, instantiation_log = lol_to_validatable(
         metadata_dict=metadata_dict,
-        study_id="822e290d-6837-4956-abb9-996dd5f6d8b9",
+        study_id=study_id,
         dh_view=nmdc_dh_view,
         mixs_view=mixs_view,
         nmdc_view=nmdc_view,
         known_templates=known_templates,
     )
 
-    with open('instantiation_log.yml', 'w') as outfile:
+    with open("instantiation_log.yml", "w") as outfile:
         yaml.dump(instantiation_log, outfile, default_flow_style=False)
 
     # print(yaml_dumper.dumps(bs_db))
-    json_dumper.dump(element=bs_db, to_file="bs_db.json")
+    json_dumper.dump(element=bs_db, to_file=data_out)
 
 
 def get_schema_view(schema_source: str):
