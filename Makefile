@@ -62,9 +62,18 @@ assets/bibo_DocumentStatus.tsv: downloads/bibo.owl bin/robot.jar
 
 .PHONY: clean_loosies
 clean_loosies:
-	rm -rf bs_db.json instantiation_log.yml submission_frame.tsv
+	rm -rf bs_db.json instantiation_log.yml submission_frame.tsv sample_data.tsv
 
 bs_db.json:
+	# mam cc498964-d1da-416d-b353-aecf5f6c749d: only 2 rows but completes and validates
+	# 68.4%
+	# mam c3870c75-5f0b-47da-a9f3-b4e799c79647 3 rows but 99.8% empty
+	# pv 49e40955-31c7-44a7-9e31-8499335019e6 and 822e290d-6837-4956-abb9-996dd5f6d8b9
+	# 17 rows 70% empty,
+	#   ValueError: Unknown AnalysisTypeEnum enumeration code: metagenomics;metaproteomics
 	$(RUN) python sample_annotator/clients/nmdc/get_metadata_submissions.py \
 		--session_cookie $(SESSION_COOKIE) \
-		--study_id "822e290d-6837-4956-abb9-996dd5f6d8b9"
+		--study_id "cc498964-d1da-416d-b353-aecf5f6c749d"
+	$(RUN) linkml-validate \
+		--target-class Database \
+		--schema /home/mark/gitrepos/nmdc-schema/src/schema/nmdc.yaml bs_db.json

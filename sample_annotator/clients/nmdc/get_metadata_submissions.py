@@ -45,12 +45,20 @@ pd.set_option("display.max_columns", None)
 @click.option("--study_id", required=True)
 @click.option("--data_out", default="bs_db.json")
 @click.option("--known_template_tsv", default="known_templates.tsv")
-def cli(session_cookie: str, study_id: str, data_out: str, known_template_tsv: str):
+@click.option("--known_orcids_tsv", default="known_orcids.tsv")
+def cli(
+    session_cookie: str,
+    study_id: str,
+    data_out: str,
+    known_template_tsv: str,
+    known_orcids_tsv: str,
+):
     """
     :param session_cookie:
     :param study_id:
     :param data_out:
     :param known_template_tsv:
+    :param known_orcids_tsv:
     :return:
     """
 
@@ -114,6 +122,12 @@ def cli(session_cookie: str, study_id: str, data_out: str, known_template_tsv: s
             "lol": i[inner_key]["sampleData"],
         }
     df = pd.DataFrame(submission_lol)
+
+    known_orcids_frame = get_known_orcids(known_orcids_tsv=known_orcids_tsv)
+
+    df = df.merge(
+        right=known_orcids_frame, how="left", left_on="author_orcid", right_on="orcid"
+    )
 
     df.to_csv("submission_frame.tsv", sep="\t", index=False)
 
@@ -182,6 +196,11 @@ def lol_to_validatable(
     claimed_template = metadata_dict[study_id]["template"]
     lol = metadata_dict[study_id]["lol"]
     df = pd.DataFrame(lol)
+
+    nans = df.isna().mean().mul(100).mean()
+    print(nans)
+
+    df.to_csv("sample_data.tsv", sep="\t", index=False)
     # todo "template" is really just the environment
     # todo also need to include omicsProcessingTypes
     #  which is a list and will require some additional logic
@@ -264,7 +283,6 @@ def lol_to_validatable(
                         type(dh_view.get_element(current_range)).class_name
                         == EnumDefinition.class_name
                     ):
-                        print(current_range)
                         instantiated_bs[expected_key] = v
                     elif current_range == "string":
                         instantiated_bs[expected_key] = v
@@ -311,10 +329,10 @@ def set_to_list(set_input, do_sort=True):
     return temp
 
 
-def get_known_orcids():
+def get_known_orcids(known_orcids_tsv: str):
     # todo there's probably a better place for this
     #  even an inline dict?
-    known_orcids = pd.read_csv("../../../known_orcids.tsv", sep="\t")
+    known_orcids = pd.read_csv(known_orcids_tsv, sep="\t")
     # return a dict instead?
     return known_orcids
 
