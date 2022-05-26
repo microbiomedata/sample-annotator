@@ -1,4 +1,5 @@
 import pprint
+import re
 
 import requests
 import pandas as pd
@@ -19,39 +20,74 @@ from nmdc_schema.nmdc import (
     TimestampValue,
     GeolocationValue,
     Database,
+    OntologyClass,
 )
 
 import yaml
+from quantulum3 import parser
 
 logger = logging.getLogger(__name__)
 click_log.basic_config(logger)
 
 pd.set_option("display.max_columns", None)
 
-# todo: lots of hardcoded file names etc
+dh_to_nmdc_name_mappings = {
+    "samp_name": "name",
+    "soil_horizon": "horizon",
+    "prev_land_use_meth": "previous_land_use_meth",
+    "samp_collec_device": "samp_collect_device",
+}
 
+
+# todo repairs
+#  TextValue
+#    none? leave as has raw value?
+#  TimestampValue
+#    doesn't actually have any structured slots!
+
+# todo could include sample data sparseness in submission frame
+
+# todo requesting hardcoded 99 pages of submissions
+#   1) at some point there will be more and pages will need to be joined
+#   2) could there be so many that they shouldn't be joined into one huge in memory object?
+
+# todo: lots of hardcoded file names etc
 
 # todo where does this warning come from?
 #  mixs namespace is already mapped to https://w3id.org/mixs/terms/ - Mapping to https://w3id.org/gensc/ ignored
 
-
 # todo add click help and better docstrings
 #  turn the requests params into click options (with defaults)
-# david sparse 33d31996-171a-4fdf-b2ea-d3936b649529
-# pajau 822e290d-6837-4956-abb9-996dd5f6d8b9
 @click.command()
 @click_log.simple_verbosity_option(logger)
 @click.option("--session_cookie", required=True)
 @click.option("--study_id", required=True)
-@click.option("--data_out", default="bs_db.json")
-@click.option("--known_template_tsv", default="known_templates.tsv")
-@click.option("--known_orcids_tsv", default="known_orcids.tsv")
+@click.option("--data_out", default="assets/out/biosample_collection.json")
+@click.option("--known_template_tsv", default="assets/in/known_templates.tsv")
+@click.option("--known_orcids_tsv", default="assets/in/known_orcids.tsv")
+@click.option("--instantiation_log_yaml", default="assets/out/instantiation_log.yaml")
+@click.option("--submission_frame_tsv", default="assets/out/submission_frame.tsv")
+@click.option(
+    "--api_url", default="https://data.dev.microbiomedata.org/api/metadata_submission"
+)
+@click.option("--api_offset", default=0)
+@click.option("--api_limit", default=99)
+@click.option(
+    "--single_study_sample_metadata_tsv",
+    default="assets/out/single_study_sample_metadata.tsv",
+)
 def cli(
     session_cookie: str,
     study_id: str,
     data_out: str,
     known_template_tsv: str,
     known_orcids_tsv: str,
+    instantiation_log_yaml: str,
+    submission_frame_tsv: str,
+    api_url: str,
+    api_offset: str,
+    api_limit: str,
+    single_study_sample_metadata_tsv: str,
 ):
     """
     :param session_cookie:
@@ -59,12 +95,16 @@ def cli(
     :param data_out:
     :param known_template_tsv:
     :param known_orcids_tsv:
+    :param instantiation_log_yaml:
+    :param submission_frame_tsv:
+    :param api_url:
+    :param api_offset:
+    :param api_limit:
+    :param single_study_sample_metadata_tsv:
     :return:
     """
 
-    url = "https://data.dev.microbiomedata.org/api/metadata_submission"
-
-    nmdc_dh_view = get_schema_view(
+    nmdc_submissions_view = get_schema_view(
         schema_source="https://microbiomedata.github.io/sheets_and_friends/template/nmdc_dh/source/nmdc_dh.yaml"
     )
 
@@ -78,26 +118,59 @@ def cli(
         schema_source="https://raw.githubusercontent.com/GenomicsStandardsConsortium/mixs/main/model/schema/mixs.yaml"
     )
 
-    cookies = {"session": session_cookie}
-    params = {"offset": 0, "limit": 99}
+    submissions_frame, metadata_dict = get_study_and_samples(
+        url=api_url,
+        params={"offset": api_offset, "limit": api_limit},
+        cookies={"session": session_cookie},
+        known_orcids_tsv=known_orcids_tsv,
+    )
 
+    submissions_frame.to_csv(submission_frame_tsv, sep="\t", index=False)
+
+    bs_db, instantiation_log, single_study_sample_metadata = lol_to_validatable(
+        metadata_dict=metadata_dict,
+        study_id=study_id,
+        dh_view=nmdc_submissions_view,
+        mixs_view=mixs_view,
+        nmdc_view=nmdc_view,
+        known_template_tsv=known_template_tsv,
+    )
+
+    with open(instantiation_log_yaml, "w") as outfile:
+        yaml.dump(instantiation_log, outfile, default_flow_style=False)
+
+    json_dumper.dump(element=bs_db, to_file=data_out)
+
+    bsm_sparsity = single_study_sample_metadata.isna().mean().mul(100).mean().round()
+
+    logger.info(f"Study {study_id}'s biosample metadata is {bsm_sparsity}% sparse")
+
+    single_study_sample_metadata.to_csv(
+        single_study_sample_metadata_tsv, sep="\t", index=False
+    )
+
+
+def get_study_and_samples(url, params, cookies, known_orcids_tsv):
     response = requests.get(url, cookies=cookies, params=params)
-
     rj = response.json()
-
     # print(rj.keys())
     # # dict_keys(['count', 'results'])
 
     # total_submissions = rj["count"]
     # print(f"submission count: {total_submissions}")
-
     submissions_list = rj["results"]
-
     # print(submissions_list[0].keys())
     # # dict_keys(['metadata_submission', 'status', 'id', 'author_orcid', 'created'])
 
     # external_keys = ["status", "id", "author_orcid", "created"]
+
     inner_key = "metadata_submission"
+
+    # # print(submissions_list[0][inner_key].keys())
+    # # # ['template', 'studyForm', 'sampleData', 'multiOmicsForm'
+    #
+    # # print(submissions_list[0][inner_key]['sampleData'])
+    # # # list of lists
 
     submission_lol = []
     metadata_dict = {}
@@ -129,30 +202,60 @@ def cli(
         right=known_orcids_frame, how="left", left_on="author_orcid", right_on="orcid"
     )
 
-    df.to_csv("submission_frame.tsv", sep="\t", index=False)
+    return df, metadata_dict
 
-    # # print(submissions_list[0][inner_key].keys())
-    # # # ['template', 'studyForm', 'sampleData', 'multiOmicsForm'
-    #
-    # # print(submissions_list[0][inner_key]['sampleData'])
-    # # # list of lists
 
-    known_templates = get_known_templates(known_template_tsv)
+def process_qv(raw_value: str):
+    # todo more than one qv get parsed out?
+    # todo units are expressed as words. convert to symbols?
+    # todo units my be surprising, like Coulombs for degrees Celsius
+    qv = QuantityValue(has_raw_value=raw_value)
+    quants = parser.parse(raw_value)
+    if len(quants) > 0:
+        quant = quants[0]
+        if quant.uncertainty:
+            qv.has_minimum_numeric_value = quant.value - quant.uncertainty
+            qv.has_maximum_numeric_value = quant.value + quant.uncertainty
+        else:
+            qv.has_numeric_value = quant.value
+        if quant.unit and quant.unit.name != "dimensionless":
+            qv.has_unit = quant.unit.name
+    return qv
 
-    bs_db, instantiation_log = lol_to_validatable(
-        metadata_dict=metadata_dict,
-        study_id=study_id,
-        dh_view=nmdc_dh_view,
-        mixs_view=mixs_view,
-        nmdc_view=nmdc_view,
-        known_templates=known_templates,
-    )
 
-    with open("instantiation_log.yml", "w") as outfile:
-        yaml.dump(instantiation_log, outfile, default_flow_style=False)
+def extract_lat_lon(raw_value: str):
+    # if DH validation worked,
+    # should be one decimal value, then a single whitespace, then another decimal value
+    splitted = raw_value.split(" ")
+    decimals = [float(i) for i in splitted]
+    if (
+        len(decimals) == 2
+        and decimals[0] > -90
+        and decimals[0] < 90
+        and decimals[1] > -180
+        and decimals[1] < 180
+    ):
+        gv = GeolocationValue(
+            has_raw_value=raw_value, latitude=decimals[0], longitude=decimals[1]
+        )
+        return gv
 
-    # print(yaml_dumper.dumps(bs_db))
-    json_dumper.dump(element=bs_db, to_file=data_out)
+
+def extract_ctv(raw_value: str):
+    # ____mediterranean shrubland biome [ENVO:01000217]
+    # todo could be more than one term id
+    #  pipe or semicolon separated?
+    #  or just one big mess?
+    #  in any case, could be label only, id only, matching label and id, mismatch...
+    #  check ontology owner to see if term is still active and label/id match?
+    underscoreless = re.sub(pattern=r"^_*\s*", repl="", string=raw_value)
+    p = re.compile(r"\[(.*)\]")
+    term_id = p.findall(underscoreless)
+    if term_id:
+        label = underscoreless.replace(f"[{term_id[0]}]", "")
+        label = label.strip()
+        oc = OntologyClass(id=term_id[0], name=label)
+        return oc
 
 
 def get_schema_view(schema_source: str):
@@ -160,7 +263,7 @@ def get_schema_view(schema_source: str):
     return schema_view
 
 
-def get_col_order(view: SchemaView, selected_class_name: str):
+def get_known_col_names(view: SchemaView, selected_class_name: str):
     # are induced slots too much here? in what way?
     cis = view.class_induced_slots(selected_class_name)
     lod = []
@@ -184,23 +287,13 @@ def lol_to_validatable(
     dh_view: SchemaView,
     mixs_view: SchemaView,
     nmdc_view: SchemaView,
-    known_templates,
+    known_template_tsv,
 ):
-    # -> Database
-    re_mappings = {
-        "samp_name": "name",
-        "soil_horizon": "horizon",
-        "prev_land_use_meth": "previous_land_use_meth",
-        "samp_collec_device": "samp_collect_device",
-    }
+    known_templates = get_known_templates(known_template_tsv)
     claimed_template = metadata_dict[study_id]["template"]
     lol = metadata_dict[study_id]["lol"]
     df = pd.DataFrame(lol)
 
-    nans = df.isna().mean().mul(100).mean()
-    print(nans)
-
-    df.to_csv("sample_data.tsv", sep="\t", index=False)
     # todo "template" is really just the environment
     # todo also need to include omicsProcessingTypes
     #  which is a list and will require some additional logic
@@ -219,7 +312,7 @@ def lol_to_validatable(
         # could have been a dict comprehension one-liner
         bs_induced_slot_dict = dict(zip(bs_induced_slot_names, bs_induced_slots))
         known_template = known_templates[study_id]
-        col_order = get_col_order(view=dh_view, selected_class_name=known_template)
+        col_order = get_known_col_names(view=dh_view, selected_class_name=known_template)
         df.columns = col_order
         biosample_list = df.to_dict(orient="records")
         unmapped = set()
@@ -243,48 +336,62 @@ def lol_to_validatable(
             #     # not doing anything special for multivalued slots yet
             #     # id vs source_mat_id
             #     # what value would be best for part_of?
+            # todo the MIxS env triad terms are probably getting overwritten in the loop below
             instantiated_bs = Biosample(
                 id=current_biosample["source_mat_id"],
                 part_of=[study_id],
                 env_broad_scale=ControlledTermValue(
-                    has_raw_value=current_biosample["env_broad_scale"]
+                    has_raw_value=current_biosample["env_broad_scale"],
+                    term=extract_ctv(current_biosample["env_broad_scale"]),
                 ),
                 env_local_scale=ControlledTermValue(
-                    has_raw_value=current_biosample["env_local_scale"]
+                    has_raw_value=current_biosample["env_local_scale"],
+                    term=extract_ctv(current_biosample["env_local_scale"]),
                 ),
                 env_medium=ControlledTermValue(
-                    has_raw_value=current_biosample["env_medium"]
+                    has_raw_value=current_biosample["env_medium"],
+                    term=extract_ctv(current_biosample["env_medium"]),
                 ),
             )
             for k, v in current_biosample.items():
                 # expected_key = None
-                if k in re_mappings:
-                    expected_key = re_mappings[k]
+                if k in dh_to_nmdc_name_mappings:
+                    expected_key = dh_to_nmdc_name_mappings[k]
                 else:
                     expected_key = k
                 if expected_key in bs_induced_slot_dict:
                     current_range = bs_induced_slot_dict[expected_key].range
                     if current_range == ControlledTermValue.class_name:
+                        if v:
+                            oc = extract_ctv(v)
+                        else:
+                            oc = None
                         instantiated_bs[expected_key] = ControlledTermValue(
-                            has_raw_value=v
+                            has_raw_value=v, term=oc
                         )
                     elif current_range == GeolocationValue.class_name:
-                        instantiated_bs[expected_key] = GeolocationValue(
-                            has_raw_value=v
-                        )
+                        gv = extract_lat_lon(v)
+                        if gv:
+                            instantiated_bs[expected_key] = gv
+                        else:
+                            instantiated_bs[expected_key] = GeolocationValue(
+                                has_raw_value=v
+                            )
                     elif current_range == QuantityValue.class_name:
-                        instantiated_bs[expected_key] = QuantityValue(has_raw_value=v)
+                        if v:
+                            qv = process_qv(v)
+                            instantiated_bs[expected_key] = qv
                     elif current_range == TextValue.class_name:
                         instantiated_bs[expected_key] = TextValue(has_raw_value=v)
                     elif current_range == TimestampValue.class_name:
                         instantiated_bs[expected_key] = TimestampValue(has_raw_value=v)
-                    # todo string? EnumDefinition? PV?
                     elif (
                         type(dh_view.get_element(current_range)).class_name
                         == EnumDefinition.class_name
                     ):
                         instantiated_bs[expected_key] = v
                     elif current_range == "string":
+                        # todo note if the string slot comes from EMSL or JGI... those are expected
                         instantiated_bs[expected_key] = v
                         string_slots.add(expected_key)
                     else:
@@ -319,7 +426,7 @@ def lol_to_validatable(
             "dh_defines": dh_defines,
         }
 
-        return bs_db, instantiation_log
+        return bs_db, instantiation_log, df
 
 
 def set_to_list(set_input, do_sort=True):
@@ -341,7 +448,6 @@ def get_known_templates(known_template_tsv: str):
     # todo there's probably a better place for this
     #  even an inline dict?
     known_templates = pd.read_csv(known_template_tsv, sep="\t")
-    # return a dict instead?
     temp = dict(zip(known_templates.iloc[:, 0], known_templates.iloc[:, 1]))
     return temp
 
