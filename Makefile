@@ -60,6 +60,10 @@ assets/bibo_DocumentStatus.tsv: downloads/bibo.owl bin/robot.jar
 	java -jar bin/robot.jar query --input $< --query sparql/bibo_DocumentStatus.sparql $@
 	sed --in-place=.bak 's/^\?//' $@
 
+.PHONY: clean_loosies
+clean_loosies:
+	rm -rf bs_db.json instantiation_log.yml submission_frame.tsv
+
 bs_db.json:
 	$(RUN) python sample_annotator/clients/nmdc/get_metadata_submissions.py \
 		--session_cookie $(SESSION_COOKIE) \

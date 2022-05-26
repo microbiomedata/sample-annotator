@@ -9,6 +9,7 @@ import click
 import click_log
 from linkml_runtime import SchemaView
 from linkml_runtime.dumpers import yaml_dumper, json_dumper
+from linkml_runtime.linkml_model import EnumDefinition
 
 from nmdc_schema.nmdc import (
     Biosample,
@@ -43,15 +44,31 @@ pd.set_option("display.max_columns", None)
 @click.option("--session_cookie", required=True)
 @click.option("--study_id", required=True)
 @click.option("--data_out", default="bs_db.json")
-def cli(session_cookie: str, study_id: str, data_out: str):
+@click.option("--known_template_tsv", default="known_templates.tsv")
+def cli(session_cookie: str, study_id: str, data_out: str, known_template_tsv: str):
     """
     :param session_cookie:
     :param study_id:
     :param data_out:
+    :param known_template_tsv:
     :return:
     """
 
     url = "https://data.dev.microbiomedata.org/api/metadata_submission"
+
+    nmdc_dh_view = get_schema_view(
+        schema_source="https://microbiomedata.github.io/sheets_and_friends/template/nmdc_dh/source/nmdc_dh.yaml"
+    )
+
+    # https://raw.githubusercontent.com/microbiomedata/nmdc-schema/main/src/schema/nmdc.yaml
+    # https://raw.githubusercontent.com/microbiomedata/nmdc-schema/issue-317-dh-non-mixs/src/schema/nmdc.yaml
+    nmdc_view = get_schema_view(
+        schema_source="https://raw.githubusercontent.com/microbiomedata/nmdc-schema/issue-317-dh-non-mixs/src/schema/nmdc.yaml"
+    )
+
+    mixs_view = get_schema_view(
+        schema_source="https://raw.githubusercontent.com/GenomicsStandardsConsortium/mixs/main/model/schema/mixs.yaml"
+    )
 
     cookies = {"session": session_cookie}
     params = {"offset": 0, "limit": 99}
@@ -106,19 +123,7 @@ def cli(session_cookie: str, study_id: str, data_out: str):
     # # print(submissions_list[0][inner_key]['sampleData'])
     # # # list of lists
 
-    nmdc_dh_view = get_schema_view(
-        schema_source="https://microbiomedata.github.io/sheets_and_friends/template/nmdc_dh/source/nmdc_dh.yaml"
-    )
-
-    nmdc_view = get_schema_view(
-        schema_source="https://raw.githubusercontent.com/microbiomedata/nmdc-schema/main/src/schema/nmdc.yaml"
-    )
-
-    mixs_view = get_schema_view(
-        schema_source="https://raw.githubusercontent.com/GenomicsStandardsConsortium/mixs/main/model/schema/mixs.yaml"
-    )
-
-    known_templates = get_known_templates()
+    known_templates = get_known_templates(known_template_tsv)
 
     bs_db, instantiation_log = lol_to_validatable(
         metadata_dict=metadata_dict,
@@ -190,18 +195,19 @@ def lol_to_validatable(
     #  study_id="33d31996-171a-4fdf-b2ea-d3936b649529" says omicsProcessingTypes = []
     #  but it sure looks like soil_emsl_jgi_mg
     if study_id in known_templates:
-        bis = nmdc_view.class_induced_slots("biosample")
-        bis_names = [i.alias for i in bis]
-        bis_dict = dict(zip(bis_names, bis))
+        bs_induced_slots = nmdc_view.class_induced_slots("biosample")
+        bs_induced_slot_names = [i.alias for i in bs_induced_slots]
+        # could have been a dict comprehension one-liner
+        bs_induced_slot_dict = dict(zip(bs_induced_slot_names, bs_induced_slots))
         known_template = known_templates[study_id]
         col_order = get_col_order(view=dh_view, selected_class_name=known_template)
         df.columns = col_order
-        lod = df.to_dict(orient="records")
+        biosample_list = df.to_dict(orient="records")
         unmapped = set()
         string_slots = set()
         other_ranges = {}
         bs_db = Database()
-        for i in lod:
+        for current_biosample in biosample_list:
             # # doesn't require any particular id prefix?
             # # part of is supposed to take a named thing
             # # ControlledTermValue can be instantiated empty
@@ -218,54 +224,79 @@ def lol_to_validatable(
             #     # not doing anything special for multivalued slots yet
             #     # id vs source_mat_id
             #     # what value would be best for part_of?
-            bs_attempt = Biosample(
-                id=i["source_mat_id"],
+            instantiated_bs = Biosample(
+                id=current_biosample["source_mat_id"],
                 part_of=[study_id],
-                env_broad_scale=ControlledTermValue(has_raw_value=i["env_broad_scale"]),
-                env_local_scale=ControlledTermValue(has_raw_value=i["env_local_scale"]),
-                env_medium=ControlledTermValue(has_raw_value=i["env_medium"]),
+                env_broad_scale=ControlledTermValue(
+                    has_raw_value=current_biosample["env_broad_scale"]
+                ),
+                env_local_scale=ControlledTermValue(
+                    has_raw_value=current_biosample["env_local_scale"]
+                ),
+                env_medium=ControlledTermValue(
+                    has_raw_value=current_biosample["env_medium"]
+                ),
             )
-            for k, v in i.items():
+            for k, v in current_biosample.items():
                 # expected_key = None
                 if k in re_mappings:
                     expected_key = re_mappings[k]
                 else:
                     expected_key = k
-                if expected_key in bis_dict:
-                    current_range = bis_dict[expected_key].range
-                    if current_range == "controlled term value":
-                        bs_attempt[expected_key] = ControlledTermValue(has_raw_value=v)
-                    elif current_range == "geolocation value":
-                        bs_attempt[expected_key] = GeolocationValue(has_raw_value=v)
-                    elif current_range == "quantity value":
-                        bs_attempt[expected_key] = QuantityValue(has_raw_value=v)
-                    elif current_range == "text value":
-                        bs_attempt[expected_key] = TextValue(has_raw_value=v)
-                    elif current_range == "timestamp value":
-                        bs_attempt[expected_key] = TimestampValue(has_raw_value=v)
+                if expected_key in bs_induced_slot_dict:
+                    current_range = bs_induced_slot_dict[expected_key].range
+                    if current_range == ControlledTermValue.class_name:
+                        instantiated_bs[expected_key] = ControlledTermValue(
+                            has_raw_value=v
+                        )
+                    elif current_range == GeolocationValue.class_name:
+                        instantiated_bs[expected_key] = GeolocationValue(
+                            has_raw_value=v
+                        )
+                    elif current_range == QuantityValue.class_name:
+                        instantiated_bs[expected_key] = QuantityValue(has_raw_value=v)
+                    elif current_range == TextValue.class_name:
+                        instantiated_bs[expected_key] = TextValue(has_raw_value=v)
+                    elif current_range == TimestampValue.class_name:
+                        instantiated_bs[expected_key] = TimestampValue(has_raw_value=v)
+                    # todo string? EnumDefinition? PV?
+                    elif (
+                        type(dh_view.get_element(current_range)).class_name
+                        == EnumDefinition.class_name
+                    ):
+                        print(current_range)
+                        instantiated_bs[expected_key] = v
                     elif current_range == "string":
-                        bs_attempt[expected_key] = v
+                        instantiated_bs[expected_key] = v
                         string_slots.add(expected_key)
                     else:
-                        other_ranges[expected_key] = current_range
+                        range_element = dh_view.get_element(current_range)
+                        other_ranges[expected_key] = type(range_element).class_name
                 else:
                     unmapped.add(k)
-            bs_db.biosample_set.append(bs_attempt)
+            bs_db.biosample_set.append(instantiated_bs)
 
         string_slots = set_to_list(string_slots)
 
+        nmdc_slots = nmdc_view.all_slots()
+        nmdc_slot_names = list(nmdc_slots.keys())
+
         mixs_slots = mixs_view.all_slots()
         mixs_slot_names = list(mixs_slots.keys())
+
         mixs_defines = unmapped.intersection(set(mixs_slot_names))
+        nmdc_includes = unmapped.intersection(set(nmdc_slot_names))
         dh_defines = unmapped - mixs_defines
 
         dh_defines = set_to_list(dh_defines)
         mixs_defines = set_to_list(mixs_defines)
+        nmdc_includes = set_to_list(nmdc_includes)
 
         instantiation_log = {
             "template": known_template,
             "string_slots": string_slots,
             "other_ranges": other_ranges,
+            "nmdc_includes": nmdc_includes,
             "mixs_defines": mixs_defines,
             "dh_defines": dh_defines,
         }
@@ -288,10 +319,10 @@ def get_known_orcids():
     return known_orcids
 
 
-def get_known_templates():
+def get_known_templates(known_template_tsv: str):
     # todo there's probably a better place for this
     #  even an inline dict?
-    known_templates = pd.read_csv("known_templates.tsv", sep="\t")
+    known_templates = pd.read_csv(known_template_tsv, sep="\t")
     # return a dict instead?
     temp = dict(zip(known_templates.iloc[:, 0], known_templates.iloc[:, 1]))
     return temp
