@@ -168,27 +168,35 @@ class GoldNMDC(GoldClient):
                 # depth, when depth can be retreived from GOLD API
                 if biosample["depthInMeters"] is not None:
                     depth = nmdc.QuantityValue(
-                                has_raw_value=biosample["depthInMeters"],
-                                has_numeric_value=biosample["depthInMeters"],
-                                has_unit="meter",
-                            )
+                        has_raw_value=biosample["depthInMeters"],
+                        has_numeric_value=biosample["depthInMeters"],
+                        has_unit="meter",
+                    )
                 else:
                     depth = {}
 
                 if biosample["depthInMeters2"] is not None:
                     depth2 = nmdc.QuantityValue(
-                                has_raw_value=biosample["depthInMeters2"],
-                                has_numeric_value=biosample["depthInMeters2"],
-                                has_unit="meter",
-                            )
+                        has_raw_value=biosample["depthInMeters2"],
+                        has_numeric_value=biosample["depthInMeters2"],
+                        has_unit="meter",
+                    )
                 else:
                     depth2 = {}
+
+                # retrieve INSDC identifier information using both projects and biosamples
+                insdc_biosample_identifiers = [
+                    proj["ncbiBioSampleAccession"]
+                    for proj in projects
+                    if proj["biosampleGoldId"] == biosample["biosampleGoldId"]
+                ]
 
                 self.nmdc_db.biosample_set.append(
                     nmdc.Biosample(
                         # biosample identifiers
                         id="gold:" + biosample["biosampleGoldId"],
                         GOLD_sample_identifiers="gold:" + biosample["biosampleGoldId"],
+                        INSDC_biosample_identifiers=insdc_biosample_identifiers,
                         
                         # metadata fields
                         description=biosample["description"],
@@ -196,14 +204,14 @@ class GoldNMDC(GoldClient):
                         part_of=self.study_id,
                         ncbi_taxonomy_name=biosample["ncbiTaxName"],
                         type="nmdc:Biosample",
-                        
+
                         # biosample date information
                         add_date=XSDDateTime(biosample["addDate"]),
                         collection_date=nmdc.TimestampValue(
                             has_raw_value=biosample["dateCollected"]
                         ),
                         mod_date=mod_date,
-                        
+
                         # Earth fields
                         depth=depth,
                         
@@ -234,11 +242,11 @@ class GoldNMDC(GoldClient):
                         ),
                         habitat=biosample["habitat"],
                         location=biosample["isoCountry"],
-                        
+
                         # collection metadata fields
                         host_name=biosample["hostName"],
                         sample_collection_site=biosample["sampleBodySite"],
-                        
+
                         # chemical metadata fields
                         nitrate=nmdc.QuantityValue(
                             has_numeric_value=biosample["nitrateConcentration"]
@@ -246,7 +254,7 @@ class GoldNMDC(GoldClient):
                         salinity=nmdc.QuantityValue(
                             has_numeric_value=biosample["salinityConcentration"]
                         ),
-                        
+
                         # environment metadata fields
                         env_broad_scale=nmdc.ControlledTermValue(
                             has_raw_value=biosample["envoBroadScale"]["id"].replace(
@@ -290,7 +298,7 @@ class GoldNMDC(GoldClient):
                 )
 
                 project_has_output_dict = self.project_has_output_dict()
-                
+
                 # create value for has_output attribute
                 if project["projectGoldId"] in self.project_has_output_dict():
                     has_output = project_has_output_dict[project["projectGoldId"]]
