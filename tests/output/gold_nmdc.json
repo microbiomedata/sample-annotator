@@ -38,7 +38,7 @@
                 "gold:Gb0239939"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724289"
+                "biosample:SAMEA7724289"
             ]
         },
         {
@@ -79,7 +79,7 @@
                 "gold:Gb0239922"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724301"
+                "biosample:SAMEA7724301"
             ]
         },
         {
@@ -120,7 +120,7 @@
                 "gold:Gb0240016"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724295"
+                "biosample:SAMEA7724295"
             ]
         },
         {
@@ -161,7 +161,7 @@
                 "gold:Gb0240022"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724308"
+                "biosample:SAMEA7724308"
             ]
         },
         {
@@ -202,7 +202,7 @@
                 "gold:Gb0240028"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724314"
+                "biosample:SAMEA7724314"
             ]
         },
         {
@@ -243,7 +243,7 @@
                 "gold:Gb0240029"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724315"
+                "biosample:SAMEA7724315"
             ]
         },
         {
@@ -284,7 +284,7 @@
                 "gold:Gb0240067"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724206"
+                "biosample:SAMEA7724206"
             ]
         },
         {
@@ -325,7 +325,7 @@
                 "gold:Gb0240094"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724217"
+                "biosample:SAMEA7724217"
             ]
         },
         {
@@ -366,7 +366,7 @@
                 "gold:Gb0240100"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724214"
+                "biosample:SAMEA7724214"
             ]
         },
         {
@@ -413,7 +413,7 @@
                 "gold:Gb0315661"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724325"
+                "biosample:SAMEA7724325"
             ]
         },
         {
@@ -454,7 +454,7 @@
                 "gold:Gb0239936"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724284"
+                "biosample:SAMEA7724284"
             ]
         },
         {
@@ -495,7 +495,7 @@
                 "gold:Gb0240024"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724310"
+                "biosample:SAMEA7724310"
             ]
         },
         {
@@ -536,7 +536,7 @@
                 "gold:Gb0240035"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724321"
+                "biosample:SAMEA7724321"
             ]
         },
         {
@@ -577,7 +577,7 @@
                 "gold:Gb0240037"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724333"
+                "biosample:SAMEA7724333"
             ]
         },
         {
@@ -618,7 +618,7 @@
                 "gold:Gb0240085"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724221"
+                "biosample:SAMEA7724221"
             ]
         },
         {
@@ -659,7 +659,7 @@
                 "gold:Gb0240012"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724280"
+                "biosample:SAMEA7724280"
             ]
         },
         {
@@ -700,7 +700,7 @@
                 "gold:Gb0240020"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724293"
+                "biosample:SAMEA7724293"
             ]
         },
         {
@@ -741,7 +741,7 @@
                 "gold:Gb0240014"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724282"
+                "biosample:SAMEA7724282"
             ]
         },
         {
@@ -782,7 +782,7 @@
                 "gold:Gb0240017"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724296"
+                "biosample:SAMEA7724296"
             ]
         },
         {
@@ -823,7 +823,7 @@
                 "gold:Gb0240019"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724292"
+                "biosample:SAMEA7724292"
             ]
         },
         {
@@ -864,7 +864,7 @@
                 "gold:Gb0240031"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724317"
+                "biosample:SAMEA7724317"
             ]
         },
         {
@@ -905,7 +905,7 @@
                 "gold:Gb0240038"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724334"
+                "biosample:SAMEA7724334"
             ]
         },
         {
@@ -946,7 +946,7 @@
                 "gold:Gb0240098"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724219"
+                "biosample:SAMEA7724219"
             ]
         },
         {
@@ -987,7 +987,7 @@
                 "gold:Gb0239926"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724305"
+                "biosample:SAMEA7724305"
             ]
         },
         {
@@ -1028,7 +1028,7 @@
                 "gold:Gb0239940"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724290"
+                "biosample:SAMEA7724290"
             ]
         },
         {
@@ -1069,7 +1069,7 @@
                 "gold:Gb0239935"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724283"
+                "biosample:SAMEA7724283"
             ]
         },
         {
@@ -1110,7 +1110,7 @@
                 "gold:Gb0239991"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724259"
+                "biosample:SAMEA7724259"
             ]
         },
         {
@@ -1151,7 +1151,7 @@
                 "gold:Gb0240013"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724281"
+                "biosample:SAMEA7724281"
             ]
         },
         {
@@ -1192,7 +1192,7 @@
                 "gold:Gb0240032"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724318"
+                "biosample:SAMEA7724318"
             ]
         },
         {
@@ -1233,7 +1233,7 @@
                 "gold:Gb0240047"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724343"
+                "biosample:SAMEA7724343"
             ]
         },
         {
@@ -1274,7 +1274,7 @@
                 "gold:Gb0240053"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724349"
+                "biosample:SAMEA7724349"
             ]
         },
         {
@@ -1315,7 +1315,7 @@
                 "gold:Gb0240084"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724228"
+                "biosample:SAMEA7724228"
             ]
         },
         {
@@ -1356,7 +1356,7 @@
                 "gold:Gb0240101"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724211"
+                "biosample:SAMEA7724211"
             ]
         },
         {
@@ -1397,7 +1397,7 @@
                 "gold:Gb0239951"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724286"
+                "biosample:SAMEA7724286"
             ]
         },
         {
@@ -1438,7 +1438,7 @@
                 "gold:Gb0240026"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724312"
+                "biosample:SAMEA7724312"
             ]
         },
         {
@@ -1479,7 +1479,7 @@
                 "gold:Gb0240041"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724337"
+                "biosample:SAMEA7724337"
             ]
         },
         {
@@ -1520,7 +1520,7 @@
                 "gold:Gb0240042"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724338"
+                "biosample:SAMEA7724338"
             ]
         },
         {
@@ -1561,7 +1561,7 @@
                 "gold:Gb0240043"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724339"
+                "biosample:SAMEA7724339"
             ]
         },
         {
@@ -1602,7 +1602,7 @@
                 "gold:Gb0240045"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724341"
+                "biosample:SAMEA7724341"
             ]
         },
         {
@@ -1643,7 +1643,7 @@
                 "gold:Gb0240048"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724344"
+                "biosample:SAMEA7724344"
             ]
         },
         {
@@ -1684,7 +1684,7 @@
                 "gold:Gb0240051"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724347"
+                "biosample:SAMEA7724347"
             ]
         },
         {
@@ -1725,7 +1725,7 @@
                 "gold:Gb0239919"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724298"
+                "biosample:SAMEA7724298"
             ]
         },
         {
@@ -1766,7 +1766,7 @@
                 "gold:Gb0239918"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724297"
+                "biosample:SAMEA7724297"
             ]
         },
         {
@@ -1807,7 +1807,7 @@
                 "gold:Gb0239921"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724300"
+                "biosample:SAMEA7724300"
             ]
         },
         {
@@ -1848,7 +1848,7 @@
                 "gold:Gb0239923"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724302"
+                "biosample:SAMEA7724302"
             ]
         },
         {
@@ -1889,7 +1889,7 @@
                 "gold:Gb0239924"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724303"
+                "biosample:SAMEA7724303"
             ]
         },
         {
@@ -1930,7 +1930,7 @@
                 "gold:Gb0239937"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724285"
+                "biosample:SAMEA7724285"
             ]
         },
         {
@@ -1971,7 +1971,7 @@
                 "gold:Gb0240046"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724342"
+                "biosample:SAMEA7724342"
             ]
         },
         {
@@ -2012,7 +2012,7 @@
                 "gold:Gb0240121"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7723904"
+                "biosample:SAMEA7723904"
             ]
         },
         {
@@ -2053,7 +2053,7 @@
                 "gold:Gb0239938"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724288"
+                "biosample:SAMEA7724288"
             ]
         },
         {
@@ -2094,7 +2094,7 @@
                 "gold:Gb0239950"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724128"
+                "biosample:SAMEA7724128"
             ]
         },
         {
@@ -2135,7 +2135,7 @@
                 "gold:Gb0240010"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724278"
+                "biosample:SAMEA7724278"
             ]
         },
         {
@@ -2176,7 +2176,7 @@
                 "gold:Gb0240033"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724319"
+                "biosample:SAMEA7724319"
             ]
         },
         {
@@ -2217,7 +2217,7 @@
                 "gold:Gb0240036"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724332"
+                "biosample:SAMEA7724332"
             ]
         },
         {
@@ -2258,7 +2258,7 @@
                 "gold:Gb0240050"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724346"
+                "biosample:SAMEA7724346"
             ]
         },
         {
@@ -2299,7 +2299,7 @@
                 "gold:Gb0240052"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724348"
+                "biosample:SAMEA7724348"
             ]
         },
         {
@@ -2340,7 +2340,7 @@
                 "gold:Gb0240108"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724405"
+                "biosample:SAMEA7724405"
             ]
         },
         {
@@ -2381,7 +2381,7 @@
                 "gold:Gb0240115"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7723902"
+                "biosample:SAMEA7723902"
             ]
         },
         {
@@ -2422,7 +2422,7 @@
                 "gold:Gb0239927"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724306"
+                "biosample:SAMEA7724306"
             ]
         },
         {
@@ -2463,7 +2463,7 @@
                 "gold:Gb0240065"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724204"
+                "biosample:SAMEA7724204"
             ]
         },
         {
@@ -2504,7 +2504,7 @@
                 "gold:Gb0240015"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724294"
+                "biosample:SAMEA7724294"
             ]
         },
         {
@@ -2545,7 +2545,7 @@
                 "gold:Gb0240021"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724307"
+                "biosample:SAMEA7724307"
             ]
         },
         {
@@ -2586,7 +2586,7 @@
                 "gold:Gb0240030"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724316"
+                "biosample:SAMEA7724316"
             ]
         },
         {
@@ -2627,7 +2627,7 @@
                 "gold:Gb0240039"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724335"
+                "biosample:SAMEA7724335"
             ]
         },
         {
@@ -2668,7 +2668,7 @@
                 "gold:Gb0240040"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724336"
+                "biosample:SAMEA7724336"
             ]
         },
         {
@@ -2709,7 +2709,7 @@
                 "gold:Gb0240087"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724208"
+                "biosample:SAMEA7724208"
             ]
         },
         {
@@ -2750,7 +2750,7 @@
                 "gold:Gb0240095"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724216"
+                "biosample:SAMEA7724216"
             ]
         },
         {
@@ -2791,7 +2791,7 @@
                 "gold:Gb0240119"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724104"
+                "biosample:SAMEA7724104"
             ]
         },
         {
@@ -2832,7 +2832,7 @@
                 "gold:Gb0240122"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7723905"
+                "biosample:SAMEA7723905"
             ]
         },
         {
@@ -2873,7 +2873,7 @@
                 "gold:Gb0239920"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724299"
+                "biosample:SAMEA7724299"
             ]
         },
         {
@@ -2914,7 +2914,7 @@
                 "gold:Gb0239925"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724304"
+                "biosample:SAMEA7724304"
             ]
         },
         {
@@ -2955,7 +2955,7 @@
                 "gold:Gb0240002"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724270"
+                "biosample:SAMEA7724270"
             ]
         },
         {
@@ -2996,7 +2996,7 @@
                 "gold:Gb0240054"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724227"
+                "biosample:SAMEA7724227"
             ]
         },
         {
@@ -3037,7 +3037,7 @@
                 "gold:Gb0240086"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724223"
+                "biosample:SAMEA7724223"
             ]
         },
         {
@@ -3078,7 +3078,7 @@
                 "gold:Gb0240018"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724291"
+                "biosample:SAMEA7724291"
             ]
         },
         {
@@ -3119,7 +3119,7 @@
                 "gold:Gb0240025"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724311"
+                "biosample:SAMEA7724311"
             ]
         },
         {
@@ -3160,7 +3160,7 @@
                 "gold:Gb0240034"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724320"
+                "biosample:SAMEA7724320"
             ]
         },
         {
@@ -3201,7 +3201,7 @@
                 "gold:Gb0240044"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724340"
+                "biosample:SAMEA7724340"
             ]
         },
         {
@@ -3242,7 +3242,7 @@
                 "gold:Gb0240049"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724345"
+                "biosample:SAMEA7724345"
             ]
         },
         {
@@ -3289,7 +3289,7 @@
                 "gold:Gb0315665"
             ],
             "INSDC_biosample_identifiers": [
-                "SAMEA7724329"
+                "biosample:SAMEA7724329"
             ]
         }
     ],
