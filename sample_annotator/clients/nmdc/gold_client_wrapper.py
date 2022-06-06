@@ -186,7 +186,7 @@ class GoldNMDC(GoldClient):
 
                 # retrieve INSDC identifier information using both projects and biosamples
                 insdc_biosample_identifiers = [
-                    proj["ncbiBioSampleAccession"]
+                    "biosample:" + proj["ncbiBioSampleAccession"]
                     for proj in projects
                     if proj["biosampleGoldId"] == biosample["biosampleGoldId"]
                 ]
@@ -324,7 +324,7 @@ class GoldNMDC(GoldClient):
                             name=pi_dict["name"],
                             email=pi_dict["email"],
                         ),
-                        
+
                         # sequencing details fields
                         omics_type=nmdc.ControlledTermValue(
                             has_raw_value=project["sequencingStrategy"]
