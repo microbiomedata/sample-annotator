@@ -27,7 +27,9 @@ click_log.basic_config(logger)
 
 pd.set_option("display.max_columns", None)
 
+
 # todo: lots of hardcoded file names etc
+submission_frame_filename = ""
 
 
 # todo where does this warning come from?
@@ -50,6 +52,13 @@ def cli(session_cookie: str):
     cookies = {"session": session_cookie}
     params = {"offset": 0, "limit": 99}
 
+    # todo document
+    #  login to the NMDC website (https://data.microbiomedata.org/ or https://data.dev.microbiomedata.org/)
+    #  (requires an ORCID)
+    #  get the content of the session cookie
+    #  on chrome, chrome://settings/cookies/detail?site=data.dev.microbiomedata.org
+    #  save that into local/SESSION_COOKIE.txt
+    #  look out for a rj of {'detail': 'Login required'}
     response = requests.get(url, cookies=cookies, params=params)
 
     rj = response.json()
@@ -79,20 +88,22 @@ def cli(session_cookie: str):
             "author_orcid": i["author_orcid"],
             "created": i["created"],
             "status": i["status"],
-            "template": i[inner_key]["template"],
+            # "template": i[inner_key]["template"],
             "rows": len(i[inner_key]["sampleData"]),
             "cols": col_count,
         }
         submission_dict.update(i[inner_key]["studyForm"])
         submission_dict.update(i[inner_key]["multiOmicsForm"])
         submission_lol.append(submission_dict)
-        metadata_dict[i["id"]] = {
-            "template": i[inner_key]["template"],
-            "lol": i[inner_key]["sampleData"],
-        }
+        # metadata_dict[i["id"]] = {
+        #     "template": i[inner_key]["template"],
+        #     "lol": i[inner_key]["sampleData"],
+        # }
     df = pd.DataFrame(submission_lol)
 
     df.to_csv("submission_frame.tsv", sep="\t", index=False)
+
+    exit()
 
     # # print(submissions_list[0][inner_key].keys())
     # # # ['template', 'studyForm', 'sampleData', 'multiOmicsForm'
@@ -126,7 +137,7 @@ def cli(session_cookie: str):
         known_templates=known_templates,
     )
 
-    with open('instantiation_log.yml', 'w') as outfile:
+    with open("instantiation_log.yml", "w") as outfile:
         yaml.dump(instantiation_log, outfile, default_flow_style=False)
 
     # print(yaml_dumper.dumps(bs_db))
