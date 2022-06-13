@@ -8,9 +8,19 @@ from linkml_runtime import SchemaView
 
 import requests
 
+import validators
+
 from datetime import datetime, timezone, timedelta
 
-from nmdc_schema.nmdc import Study
+from linkml_runtime.dumpers import yaml_dumper
+from nmdc_schema.nmdc import (
+    Study,
+    Database,
+    ExternalIdentifier,
+    AttributeValue,
+    CreditAssociation,
+    PersonValue,
+)
 from pydantic import (
     BaseModel,
     root_validator,
@@ -36,9 +46,11 @@ url = "https://data.dev.microbiomedata.org/api/metadata_submission"
 params = {"offset": api_offset, "limit": api_limit}
 cookies = {"session": session_cookie}
 
-current_submission_id = "3e919e97-0437-4ca7-a758-ac36c45b908d"
+# current_submission_id = "3e919e97-0437-4ca7-a758-ac36c45b908d"
 
 submission_frame_tsv_out = "../../../assets/out/sf2.tsv"
+
+studies_as_submissions_yaml = "../../../assets/out/submissions_as_studies.yaml"
 
 known_orcids_file = "../../../assets/in/known_orcids.tsv"
 
@@ -281,24 +293,32 @@ def just_submission_row(current_submission):
     }
     current_metadata_submission = current_submission["metadata_submission"]
 
-    metadata_preliminaries = {
-        "packageName": current_metadata_submission["packageName"],
-    }
+    metadata_preliminaries = {}
 
     # todo are there any other variations between submissions?
     if "template" in current_metadata_submission:
-        # print(current_submission["id"])
         metadata_preliminaries["template"] = current_metadata_submission["template"]
     else:
         metadata_preliminaries["template"] = "<no metadata_submission.template>"
 
+    if "packageName" in current_metadata_submission:
+        metadata_preliminaries["packageName"] = current_metadata_submission[
+            "packageName"
+        ]
+    else:
+        metadata_preliminaries["packageName"] = "<no metadata_submission.packageName>"
+
     sfd = current_metadata_submission["studyForm"]
+
+    study_links_protected = sfd["linkOutWebpage"]
     sfd["linkOutWebpage"] = "|".join(sfd["linkOutWebpage"])
     # todo need to collapse some objects
     #  contributors may be a list of objects?
     #  assume the others are lists of strings?
+    contributors_protected = sfd["contributors"]
     sfd["contributors"] = "<TODO>"
     mofd = current_metadata_submission["multiOmicsForm"]
+    alternative_names_protected = mofd["alternativeNames"]
     mofd["alternativeNames"] = "|".join(mofd["alternativeNames"])
     mofd["omicsProcessingTypes"] = "|".join(mofd["omicsProcessingTypes"])
     # todo don't collect NCBIBioProjectName any more
@@ -308,18 +328,152 @@ def just_submission_row(current_submission):
     metadata_submission_dict = {**metadata_preliminaries, **sfd, **mofd}
     row_dict = {**preliminaries_dict, **metadata_submission_dict}
 
-    return row_dict
+    # author_orcid	0000-0001-9076-6066
+    # last	Miller
+    # first	Mark
+    # other
+    # created	2022-06-09T20:52:10.294593
+    # status	complete
+    # packageName	soil
+    # template	soil_emsl_jgi_mg
+    # omicsProcessingTypes	mg-jgi|mp-emsl
+    # data_rows	6
+    # studyDate
+
+    pi_person = None
+    pi_ca = None
+    if row_dict["piOrcid"]:
+        pi_person = PersonValue(
+            orcid=row_dict["piOrcid"],
+            has_raw_value=row_dict["piName"],
+            email=row_dict["piEmail"],
+        )
+        pi_ca = CreditAssociation(
+            applies_to_person=pi_person, applied_roles=["Principal Investigator"]
+        )
+
+    # # todo this all comes from an after-the fact lookup
+    # #  also... what role to use? Project administration?
+    # sumbitter_name = [row_dict[], ]
+    # submitter_person = PersonValue(
+    #     orcid=row_dict["author_orcid"],
+    #     name=""
+    # )
+    # submitter_ca = CreditAssociation()
+
+    submission_as_study = Study(
+        id=f"nmdc:submission_{row_dict['id']}",
+        type="nmdc:Study",
+        INSDC_SRA_ENA_study_identifiers=[],
+        MGnify_project_identifiers=[],
+        ess_dive_datasets=[],
+        funding_sources=[],
+        publications=[],
+        relevant_protocols=[],
+        abstract=None,
+        objective=None,
+        study_image=[],
+        title=None,
+        ecosystem=None,
+        ecosystem_category=None,
+        ecosystem_subtype=None,
+        ecosystem_type=None,
+        specific_ecosystem=None,
+    )
+
+    if row_dict["NCBIBioProjectId"] != "" and validators.url(row_dict["NCBIBioProjectId"]):
+        submission_as_study.INSDC_bioproject_identifiers.append(
+            row_dict["NCBIBioProjectId"]
+        )
+
+    if row_dict["studyName"] != "":
+        submission_as_study.name = (f"{row_dict['studyName']}",)
+
+    if row_dict["description"] != "":
+        submission_as_study.description = (f"{row_dict['description']}",)
+
+    # if pi_person:
+    #     submission_as_study.principal_investigator = pi_person
+    #     submission_as_study.has_credit_associations[row_dict["piOrcid"]] = pi_ca
+    #
+    # known_contributors = list(submission_as_study.has_credit_associations.keys())
+    #
+    # for i in contributors_protected:
+    #     # what if an orcid, like the PI's, is revisited?
+    #     if i["orcid"] in known_contributors:
+    #         old_ca = submission_as_study.has_credit_associations[i["orcid"]]
+    #         for j in i["roles"]:
+    #             old_ca.applied_roles.append(j)
+    #         # look for mismatched names?
+    #     else:
+    #         temp_person = PersonValue(
+    #             orcid=i["orcid"],
+    #             has_raw_value=i["name"],
+    #         )
+    #         temp_ca = CreditAssociation(
+    #             applies_to_person=temp_person, applied_roles=i["roles"]
+    #         )
+    #         # print(temp_ca)
+    #         submission_as_study.has_credit_associations[i["orcid"]] = temp_ca
+
+    if row_dict["datasetDoi"] != "":
+        submission_as_study.doi = AttributeValue(has_raw_value=row_dict["datasetDoi"])
+
+    for i in study_links_protected:
+        submission_as_study.websites.append(i)
+
+    if row_dict["notes"] != "":
+        submission_as_study.alternative_descriptions.append(row_dict["notes"])
+
+    # todo don't save or modify if empty
+    submission_as_study.alternative_titles.append(
+        f"<LOOKUP, DON'T ASK SUBMITTER> {row_dict['NCBIBioProjectName']}"
+    )
+
+    # supposed to be a list of external identifiers, which are string representations of CURIEs
+    if row_dict["GOLDStudyId"] != "" and validators.url(row_dict["GOLDStudyId"]):
+        submission_as_study.GOLD_study_identifiers = row_dict["GOLDStudyId"]
+    # else:
+    #     # print(f"invalid URL {row_dict['GOLDStudyId']}")
+    #     submission_as_study.GOLD_study_identifiers = row_dict["GOLDStudyId"]
+
+    # alternate ID?
+    # todo check with validators.url() ?
+    if row_dict["JGIStudyId"] != "":
+        submission_as_study.alternative_identifiers.append(row_dict["JGIStudyId"])
+    # else:
+    #     # print(f"invalid URL {row_dict['JGIStudyId']}")
+    #     submission_as_study.alternative_identifiers.append(row_dict["JGIStudyId"])
+
+    # emsl studyNumber
+    if row_dict["studyNumber"] != "":
+        submission_as_study.alternative_identifiers.append(row_dict["studyNumber"])
+    # else:
+    #     # print(f"invalid URL {row_dict['studyNumber']}")
+    #     submission_as_study.alternative_identifiers.append(row_dict["studyNumber"])
+
+    for i in alternative_names_protected:
+        submission_as_study.alternative_names.append(i)
+
+    return row_dict, submission_as_study
 
 
 def assemble_studies_frame(submission_dict):
     row_list = []
+    study_obj_list = []
+    db_obj = Database()
     for k, v in submission_dict.items():
         # # todo would it be more efficient to strip out the metadata_submission.sampleData?
         # # submission = v.copy()
         # # submission.pop('key', None)
-        row_dict = just_submission_row(v)
+        row_dict, submission_as_study = just_submission_row(v)
+        study_obj_list.append(submission_as_study)
         row_list.append(row_dict)
     row_frame = pd.DataFrame(row_list)
+
+    db_obj.study_set = study_obj_list
+    yaml_dumper.dump(db_obj, studies_as_submissions_yaml)
+
     return row_frame
 
 
@@ -333,6 +487,7 @@ def get_known_orcids(known_orcids_tsv: str):
 
 # ---
 
+# todo parameterize
 mintingClient = RuntimeApiSiteClient(
     base_url="https://api.dev.microbiomedata.org",
     site_id="mam_lbl_2019mbp_nobs",
@@ -340,9 +495,9 @@ mintingClient = RuntimeApiSiteClient(
     client_secret="w@sk23X?Ea7.",
 )
 
-porjda = {"populator": "", "naa": "nmdc", "shoulder": "fk0", "number": 1}
+minting_params = {"populator": "", "naa": "nmdc", "shoulder": "fk0", "number": 1}
 
-result = mintingClient.request("POST", "/ids/mint", params_or_json_data=porjda)
+result = mintingClient.request("POST", "/ids/mint", params_or_json_data=minting_params)
 
 print(result.json())
 
@@ -376,152 +531,22 @@ submission_frame.sort_values(
 )
 submission_frame.to_csv(submission_frame_tsv_out, sep="\t", index=False)
 
+# poetry run linkml-validate --target-class Database --schema ../../nmdc-schema/src/schema/nmdc.yaml assets/out/submissions_as_studies.yaml
 
-# todo duplicates just_submission_row
-def make_study_object(current_submission):
-    preliminaries_dict = {
-        "status": current_submission["status"],
-        "id": current_submission["id"],
-        "author_orcid": current_submission["author_orcid"],
-        "created": current_submission["created"],
-        # "data_rows": data_rows,
-    }
-    current_metadata_submission = current_submission["metadata_submission"]
+# poetry run linkml-validate --target-class Study --schema ../../nmdc-schema/src/schema/nmdc.yaml assets/in/single_study.yaml
+# ValueError: MAM 2022-06-13 NCBI BioProject Accession is not a valid URI or CURIE
 
-    metadata_preliminaries = {
-        "packageName": current_metadata_submission["packageName"],
-    }
-
-    # todo are there any other variations between submissions?
-    if "template" in current_metadata_submission:
-        # print(current_submission["id"])
-        metadata_preliminaries["template"] = current_metadata_submission["template"]
-    else:
-        metadata_preliminaries["template"] = "<no metadata_submission.template>"
-
-    sfd = current_metadata_submission["studyForm"]
-    sfd["linkOutWebpage"] = "|".join(sfd["linkOutWebpage"])
-    # todo need to collapse some objects
-    #  contributors may be a list of objects?
-    #  assume the others are lists of strings?
-    sfd["contributors"] = "<TODO>"
-    mofd = current_metadata_submission["multiOmicsForm"]
-    mofd["alternativeNames"] = "|".join(mofd["alternativeNames"])
-    mofd["omicsProcessingTypes"] = "|".join(mofd["omicsProcessingTypes"])
-    # todo don't collect NCBIBioProjectName any more
-    #  look up from NCBIBioProjectId
-    #  which should be validated at collection time
-    mofd["NCBIBioProjectName"] = f"<DEPRECATED> {mofd['NCBIBioProjectName']}".strip()
-    metadata_submission_dict = {**metadata_preliminaries, **sfd, **mofd}
-    row_dict = {**preliminaries_dict, **metadata_submission_dict}
-
-    # author_orcid	0000-0001-9076-6066
-    # last	Miller
-    # first	Mark
-    # other
-    # JGIStudyId	31415
-    # created	2022-06-09T20:52:10.294593
-    # status	complete
-    # packageName	soil
-    # template	soil_emsl_jgi_mg
-    # omicsProcessingTypes	mg-jgi|mp-emsl
-    # data_rows	6
-    # studyDate
-    # studyNumber	31415
-    # alternativeNames
-    # linkOutWebpage	https://orcid.org/0000-0001-9076-6066
-    # notes	I did an optional
-    # NCBIBioProjectName	<DEPRECATED>
-    # piEmail	MAM@lbl.gov
-    # piName	MAM
-    # piOrcid	0000-0001-9076-6066
-    # contributors	<TODO>
-
-    submission_as_study = Study(
-        id=f"nmdc:submission_{row_dict['id']}",
-        name=f"{row_dict['studyName']}",
-        description=f"{row_dict['description']}",
-        # # alternative_identifiers=list(None),
-        ecosystem=None,
-        ecosystem_category=None,
-        ecosystem_type=None,
-        ecosystem_subtype=None,
-        specific_ecosystem=None,
-        # principal_investigator=None,
-        # doi=f"{row_dict['datasetDoi']}",
-        title=None,
-        alternative_titles=[],
-        alternative_descriptions=[],
-        alternative_names=[],
-        abstract=None,
-        objective=None,
-        # websites=[],
-        publications=[],
-        ess_dive_datasets=[],
-        # type=None,
-        relevant_protocols=[],
-        funding_sources=[],
-        # INSDC_bioproject_identifiers=[f"{row_dict['NCBIBioProjectId']}"],
-        INSDC_SRA_ENA_study_identifiers=[],
-        # GOLD_study_identifiers=[f"{row_dict['GOLDStudyId']}"],
-        MGnify_project_identifiers=[],
-        # has_credit_associations={},
-        # study_image=[],
-    )
-
-    return submission_as_study
-
-
-# temp_submission = submission_results_dict['6b1e4498-529d-4813-bf8b-b69572183330']
-# temp_study = make_study_object(temp_submission)
-# print(temp_study)
-
-
-# todo duplicates assemble_studies_frame
-def make_study_collection(submission_dict):
-    # row_list = []
-    for k, v in submission_dict.items():
-        temp_study = make_study_object(v)
-        print(temp_study)
-        # # todo would it be more efficient to strip out the metadata_submission.sampleData?
-        # # submission = v.copy()
-        # # submission.pop('key', None)
-        # row_dict = just_submission_row(v)
-    #     row_list.append(row_dict)
-    # row_frame = pd.DataFrame(row_list)
-    # return row_frame
-
-
-make_study_collection(submission_results_dict)
-
-# Study(
-# id='nmdc:fk0t221'
-# name=None
-# description=None
-# alternative_identifiers=[]
-# ecosystem=None
-# ecosystem_category=None
-# ecosystem_type=None
-# ecosystem_subtype=None
-# specific_ecosystem=None
-# principal_investigator=None
-# doi=None
-# title=None
-# alternative_titles=[]
-# alternative_descriptions=[]
-# alternative_names=[]
-# abstract=None
-# objective=None
-# websites=[]
-# publications=[]
-# ess_dive_datasets=[]
-# type=None
-# relevant_protocols=[]
-# funding_sources=[]
-# INSDC_bioproject_identifiers=[]
-# INSDC_SRA_ENA_study_identifiers=[]
-# GOLD_study_identifiers=[]
-# MGnify_project_identifiers=[]
-# has_credit_associations={}
-# study_image=[]
-# )
+# p = PersonValue(orcid="0000-0000-0000-0000")
+# print(yaml_dumper.dumps(p))
+# ca1 = CreditAssociation(applies_to_person=p, applied_roles=['Methodology'])
+# ca2 = CreditAssociation(applies_to_person=p, applied_roles=['Supervision'])
+# print(yaml_dumper.dumps(ca1))
+# s = Study(id='nmdc:nmdc')
+# s.has_credit_associations = [ca1, ca2]
+# print(yaml_dumper.dumps(s))
+# d = Database(study_set=[s])
+#
+# yaml_dumper.dump(d, "../../../assets/out/database.yaml")
+#
+# dy = yaml_dumper.dumps(d)
+# print(dy)
