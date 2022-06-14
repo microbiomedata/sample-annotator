@@ -1,33 +1,32 @@
 import pprint
+import re
+from datetime import datetime, timezone, timedelta
+from typing import Dict
 
 import pandas as pd
 import requests
-from typing import Dict
-
-from linkml_runtime import SchemaView
-
-import requests
-
 import validators
-
-from datetime import datetime, timezone, timedelta
-
+from linkml_runtime import SchemaView
 from linkml_runtime.dumpers import yaml_dumper
+from linkml_runtime.linkml_model import EnumDefinition
 from nmdc_schema.nmdc import (
-    Study,
-    Database,
-    ExternalIdentifier,
     AttributeValue,
+    Biosample,
+    ControlledTermValue,
     CreditAssociation,
+    Database,
+    GeolocationValue,
+    OntologyClass,
     PersonValue,
+    QuantityValue,
+    Study,
+    TextValue,
+    TimestampValue,
 )
 from pydantic import (
     BaseModel,
-    root_validator,
-    conint,
-    PositiveInt,
-    NonNegativeInt,
 )
+from quantulum3 import parser
 
 pd.set_option("display.max_columns", None)
 
@@ -53,6 +52,15 @@ submission_frame_tsv_out = "../../../assets/out/sf2.tsv"
 studies_as_submissions_yaml = "../../../assets/out/submissions_as_studies.yaml"
 
 known_orcids_file = "../../../assets/in/known_orcids.tsv"
+
+# todo I had some hard-coded fixes for this in sample_annotator/clients/nmdc/get_metadata_submissions.py
+#  they need some revision esp regarding ids and names
+dh_to_nmdc_name_mappings = {
+    "samp_name": "name",
+    "soil_horizon": "horizon",
+    "prev_land_use_meth": "previous_land_use_meth",
+    "samp_collec_device": "samp_collect_device",
+}
 
 final_submission_columns = [
     "id",
@@ -87,7 +95,7 @@ final_submission_columns = [
 
 # ---
 
-# todo from nmdc run time
+# todo from nmdc-runtime
 
 
 def now(as_str=False):
@@ -148,7 +156,7 @@ class RuntimeApiSiteClient:
             self.get_token()
 
 
-# todo end nmdc runtime copy/paste
+# todo end nmdc-runtime copy/paste
 
 
 def get_view(
@@ -170,14 +178,7 @@ def get_template_titles_names(
 ):
     template_slots = view.class_induced_slots(template)
     title_to_name_dict = {}
-    # todo I had some hard-coded fixes for this in sample_annotator/clients/nmdc/get_metadata_submissions.py
-    #  they need some revision esp regarding ids and names
-    # dh_to_nmdc_name_mappings = {
-    #     "samp_name": "name",
-    #     "soil_horizon": "horizon",
-    #     "prev_land_use_meth": "previous_land_use_meth",
-    #     "samp_collec_device": "samp_collect_device",
-    # }
+
     row_list = []
     for i in template_slots:
         # todo when to use name and when to use alias
@@ -381,7 +382,9 @@ def just_submission_row(current_submission):
         specific_ecosystem=None,
     )
 
-    if row_dict["NCBIBioProjectId"] != "" and validators.url(row_dict["NCBIBioProjectId"]):
+    if row_dict["NCBIBioProjectId"] != "" and validators.url(
+            row_dict["NCBIBioProjectId"]
+    ):
         submission_as_study.INSDC_bioproject_identifiers.append(
             row_dict["NCBIBioProjectId"]
         )
@@ -495,15 +498,278 @@ mintingClient = RuntimeApiSiteClient(
     client_secret="w@sk23X?Ea7.",
 )
 
-minting_params = {"populator": "", "naa": "nmdc", "shoulder": "fk0", "number": 1}
 
-result = mintingClient.request("POST", "/ids/mint", params_or_json_data=minting_params)
+# todo refactor flattering, with explicit paths
+def just_metadata_rows(submissions_dict: Dict, view: SchemaView):
+    frame_list = []
+    for k, v in submissions_dict.items():
+        study_rhs = k
 
-print(result.json())
+        sample_data_frame = pd.DataFrame(v["metadata_submission"]["sampleData"])
+        if len(sample_data_frame.index) > 2 and v["status"] == "complete":
+            # print(f"{study_rhs}: {v['status']}")
+            asserted_template = v["metadata_submission"]["template"]
 
-x = Study(result.json()[0])
+            current_title_to_name_frame = get_template_titles_names(
+                asserted_template, view
+            )
 
-print(x)
+            expected = list(current_title_to_name_frame["title"])
+
+            provided = list(sample_data_frame.iloc[1])
+
+            if provided != expected:
+                print(
+                    f"column headings for {study_rhs} do not match columns from claimed template {asserted_template}"
+                )
+                exit()
+            else:
+                print(
+                    f"column headings for {study_rhs} match columns from claimed template {asserted_template}"
+                )
+                sample_data_frame.drop(index=[0, 1], inplace=True)
+                sample_data_frame.columns = list(current_title_to_name_frame["name"])
+                sample_data_frame["part_of"] = f"nmdc:submission_{k}"
+
+                minting_params = {
+                    "populator": "",
+                    "naa": "nmdc",
+                    "shoulder": "fk0",
+                    "number": len(sample_data_frame.index),
+                }
+
+                minting_response = mintingClient.request(
+                    "POST", "/ids/mint", params_or_json_data=minting_params
+                )
+
+                sample_data_frame["id"] = minting_response.json()
+
+                frame_list.append(sample_data_frame)
+
+    all_sample_frame = pd.concat(frame_list)
+    return all_sample_frame
+
+
+def process_qv(raw_value: str):
+    # todo more than one qv get parsed out?
+    # todo units are expressed as words. convert to symbols?
+    # todo units my be surprising, like Coulombs for degrees Celsius
+    qv = QuantityValue(has_raw_value=raw_value)
+    quants = parser.parse(raw_value)
+    if len(quants) > 0:
+        quant = quants[0]
+        if quant.uncertainty:
+            qv.has_minimum_numeric_value = quant.value - quant.uncertainty
+            qv.has_maximum_numeric_value = quant.value + quant.uncertainty
+        else:
+            qv.has_numeric_value = quant.value
+        if quant.unit and quant.unit.name != "dimensionless":
+            qv.has_unit = quant.unit.name
+    return qv
+
+
+def extract_lat_lon(raw_value: str):
+    # if DH validation worked,
+    # should be one decimal value, then a single whitespace, then another decimal value
+    if raw_value:
+        splitted = raw_value.split(" ")
+        decimals = [float(i) for i in splitted]
+        if (
+                len(decimals) == 2
+                and decimals[0] > -90
+                and decimals[0] < 90
+                and decimals[1] > -180
+                and decimals[1] < 180
+        ):
+            gv = GeolocationValue(
+                has_raw_value=raw_value, latitude=decimals[0], longitude=decimals[1]
+            )
+            return gv
+
+    # with open("instantiation_log.yml", "w") as outfile:
+    #     yaml.dump(instantiation_log, outfile, default_flow_style=False)
+
+
+def extract_ctv(raw_value: str):
+    # ____mediterranean shrubland biome [ENVO:01000217]
+    # todo could be more than one term id
+    #  pipe or semicolon separated?
+    #  or just one big mess?
+    #  in any case, could be label only, id only, matching label and id, mismatch...
+    #  check ontology owner to see if term is still active and label/id match?
+    underscoreless = re.sub(pattern=r"^_*\s*", repl="", string=raw_value)
+    p = re.compile(r"\[(.*)\]")
+    term_id = p.findall(underscoreless)
+    if term_id:
+        label = underscoreless.replace(f"[{term_id[0]}]", "")
+        label = label.strip()
+        oc = OntologyClass(id=term_id[0], name=label)
+        return oc
+
+
+def set_to_list(set_input, do_sort=True):
+    temp = list(set_input)
+    if do_sort:
+        temp.sort()
+    return temp
+
+
+def is_number(s):
+    try:
+        float(s)
+        return True
+    except ValueError:
+        return False
+
+
+def sample_df_to_sample_db(sample_df, dh_view):
+    # todo parameterize
+    nmdc_view = get_view(
+        schema_url="https://raw.githubusercontent.com/microbiomedata/nmdc-schema/main/src/schema/nmdc.yaml",
+    )
+
+    mixs_view = get_view(
+        schema_url="https://raw.githubusercontent.com/GenomicsStandardsConsortium/mixs/main/model/schema/mixs.yaml",
+    )
+
+    bs_induced_slots = nmdc_view.class_induced_slots("biosample")
+    bs_induced_slot_names = [i.alias for i in bs_induced_slots]
+    # could have been a dict comprehension one-liner
+    bs_induced_slot_dict = dict(zip(bs_induced_slot_names, bs_induced_slots))
+
+    biosample_list = sample_df.to_dict(orient="records")
+
+    biosample_set_list = []
+
+    biosample_db = Database()
+
+    string_slots = set()
+
+    other_ranges = {}
+
+    unmapped = set()
+
+    for current_biosample in biosample_list:
+        # # doesn't require any particular id prefix?
+        # # part of is supposed to take a named thing
+        # # ControlledTermValue can be instantiated empty
+        # # ControlledTermValue -> term is supposed to take an ontology class
+        # todo strip leading underscores from MIxS env triad EnvO terms and parse label from ID
+        # gold_path_field... generalize
+        # ecosystem
+        # ecosystem_category
+        # ecosystem_subtype
+        # ecosystem_type
+        # specific_ecosystem
+
+        # requireds
+        #     # not doing anything special for multivalued slots yet
+        #     # id vs source_mat_id
+        #     # what value would be best for part_of?
+        # todo the MIxS env triad terms are probably getting overwritten in the loop below
+        instantiated_bs = Biosample(
+            id=current_biosample["source_mat_id"],
+            part_of=current_biosample["part_of"],
+            env_broad_scale=ControlledTermValue(
+                has_raw_value=current_biosample["env_broad_scale"],
+                term=extract_ctv(current_biosample["env_broad_scale"]),
+            ),
+            env_local_scale=ControlledTermValue(
+                has_raw_value=current_biosample["env_local_scale"],
+                term=extract_ctv(current_biosample["env_local_scale"]),
+            ),
+            env_medium=ControlledTermValue(
+                has_raw_value=current_biosample["env_medium"],
+                term=extract_ctv(current_biosample["env_medium"]),
+            ),
+        )
+        for k, v in current_biosample.items():
+            # expected_key = None
+            if k in dh_to_nmdc_name_mappings:
+                expected_key = dh_to_nmdc_name_mappings[k]
+            else:
+                expected_key = k
+            if expected_key in bs_induced_slot_dict:
+                current_range = bs_induced_slot_dict[expected_key].range
+                if current_range == ControlledTermValue.class_name:
+                    if v and v != "":
+                        oc = extract_ctv(v)
+                        instantiated_bs[expected_key] = ControlledTermValue(
+                            has_raw_value=v, term=oc
+                        )
+                    # else:
+                    #     oc = None
+                elif current_range == GeolocationValue.class_name:
+                    gv = extract_lat_lon(v)
+                    if gv:
+                        instantiated_bs[expected_key] = gv
+                    else:
+                        instantiated_bs[expected_key] = GeolocationValue(
+                            has_raw_value=v
+                        )
+                elif current_range == QuantityValue.class_name:
+                    if v:
+                        qv = process_qv(v)
+                        instantiated_bs[expected_key] = qv
+                elif current_range == TextValue.class_name and v and v != "":
+                    instantiated_bs[expected_key] = TextValue(has_raw_value=v)
+                elif current_range == TimestampValue.class_name and v and v != "":
+                    instantiated_bs[expected_key] = TimestampValue(has_raw_value=v)
+                elif (
+                        (
+                                type(nmdc_view.get_element(current_range)).class_name
+                                == EnumDefinition.class_name
+                        )
+                        and v
+                        and v != ""
+                ):
+                    instantiated_bs[expected_key] = v
+                elif current_range == "string" and v and v != "":
+                    # todo note if the string slot comes from EMSL or JGI... those are expected
+                    # if type(v) == str and v.isnumeric():
+                    if is_number(v):
+                        instantiated_bs[expected_key] = float(v)
+                    else:
+                        instantiated_bs[expected_key] = v
+                    string_slots.add(expected_key)
+                else:
+                    range_element = nmdc_view.get_element(current_range)
+                    other_ranges[expected_key] = type(range_element).class_name
+            else:
+                unmapped.add(k)
+
+        biosample_set_list.append(instantiated_bs)
+
+    biosample_db.biosample_set = biosample_set_list
+
+    string_slots = set_to_list(string_slots)
+
+    nmdc_slots = nmdc_view.all_slots()
+    nmdc_slot_names = list(nmdc_slots.keys())
+
+    mixs_slots = mixs_view.all_slots()
+    mixs_slot_names = list(mixs_slots.keys())
+
+    mixs_defines = unmapped.intersection(set(mixs_slot_names))
+    nmdc_includes = unmapped.intersection(set(nmdc_slot_names))
+    dh_defines = unmapped - mixs_defines
+
+    dh_defines = set_to_list(dh_defines)
+    mixs_defines = set_to_list(mixs_defines)
+    nmdc_includes = set_to_list(nmdc_includes)
+
+    instantiation_log = {
+        "string_slots": string_slots,
+        "other_ranges": other_ranges,
+        "nmdc_includes": nmdc_includes,
+        "mixs_defines": mixs_defines,
+        "dh_defines": dh_defines,
+    }
+
+    pprint.pprint(instantiation_log)
+
+    return biosample_db
+
 
 # ---
 
@@ -550,3 +816,12 @@ submission_frame.to_csv(submission_frame_tsv_out, sep="\t", index=False)
 #
 # dy = yaml_dumper.dumps(d)
 # print(dy)
+
+jmf = just_metadata_rows(submission_results_dict, portal_view)
+jmf.to_csv("jmf.tsv", sep="\t", index=False)
+
+as_db = sample_df_to_sample_db(jmf, dh_view=portal_view)
+yaml_dumper.dump(as_db, "as_db.yaml")
+print(yaml_dumper.dumps(as_db))
+
+# https://raw.githubusercontent.com/microbiomedata/nmdc-schema/main/src/schema/external_identifiers.yaml
