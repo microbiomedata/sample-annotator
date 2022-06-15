@@ -30,10 +30,7 @@ from quantulum3 import parser
 
 pd.set_option("display.max_columns", None)
 
-# todo don't forget to mint IDs for studies and samples
-#  want entry-time validation and enrichment of study data
-
-# todo make Study and Biosample instances!
+# todo want entry-time validation and enrichment of study data
 
 api_offset = 0
 api_limit = 999
@@ -45,21 +42,22 @@ url = "https://data.dev.microbiomedata.org/api/metadata_submission"
 params = {"offset": api_offset, "limit": api_limit}
 cookies = {"session": session_cookie}
 
-# current_submission_id = "3e919e97-0437-4ca7-a758-ac36c45b908d"
-
-submission_frame_tsv_out = "../../../assets/out/sf2.tsv"
+submission_frame_tsv_out = "../../../assets/out/submissions_as_studies.tsv"
 
 studies_as_submissions_yaml = "../../../assets/out/submissions_as_studies.yaml"
 
+biosample_metadata_tsv = "../../../assets/out/biosample_metadata.tsv"
+
 known_orcids_file = "../../../assets/in/known_orcids.tsv"
 
-# todo I had some hard-coded fixes for this in sample_annotator/clients/nmdc/get_metadata_submissions.py
-#  they need some revision esp regarding ids and names
+biosample_metdata_yaml = "../../../assets/out/biosample_metadata.yaml"
+
+
 dh_to_nmdc_name_mappings = {
-    "samp_name": "name",
-    "soil_horizon": "horizon",
     "prev_land_use_meth": "previous_land_use_meth",
     "samp_collec_device": "samp_collect_device",
+    "samp_name": "name",
+    "soil_horizon": "horizon",
 }
 
 final_submission_columns = [
@@ -96,8 +94,6 @@ final_submission_columns = [
 # ---
 
 # todo from nmdc-runtime
-
-
 def now(as_str=False):
     dt = datetime.now(timezone.utc)
     return dt.isoformat() if as_str else dt
@@ -201,88 +197,6 @@ def get_template_titles_names(
     return df
 
 
-# @click.option("--known_orcids_tsv", default="assets/in/known_orcids.tsv")
-# known_orcids_frame = get_known_orcids(known_orcids_tsv=known_orcids_tsv)
-
-
-# # todo refactor flattering, with explicit paths
-# def get_submission_row(
-#         submissions_dict: Dict, submission_id: str, view: SchemaView, known_orcids_tsv: str
-# ):
-#     current_submission = submissions_dict[submission_id]
-#     # known_orcids_frame = get_known_orcids(known_orcids_tsv=known_orcids_tsv)
-#     # todo refactor?
-#     #  also, look up orcids?
-#     #  btw, no more looking up study id -> template name
-#     #  just make sure the second row  = the [titles of terms] from the corresponding template
-#     preliminaries_dict = {
-#         "status": current_submission["status"],
-#         "id": current_submission["id"],
-#         "author_orcid": current_submission["author_orcid"],
-#         "created": current_submission["created"],
-#     }
-#     current_metadata_submission = current_submission["metadata_submission"]
-#
-#     metadata_preliminaries = {
-#         "template": current_metadata_submission["template"],
-#         "packageName": current_metadata_submission["packageName"],
-#     }
-#
-#     # ---
-#
-#     current_title_to_name_frame = get_template_titles_names(
-#         metadata_preliminaries["template"], view
-#     )
-#     # pprint.pprint(current_title_to_name_frame)
-#
-#     # ---
-#
-#     sfd = current_metadata_submission["studyForm"]
-#     sfd["linkOutWebpage"] = "|".join(sfd["linkOutWebpage"])
-#     # todo need to collapse some objects
-#     #  contributors may be a list of objects?
-#     #  assume the others are lists of strings?
-#     sfd["contributors"] = "<TODO>"
-#     mofd = current_metadata_submission["multiOmicsForm"]
-#     mofd["alternativeNames"] = "|".join(mofd["alternativeNames"])
-#     mofd["omicsProcessingTypes"] = "|".join(mofd["omicsProcessingTypes"])
-#     # todo don't collect NCBIBioProjectName any more
-#     #  look up from NCBIBioProjectId
-#     #  which should be validated at collection time
-#     mofd["NCBIBioProjectName"] = f"<DEPRECATED> {mofd['NCBIBioProjectName']}".strip()
-#     metadata_submission_dict = {**metadata_preliminaries, **sfd, **mofd}
-#     row_dict = {**preliminaries_dict, **metadata_submission_dict}
-#     # pprint.pprint(row_dict)
-#
-#     # ---
-#
-#     sample_data_frame = pd.DataFrame(current_metadata_submission["sampleData"])
-#     # sample_data_frame.columns = list(sample_data_frame.iloc[1])
-#
-#     provided = list(sample_data_frame.iloc[1])
-#     # print(provided)
-#
-#     sample_data_frame.drop(index=[0, 1], inplace=True)
-#     expected = list(current_title_to_name_frame["title"])
-#     # print(expected)
-#
-#     if provided != expected:
-#         print(
-#             f'column headings for {current_submission["id"]} do not match columns from claimed template {current_metadata_submission["template"]}'
-#         )
-#         exit()
-#     else:
-#         print(
-#             f'column headings for {current_submission["id"]} match columns from claimed template {current_metadata_submission["template"]}'
-#         )
-#
-#     sample_data_frame.columns = list(current_title_to_name_frame["name"])
-#     # print(sample_data_frame)
-#
-#
-# # get_submission_row(submission_results_dict, current_submission_id, portal_view, known_orcids_tsv=None)
-
-
 def just_submission_row(current_submission):
     data_rows = len(current_submission["metadata_submission"]["sampleData"])
     preliminaries_dict = {
@@ -296,7 +210,7 @@ def just_submission_row(current_submission):
 
     metadata_preliminaries = {}
 
-    # todo are there any other variations between submissions?
+    # todo are there any other structural variations between the received submissions?
     if "template" in current_metadata_submission:
         metadata_preliminaries["template"] = current_metadata_submission["template"]
     else:
@@ -325,7 +239,7 @@ def just_submission_row(current_submission):
     # todo don't collect NCBIBioProjectName any more
     #  look up from NCBIBioProjectId
     #  which should be validated at collection time
-    mofd["NCBIBioProjectName"] = f"<DEPRECATED> {mofd['NCBIBioProjectName']}".strip()
+    mofd["NCBIBioProjectName"] = f"{mofd['NCBIBioProjectName']}".strip()
     metadata_submission_dict = {**metadata_preliminaries, **sfd, **mofd}
     row_dict = {**preliminaries_dict, **metadata_submission_dict}
 
@@ -395,29 +309,31 @@ def just_submission_row(current_submission):
     if row_dict["description"] != "":
         submission_as_study.description = (f"{row_dict['description']}",)
 
-    # if pi_person:
-    #     submission_as_study.principal_investigator = pi_person
-    #     submission_as_study.has_credit_associations[row_dict["piOrcid"]] = pi_ca
-    #
-    # known_contributors = list(submission_as_study.has_credit_associations.keys())
-    #
-    # for i in contributors_protected:
-    #     # what if an orcid, like the PI's, is revisited?
-    #     if i["orcid"] in known_contributors:
-    #         old_ca = submission_as_study.has_credit_associations[i["orcid"]]
-    #         for j in i["roles"]:
-    #             old_ca.applied_roles.append(j)
-    #         # look for mismatched names?
-    #     else:
-    #         temp_person = PersonValue(
-    #             orcid=i["orcid"],
-    #             has_raw_value=i["name"],
-    #         )
-    #         temp_ca = CreditAssociation(
-    #             applies_to_person=temp_person, applied_roles=i["roles"]
-    #         )
-    #         # print(temp_ca)
-    #         submission_as_study.has_credit_associations[i["orcid"]] = temp_ca
+    if pi_person:
+        submission_as_study.principal_investigator = pi_person
+        submission_as_study.has_credit_associations.append(pi_ca)
+
+    known_contributors = list(submission_as_study.has_credit_associations.keys())
+
+    print(contributors_protected)
+
+    for i in contributors_protected:
+        # what if an orcid, like the PI's, is revisited?
+        if i["orcid"] in known_contributors:
+            old_ca = submission_as_study.has_credit_associations[i["orcid"]]
+            for j in i["roles"]:
+                old_ca.applied_roles.append(j)
+            # look for mismatched names?
+        else:
+            temp_person = PersonValue(
+                orcid=i["orcid"],
+                has_raw_value=i["name"],
+            )
+            temp_ca = CreditAssociation(
+                applies_to_person=temp_person, applied_roles=i["roles"]
+            )
+            print(temp_ca)
+            # submission_as_study.has_credit_associations[i["orcid"]] = temp_ca
 
     if row_dict["datasetDoi"] != "":
         submission_as_study.doi = AttributeValue(has_raw_value=row_dict["datasetDoi"])
@@ -430,7 +346,7 @@ def just_submission_row(current_submission):
 
     # todo don't save or modify if empty
     submission_as_study.alternative_titles.append(
-        f"<LOOKUP, DON'T ASK SUBMITTER> {row_dict['NCBIBioProjectName']}"
+        f"{row_dict['NCBIBioProjectName']}"
     )
 
     # supposed to be a list of external identifiers, which are string representations of CURIEs
@@ -597,14 +513,15 @@ def extract_ctv(raw_value: str):
     #  or just one big mess?
     #  in any case, could be label only, id only, matching label and id, mismatch...
     #  check ontology owner to see if term is still active and label/id match?
-    underscoreless = re.sub(pattern=r"^_*\s*", repl="", string=raw_value)
-    p = re.compile(r"\[(.*)\]")
-    term_id = p.findall(underscoreless)
-    if term_id:
-        label = underscoreless.replace(f"[{term_id[0]}]", "")
-        label = label.strip()
-        oc = OntologyClass(id=term_id[0], name=label)
-        return oc
+    if raw_value and raw_value != "":
+        underscoreless = re.sub(pattern=r"^_*\s*", repl="", string=raw_value)
+        p = re.compile(r"\[(.*)\]")
+        term_id = p.findall(underscoreless)
+        if term_id:
+            label = underscoreless.replace(f"[{term_id[0]}]", "")
+            label = label.strip()
+            oc = OntologyClass(id=term_id[0], name=label)
+            return oc
 
 
 def set_to_list(set_input, do_sort=True):
@@ -668,7 +585,7 @@ def sample_df_to_sample_db(sample_df, dh_view):
         #     # what value would be best for part_of?
         # todo the MIxS env triad terms are probably getting overwritten in the loop below
         instantiated_bs = Biosample(
-            id=current_biosample["source_mat_id"],
+            id=current_biosample["id"],
             part_of=current_biosample["part_of"],
             env_broad_scale=ControlledTermValue(
                 has_raw_value=current_biosample["env_broad_scale"],
@@ -683,6 +600,10 @@ def sample_df_to_sample_db(sample_df, dh_view):
                 term=extract_ctv(current_biosample["env_medium"]),
             ),
         )
+
+        instantiated_bs.alternative_identifiers.append(current_biosample['source_mat_id'])
+
+
         for k, v in current_biosample.items():
             # expected_key = None
             if k in dh_to_nmdc_name_mappings:
@@ -780,10 +701,13 @@ submission_response = requests.get(url, cookies=cookies, params=params)
 rj = submission_response.json()
 
 submission_count = rj["count"]
+
 print(f"submission_count = {submission_count}")
 
 submission_results = rj["results"]
+
 submission_result_ids = [i["id"] for i in submission_results]
+
 submission_results_dict = dict(zip(submission_result_ids, submission_results))
 
 submission_frame = assemble_studies_frame(submission_results_dict)
@@ -791,37 +715,19 @@ submission_frame = assemble_studies_frame(submission_results_dict)
 submission_frame = submission_frame.merge(
     right=known_orcids_frame, how="left", left_on="author_orcid", right_on="orcid"
 )
+
 submission_frame = submission_frame[final_submission_columns]
+
 submission_frame.sort_values(
     by=["created", "data_rows"], inplace=True, ascending=[False, False]
 )
+
 submission_frame.to_csv(submission_frame_tsv_out, sep="\t", index=False)
 
-# poetry run linkml-validate --target-class Database --schema ../../nmdc-schema/src/schema/nmdc.yaml assets/out/submissions_as_studies.yaml
-
-# poetry run linkml-validate --target-class Study --schema ../../nmdc-schema/src/schema/nmdc.yaml assets/in/single_study.yaml
-# ValueError: MAM 2022-06-13 NCBI BioProject Accession is not a valid URI or CURIE
-
-# p = PersonValue(orcid="0000-0000-0000-0000")
-# print(yaml_dumper.dumps(p))
-# ca1 = CreditAssociation(applies_to_person=p, applied_roles=['Methodology'])
-# ca2 = CreditAssociation(applies_to_person=p, applied_roles=['Supervision'])
-# print(yaml_dumper.dumps(ca1))
-# s = Study(id='nmdc:nmdc')
-# s.has_credit_associations = [ca1, ca2]
-# print(yaml_dumper.dumps(s))
-# d = Database(study_set=[s])
-#
-# yaml_dumper.dump(d, "../../../assets/out/database.yaml")
-#
-# dy = yaml_dumper.dumps(d)
-# print(dy)
-
 jmf = just_metadata_rows(submission_results_dict, portal_view)
-jmf.to_csv("jmf.tsv", sep="\t", index=False)
+
+jmf.to_csv(biosample_metadata_tsv, sep="\t", index=False)
 
 as_db = sample_df_to_sample_db(jmf, dh_view=portal_view)
-yaml_dumper.dump(as_db, "as_db.yaml")
-print(yaml_dumper.dumps(as_db))
 
-# https://raw.githubusercontent.com/microbiomedata/nmdc-schema/main/src/schema/external_identifiers.yaml
+yaml_dumper.dump(as_db, biosample_metdata_yaml)

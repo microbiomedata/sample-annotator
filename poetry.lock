@@ -69,7 +69,7 @@ toml = "*"
 
 [[package]]
 name = "babel"
-version = "2.10.1"
+version = "2.10.2"
 description = "Internationalization utilities"
 category = "main"
 optional = false
@@ -136,7 +136,7 @@ uvloop = ["uvloop (>=0.15.2)"]
 
 [[package]]
 name = "certifi"
-version = "2022.5.18.1"
+version = "2022.6.15"
 description = "Python package for providing Mozilla's CA Bundle."
 category = "main"
 optional = false
@@ -303,7 +303,7 @@ testing = ["covdefaults (>=1.2.0)", "coverage (>=4)", "pytest (>=4)", "pytest-co
 
 [[package]]
 name = "funowl"
-version = "0.1.11"
+version = "0.1.12"
 description = "Python rendering of the OWL Functional syntax"
 category = "main"
 optional = false
@@ -312,7 +312,7 @@ python-versions = ">=3.7"
 [package.dependencies]
 bcp47 = "*"
 pyjsg = ">=0.11.6"
-rdflib = ">=5.0.0,<6.1.0 || >=6.2.0"
+rdflib = ">=5.0.0"
 rdflib-shim = "*"
 rfc3987 = "*"
 
@@ -536,7 +536,7 @@ format-nongpl = ["fqdn", "idna", "isoduration", "jsonpointer (>1.13)", "rfc3339-
 
 [[package]]
 name = "linkml"
-version = "1.2.13"
+version = "1.2.14"
 description = "Linked Open Data Modeling Language"
 category = "main"
 optional = false
@@ -705,7 +705,7 @@ testing = ["beautifulsoup4", "coverage", "pytest (>=6,<7)", "pytest-cov", "pytes
 
 [[package]]
 name = "nmdc-schema"
-version = "4.0.0"
+version = "5.0.2"
 description = "Schema resources for the National Microbiome Data Collaborative (NMDC)"
 category = "main"
 optional = false
@@ -1114,7 +1114,7 @@ num2words = "*"
 
 [[package]]
 name = "rdflib"
-version = "6.0.2"
+version = "6.1.1"
 description = "RDFLib is a Python library for working with RDF, a simple yet powerful language for representing information."
 category = "main"
 optional = false
@@ -1127,7 +1127,7 @@ pyparsing = "*"
 [package.extras]
 docs = ["sphinx (<5)", "sphinxcontrib-apidoc"]
 html = ["html5lib"]
-tests = ["html5lib", "networkx", "nose (==1.3.7)", "nose-timer", "coverage", "black (==21.6b0)", "flake8", "doctest-ignore-unicode (==0.1.2)"]
+tests = ["berkeleydb", "html5lib", "networkx", "pytest", "pytest-cov", "pytest-subtests"]
 
 [[package]]
 name = "rdflib-jsonld"
@@ -1256,17 +1256,20 @@ sparqlwrapper = ">=1.8.2"
 
 [[package]]
 name = "sparqlwrapper"
-version = "1.8.5"
+version = "2.0.0"
 description = "SPARQL Endpoint interface to Python"
 category = "main"
 optional = false
-python-versions = "*"
+python-versions = ">=3.7"
 
 [package.dependencies]
-rdflib = ">=4.0"
+rdflib = ">=6.1.1"
 
 [package.extras]
+dev = ["setuptools (>=3.7.1)", "mypy (>=0.931)", "pandas (>=1.3.5)", "pandas-stubs (>=1.2.0.48)"]
+docs = ["sphinx (<5)", "sphinx-rtd-theme"]
 keepalive = ["keepalive (>=0.5)"]
+pandas = ["pandas (>=1.3.5)"]
 
 [[package]]
 name = "sphinx"
@@ -1605,7 +1608,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "621af4eb6d13738cf563458d3c87020f59bc32351459e36ea6713c88a7296727"
+content-hash = "4be96da94635a4f6009831e3b6de09d499e59a0b774b2f2b6c58e5916fe800eb"
 
 [metadata.files]
 alabaster = [
@@ -1636,8 +1639,8 @@ autopep8 = [
     {file = "autopep8-1.6.0.tar.gz", hash = "sha256:44f0932855039d2c15c4510d6df665e4730f2b8582704fa48f9c55bd3e17d979"},
 ]
 babel = [
-    {file = "Babel-2.10.1-py3-none-any.whl", hash = "sha256:3f349e85ad3154559ac4930c3918247d319f21910d5ce4b25d439ed8693b98d2"},
-    {file = "Babel-2.10.1.tar.gz", hash = "sha256:98aeaca086133efb3e1e2aad0396987490c8425929ddbcfe0550184fdc54cd13"},
+    {file = "Babel-2.10.2-py3-none-any.whl", hash = "sha256:81a3beca4d0cd40a9cfb9e2adb2cf39261c2f959b92e7a74750befe5d79afd7b"},
+    {file = "Babel-2.10.2.tar.gz", hash = "sha256:7aed055f0c04c9e7f51a2f75261e41e1c804efa724cb65b60a970dd4448d469d"},
 ]
 bcp47 = [
     {file = "bcp47-0.0.4-py3-none-any.whl", hash = "sha256:309d3bbaef8d6c9ac59d37ba2167cc6620b4e7467ec8f1e09641b659bb1c0c6d"},
@@ -1673,8 +1676,8 @@ black = [
     {file = "black-22.3.0.tar.gz", hash = "sha256:35020b8886c022ced9282b51b5a875b6d1ab0c387b31a065b84db7c33085ca79"},
 ]
 certifi = [
-    {file = "certifi-2022.5.18.1-py3-none-any.whl", hash = "sha256:f1d53542ee8cbedbe2118b5686372fb33c297fcd6379b050cca0ef13a597382a"},
-    {file = "certifi-2022.5.18.1.tar.gz", hash = "sha256:9c5705e395cd70084351dd8ad5c41e65655e08ce46f2ec9cf6c2c08390f71eb7"},
+    {file = "certifi-2022.6.15-py3-none-any.whl", hash = "sha256:fe86415d55e84719d75f8b69414f6438ac3547d2078ab91b67e779ef69378412"},
+    {file = "certifi-2022.6.15.tar.gz", hash = "sha256:84c85a9078b11105f04f3036a9482ae10e4621616db313fe045dd24743a0820d"},
 ]
 cfgraph = [
     {file = "CFGraph-0.2.1.tar.gz", hash = "sha256:b57fe7044a10b8ff65aa3a8a8ddc7d4cd77bf511b42e57289cd52cbc29f8fe74"},
@@ -1739,8 +1742,8 @@ filelock = [
     {file = "filelock-3.7.1.tar.gz", hash = "sha256:3a0fd85166ad9dbab54c9aec96737b744106dc5f15c0b09a6744a445299fcf04"},
 ]
 funowl = [
-    {file = "funowl-0.1.11-py3-none-any.whl", hash = "sha256:a15cf0a14976667bd037fea4c8b8dc169063bba1b7e0ce4799bd4334091e2fde"},
-    {file = "funowl-0.1.11.tar.gz", hash = "sha256:d857d1d7781a8cd2c84533d437d3580ff2f39c26c548dfaca5d5d6d85ac8a3fb"},
+    {file = "funowl-0.1.12-py3-none-any.whl", hash = "sha256:44f2337d47d21ab6532f8f0e51173c506a0d9dae9efa959cb105b0311e352082"},
+    {file = "funowl-0.1.12.tar.gz", hash = "sha256:3316c37ecde08cdfa96ebcbcc02ed53c355dc56845d654a8f37aa7a913ca6f71"},
 ]
 git-root = [
     {file = "git_root-0.1-py3-none-any.whl", hash = "sha256:9642e133327066cdfb062da63a57512bd9b29492e01b03e25c316ba6b48636cf"},
@@ -1876,8 +1879,8 @@ jsonschema = [
     {file = "jsonschema-4.6.0.tar.gz", hash = "sha256:9d6397ba4a6c0bf0300736057f649e3e12ecbc07d3e81a0dacb72de4e9801957"},
 ]
 linkml = [
-    {file = "linkml-1.2.13-py3-none-any.whl", hash = "sha256:be8de2848fc038549bad9abaa43a32d9a7550ba245cda2baa14027b6a10c71c2"},
-    {file = "linkml-1.2.13.tar.gz", hash = "sha256:df0e1b5e87ca41ae51812f30906829dc2d2db1d63062ceb0fc7c61e91a53932d"},
+    {file = "linkml-1.2.14-py3-none-any.whl", hash = "sha256:198f88a6157604afa78db2e41b1c91e4e795803d5ed09ab4fc7ce58b89b88d01"},
+    {file = "linkml-1.2.14.tar.gz", hash = "sha256:593a3bcfdac22ba3a1aae29056e02abf9e2a6d423ad65b5526f08af288adc3dc"},
 ]
 linkml-dataops = [
     {file = "linkml_dataops-0.1.0-py3-none-any.whl", hash = "sha256:193cf7f659e5f07946d2c2761896910d5f7151d91282543b1363801f68307f4c"},
@@ -1954,8 +1957,8 @@ myst-parser = [
     {file = "myst_parser-0.18.0-py3-none-any.whl", hash = "sha256:4965e51918837c13bf1c6f6fe2c6bddddf193148360fbdaefe743a4981358f6a"},
 ]
 nmdc-schema = [
-    {file = "nmdc_schema-4.0.0-py3-none-any.whl", hash = "sha256:fe3fe67c0c04c62bf9dae92fb8dc47d250f4625bac7120137268075cb32419cc"},
-    {file = "nmdc_schema-4.0.0.tar.gz", hash = "sha256:edddc8e4890b3c8876590029af53c07d295c36c57c98954a4f81acecc34bbba7"},
+    {file = "nmdc_schema-5.0.2-py3-none-any.whl", hash = "sha256:de328b1607e15d9034bb81e9ccedc7501fab9cb79a12062a2a04a6116a3fe7aa"},
+    {file = "nmdc_schema-5.0.2.tar.gz", hash = "sha256:efc948d8183b07722566e6c7977752741bf85e8f59b86797e208b4aed6fb531c"},
 ]
 num2words = [
     {file = "num2words-0.5.10-py3-none-any.whl", hash = "sha256:0b6e5f53f11d3005787e206d9c03382f459ef048a43c544e3db3b1e05a961548"},
@@ -2300,8 +2303,8 @@ quantulum3 = [
     {file = "quantulum3-0.7.10.tar.gz", hash = "sha256:7064d66f20825edcbaac04bf6b02adc3fe64484407fca8ae6d5dec51e895d92e"},
 ]
 rdflib = [
-    {file = "rdflib-6.0.2-py3-none-any.whl", hash = "sha256:b7642daac8cdad1ba157fecb236f5d1b2aa1de64e714dcee80d65e2b794d88a6"},
-    {file = "rdflib-6.0.2.tar.gz", hash = "sha256:6136ae056001474ee2aff5fc5b956e62a11c3a9c66bb0f3d9c0aaa5fbb56854e"},
+    {file = "rdflib-6.1.1-py3-none-any.whl", hash = "sha256:fc81cef513cd552d471f2926141396b633207109d0154c8e77926222c70367fe"},
+    {file = "rdflib-6.1.1.tar.gz", hash = "sha256:8dbfa0af2990b98471dacbc936d6494c997ede92fd8ed693fb84ee700ef6f754"},
 ]
 rdflib-jsonld = [
     {file = "rdflib-jsonld-0.6.1.tar.gz", hash = "sha256:eda5a42a2e09f80d4da78e32b5c684bccdf275368f1541e6b7bcddfb1382a0e0"},
@@ -2371,11 +2374,8 @@ sparqlslurper = [
     {file = "sparqlslurper-0.5.1.tar.gz", hash = "sha256:9282ebb064fc6152a58269d194cb1e7b275b0f095425a578d75b96dcc851f546"},
 ]
 sparqlwrapper = [
-    {file = "SPARQLWrapper-1.8.5-py2-none-any.whl", hash = "sha256:357ee8a27bc910ea13d77836dbddd0b914991495b8cc1bf70676578155e962a8"},
-    {file = "SPARQLWrapper-1.8.5-py2.7.egg", hash = "sha256:17ec44b08b8ae2888c801066249f74fe328eec25d90203ce7eadaf82e64484c7"},
-    {file = "SPARQLWrapper-1.8.5-py3-none-any.whl", hash = "sha256:c7f9c9d8ebb13428771bc3b6dee54197422507dcc3dea34e30d5dcfc53478dec"},
-    {file = "SPARQLWrapper-1.8.5-py3.4.egg", hash = "sha256:8cf6c21126ed76edc85c5c232fd6f77b9f61f8ad1db90a7147cdde2104aff145"},
-    {file = "SPARQLWrapper-1.8.5.tar.gz", hash = "sha256:d6a66b5b8cda141660e07aeb00472db077a98d22cb588c973209c7336850fb3c"},
+    {file = "SPARQLWrapper-2.0.0-py3-none-any.whl", hash = "sha256:c99a7204fff676ee28e6acef327dc1ff8451c6f7217dcd8d49e8872f324a8a20"},
+    {file = "SPARQLWrapper-2.0.0.tar.gz", hash = "sha256:3fed3ebcc77617a4a74d2644b86fd88e0f32e7f7003ac7b2b334c026201731f1"},
 ]
 sphinx = [
     {file = "Sphinx-4.5.0-py3-none-any.whl", hash = "sha256:ebf612653238bcc8f4359627a9b7ce44ede6fdd75d9d30f68255c7383d3a6226"},
