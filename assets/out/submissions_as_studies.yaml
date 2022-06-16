@@ -1,0 +1,419 @@
+study_set:
+- id: nmdc:submission_02144204-4461-4fd3-b961-456d0bba99df
+  name:
+  - MAM 2022-06-15a
+  alternative_identifiers:
+  - http://example.com
+  - http://example.com
+  alternative_titles:
+  - ''
+  type: nmdc:Study
+- id: nmdc:submission_3e919e97-0437-4ca7-a758-ac36c45b908d
+  name:
+  - Mark Andrew Miller 2022-06-06
+  alternative_identifiers:
+  - Mark Andrew Miller 2022-06-06
+  - Mark Andrew Miller 2022-06-06
+  alternative_titles:
+  - ''
+  type: nmdc:Study
+- id: nmdc:submission_49e40955-31c7-44a7-9e31-8499335019e6
+  name:
+  - sdfsdfsdfdsfsdfds
+  alternative_identifiers:
+  - '43242'
+  - '342342'
+  alternative_titles:
+  - ''
+  type: nmdc:Study
+- id: nmdc:submission_2dc1f1ed-6de3-453e-a933-1789ba9c9933
+  name:
+  - Buck Hanson "- beta test"
+  principal_investigator:
+    has_raw_value: Buck Hanson
+    orcid: 0000-0001-6947-7286
+    email: bhanson@lanl.gov
+  alternative_titles:
+  - ''
+  type: nmdc:Study
+- id: nmdc:submission_f731608c-77d7-4ffb-ac6d-2989a7c44e3f
+  name:
+  - Patrick's Test
+  alternative_identifiers:
+  - '123'
+  - '456'
+  alternative_titles:
+  - ''
+  type: nmdc:Study
+- id: nmdc:submission_99381d12-b9d1-4ab4-a954-14477fcdb286
+  name:
+  - Sample Submission Study
+  alternative_identifiers:
+  - Fake JGI Thing
+  - Fake EMSL Thing
+  alternative_titles:
+  - This is a title
+  alternative_names:
+  - alt_1
+  - alt_2
+  type: nmdc:Study
+- id: nmdc:submission_0239a9cf-4e89-4264-a039-19d6d628c72b
+  alternative_titles:
+  - ''
+  type: nmdc:Study
+- id: nmdc:submission_e73cd45b-e966-4606-b9f4-77fccd36a7b3
+  name:
+  - Testing
+  alternative_identifiers:
+  - '1234'
+  - '1324'
+  alternative_titles:
+  - ''
+  type: nmdc:Study
+- id: nmdc:submission_822e290d-6837-4956-abb9-996dd5f6d8b9
+  name:
+  - test 042522
+  alternative_identifiers:
+  - '343432'
+  - '343242'
+  alternative_titles:
+  - ''
+  type: nmdc:Study
+- id: nmdc:submission_95f509f2-7226-41dc-b205-0f84f154abc0
+  alternative_titles:
+  - ''
+  type: nmdc:Study
+- id: nmdc:submission_6b1e4498-529d-4813-bf8b-b69572183330
+  name:
+  - MAM 2022-06-09
+  description:
+  - Lorem ipsum dolor sit amet
+  alternative_identifiers:
+  - '31415'
+  - '31415'
+  principal_investigator:
+    has_raw_value: MAM
+    orcid: 0000-0001-9076-6066
+    email: MAM@lbl.gov
+  alternative_titles:
+  - ''
+  alternative_descriptions:
+  - I did an optional
+  websites:
+  - https://orcid.org/0000-0001-9076-6066
+  type: nmdc:Study
+- id: nmdc:submission_33d31996-171a-4fdf-b2ea-d3936b649529
+  name:
+  - Test Study Name Three
+  alternative_identifiers:
+  - '508060'
+  alternative_titles:
+  - ''
+  type: nmdc:Study
+- id: nmdc:submission_845c313d-3959-47c5-8722-866de1e59cbb
+  name:
+  - 'testing '
+  alternative_identifiers:
+  - '0000000001'
+  - '002000000'
+  alternative_titles:
+  - ''
+  type: nmdc:Study
+- id: nmdc:submission_456a82a2-8832-4669-b1a1-7b8fd4a11962
+  name:
+  - Another Sample
+  alternative_titles:
+  - ''
+  type: nmdc:Study
+- id: nmdc:submission_5f2cc536-dcac-48d8-9caf-a1f66c9970b8
+  alternative_titles:
+  - ''
+  type: nmdc:Study
+- id: nmdc:submission_e063c9e9-b1fc-4955-b379-5728c610e140
+  name:
+  - 'Bio-Scales: Defining plant gene function and its connection to ecosystem nitrogen
+    and carbon cycle'
+  description:
+  - The goal of this Bio-Scales Pilot Project study is to understand how plant traits
+    modify the microbiome and in particular how the coupled plant-soil-microbial system
+    influences nitrogen transformation patterns and fluxes.
+  alternative_identifiers:
+  - '507130'
+  alternative_titles:
+  - ''
+  websites:
+  - https://www.ornl.gov/content/bio-scales-0
+  type: nmdc:Study
+- id: nmdc:submission_ec48a4fe-7158-476a-a73b-1b076ad0fa73
+  alternative_titles:
+  - ''
+  type: nmdc:Study
+- id: nmdc:submission_4a068be6-0ede-48a8-b6e7-ae651800bf1e
+  name:
+  - swtcheroo
+  description:
+  - swtcheroo swtcheroo swtcheroo
+  alternative_identifiers:
+  - '12341234'
+  - '12341234'
+  principal_investigator:
+    has_raw_value: swtcheroo swtcheroo
+    orcid: i don't think this gets validated
+    email: swtcheroo@swtcheroo.swtcheroo
+  alternative_titles:
+  - ''
+  type: nmdc:Study
+- id: nmdc:submission_4f188ad8-2731-4635-b401-75e079025f47
+  name:
+  - madeup madeup madeup
+  description:
+  - madeup madeup madeup madeup madeup madeup
+  alternative_identifiers:
+  - '1234'
+  - '1234'
+  principal_investigator:
+    has_raw_value: jane madeup
+    orcid: 0000-0001-9076-6066
+    email: madeup@madeup.edu
+  alternative_titles:
+  - '1234'
+  alternative_descriptions:
+  - madeup
+  alternative_names:
+  - '1234'
+  websites:
+  - http://example.com/
+  type: nmdc:Study
+- id: nmdc:submission_82d11d10-ae8c-4dc1-ae70-07dbbe4f76c1
+  name:
+  - Montana - Test
+  alternative_titles:
+  - ''
+  type: nmdc:Study
+- id: nmdc:submission_2195af4c-b1f0-4867-97b9-4345b53b0709
+  name:
+  - Montana- Sediment test
+  alternative_identifiers:
+  - '00000'
+  - '00000'
+  alternative_titles:
+  - ''
+  type: nmdc:Study
+- id: nmdc:submission_962efbd1-5269-47cf-bd65-7bdf213d38ec
+  name:
+  - MAM 2022-06-13 study name
+  description:
+  - MAM 2022-06-13 study description
+  alternative_identifiers:
+  - MAM 2022-06-13 JGI study ID
+  - MAM 2022-06-13 EMSL proposal/study number
+  principal_investigator:
+    has_raw_value: MAM 2022-06-13  principal investigator name
+    orcid: 0000-0001-9076-6066
+    email: MAM 2022-06-13@lbl.gov
+  doi:
+    has_raw_value: 10.1093/ajae/aaq063
+  alternative_titles:
+  - MAM 2022-06-13 NCBI BioProject Title
+  alternative_descriptions:
+  - MAM 2022-06-13 study optional notes
+  alternative_names:
+  - MAM 2022-06-13 alternative name1
+  - MAM 2022-06-13 alternative name2
+  websites:
+  - https://orcid.org/my-orcid?orcid=0000-0001-9076-6066
+  type: nmdc:Study
+- id: nmdc:submission_43c007e0-3ab0-4e85-ab04-cea35c5ef604
+  name:
+  - study name test 1 -
+  alternative_identifiers:
+  - '8877888'
+  - '3453454334'
+  alternative_titles:
+  - ''
+  type: nmdc:Study
+- id: nmdc:submission_729b2640-981a-4313-95f2-8e4df97926d2
+  alternative_titles:
+  - ''
+  type: nmdc:Study
+- id: nmdc:submission_d5f506a2-aa68-4a70-b01a-b5e3e72339d2
+  name:
+  - Cassie Ettinger - Beta Test
+  alternative_titles:
+  - ''
+  type: nmdc:Study
+- id: nmdc:submission_0504deaa-4d68-450e-9fec-a73f402104e3
+  name:
+  - MAM 2022-06-13b
+  description:
+  - MAM 2022-06-13b Study Description
+  alternative_identifiers:
+  - http://example.com/jgi
+  - MAM 2022-06-13b EMSL Proposal/Study Number
+  principal_investigator:
+    has_raw_value: MAM 2022-06-13b Principal Investigator Name
+    orcid: 0000-0000-0000-0000
+    email: MAM@lbl.gov
+  doi:
+    has_raw_value: http://example.com/doi
+  alternative_titles:
+  - MAM 2022-06-13b NCBI BioProject Title
+  alternative_descriptions:
+  - MAM 2022-06-13b Optional Notes
+  alternative_names:
+  - MAM 2022-06-13b Alternative Name1
+  - MAM 2022-06-13b Alternative Name2
+  websites:
+  - http://example.com
+  type: nmdc:Study
+  INSDC_bioproject_identifiers:
+  - http://example.com/ncbi
+  GOLD_study_identifiers: http://example.com/gold
+- id: nmdc:submission_39f0767b-102a-4286-a274-b91c4f5dd862
+  alternative_titles:
+  - ''
+  type: nmdc:Study
+- id: nmdc:submission_d1fd2285-45d6-48d5-be12-391a6a65af84
+  name:
+  - Jason Rothman - beta test
+  alternative_titles:
+  - ''
+  type: nmdc:Study
+- id: nmdc:submission_cc498964-d1da-416d-b353-aecf5f6c749d
+  name:
+  - xxx xxx xxx
+  description:
+  - xxx.  xxx.  xxx
+  alternative_identifiers:
+  - xxxxxxxxx
+  - xxxxxxxxx
+  principal_investigator:
+    has_raw_value: xxx xxx
+    orcid: xxxxxxxxx
+    email: xxx@xxx.xxx
+  alternative_titles:
+  - xxxxxxxxx
+  alternative_names:
+  - xxx xxx xxx
+  type: nmdc:Study
+- id: nmdc:submission_763a273d-73a9-4b3b-b676-37703dfe953b
+  name:
+  - recent validation improvements
+  description:
+  - recent validation improvements recent validation improvements recent validation
+    improvements
+  alternative_identifiers:
+  - '123412343'
+  - '12341234'
+  principal_investigator:
+    has_raw_value: mark miller
+    orcid: 0000-0001-9076-6066
+    email: MAM@lbl.gov
+  alternative_titles:
+  - ''
+  type: nmdc:Study
+- id: nmdc:submission_69d5b511-bc00-47bf-9067-81f92900342a
+  name:
+  - test data set
+  alternative_identifiers:
+  - '2134411'
+  alternative_titles:
+  - ''
+  type: nmdc:Study
+- id: nmdc:submission_b6244868-becd-4308-9d9c-ff68b1fb61cd
+  alternative_titles:
+  - ''
+  type: nmdc:Study
+- id: nmdc:submission_71e3bbf8-8f4d-427b-9df4-1d3147993aa4
+  name:
+  - mark soil for reshaping
+  alternative_identifiers:
+  - '123'
+  - '123'
+  alternative_titles:
+  - ''
+  type: nmdc:Study
+- id: nmdc:submission_c3870c75-5f0b-47da-a9f3-b4e799c79647
+  name:
+  - Read the docs guide
+  description:
+  - should this be required?
+  alternative_identifiers:
+  - ghf
+  - this should just be "EMSL proposal/project number"... definition should be "EMSL
+    proposal or project number is required when processing was done at EMSL".
+  principal_investigator:
+    has_raw_value: should this be required?
+    orcid: is this validated?
+    email: montana.smith@pnnl.gov
+  alternative_titles:
+  - ''
+  alternative_names:
+  - this definition reads weird. We should update this.
+  websites:
+  - link 1
+  - link 2
+  type: nmdc:Study
+- id: nmdc:submission_9746df64-bf2a-4ee3-b004-8ec0f46c0357
+  alternative_titles:
+  - ''
+  type: nmdc:Study
+- id: nmdc:submission_fc0a7b70-b813-4c70-99ee-46dedb0f8bfb
+  name:
+  - test air
+  alternative_titles:
+  - ''
+  type: nmdc:Study
+- id: nmdc:submission_afb4a3f7-c005-41bc-af02-0b21743c5948
+  alternative_titles:
+  - ''
+  type: nmdc:Study
+- id: nmdc:submission_e8be7fbc-2c28-4646-bf66-b910e66c96b7
+  name:
+  - test other package
+  alternative_identifiers:
+  - '34232'
+  - '444432423'
+  alternative_titles:
+  - ''
+  type: nmdc:Study
+- id: nmdc:submission_086424aa-922e-48c5-a1f7-00e87e48a89c
+  name:
+  - Justine Debelius - beta test
+  alternative_titles:
+  - ''
+  type: nmdc:Study
+- id: nmdc:submission_ffd7c221-bac6-4401-ad61-864276743c61
+  name:
+  - 'Microbiomes '
+  alternative_titles:
+  - ''
+  type: nmdc:Study
+- id: nmdc:submission_2ef5a378-0221-4ff8-8ac0-6349e5ff1772
+  alternative_titles:
+  - ''
+  type: nmdc:Study
+- id: nmdc:submission_2b6c8d2d-241b-4ff2-adaf-5276f31a5320
+  alternative_titles:
+  - ''
+  type: nmdc:Study
+- id: nmdc:submission_50901421-0ba8-4258-86c4-2c314820af47
+  alternative_titles:
+  - ''
+  type: nmdc:Study
+- id: nmdc:submission_6e0086dd-5038-4d84-a09f-f275e70598fc
+  name:
+  - test for testing
+  description:
+  - test testtest testtest testtest testtest test
+  alternative_identifiers:
+  - '1'
+  principal_investigator:
+    has_raw_value: Chris
+    orcid: 0000-0002-6601-2165
+    email: cjmungall@lbl.gov
+  doi:
+    has_raw_value: '123'
+  alternative_titles:
+  - '1'
+  type: nmdc:Study
