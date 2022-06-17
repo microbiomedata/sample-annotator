@@ -62,9 +62,6 @@ dh_to_nmdc_name_mappings = {
 final_submission_columns = [
     "id",
     "author_orcid",
-    "last",
-    "first",
-    "other",
     "GOLDStudyId",
     "JGIStudyId",
     "created",
@@ -86,7 +83,6 @@ final_submission_columns = [
     "piEmail",
     "piName",
     "piOrcid",
-    "contributors",
 ]
 
 
@@ -284,7 +280,7 @@ def just_submission_row(current_submission):
     if row_dict["description"] != "":
         submission_as_study.description = (f"{row_dict['description']}",)
 
-    if "author" in current_submission["author"] and "orcid" in current_submission["author"]:
+    if "author" in current_submission and "orcid" in current_submission["author"]:
         submitter_person = PersonValue(orcid=current_submission["author"]["orcid"])
         if current_submission["author"]["name"] and current_submission["author"]["name"] != "":
             submitter_person.has_raw_value = current_submission["author"]["name"]
@@ -328,7 +324,10 @@ def just_submission_row(current_submission):
             )
             already_associated[io] = temp_ca
 
-    print(yaml_dumper.dumps(already_associated))
+    submission_as_study.has_credit_associations = []
+
+    for k, v in already_associated.items():
+        submission_as_study.has_credit_associations.append(v)
 
     if row_dict["datasetDoi"] != "":
         submission_as_study.doi = AttributeValue(has_raw_value=row_dict["datasetDoi"])

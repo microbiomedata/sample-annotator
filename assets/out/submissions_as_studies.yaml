@@ -10,9 +10,10 @@ study_set:
   type: nmdc:Study
   has_credit_associations:
   - applies_to_person:
-      email: MAM@lbl.gov
+      has_raw_value: Mark Andrew Miller
+      orcid: 0000-0001-9076-6066
     applied_roles:
-    - Principal Investigator
+    - Project administration
 - id: nmdc:submission_99381d12-b9d1-4ab4-a954-14477fcdb286
   name:
   - Sample Submission Study
@@ -31,9 +32,9 @@ study_set:
   has_credit_associations:
   - applies_to_person:
       has_raw_value: Brandon Davis
-      email: brandon.davis@kitware.com
+      orcid: 0000-0002-0716-5890
     applied_roles:
-    - Principal Investigator
+    - Project administration
 - id: nmdc:submission_f731608c-77d7-4ffb-ac6d-2989a7c44e3f
   name:
   - Patrick's Test
@@ -45,11 +46,16 @@ study_set:
   type: nmdc:Study
   has_credit_associations:
   - applies_to_person:
-      email: pkalita@lbl.gov
+      orcid: 0000-0002-6150-307X
     applied_roles:
-    - Principal Investigator
+    - Project administration
 - id: nmdc:submission_0239a9cf-4e89-4264-a039-19d6d628c72b
   type: nmdc:Study
+  has_credit_associations:
+  - applies_to_person:
+      orcid: 0000-0001-6142-1106
+    applied_roles:
+    - Project administration
 - id: nmdc:submission_49e40955-31c7-44a7-9e31-8499335019e6
   name:
   - sdfsdfsdfdsfsdfds
@@ -61,9 +67,9 @@ study_set:
   type: nmdc:Study
   has_credit_associations:
   - applies_to_person:
-      email: pvangay@lbl.gov
+      orcid: 0000-0002-9231-0692
     applied_roles:
-    - Principal Investigator
+    - Project administration
 - id: nmdc:submission_3e919e97-0437-4ca7-a758-ac36c45b908d
   name:
   - Mark Andrew Miller 2022-06-06
@@ -75,9 +81,10 @@ study_set:
   type: nmdc:Study
   has_credit_associations:
   - applies_to_person:
-      email: mam@lbl.gov
+      has_raw_value: Mark Andrew Miller
+      orcid: 0000-0001-9076-6066
     applied_roles:
-    - Principal Investigator
+    - Project administration
 - id: nmdc:submission_2dc1f1ed-6de3-453e-a933-1789ba9c9933
   name:
   - Buck Hanson "- beta test"
@@ -104,11 +111,16 @@ study_set:
   type: nmdc:Study
   has_credit_associations:
   - applies_to_person:
-      email: pvangay@lbl.gov
+      orcid: 0000-0002-9231-0692
     applied_roles:
-    - Principal Investigator
+    - Project administration
 - id: nmdc:submission_9746df64-bf2a-4ee3-b004-8ec0f46c0357
   type: nmdc:Study
+  has_credit_associations:
+  - applies_to_person:
+      orcid: 0000-0002-2740-1344
+    applied_roles:
+    - Project administration
 - id: nmdc:submission_fc0a7b70-b813-4c70-99ee-46dedb0f8bfb
   name:
   - test air
@@ -117,11 +129,16 @@ study_set:
   type: nmdc:Study
   has_credit_associations:
   - applies_to_person:
-      email: pvangay@lbl.gov
+      orcid: 0000-0002-9231-0692
     applied_roles:
-    - Principal Investigator
+    - Project administration
 - id: nmdc:submission_afb4a3f7-c005-41bc-af02-0b21743c5948
   type: nmdc:Study
+  has_credit_associations:
+  - applies_to_person:
+      orcid: 0000-0002-9231-0692
+    applied_roles:
+    - Project administration
 - id: nmdc:submission_e8be7fbc-2c28-4646-bf66-b910e66c96b7
   name:
   - test other package
@@ -133,9 +150,9 @@ study_set:
   type: nmdc:Study
   has_credit_associations:
   - applies_to_person:
-      email: pvangay@lbl.gov
+      orcid: 0000-0002-9231-0692
     applied_roles:
-    - Principal Investigator
+    - Project administration
 - id: nmdc:submission_e73cd45b-e966-4606-b9f4-77fccd36a7b3
   name:
   - Testing
@@ -147,11 +164,16 @@ study_set:
   type: nmdc:Study
   has_credit_associations:
   - applies_to_person:
-      email: faiza.ahmed@kitware.com
+      orcid: 0000-0001-6687-9941
     applied_roles:
-    - Principal Investigator
+    - Project administration
 - id: nmdc:submission_95f509f2-7226-41dc-b205-0f84f154abc0
   type: nmdc:Study
+  has_credit_associations:
+  - applies_to_person:
+      orcid: 0000-0001-6142-1106
+    applied_roles:
+    - Project administration
 - id: nmdc:submission_ffd7c221-bac6-4401-ad61-864276743c61
   name:
   - 'Microbiomes '
@@ -160,15 +182,30 @@ study_set:
   type: nmdc:Study
   has_credit_associations:
   - applies_to_person:
-      email: mrudolph@lbl.gov
+      orcid: 0000-0003-4656-5480
     applied_roles:
-    - Principal Investigator
+    - Project administration
 - id: nmdc:submission_2ef5a378-0221-4ff8-8ac0-6349e5ff1772
   type: nmdc:Study
+  has_credit_associations:
+  - applies_to_person:
+      orcid: 0000-0002-0278-8466
+    applied_roles:
+    - Project administration
 - id: nmdc:submission_2b6c8d2d-241b-4ff2-adaf-5276f31a5320
   type: nmdc:Study
+  has_credit_associations:
+  - applies_to_person:
+      orcid: 0000-0002-8238-6757
+    applied_roles:
+    - Project administration
 - id: nmdc:submission_50901421-0ba8-4258-86c4-2c314820af47
   type: nmdc:Study
+  has_credit_associations:
+  - applies_to_person:
+      orcid: 0000-0002-6601-2165
+    applied_roles:
+    - Project administration
 - id: nmdc:submission_6e0086dd-5038-4d84-a09f-f275e70598fc
   name:
   - test for testing
@@ -203,9 +240,9 @@ study_set:
   type: nmdc:Study
   has_credit_associations:
   - applies_to_person:
-      email: p.stein@berkeley.edu
+      orcid: 0000-0002-2127-2692
     applied_roles:
-    - Principal Investigator
+    - Project administration
 - id: nmdc:submission_33d31996-171a-4fdf-b2ea-d3936b649529
   name:
   - Test Study Name Three
@@ -216,9 +253,9 @@ study_set:
   type: nmdc:Study
   has_credit_associations:
   - applies_to_person:
-      email: dehays@lbl.gov
+      orcid: 0000-0002-8162-1276
     applied_roles:
-    - Principal Investigator
+    - Project administration
 - id: nmdc:submission_6b1e4498-529d-4813-bf8b-b69572183330
   name:
   - MAM 2022-06-09
@@ -243,6 +280,18 @@ study_set:
       email: MAM@lbl.gov
     applied_roles:
     - Principal Investigator
+  - applies_to_person:
+      has_raw_value: Gregor Mendel
+      orcid: 0000-0000-0000-0000
+    applied_roles:
+    - Conceptualization
+    - Data curation
+  - applies_to_person:
+      has_raw_value: Rosalind Franklin
+      orcid: 9999-9999-9999-9999
+    applied_roles:
+    - Formal Analysis
+    - Methodology
 - id: nmdc:submission_456a82a2-8832-4669-b1a1-7b8fd4a11962
   name:
   - Another Sample
@@ -251,9 +300,9 @@ study_set:
   type: nmdc:Study
   has_credit_associations:
   - applies_to_person:
-      email: example.pi@kitware.com
+      orcid: 0000-0003-4942-7569
     applied_roles:
-    - Principal Investigator
+    - Project administration
 - id: nmdc:submission_e063c9e9-b1fc-4955-b379-5728c610e140
   name:
   - 'Bio-Scales: Defining plant gene function and its connection to ecosystem nitrogen
@@ -272,14 +321,23 @@ study_set:
   type: nmdc:Study
   has_credit_associations:
   - applies_to_person:
-      has_raw_value: Mitch Doktycz
-      email: doktyczmj@ornl.gov
+      orcid: 0000-0001-9246-8193
     applied_roles:
-    - Principal Investigator
+    - Project administration
 - id: nmdc:submission_5f2cc536-dcac-48d8-9caf-a1f66c9970b8
   type: nmdc:Study
+  has_credit_associations:
+  - applies_to_person:
+      orcid: 0000-0002-9231-0692
+    applied_roles:
+    - Project administration
 - id: nmdc:submission_ec48a4fe-7158-476a-a73b-1b076ad0fa73
   type: nmdc:Study
+  has_credit_associations:
+  - applies_to_person:
+      orcid: 0000-0002-8683-0050
+    applied_roles:
+    - Project administration
 - id: nmdc:submission_2195af4c-b1f0-4867-97b9-4345b53b0709
   name:
   - Montana- Sediment test
@@ -291,9 +349,9 @@ study_set:
   type: nmdc:Study
   has_credit_associations:
   - applies_to_person:
-      email: montana.smith@pnnl.gov
+      orcid: 0000-0002-8683-0050
     applied_roles:
-    - Principal Investigator
+    - Project administration
 - id: nmdc:submission_82d11d10-ae8c-4dc1-ae70-07dbbe4f76c1
   name:
   - Montana - Test
@@ -302,9 +360,9 @@ study_set:
   type: nmdc:Study
   has_credit_associations:
   - applies_to_person:
-      email: montana.smith@pnnl.gov
+      orcid: 0000-0002-8683-0050
     applied_roles:
-    - Principal Investigator
+    - Project administration
 - id: nmdc:submission_4a068be6-0ede-48a8-b6e7-ae651800bf1e
   name:
   - swtcheroo
@@ -319,6 +377,11 @@ study_set:
     email: swtcheroo@swtcheroo.swtcheroo
   type: nmdc:Study
   has_credit_associations:
+  - applies_to_person:
+      has_raw_value: Mark Andrew Miller
+      orcid: 0000-0001-9076-6066
+    applied_roles:
+    - Project administration
   - applies_to_person:
       has_raw_value: swtcheroo swtcheroo
       orcid: i don't think this gets validated
@@ -357,6 +420,11 @@ study_set:
     - Funding acquisition
 - id: nmdc:submission_729b2640-981a-4313-95f2-8e4df97926d2
   type: nmdc:Study
+  has_credit_associations:
+  - applies_to_person:
+      orcid: 0000-0002-4719-3490
+    applied_roles:
+    - Project administration
 - id: nmdc:submission_962efbd1-5269-47cf-bd65-7bdf213d38ec
   name:
   - MAM 2022-06-13 study name
@@ -388,6 +456,18 @@ study_set:
       email: MAM 2022-06-13@lbl.gov
     applied_roles:
     - Principal Investigator
+  - applies_to_person:
+      has_raw_value: Rosalind Franklin
+      orcid: 0000-0000-0000-0000
+    applied_roles:
+    - Methodology
+    - Data curation
+  - applies_to_person:
+      has_raw_value: Gregor Mendel
+      orcid: 9999-9999-9999-9999
+    applied_roles:
+    - Formal Analysis
+    - Funding acquisition
 - id: nmdc:submission_43c007e0-3ab0-4e85-ab04-cea35c5ef604
   name:
   - study name test 1 -
@@ -399,9 +479,9 @@ study_set:
   type: nmdc:Study
   has_credit_associations:
   - applies_to_person:
-      email: pvangay@lbl.gov
+      orcid: 0000-0002-9231-0692
     applied_roles:
-    - Principal Investigator
+    - Project administration
 - id: nmdc:submission_d5f506a2-aa68-4a70-b01a-b5e3e72339d2
   name:
   - Cassie Ettinger - Beta Test
@@ -410,11 +490,16 @@ study_set:
   type: nmdc:Study
   has_credit_associations:
   - applies_to_person:
-      email: cassande@ucr.edu
+      orcid: 0000-0001-7334-403X
     applied_roles:
-    - Principal Investigator
+    - Project administration
 - id: nmdc:submission_39f0767b-102a-4286-a274-b91c4f5dd862
   type: nmdc:Study
+  has_credit_associations:
+  - applies_to_person:
+      orcid: 0000-0003-4656-5480
+    applied_roles:
+    - Project administration
 - id: nmdc:submission_0504deaa-4d68-450e-9fec-a73f402104e3
   name:
   - MAM 2022-06-13b
@@ -444,6 +529,11 @@ study_set:
   GOLD_study_identifiers: http://example.com/gold
   has_credit_associations:
   - applies_to_person:
+      has_raw_value: Mark Andrew Miller
+      orcid: 0000-0001-9076-6066
+    applied_roles:
+    - Project administration
+  - applies_to_person:
       has_raw_value: MAM 2022-06-13b Principal Investigator Name
       orcid: 0000-0000-0000-0000
       email: MAM@lbl.gov
@@ -451,6 +541,12 @@ study_set:
     - Principal Investigator
     - Methodology
     - Data curation
+  - applies_to_person:
+      has_raw_value: Gregor Mendel
+      orcid: 9999-9999-9999-9999
+    applied_roles:
+    - Formal Analysis
+    - Funding acquisition
 - id: nmdc:submission_d1fd2285-45d6-48d5-be12-391a6a65af84
   name:
   - Jason Rothman - beta test
@@ -459,9 +555,9 @@ study_set:
   type: nmdc:Study
   has_credit_associations:
   - applies_to_person:
-      email: rothmanj@uci.edu
+      orcid: 0000-0002-4848-8901
     applied_roles:
-    - Principal Investigator
+    - Project administration
 - id: nmdc:submission_cc498964-d1da-416d-b353-aecf5f6c749d
   name:
   - xxx xxx xxx
@@ -481,6 +577,11 @@ study_set:
   type: nmdc:Study
   has_credit_associations:
   - applies_to_person:
+      has_raw_value: Mark Andrew Miller
+      orcid: 0000-0001-9076-6066
+    applied_roles:
+    - Project administration
+  - applies_to_person:
       has_raw_value: xxx xxx
       orcid: xxxxxxxxx
       email: xxx@xxx.xxx
@@ -496,11 +597,16 @@ study_set:
   type: nmdc:Study
   has_credit_associations:
   - applies_to_person:
-      email: pvangay@lbl.gov
+      orcid: 0000-0002-9231-0692
     applied_roles:
-    - Principal Investigator
+    - Project administration
 - id: nmdc:submission_b6244868-becd-4308-9d9c-ff68b1fb61cd
   type: nmdc:Study
+  has_credit_associations:
+  - applies_to_person:
+      orcid: 0000-0002-6150-307X
+    applied_roles:
+    - Project administration
 - id: nmdc:submission_763a273d-73a9-4b3b-b676-37703dfe953b
   name:
   - recent validation improvements
@@ -533,9 +639,10 @@ study_set:
   type: nmdc:Study
   has_credit_associations:
   - applies_to_person:
-      email: mam@lbl.gov
+      has_raw_value: Mark Andrew Miller
+      orcid: 0000-0001-9076-6066
     applied_roles:
-    - Principal Investigator
+    - Project administration
 - id: nmdc:submission_086424aa-922e-48c5-a1f7-00e87e48a89c
   name:
   - Justine Debelius - beta test
@@ -545,10 +652,9 @@ study_set:
   type: nmdc:Study
   has_credit_associations:
   - applies_to_person:
-      has_raw_value: Justine Debelius
-      email: justine.debelius@gmail.com
+      orcid: 0000-0002-8605-3546
     applied_roles:
-    - Principal Investigator
+    - Project administration
 - id: nmdc:submission_c3870c75-5f0b-47da-a9f3-b4e799c79647
   name:
   - Read the docs guide
@@ -570,8 +676,18 @@ study_set:
   type: nmdc:Study
   has_credit_associations:
   - applies_to_person:
+      has_raw_value: Mark Andrew Miller
+      orcid: 0000-0001-9076-6066
+    applied_roles:
+    - Project administration
+  - applies_to_person:
       has_raw_value: should this be required?
       orcid: is this validated?
       email: montana.smith@pnnl.gov
     applied_roles:
     - Principal Investigator
+  - applies_to_person:
+      has_raw_value: Contributor One
+      orcid: this is abbreviated wrong ORCID
+    applied_roles:
+    - Data curation
