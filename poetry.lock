@@ -69,7 +69,7 @@ toml = "*"
 
 [[package]]
 name = "babel"
-version = "2.10.2"
+version = "2.10.3"
 description = "Internationalization utilities"
 category = "main"
 optional = false
@@ -196,7 +196,7 @@ click = "*"
 
 [[package]]
 name = "colorama"
-version = "0.4.4"
+version = "0.4.5"
 description = "Cross-platform colored terminal text."
 category = "main"
 optional = false
@@ -705,7 +705,7 @@ testing = ["beautifulsoup4", "coverage", "pytest (>=6,<7)", "pytest-cov", "pytes
 
 [[package]]
 name = "nmdc-schema"
-version = "5.0.2"
+version = "5.0.3"
 description = "Schema resources for the National Microbiome Data Collaborative (NMDC)"
 category = "main"
 optional = false
@@ -1608,7 +1608,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "4be96da94635a4f6009831e3b6de09d499e59a0b774b2f2b6c58e5916fe800eb"
+content-hash = "6d52d3c995e1cdaf3ae3b7008316951d322adc627edb14c89bc9c04098673773"
 
 [metadata.files]
 alabaster = [
@@ -1639,8 +1639,8 @@ autopep8 = [
     {file = "autopep8-1.6.0.tar.gz", hash = "sha256:44f0932855039d2c15c4510d6df665e4730f2b8582704fa48f9c55bd3e17d979"},
 ]
 babel = [
-    {file = "Babel-2.10.2-py3-none-any.whl", hash = "sha256:81a3beca4d0cd40a9cfb9e2adb2cf39261c2f959b92e7a74750befe5d79afd7b"},
-    {file = "Babel-2.10.2.tar.gz", hash = "sha256:7aed055f0c04c9e7f51a2f75261e41e1c804efa724cb65b60a970dd4448d469d"},
+    {file = "Babel-2.10.3-py3-none-any.whl", hash = "sha256:ff56f4892c1c4bf0d814575ea23471c230d544203c7748e8c68f0089478d48eb"},
+    {file = "Babel-2.10.3.tar.gz", hash = "sha256:7614553711ee97490f732126dc077f8d0ae084ebc6a96e23db1482afabdb2c51"},
 ]
 bcp47 = [
     {file = "bcp47-0.0.4-py3-none-any.whl", hash = "sha256:309d3bbaef8d6c9ac59d37ba2167cc6620b4e7467ec8f1e09641b659bb1c0c6d"},
@@ -1699,8 +1699,8 @@ click-log = [
     {file = "click_log-0.4.0-py2.py3-none-any.whl", hash = "sha256:a43e394b528d52112af599f2fc9e4b7cf3c15f94e53581f74fa6867e68c91756"},
 ]
 colorama = [
-    {file = "colorama-0.4.4-py2.py3-none-any.whl", hash = "sha256:9f47eda37229f68eee03b24b9748937c7dc3868f906e8ba69fbcbdd3bc5dc3e2"},
-    {file = "colorama-0.4.4.tar.gz", hash = "sha256:5941b2b48a20143d2267e95b1c2a7603ce057ee39fd88e7329b0c292aa16869b"},
+    {file = "colorama-0.4.5-py2.py3-none-any.whl", hash = "sha256:854bf444933e37f5824ae7bfc1e98d5bce2ebe4160d46b5edf346a89358e99da"},
+    {file = "colorama-0.4.5.tar.gz", hash = "sha256:e6c6b4334fc50988a639d9b98aa429a0b57da6e17b9a44f0451f930b6967b7a4"},
 ]
 commonmark = [
     {file = "commonmark-0.9.1-py2.py3-none-any.whl", hash = "sha256:da2f38c92590f83de410ba1a3cbceafbc74fee9def35f9251ba9a971d6d66fd9"},
@@ -1957,8 +1957,8 @@ myst-parser = [
     {file = "myst_parser-0.18.0-py3-none-any.whl", hash = "sha256:4965e51918837c13bf1c6f6fe2c6bddddf193148360fbdaefe743a4981358f6a"},
 ]
 nmdc-schema = [
-    {file = "nmdc_schema-5.0.2-py3-none-any.whl", hash = "sha256:de328b1607e15d9034bb81e9ccedc7501fab9cb79a12062a2a04a6116a3fe7aa"},
-    {file = "nmdc_schema-5.0.2.tar.gz", hash = "sha256:efc948d8183b07722566e6c7977752741bf85e8f59b86797e208b4aed6fb531c"},
+    {file = "nmdc_schema-5.0.3-py3-none-any.whl", hash = "sha256:55bc9bd88eb5319d45549162a3cf8aacc2ebca7323b8f2ddd5d650f4ee7d3540"},
+    {file = "nmdc_schema-5.0.3.tar.gz", hash = "sha256:c86af453080337b918e0d1530179dec0b22f91df3dd56f6aa727057981c5112c"},
 ]
 num2words = [
     {file = "num2words-0.5.10-py3-none-any.whl", hash = "sha256:0b6e5f53f11d3005787e206d9c03382f459ef048a43c544e3db3b1e05a961548"},

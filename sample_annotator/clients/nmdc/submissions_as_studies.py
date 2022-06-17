@@ -52,7 +52,6 @@ known_orcids_file = "../../../assets/in/known_orcids.tsv"
 
 biosample_metdata_yaml = "../../../assets/out/biosample_metadata.yaml"
 
-
 dh_to_nmdc_name_mappings = {
     "prev_land_use_meth": "previous_land_use_meth",
     "samp_collec_device": "samp_collect_device",
@@ -156,16 +155,13 @@ class RuntimeApiSiteClient:
 
 
 def get_view(
-        schema_url="https://raw.githubusercontent.com/microbiomedata/sheets_and_friends/main/artifacts/nmdc_dh.yaml",
+        schema_url="https://raw.githubusercontent.com/microbiomedata/sheets_and_friends/main/artifacts/nmdc_submission_schema.yaml",
 ):
     print(f"creating a view of {schema_url}")
     view = SchemaView(schema_url)
     # todo error handling
     print(f"confirming load of schema '{view.schema.name}'")
     return view
-
-
-portal_view = get_view()
 
 
 def get_template_titles_names(
@@ -255,27 +251,6 @@ def just_submission_row(current_submission):
     # data_rows	6
     # studyDate
 
-    pi_person = None
-    pi_ca = None
-    if row_dict["piOrcid"]:
-        pi_person = PersonValue(
-            orcid=row_dict["piOrcid"],
-            has_raw_value=row_dict["piName"],
-            email=row_dict["piEmail"],
-        )
-        pi_ca = CreditAssociation(
-            applies_to_person=pi_person, applied_roles=["Principal Investigator"]
-        )
-
-    # # todo this all comes from an after-the fact lookup
-    # #  also... what role to use? Project administration?
-    # sumbitter_name = [row_dict[], ]
-    # submitter_person = PersonValue(
-    #     orcid=row_dict["author_orcid"],
-    #     name=""
-    # )
-    # submitter_ca = CreditAssociation()
-
     submission_as_study = Study(
         id=f"nmdc:submission_{row_dict['id']}",
         type="nmdc:Study",
@@ -309,31 +284,51 @@ def just_submission_row(current_submission):
     if row_dict["description"] != "":
         submission_as_study.description = (f"{row_dict['description']}",)
 
-    if pi_person:
+    if "author" in current_submission["author"] and "orcid" in current_submission["author"]:
+        submitter_person = PersonValue(orcid=current_submission["author"]["orcid"])
+        if current_submission["author"]["name"] and current_submission["author"]["name"] != "":
+            submitter_person.has_raw_value = current_submission["author"]["name"]
+        # todo what role to use? Project administration?
+        submitter_ca = CreditAssociation(applies_to_person=submitter_person, applied_roles=['Project administration'])
+        submission_as_study.has_credit_associations.append(submitter_ca)
+
+    if row_dict["piOrcid"] or row_dict["piName"] or row_dict["piEmail"]:
+        pi_person = PersonValue()
+        if row_dict["piOrcid"] and row_dict["piOrcid"] != "":
+            pi_person.orcid = row_dict["piOrcid"]
+        if row_dict["piName"] and row_dict["piName"] != "":
+            pi_person.has_raw_value = row_dict["piName"]
+        if row_dict["piEmail"] and row_dict["piEmail"] != "":
+            pi_person.email = row_dict["piEmail"]
+        pi_ca = CreditAssociation(
+            applies_to_person=pi_person, applied_roles=["Principal Investigator"]
+        )
         submission_as_study.principal_investigator = pi_person
         submission_as_study.has_credit_associations.append(pi_ca)
 
-    known_contributors = list(submission_as_study.has_credit_associations.keys())
-
-    print(contributors_protected)
+    already_associated = {}
+    for i in submission_as_study.has_credit_associations:
+        if i.applies_to_person.orcid:
+            already_associated[i.applies_to_person.orcid] = i
 
     for i in contributors_protected:
-        # what if an orcid, like the PI's, is revisited?
-        if i["orcid"] in known_contributors:
-            old_ca = submission_as_study.has_credit_associations[i["orcid"]]
+        io = i['orcid']
+        if io in already_associated:
+            aa = already_associated[io]
             for j in i["roles"]:
-                old_ca.applied_roles.append(j)
-            # look for mismatched names?
+                aa.applied_roles.append(j)
+            already_associated[io] = aa
         else:
             temp_person = PersonValue(
-                orcid=i["orcid"],
-                has_raw_value=i["name"],
-            )
+                orcid=i["orcid"])
+            if i["name"] and i["name"] != "":
+                temp_person.has_raw_value = i["name"]
             temp_ca = CreditAssociation(
                 applies_to_person=temp_person, applied_roles=i["roles"]
             )
-            print(temp_ca)
-            # submission_as_study.has_credit_associations[i["orcid"]] = temp_ca
+            already_associated[io] = temp_ca
+
+    print(yaml_dumper.dumps(already_associated))
 
     if row_dict["datasetDoi"] != "":
         submission_as_study.doi = AttributeValue(has_raw_value=row_dict["datasetDoi"])
@@ -345,9 +340,10 @@ def just_submission_row(current_submission):
         submission_as_study.alternative_descriptions.append(row_dict["notes"])
 
     # todo don't save or modify if empty
-    submission_as_study.alternative_titles.append(
-        f"{row_dict['NCBIBioProjectName']}"
-    )
+    if row_dict['NCBIBioProjectName'] and row_dict['NCBIBioProjectName'] != "":
+        submission_as_study.alternative_titles.append(
+            f"{row_dict['NCBIBioProjectName']}"
+        )
 
     # supposed to be a list of external identifiers, which are string representations of CURIEs
     if row_dict["GOLDStudyId"] != "" and validators.url(row_dict["GOLDStudyId"]):
@@ -405,15 +401,6 @@ def get_known_orcids(known_orcids_tsv: str):
 
 
 # ---
-
-# todo parameterize
-mintingClient = RuntimeApiSiteClient(
-    base_url="https://api.dev.microbiomedata.org",
-    site_id="mam_lbl_2019mbp_nobs",
-    client_id="sys0acx2cb96",
-    client_secret="w@sk23X?Ea7.",
-)
-
 
 # todo refactor flattering, with explicit paths
 def just_metadata_rows(submissions_dict: Dict, view: SchemaView):
@@ -603,7 +590,6 @@ def sample_df_to_sample_db(sample_df, dh_view):
 
         instantiated_bs.alternative_identifiers.append(current_biosample['source_mat_id'])
 
-
         for k, v in current_biosample.items():
             # expected_key = None
             if k in dh_to_nmdc_name_mappings:
@@ -694,40 +680,51 @@ def sample_df_to_sample_db(sample_df, dh_view):
 
 # ---
 
-known_orcids_frame = get_known_orcids(known_orcids_tsv=known_orcids_file)
+if __name__ == "__main__":
+    portal_view = get_view()
 
-submission_response = requests.get(url, cookies=cookies, params=params)
+    # todo parameterize
+    mintingClient = RuntimeApiSiteClient(
+        base_url="https://api.dev.microbiomedata.org",
+        site_id="mam_lbl_2019mbp_nobs",
+        client_id="sys0acx2cb96",
+        client_secret="w@sk23X?Ea7.",
+    )
 
-rj = submission_response.json()
+    known_orcids_frame = get_known_orcids(known_orcids_tsv=known_orcids_file)
 
-submission_count = rj["count"]
+    submission_response = requests.get(url, cookies=cookies, params=params)
 
-print(f"submission_count = {submission_count}")
+    rj = submission_response.json()
 
-submission_results = rj["results"]
+    submission_count = rj["count"]
 
-submission_result_ids = [i["id"] for i in submission_results]
+    print(f"submission_count = {submission_count}")
 
-submission_results_dict = dict(zip(submission_result_ids, submission_results))
+    submission_results = rj["results"]
 
-submission_frame = assemble_studies_frame(submission_results_dict)
+    submission_result_ids = [i["id"] for i in submission_results]
 
-submission_frame = submission_frame.merge(
-    right=known_orcids_frame, how="left", left_on="author_orcid", right_on="orcid"
-)
+    submission_results_dict = dict(zip(submission_result_ids, submission_results))
 
-submission_frame = submission_frame[final_submission_columns]
+    submission_frame = assemble_studies_frame(submission_results_dict)
 
-submission_frame.sort_values(
-    by=["created", "data_rows"], inplace=True, ascending=[False, False]
-)
+    submission_frame = submission_frame.merge(
+        right=known_orcids_frame, how="left", left_on="author_orcid", right_on="orcid"
+    )
 
-submission_frame.to_csv(submission_frame_tsv_out, sep="\t", index=False)
+    submission_frame = submission_frame[final_submission_columns]
 
-jmf = just_metadata_rows(submission_results_dict, portal_view)
+    submission_frame.sort_values(
+        by=["created", "data_rows"], inplace=True, ascending=[False, False]
+    )
 
-jmf.to_csv(biosample_metadata_tsv, sep="\t", index=False)
+    submission_frame.to_csv(submission_frame_tsv_out, sep="\t", index=False)
 
-as_db = sample_df_to_sample_db(jmf, dh_view=portal_view)
+    jmf = just_metadata_rows(submission_results_dict, portal_view)
 
-yaml_dumper.dump(as_db, biosample_metdata_yaml)
+    jmf.to_csv(biosample_metadata_tsv, sep="\t", index=False)
+
+    # as_db = sample_df_to_sample_db(jmf, dh_view=portal_view)
+    #
+    # yaml_dumper.dump(as_db, biosample_metdata_yaml)
