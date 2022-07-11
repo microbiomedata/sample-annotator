@@ -272,7 +272,39 @@ class GoldClient:
         id = self._normalize_id(id)
         results = self._call("studies", {"projectGoldId": id})
         return results
-        
+
+    def fetch_study_by_analysis_id(self, id: str) -> List[SampleDict]:
+        """Fetch the study id for which the informatics processing 
+        of a sequencing project was performed.
+
+        :param id: GOLD Analysis id. Ex.: Ga0466468
+        :return: List of SampleDict objects
+        """
+        id = self._normalize_id(id)
+        results = self._call("studies", {"analysisGoldId": id})
+        return results
+
+    def fetch_biosample_by_analysis_id(self, id: str) -> List[SampleDict]:
+        """Fetch the biosample id for which the informatics processing 
+        of a sequencing project was performed.
+
+        :param id: GOLD Analysis id. Ex.: Ga0466468
+        :return: List of SampleDict objects
+        """
+        id = self._normalize_id(id)
+        results = self._call("biosamples", {"analysisGoldId": id})
+        return results
+
+    def fetch_project_by_analysis_id(self, id: str) -> List[SampleDict]:
+        """Fetch the project id for which the informatics processing 
+        of a sequencing project was performed.
+
+        :param id: GOLD Analysis id. Ex.: Ga0466468
+        :return: List of SampleDict objects
+        """
+        id = self._normalize_id(id)
+        results = self._call("projects", {"analysisGoldId": id})
+        return results
 
 @click.group()
 @click.option("-v", "--verbose", count=True)
