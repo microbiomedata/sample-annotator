@@ -1,8 +1,11 @@
+import math
+import os
 import pprint
 import re
 from datetime import datetime, timezone, timedelta
 from typing import Dict
 
+import click
 import pandas as pd
 import requests
 import validators
@@ -28,65 +31,10 @@ from pydantic import (
 )
 from quantulum3 import parser
 
+from dotenv import load_dotenv
+
 pd.set_option("display.max_columns", None)
 
-# todo want entry-time validation and enrichment of study data
-
-api_offset = 0
-api_limit = 999
-session_cookie = "eyJ0b2tlbiI6IHsiYWNjZXNzX3Rva2VuIjogIjc5YzY2ZGMzLTk5OWMtNGMxMS1hY2I5LWI1NDkyZjgwMmNlNSIsICJ0b2tlbl90eXBlIjogImJlYXJlciIsICJyZWZyZXNoX3Rva2VuIjogIjI1YmFhZDRjLWVjZTQtNDRiNC04ZWYyLTJiNzIxNDFlOTA5NSIsICJleHBpcmVzX2luIjogNjMxMTM4NTE4LCAic2NvcGUiOiAiL2F1dGhlbnRpY2F0ZSIsICJuYW1lIjogIk1hcmsgQW5kcmV3IE1pbGxlciIsICJvcmNpZCI6ICIwMDAwLTAwMDEtOTA3Ni02MDY2IiwgImV4cGlyZXNfYXQiOiAyMjg1Njc0MzcwfX0=.YqH7Jg.9LWzGVPqArKtptP8CGjokyEOBvY"
-
-url = "https://data.dev.microbiomedata.org/api/metadata_submission"
-# url = "https://data.microbiomedata.org/api/metadata_submission"
-
-params = {"offset": api_offset, "limit": api_limit}
-cookies = {"session": session_cookie}
-
-submission_frame_tsv_out = "../../../assets/out/submissions_as_studies.tsv"
-
-studies_as_submissions_yaml = "../../../assets/out/submissions_as_studies.yaml"
-
-biosample_metadata_tsv = "../../../assets/out/biosample_metadata.tsv"
-
-known_orcids_file = "../../../assets/in/known_orcids.tsv"
-
-biosample_metdata_yaml = "../../../assets/out/biosample_metadata.yaml"
-
-dh_to_nmdc_name_mappings = {
-    "prev_land_use_meth": "previous_land_use_meth",
-    "samp_collec_device": "samp_collect_device",
-    "samp_name": "name",
-    "soil_horizon": "horizon",
-}
-
-final_submission_columns = [
-    "id",
-    "author_orcid",
-    "GOLDStudyId",
-    "JGIStudyId",
-    "created",
-    "status",
-    "packageName",
-    "template",
-    "omicsProcessingTypes",
-    "data_rows",
-    "studyName",
-    "studyDate",
-    "studyNumber",
-    "alternativeNames",
-    "linkOutWebpage",
-    "datasetDoi",
-    "description",
-    "notes",
-    "NCBIBioProjectId",
-    "NCBIBioProjectName",
-    "piEmail",
-    "piName",
-    "piOrcid",
-]
-
-
-# ---
 
 # todo from nmdc-runtime
 def now(as_str=False):
@@ -282,10 +230,15 @@ def just_submission_row(current_submission):
 
     if "author" in current_submission and "orcid" in current_submission["author"]:
         submitter_person = PersonValue(orcid=current_submission["author"]["orcid"])
-        if current_submission["author"]["name"] and current_submission["author"]["name"] != "":
+        if (
+                current_submission["author"]["name"]
+                and current_submission["author"]["name"] != ""
+        ):
             submitter_person.has_raw_value = current_submission["author"]["name"]
         # todo what role to use? Project administration?
-        submitter_ca = CreditAssociation(applies_to_person=submitter_person, applied_roles=['Project administration'])
+        submitter_ca = CreditAssociation(
+            applies_to_person=submitter_person, applied_roles=["Project administration"]
+        )
         submission_as_study.has_credit_associations.append(submitter_ca)
 
     if row_dict["piOrcid"] or row_dict["piName"] or row_dict["piEmail"]:
@@ -308,15 +261,14 @@ def just_submission_row(current_submission):
             already_associated[i.applies_to_person.orcid] = i
 
     for i in contributors_protected:
-        io = i['orcid']
+        io = i["orcid"]
         if io in already_associated:
             aa = already_associated[io]
             for j in i["roles"]:
                 aa.applied_roles.append(j)
             already_associated[io] = aa
         else:
-            temp_person = PersonValue(
-                orcid=i["orcid"])
+            temp_person = PersonValue(orcid=i["orcid"])
             if i["name"] and i["name"] != "":
                 temp_person.has_raw_value = i["name"]
             temp_ca = CreditAssociation(
@@ -339,7 +291,7 @@ def just_submission_row(current_submission):
         submission_as_study.alternative_descriptions.append(row_dict["notes"])
 
     # todo don't save or modify if empty
-    if row_dict['NCBIBioProjectName'] and row_dict['NCBIBioProjectName'] != "":
+    if row_dict["NCBIBioProjectName"] and row_dict["NCBIBioProjectName"] != "":
         submission_as_study.alternative_titles.append(
             f"{row_dict['NCBIBioProjectName']}"
         )
@@ -353,14 +305,14 @@ def just_submission_row(current_submission):
 
     # alternate ID?
     # todo check with validators.url() ?
-    if row_dict["JGIStudyId"] != "":
+    if row_dict["JGIStudyId"] and row_dict["JGIStudyId"] != "":
         submission_as_study.alternative_identifiers.append(row_dict["JGIStudyId"])
     # else:
     #     # print(f"invalid URL {row_dict['JGIStudyId']}")
     #     submission_as_study.alternative_identifiers.append(row_dict["JGIStudyId"])
 
     # emsl studyNumber
-    if row_dict["studyNumber"] != "":
+    if row_dict["JGIStudyId"] and row_dict["studyNumber"] != "":
         submission_as_study.alternative_identifiers.append(row_dict["studyNumber"])
     # else:
     #     # print(f"invalid URL {row_dict['studyNumber']}")
@@ -372,7 +324,7 @@ def just_submission_row(current_submission):
     return row_dict, submission_as_study
 
 
-def assemble_studies_frame(submission_dict):
+def assemble_studies_frame(submission_dict, submissions_as_study_database_yaml):
     row_list = []
     study_obj_list = []
     db_obj = Database()
@@ -386,7 +338,7 @@ def assemble_studies_frame(submission_dict):
     row_frame = pd.DataFrame(row_list)
 
     db_obj.study_set = study_obj_list
-    yaml_dumper.dump(db_obj, studies_as_submissions_yaml)
+    yaml_dumper.dump(db_obj, submissions_as_study_database_yaml)
 
     return row_frame
 
@@ -402,7 +354,7 @@ def get_known_orcids(known_orcids_tsv: str):
 # ---
 
 # todo refactor flattering, with explicit paths
-def just_metadata_rows(submissions_dict: Dict, view: SchemaView):
+def just_metadata_rows(submissions_dict: Dict, view: SchemaView, minting_client):
     frame_list = []
     for k, v in submissions_dict.items():
         study_rhs = k
@@ -426,9 +378,9 @@ def just_metadata_rows(submissions_dict: Dict, view: SchemaView):
                 )
                 exit()
             else:
-                print(
-                    f"column headings for {study_rhs} match columns from claimed template {asserted_template}"
-                )
+                # print(
+                #     f"column headings for {study_rhs} match columns from claimed template {asserted_template}"
+                # )
                 sample_data_frame.drop(index=[0, 1], inplace=True)
                 sample_data_frame.columns = list(current_title_to_name_frame["name"])
                 sample_data_frame["part_of"] = f"nmdc:submission_{k}"
@@ -440,7 +392,7 @@ def just_metadata_rows(submissions_dict: Dict, view: SchemaView):
                     "number": len(sample_data_frame.index),
                 }
 
-                minting_response = mintingClient.request(
+                minting_response = minting_client.request(
                     "POST", "/ids/mint", params_or_json_data=minting_params
                 )
 
@@ -467,7 +419,7 @@ def process_qv(raw_value: str):
             qv.has_numeric_value = quant.value
         if quant.unit and quant.unit.name != "dimensionless":
             qv.has_unit = quant.unit.name
-    return qv
+        return qv
 
 
 def extract_lat_lon(raw_value: str):
@@ -525,7 +477,7 @@ def is_number(s):
         return False
 
 
-def sample_df_to_sample_db(sample_df, dh_view):
+def sample_df_to_sample_db(sample_df, dh_view, dh_to_nmdc_name_mappings):
     # todo parameterize
     nmdc_view = get_view(
         schema_url="https://raw.githubusercontent.com/microbiomedata/nmdc-schema/main/src/schema/nmdc.yaml",
@@ -546,7 +498,7 @@ def sample_df_to_sample_db(sample_df, dh_view):
 
     biosample_db = Database()
 
-    string_slots = set()
+    unexpected_string_slots = set()
 
     other_ranges = {}
 
@@ -587,7 +539,13 @@ def sample_df_to_sample_db(sample_df, dh_view):
             ),
         )
 
-        instantiated_bs.alternative_identifiers.append(current_biosample['source_mat_id'])
+        if (
+                current_biosample["source_mat_id"]
+                and current_biosample["source_mat_id"] != ""
+        ):
+            instantiated_bs.alternative_identifiers.append(
+                current_biosample["source_mat_id"]
+            )
 
         for k, v in current_biosample.items():
             # expected_key = None
@@ -598,7 +556,7 @@ def sample_df_to_sample_db(sample_df, dh_view):
             if expected_key in bs_induced_slot_dict:
                 current_range = bs_induced_slot_dict[expected_key].range
                 if current_range == ControlledTermValue.class_name:
-                    if v and v != "":
+                    if v == str(v) and v != "":
                         oc = extract_ctv(v)
                         instantiated_bs[expected_key] = ControlledTermValue(
                             has_raw_value=v, term=oc
@@ -614,30 +572,59 @@ def sample_df_to_sample_db(sample_df, dh_view):
                             has_raw_value=v
                         )
                 elif current_range == QuantityValue.class_name:
-                    if v:
+                    if v == str(v):
                         qv = process_qv(v)
                         instantiated_bs[expected_key] = qv
-                elif current_range == TextValue.class_name and v and v != "":
-                    instantiated_bs[expected_key] = TextValue(has_raw_value=v)
-                elif current_range == TimestampValue.class_name and v and v != "":
-                    instantiated_bs[expected_key] = TimestampValue(has_raw_value=v)
+                elif current_range == TextValue.class_name:
+                    if v and str(v) == v and v != "":
+                        instantiated_bs[expected_key] = TextValue(has_raw_value=v)
+                elif current_range == TimestampValue.class_name:
+                    if v and str(v) == v and v != "":
+                        # print(f"{expected_key} {v}")
+                        instantiated_bs[expected_key] = TimestampValue(has_raw_value=v)
                 elif (
-                        (
-                                type(nmdc_view.get_element(current_range)).class_name
-                                == EnumDefinition.class_name
-                        )
-                        and v
-                        and v != ""
+                        type(nmdc_view.get_element(current_range)).class_name
+                        == EnumDefinition.class_name
                 ):
-                    instantiated_bs[expected_key] = v
-                elif current_range == "string" and v and v != "":
-                    # todo note if the string slot comes from EMSL or JGI... those are expected
-                    # if type(v) == str and v.isnumeric():
-                    if is_number(v):
-                        instantiated_bs[expected_key] = float(v)
+                    if v and str(v) == v and v != "":
+                        if nmdc_view.get_element(expected_key).multivalued:
+                            pvs = v.split(";")
+                            # print(f"{expected_key}: {pvs}")
+                            instantiated_bs[expected_key] = pvs
+                        else:
+                            # print(f"{expected_key}: {v}")
+                            instantiated_bs[expected_key] = v
                     else:
+                        instantiated_bs[expected_key] = []
+                        if nmdc_view.get_element(expected_key).required:
+                            print(f"no required {expected_key} value")
+                elif current_range == "string":
+                    if v and str(v) == v and v != "":
+                        # if type(v) == str and v.isnumeric():
+                        # todo distinguish between int and float at least
+                        if is_number(v):
+                            instantiated_bs[expected_key] = float(v)
+                        else:
+                            instantiated_bs[expected_key] = v
+                    slot_schema = nmdc_view.get_element(expected_key).from_schema
+                    # todo for unexpected_string_slots, note if the string slot comes from EMSL or JGI...
+                    #  those are expected
+                    if slot_schema not in [
+                        "https://microbiomedata/schema/emsl",
+                        "https://microbiomedata/schema/jgi_metagenomics",
+                    ]:
+                        unexpected_string_slots.add(f"{slot_schema}: {expected_key}")
+                elif expected_key == "part_of":
+                    # named thing range
+                    if v and str(v) == v and v != "":
+                        current_part_parents = instantiated_bs[expected_key]
+                        if v not in current_part_parents:
+                            instantiated_bs[expected_key].append(v)
+                elif type(nmdc_view.get_element(current_range)) == EnumDefinition:
+                    # todo what about multivalueds?
+                    if v and v != "":
                         instantiated_bs[expected_key] = v
-                    string_slots.add(expected_key)
+
                 else:
                     range_element = nmdc_view.get_element(current_range)
                     other_ranges[expected_key] = type(range_element).class_name
@@ -648,7 +635,7 @@ def sample_df_to_sample_db(sample_df, dh_view):
 
     biosample_db.biosample_set = biosample_set_list
 
-    string_slots = set_to_list(string_slots)
+    unexpected_string_slots = set_to_list(unexpected_string_slots)
 
     nmdc_slots = nmdc_view.all_slots()
     nmdc_slot_names = list(nmdc_slots.keys())
@@ -665,7 +652,7 @@ def sample_df_to_sample_db(sample_df, dh_view):
     nmdc_includes = set_to_list(nmdc_includes)
 
     instantiation_log = {
-        "string_slots": string_slots,
+        "unexpected_string_slots": unexpected_string_slots,
         "other_ranges": other_ranges,
         "nmdc_includes": nmdc_includes,
         "mixs_defines": mixs_defines,
@@ -677,22 +664,94 @@ def sample_df_to_sample_db(sample_df, dh_view):
     return biosample_db
 
 
-# ---
+# todo want entry-time validation and enrichment of study data
 
-if __name__ == "__main__":
+
+@click.command()
+@click.option("--submissions_api_offset", default=0)
+@click.option("--submissions_api_limit", default=100)
+@click.option(
+    "--submissions_api_url", default="https://data.dev.microbiomedata.org/api/metadata_submission"
+)
+@click.option(
+    "--submission_frame_tsv_out", default="assets/out/submissions_as_studies.tsv"
+)
+@click.option(
+    "--submissions_as_study_database_yaml", default="assets/out/submissions_as_studies.yaml"
+)
+@click.option("--biosample_frame_tsv_out", default="assets/out/biosample_metadata.tsv")
+@click.option("--biosample_database_yaml", default="assets/out/biosample_metadata.yaml")
+@click.option("--known_orcids_file", default="assets/in/known_orcids.tsv")
+@click.option("--merge_known_orcids", default=True)
+def cli(
+        submissions_api_offset: int,
+        submissions_api_limit: int,
+        submissions_api_url: str,
+        submission_frame_tsv_out: str,
+        submissions_as_study_database_yaml: str,
+        biosample_frame_tsv_out: str,
+        biosample_database_yaml: str,
+        known_orcids_file: str,
+        merge_known_orcids: bool,
+):
+    """
+    Gets Portal submissions and converts them to NMDC studies and biosamples.
+    """
+
+    dh_to_nmdc_name_mappings = {
+        "prev_land_use_meth": "previous_land_use_meth",
+        "samp_collec_device": "samp_collect_device",
+        "samp_name": "name",
+        "soil_horizon": "horizon",
+    }
+
+    final_submission_columns = [
+        "id",
+        "author_orcid",
+        "GOLDStudyId",
+        "JGIStudyId",
+        "created",
+        "status",
+        "packageName",
+        "template",
+        "omicsProcessingTypes",
+        "data_rows",
+        "studyName",
+        "studyDate",
+        "studyNumber",
+        "alternativeNames",
+        "linkOutWebpage",
+        "datasetDoi",
+        "description",
+        "notes",
+        "NCBIBioProjectId",
+        "NCBIBioProjectName",
+        "piEmail",
+        "piName",
+        "piOrcid",
+    ]
+
+    # ---
+
+    load_dotenv("local/.env")
+
     portal_view = get_view()
 
     # todo parameterize
-    mintingClient = RuntimeApiSiteClient(
+    minting_client = RuntimeApiSiteClient(
         base_url="https://api.dev.microbiomedata.org",
-        site_id="mam_lbl_2019mbp_nobs",
-        client_id="sys0acx2cb96",
-        client_secret="w@sk23X?Ea7.",
+        site_id=os.getenv('site_id'),
+        client_id=os.getenv('client_id'),
+        client_secret=os.getenv('client_secret'),
     )
 
     known_orcids_frame = get_known_orcids(known_orcids_tsv=known_orcids_file)
+    print(known_orcids_frame)
 
-    submission_response = requests.get(url, cookies=cookies, params=params)
+    params = {"offset": submissions_api_offset, "limit": submissions_api_limit}
+    cookies = {"session": os.getenv('session_cookie')}
+
+    submission_response = requests.get(submissions_api_url, cookies=cookies, params=params)
 
     rj = submission_response.json()
 
@@ -706,11 +765,14 @@ if __name__ == "__main__":
 
     submission_results_dict = dict(zip(submission_result_ids, submission_results))
 
-    submission_frame = assemble_studies_frame(submission_results_dict)
-
-    submission_frame = submission_frame.merge(
-        right=known_orcids_frame, how="left", left_on="author_orcid", right_on="orcid"
+    submission_frame = assemble_studies_frame(
+        submission_results_dict, submissions_as_study_database_yaml
     )
+
+    if merge_known_orcids:
+        submission_frame = submission_frame.merge(right=known_orcids_frame, how="left", left_on="author_orcid",
+                                                  right_on="orcid"
+                                                  )
 
     submission_frame = submission_frame[final_submission_columns]
 
@@ -718,12 +780,20 @@ if __name__ == "__main__":
         by=["created", "data_rows"], inplace=True, ascending=[False, False]
     )
 
+    # print(submission_frame)
+
     submission_frame.to_csv(submission_frame_tsv_out, sep="\t", index=False)
 
-    jmf = just_metadata_rows(submission_results_dict, portal_view)
+    jmf = just_metadata_rows(submission_results_dict, portal_view, minting_client)
 
-    jmf.to_csv(biosample_metadata_tsv, sep="\t", index=False)
+    jmf.to_csv(biosample_frame_tsv_out, sep="\t", index=False)
 
-    # as_db = sample_df_to_sample_db(jmf, dh_view=portal_view)
-    #
-    # yaml_dumper.dump(as_db, biosample_metdata_yaml)
+    as_db = sample_df_to_sample_db(
+        jmf, dh_view=portal_view, dh_to_nmdc_name_mappings=dh_to_nmdc_name_mappings
+    )
+
+    yaml_dumper.dump(as_db, biosample_database_yaml)
+
+
+if __name__ == "__main__":
+    cli()

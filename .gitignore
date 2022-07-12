@@ -1,5 +1,7 @@
 local/
 
+.idea/
+
 data
 bin
 
