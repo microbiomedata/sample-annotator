@@ -1,0 +1,3862 @@
+biosample_set:
+- id: nmdc:fk04hyn49
+  name: parking lot
+  part_of:
+  - nmdc:submission_3e919e97-0437-4ca7-a758-ac36c45b908d
+  env_broad_scale:
+    has_raw_value: urban biome [ENVO:01000249]
+    term:
+      id: ENVO:01000249
+      name: urban biome
+  env_local_scale:
+    has_raw_value: plain [ENVO:00000086]
+    term:
+      id: ENVO:00000086
+      name: plain
+  env_medium:
+    has_raw_value: __volcanic soil [ENVO:01001841]
+    term:
+      id: ENVO:01001841
+      name: volcanic soil
+  collection_date:
+    has_raw_value: 2022-01
+  depth:
+    has_raw_value: '5'
+    has_numeric_value: 5.0
+  elev:
+    has_raw_value: 100 m
+    has_unit: metre
+    has_numeric_value: 100.0
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'US: California, sunny beach'
+  lat_lon:
+    has_raw_value: -89 123
+    latitude: -89.0
+    longitude: 123.0
+  samp_store_temp:
+    has_raw_value: -80 C
+    has_unit: coulomb
+    has_numeric_value: -80.0
+  store_cond:
+    has_raw_value: fresh
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Bulk soil
+  specific_ecosystem: Agricultural soil
+  source_mat_id:
+    has_raw_value: soilscan:001
+  analysis_type: metagenomics;metaproteomics
+  project_ID: 555.0
+  sample_type: water_extract_soil
+  sample_shipped: 20 g
+  EMSL_store_temp: -70.0
+  dna_seq_project: 97531.0
+  dna_seq_project_name: interstellar overdrive
+  dna_samp_ID: 123.0
+  dna_sample_name: g123
+  dna_concentration: 1300.0
+  dna_volume: 310.0
+  dna_absorb1: 0.5
+  dna_absorb2: 0.5
+  dna_container_ID: look here
+  dna_cont_type: plate
+  dna_cont_well: B3
+  dna_sample_format: 10 mM Tris-HCl
+  dna_dnase: 'no'
+  dna_organisms: cows
+  dna_collect_site: the moon
+  dna_isolate_meth: blender
+  dna_seq_project_PI: Martha
+  dna_project_contact: George
+  proposal_dna: 2468.0
+  growth_facil:
+    has_raw_value: experimental_garden
+- id: nmdc:fk037m310
+  name: beginning of trail
+  part_of:
+  - nmdc:submission_3e919e97-0437-4ca7-a758-ac36c45b908d
+  env_broad_scale:
+    has_raw_value: __village biome [ENVO:01000246]
+    term:
+      id: ENVO:01000246
+      name: village biome
+  env_local_scale:
+    has_raw_value: plain [ENVO:00000086]
+    term:
+      id: ENVO:00000086
+      name: plain
+  env_medium:
+    has_raw_value: alpine soil [ENVO:00005741]
+    term:
+      id: ENVO:00005741
+      name: alpine soil
+  collection_date:
+    has_raw_value: '2022-01-17'
+  depth:
+    has_raw_value: 7-17
+    has_minimum_numeric_value: 7.0
+    has_maximum_numeric_value: 17.0
+  elev:
+    has_raw_value: 100 m
+    has_unit: metre
+    has_numeric_value: 100.0
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'US: California, snow mountain'
+  lat_lon:
+    has_raw_value: 45 -111
+    latitude: 45.0
+    longitude: -111.0
+  samp_store_temp:
+    has_raw_value: -70 C
+    has_unit: coulomb
+    has_numeric_value: -70.0
+  store_cond:
+    has_raw_value: fresh
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Bulk soil
+  specific_ecosystem: Forest soil
+  source_mat_id:
+    has_raw_value: soilscan:001
+  analysis_type: metagenomics;metaproteomics
+  project_ID: 555.0
+  sample_type: soil
+  sample_shipped: 20 g
+  EMSL_store_temp: -85.0
+  dna_seq_project: 97531.0
+  dna_seq_project_name: interstellar overdrive
+  dna_samp_ID: 555.0
+  dna_sample_name: m555
+  dna_concentration: 880.0
+  dna_volume: 808.0
+  dna_absorb1: 0.5
+  dna_absorb2: 0.5
+  dna_container_ID: look5678901234567890
+  dna_cont_type: tube
+  dna_cont_well: F9
+  dna_sample_format: DNAStable
+  dna_dnase: 'yes'
+  dna_organisms: flamingos
+  dna_collect_site: the moon
+  dna_isolate_meth: glass beads
+  dna_seq_project_PI: Martha
+  dna_project_contact: Martha
+  proposal_dna: 2468.0
+  growth_facil:
+    has_raw_value: experimental_garden
+- id: nmdc:fk0e9rf54
+  name: campground 1
+  part_of:
+  - nmdc:submission_3e919e97-0437-4ca7-a758-ac36c45b908d
+  env_broad_scale:
+    has_raw_value: anthropogenic terrestrial biome [ENVO:01000219]
+    term:
+      id: ENVO:01000219
+      name: anthropogenic terrestrial biome
+  env_local_scale:
+    has_raw_value: plain [ENVO:00000086]
+    term:
+      id: ENVO:00000086
+      name: plain
+  env_medium:
+    has_raw_value: __volcanic soil [ENVO:01001841]
+    term:
+      id: ENVO:01001841
+      name: volcanic soil
+  collection_date:
+    has_raw_value: 2022-01
+  depth:
+    has_raw_value: '5'
+    has_numeric_value: 5.0
+  elev:
+    has_raw_value: 100 m
+    has_unit: metre
+    has_numeric_value: 100.0
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'US: California, sunny beach'
+  lat_lon:
+    has_raw_value: -89 123
+    latitude: -89.0
+    longitude: 123.0
+  samp_store_temp:
+    has_raw_value: -80 C
+    has_unit: coulomb
+    has_numeric_value: -80.0
+  store_cond:
+    has_raw_value: fresh
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Bulk soil
+  specific_ecosystem: Agricultural soil
+  source_mat_id:
+    has_raw_value: soilscan:001
+  analysis_type: metagenomics;metaproteomics
+  project_ID: 555.0
+  sample_type: water_extract_soil
+  sample_shipped: 20 g
+  EMSL_store_temp: -70.0
+  dna_seq_project: 97531.0
+  dna_seq_project_name: interstellar overdrive
+  dna_samp_ID: 123.0
+  dna_sample_name: g123
+  dna_concentration: 1300.0
+  dna_volume: 310.0
+  dna_absorb1: 0.5
+  dna_absorb2: 0.5
+  dna_container_ID: look here
+  dna_cont_type: plate
+  dna_cont_well: B3
+  dna_sample_format: 10 mM Tris-HCl
+  dna_dnase: 'no'
+  dna_organisms: cows
+  dna_collect_site: the moon
+  dna_isolate_meth: blender
+  dna_seq_project_PI: Martha
+  dna_project_contact: George
+  proposal_dna: 2468.0
+  growth_facil:
+    has_raw_value: experimental_garden
+- id: nmdc:fk0r4x969
+  part_of:
+  - nmdc:submission_3e919e97-0437-4ca7-a758-ac36c45b908d
+  env_broad_scale:
+    has_raw_value: anthropogenic terrestrial biome [ENVO:01000219]
+    term:
+      id: ENVO:01000219
+      name: anthropogenic terrestrial biome
+  env_local_scale:
+    has_raw_value: plain [ENVO:00000086]
+    term:
+      id: ENVO:00000086
+      name: plain
+  env_medium:
+    has_raw_value: alpine soil [ENVO:00005741]
+    term:
+      id: ENVO:00005741
+      name: alpine soil
+  collection_date:
+    has_raw_value: '2022-01-17'
+  depth:
+    has_raw_value: 7-17
+    has_minimum_numeric_value: 7.0
+    has_maximum_numeric_value: 17.0
+  elev:
+    has_raw_value: 100 m
+    has_unit: metre
+    has_numeric_value: 100.0
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'US: California, snow mountain'
+  lat_lon:
+    has_raw_value: 45 -111
+    latitude: 45.0
+    longitude: -111.0
+  samp_store_temp:
+    has_raw_value: -70 C
+    has_unit: coulomb
+    has_numeric_value: -70.0
+  store_cond:
+    has_raw_value: fresh
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Bulk soil
+  specific_ecosystem: Forest soil
+  source_mat_id:
+    has_raw_value: soilscan:004
+  analysis_type: metagenomics;metaproteomics
+  project_ID: 555.0
+  sample_type: soil
+  sample_shipped: 20 g
+  EMSL_store_temp: -85.0
+  dna_seq_project: 97531.0
+  dna_seq_project_name: interstellar overdrive
+  dna_samp_ID: 555.0
+  dna_sample_name: m555
+  dna_concentration: 880.0
+  dna_volume: 808.0
+  dna_absorb1: 0.5
+  dna_absorb2: 0.5
+  dna_container_ID: look5678901234567890
+  dna_cont_type: tube
+  dna_cont_well: F9
+  dna_sample_format: DNAStable
+  dna_dnase: 'yes'
+  dna_organisms: flamingos
+  dna_collect_site: the moon
+  dna_isolate_meth: glass beads
+  dna_seq_project_PI: Martha
+  dna_project_contact: Martha
+  proposal_dna: 2468.0
+  growth_facil:
+    has_raw_value: experimental_garden
+- id: nmdc:fk033m085
+  part_of:
+  - nmdc:submission_3e919e97-0437-4ca7-a758-ac36c45b908d
+  env_broad_scale:
+    has_raw_value: anthropogenic terrestrial biome [ENVO:01000219]
+    term:
+      id: ENVO:01000219
+      name: anthropogenic terrestrial biome
+  env_local_scale:
+    has_raw_value: plain [ENVO:00000086]
+    term:
+      id: ENVO:00000086
+      name: plain
+  env_medium:
+    has_raw_value: __volcanic soil [ENVO:01001841]
+    term:
+      id: ENVO:01001841
+      name: volcanic soil
+  collection_date:
+    has_raw_value: 2022-01
+  depth:
+    has_raw_value: '5'
+    has_numeric_value: 5.0
+  elev:
+    has_raw_value: 100 m
+    has_unit: metre
+    has_numeric_value: 100.0
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'US: California, sunny beach'
+  lat_lon:
+    has_raw_value: -89 123
+    latitude: -89.0
+    longitude: 123.0
+  samp_store_temp:
+    has_raw_value: -80 C
+    has_unit: coulomb
+    has_numeric_value: -80.0
+  store_cond:
+    has_raw_value: fresh
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Bulk soil
+  specific_ecosystem: Agricultural soil
+  source_mat_id:
+    has_raw_value: soilscan:005
+  analysis_type: metagenomics;natural organic matter
+  project_ID: 555.0
+  sample_type: water_extract_soil
+  sample_shipped: 20 g
+  EMSL_store_temp: -70.0
+  dna_seq_project: 97531.0
+  dna_seq_project_name: interstellar overdrive
+  dna_samp_ID: 123.0
+  dna_sample_name: g123
+  dna_concentration: 1300.0
+  dna_volume: 310.0
+  dna_absorb1: 0.5
+  dna_absorb2: 0.5
+  dna_container_ID: look here
+  dna_cont_type: plate
+  dna_cont_well: B3
+  dna_sample_format: 10 mM Tris-HCl
+  dna_dnase: 'no'
+  dna_organisms: cows
+  dna_collect_site: the moon
+  dna_isolate_meth: blender
+  dna_seq_project_PI: Martha
+  dna_project_contact: George
+  proposal_dna: 2468.0
+  growth_facil:
+    has_raw_value: experimental_garden
+- id: nmdc:fk0axvj84
+  name: campground 4
+  part_of:
+  - nmdc:submission_3e919e97-0437-4ca7-a758-ac36c45b908d
+  env_broad_scale:
+    has_raw_value: anthropogenic terrestrial biome [ENVO:01000219]
+    term:
+      id: ENVO:01000219
+      name: anthropogenic terrestrial biome
+  env_local_scale:
+    has_raw_value: plain [ENVO:00000086]
+    term:
+      id: ENVO:00000086
+      name: plain
+  env_medium:
+    has_raw_value: alpine soil [ENVO:00005741]
+    term:
+      id: ENVO:00005741
+      name: alpine soil
+  collection_date:
+    has_raw_value: '2022-01-17'
+  depth:
+    has_raw_value: 7-17
+    has_minimum_numeric_value: 7.0
+    has_maximum_numeric_value: 17.0
+  elev:
+    has_raw_value: 100 m
+    has_unit: metre
+    has_numeric_value: 100.0
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'US: California, snow mountain'
+  lat_lon:
+    has_raw_value: 45 -111
+    latitude: 45.0
+    longitude: -111.0
+  samp_store_temp:
+    has_raw_value: -70 C
+    has_unit: coulomb
+    has_numeric_value: -70.0
+  store_cond:
+    has_raw_value: fresh
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Bulk soil
+  specific_ecosystem: Forest soil
+  source_mat_id:
+    has_raw_value: soilscan:006
+  analysis_type: metabolomics;natural organic matter
+  project_ID: 555.0
+  sample_type: soil
+  sample_shipped: 20 g
+  EMSL_store_temp: -85.0
+  dna_seq_project: 97531.0
+  dna_seq_project_name: interstellar overdrive
+  dna_samp_ID: 555.0
+  dna_sample_name: m555
+  dna_concentration: 880.0
+  dna_volume: 808.0
+  dna_absorb1: 0.5
+  dna_absorb2: 0.5
+  dna_container_ID: look5678901234567890
+  dna_cont_type: tube
+  dna_cont_well: F9
+  dna_sample_format: DNAStable
+  dna_dnase: 'yes'
+  dna_organisms: flamingos
+  dna_collect_site: the moon
+  dna_isolate_meth: glass beads
+  dna_seq_project_PI: Martha
+  dna_project_contact: Martha
+  proposal_dna: 2468.0
+  growth_facil:
+    has_raw_value: experimental_garden
+- id: nmdc:fk0hrrj08
+  name: fire pit 1
+  part_of:
+  - nmdc:submission_3e919e97-0437-4ca7-a758-ac36c45b908d
+  env_broad_scale:
+    has_raw_value: woodland biome [ENVO:01000175]
+    term:
+      id: ENVO:01000175
+      name: woodland biome
+  env_local_scale:
+    has_raw_value: plateau [ENVO:00000182]
+    term:
+      id: ENVO:00000182
+      name: plateau
+  env_medium:
+    has_raw_value: __volcanic soil [ENVO:01001841]
+    term:
+      id: ENVO:01001841
+      name: volcanic soil
+  collection_date:
+    has_raw_value: 2022-01
+  depth:
+    has_raw_value: '5'
+    has_numeric_value: 5.0
+  elev:
+    has_raw_value: 100 m
+    has_unit: metre
+    has_numeric_value: 100.0
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'US: California, sunny beach'
+  lat_lon:
+    has_raw_value: -89 123
+    latitude: -89.0
+    longitude: 123.0
+  samp_store_temp:
+    has_raw_value: -80 C
+    has_unit: coulomb
+    has_numeric_value: -80.0
+  store_cond:
+    has_raw_value: fresh
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Bulk soil
+  specific_ecosystem: Agricultural soil
+  source_mat_id:
+    has_raw_value: soilscan:007
+  analysis_type: metabolomics;metaproteomics
+  project_ID: 555.0
+  sample_type: water_extract_soil
+  sample_shipped: 20 g
+  EMSL_store_temp: -70.0
+  dna_seq_project: 97531.0
+  dna_seq_project_name: interstellar overdrive
+  dna_samp_ID: 123.0
+  dna_sample_name: g123
+  dna_concentration: 1300.0
+  dna_volume: 310.0
+  dna_absorb1: 0.5
+  dna_absorb2: 0.5
+  dna_container_ID: look here
+  dna_cont_type: plate
+  dna_cont_well: B3
+  dna_sample_format: 10 mM Tris-HCl
+  dna_dnase: 'no'
+  dna_organisms: cows
+  dna_collect_site: the moon
+  dna_isolate_meth: blender
+  dna_seq_project_PI: Martha
+  dna_project_contact: George
+  proposal_dna: 2468.0
+  growth_facil:
+    has_raw_value: experimental_garden
+- id: nmdc:fk0gs6b86
+  name: fire pit 2
+  part_of:
+  - nmdc:submission_3e919e97-0437-4ca7-a758-ac36c45b908d
+  env_broad_scale:
+    has_raw_value: woodland biome [ENVO:01000175]
+    term:
+      id: ENVO:01000175
+      name: woodland biome
+  env_local_scale:
+    has_raw_value: plateau [ENVO:00000182]
+    term:
+      id: ENVO:00000182
+      name: plateau
+  env_medium:
+    has_raw_value: alpine soil [ENVO:00005741]
+    term:
+      id: ENVO:00005741
+      name: alpine soil
+  collection_date:
+    has_raw_value: '2022-01-17'
+  depth:
+    has_raw_value: 7-17
+    has_minimum_numeric_value: 7.0
+    has_maximum_numeric_value: 17.0
+  elev:
+    has_raw_value: 100 m
+    has_unit: metre
+    has_numeric_value: 100.0
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'US: California, snow mountain'
+  lat_lon:
+    has_raw_value: 45 -111
+    latitude: 45.0
+    longitude: -111.0
+  samp_store_temp:
+    has_raw_value: -70 C
+    has_unit: coulomb
+    has_numeric_value: -70.0
+  store_cond:
+    has_raw_value: fresh
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Bulk soil
+  specific_ecosystem: Forest soil
+  source_mat_id:
+    has_raw_value: soilscan:008
+  analysis_type: metabolomics;metaproteomics
+  project_ID: 555.0
+  sample_type: soil
+  sample_shipped: 20 g
+  EMSL_store_temp: -85.0
+  dna_seq_project: 97531.0
+  dna_seq_project_name: interstellar overdrive
+  dna_samp_ID: 555.0
+  dna_sample_name: m555
+  dna_concentration: 880.0
+  dna_volume: 808.0
+  dna_absorb1: 0.5
+  dna_absorb2: 0.5
+  dna_container_ID: look5678901234567890
+  dna_cont_type: tube
+  dna_cont_well: F9
+  dna_sample_format: DNAStable
+  dna_dnase: 'yes'
+  dna_organisms: flamingos
+  dna_collect_site: the moon
+  dna_isolate_meth: glass beads
+  dna_seq_project_PI: Martha
+  dna_project_contact: Martha
+  proposal_dna: 2468.0
+  growth_facil:
+    has_raw_value: experimental_garden
+- id: nmdc:fk0fzy766
+  name: fire pit 3
+  part_of:
+  - nmdc:submission_3e919e97-0437-4ca7-a758-ac36c45b908d
+  env_broad_scale:
+    has_raw_value: woodland biome [ENVO:01000175]
+    term:
+      id: ENVO:01000175
+      name: woodland biome
+  env_local_scale:
+    has_raw_value: plateau [ENVO:00000182]
+    term:
+      id: ENVO:00000182
+      name: plateau
+  env_medium:
+    has_raw_value: __volcanic soil [ENVO:01001841]
+    term:
+      id: ENVO:01001841
+      name: volcanic soil
+  collection_date:
+    has_raw_value: 2022-01
+  depth:
+    has_raw_value: '5'
+    has_numeric_value: 5.0
+  elev:
+    has_raw_value: 100 m
+    has_unit: metre
+    has_numeric_value: 100.0
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'US: California, sunny beach'
+  lat_lon:
+    has_raw_value: -89 123
+    latitude: -89.0
+    longitude: 123.0
+  samp_store_temp:
+    has_raw_value: -80 C
+    has_unit: coulomb
+    has_numeric_value: -80.0
+  store_cond:
+    has_raw_value: fresh
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Bulk soil
+  specific_ecosystem: Agricultural soil
+  source_mat_id:
+    has_raw_value: soilscan:009
+  analysis_type: metabolomics;natural organic matter
+  project_ID: 555.0
+  sample_type: water_extract_soil
+  sample_shipped: 20 g
+  EMSL_store_temp: -70.0
+  dna_seq_project: 97531.0
+  dna_seq_project_name: interstellar overdrive
+  dna_samp_ID: 123.0
+  dna_sample_name: g123
+  dna_concentration: 1300.0
+  dna_volume: 310.0
+  dna_absorb1: 0.5
+  dna_absorb2: 0.5
+  dna_container_ID: look here
+  dna_cont_type: plate
+  dna_cont_well: B3
+  dna_sample_format: 10 mM Tris-HCl
+  dna_dnase: 'no'
+  dna_organisms: cows
+  dna_collect_site: the moon
+  dna_isolate_meth: blender
+  dna_seq_project_PI: Martha
+  dna_project_contact: George
+  proposal_dna: 2468.0
+  growth_facil:
+    has_raw_value: experimental_garden
+- id: nmdc:fk02qrd54
+  name: fire pit 4
+  part_of:
+  - nmdc:submission_3e919e97-0437-4ca7-a758-ac36c45b908d
+  env_broad_scale:
+    has_raw_value: woodland biome [ENVO:01000175]
+    term:
+      id: ENVO:01000175
+      name: woodland biome
+  env_local_scale:
+    has_raw_value: plateau [ENVO:00000182]
+    term:
+      id: ENVO:00000182
+      name: plateau
+  env_medium:
+    has_raw_value: alpine soil [ENVO:00005741]
+    term:
+      id: ENVO:00005741
+      name: alpine soil
+  collection_date:
+    has_raw_value: '2022-01-17'
+  depth:
+    has_raw_value: 7-17
+    has_minimum_numeric_value: 7.0
+    has_maximum_numeric_value: 17.0
+  elev:
+    has_raw_value: 100 m
+    has_unit: metre
+    has_numeric_value: 100.0
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'US: California, snow mountain'
+  lat_lon:
+    has_raw_value: 45 -111
+    latitude: 45.0
+    longitude: -111.0
+  samp_store_temp:
+    has_raw_value: -70 C
+    has_unit: coulomb
+    has_numeric_value: -70.0
+  store_cond:
+    has_raw_value: fresh
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Bulk soil
+  specific_ecosystem: Forest soil
+  source_mat_id:
+    has_raw_value: soilscan:010
+  analysis_type: metabolomics;natural organic matter
+  project_ID: 555.0
+  sample_type: soil
+  sample_shipped: 20 g
+  EMSL_store_temp: -85.0
+  dna_seq_project: 97531.0
+  dna_seq_project_name: interstellar overdrive
+  dna_samp_ID: 555.0
+  dna_sample_name: m555
+  dna_concentration: 880.0
+  dna_volume: 808.0
+  dna_absorb1: 0.5
+  dna_absorb2: 0.5
+  dna_container_ID: look5678901234567890
+  dna_cont_type: tube
+  dna_cont_well: F9
+  dna_sample_format: DNAStable
+  dna_dnase: 'yes'
+  dna_organisms: flamingos
+  dna_collect_site: the moon
+  dna_isolate_meth: glass beads
+  dna_seq_project_PI: Martha
+  dna_project_contact: Martha
+  proposal_dna: 2468.0
+  growth_facil:
+    has_raw_value: experimental_garden
+- id: nmdc:fk055d250
+  name: latrine 1
+  part_of:
+  - nmdc:submission_3e919e97-0437-4ca7-a758-ac36c45b908d
+  env_broad_scale:
+    has_raw_value: __temperate woodland biome [ENVO:01000221]
+    term:
+      id: ENVO:01000221
+      name: temperate woodland biome
+  env_local_scale:
+    has_raw_value: plateau [ENVO:00000182]
+    term:
+      id: ENVO:00000182
+      name: plateau
+  env_medium:
+    has_raw_value: __volcanic soil [ENVO:01001841]
+    term:
+      id: ENVO:01001841
+      name: volcanic soil
+  collection_date:
+    has_raw_value: 2022-01
+  depth:
+    has_raw_value: '5'
+    has_numeric_value: 5.0
+  elev:
+    has_raw_value: 100 m
+    has_unit: metre
+    has_numeric_value: 100.0
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'US: California, sunny beach'
+  lat_lon:
+    has_raw_value: -89 123
+    latitude: -89.0
+    longitude: 123.0
+  samp_store_temp:
+    has_raw_value: -80 C
+    has_unit: coulomb
+    has_numeric_value: -80.0
+  store_cond:
+    has_raw_value: fresh
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Bulk soil
+  specific_ecosystem: Agricultural soil
+  source_mat_id:
+    has_raw_value: soilscan:011
+  analysis_type: metabolomics
+  project_ID: 555.0
+  sample_type: water_extract_soil
+  sample_shipped: 20 g
+  EMSL_store_temp: -70.0
+  dna_seq_project: 97531.0
+  dna_seq_project_name: interstellar overdrive
+  dna_samp_ID: 123.0
+  dna_sample_name: g123
+  dna_concentration: 1300.0
+  dna_volume: 310.0
+  dna_absorb1: 0.5
+  dna_absorb2: 0.5
+  dna_container_ID: look here
+  dna_cont_type: plate
+  dna_cont_well: B3
+  dna_sample_format: 10 mM Tris-HCl
+  dna_dnase: 'no'
+  dna_organisms: cows
+  dna_collect_site: the moon
+  dna_isolate_meth: blender
+  dna_seq_project_PI: Martha
+  dna_project_contact: George
+  proposal_dna: 2468.0
+  growth_facil:
+    has_raw_value: experimental_garden
+- id: nmdc:fk0sb4s80
+  name: latrine 2
+  part_of:
+  - nmdc:submission_3e919e97-0437-4ca7-a758-ac36c45b908d
+  env_broad_scale:
+    has_raw_value: __temperate woodland biome [ENVO:01000221]
+    term:
+      id: ENVO:01000221
+      name: temperate woodland biome
+  env_local_scale:
+    has_raw_value: plateau [ENVO:00000182]
+    term:
+      id: ENVO:00000182
+      name: plateau
+  env_medium:
+    has_raw_value: alpine soil [ENVO:00005741]
+    term:
+      id: ENVO:00005741
+      name: alpine soil
+  collection_date:
+    has_raw_value: '2022-01-17'
+  depth:
+    has_raw_value: 7-17
+    has_minimum_numeric_value: 7.0
+    has_maximum_numeric_value: 17.0
+  elev:
+    has_raw_value: 100 m
+    has_unit: metre
+    has_numeric_value: 100.0
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'US: California, snow mountain'
+  lat_lon:
+    has_raw_value: 45 -111
+    latitude: 45.0
+    longitude: -111.0
+  samp_store_temp:
+    has_raw_value: -70 C
+    has_unit: coulomb
+    has_numeric_value: -70.0
+  store_cond:
+    has_raw_value: fresh
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Bulk soil
+  specific_ecosystem: Forest soil
+  source_mat_id:
+    has_raw_value: soilscan:012
+  analysis_type: metabolomics
+  project_ID: 555.0
+  sample_type: soil
+  sample_shipped: 20 g
+  EMSL_store_temp: -85.0
+  dna_seq_project: 97531.0
+  dna_seq_project_name: interstellar overdrive
+  dna_samp_ID: 555.0
+  dna_sample_name: m555
+  dna_concentration: 880.0
+  dna_volume: 808.0
+  dna_absorb1: 0.5
+  dna_absorb2: 0.5
+  dna_container_ID: look5678901234567890
+  dna_cont_type: tube
+  dna_cont_well: F9
+  dna_sample_format: DNAStable
+  dna_dnase: 'yes'
+  dna_organisms: flamingos
+  dna_collect_site: the moon
+  dna_isolate_meth: glass beads
+  dna_seq_project_PI: Martha
+  dna_project_contact: Martha
+  proposal_dna: 2468.0
+  growth_facil:
+    has_raw_value: experimental_garden
+- id: nmdc:fk0j0vj73
+  name: latrine 3
+  part_of:
+  - nmdc:submission_3e919e97-0437-4ca7-a758-ac36c45b908d
+  env_broad_scale:
+    has_raw_value: __temperate woodland biome [ENVO:01000221]
+    term:
+      id: ENVO:01000221
+      name: temperate woodland biome
+  env_local_scale:
+    has_raw_value: plateau [ENVO:00000182]
+    term:
+      id: ENVO:00000182
+      name: plateau
+  env_medium:
+    has_raw_value: __volcanic soil [ENVO:01001841]
+    term:
+      id: ENVO:01001841
+      name: volcanic soil
+  collection_date:
+    has_raw_value: 2022-01
+  depth:
+    has_raw_value: '5'
+    has_numeric_value: 5.0
+  elev:
+    has_raw_value: 100 m
+    has_unit: metre
+    has_numeric_value: 100.0
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'US: California, sunny beach'
+  lat_lon:
+    has_raw_value: -89 123
+    latitude: -89.0
+    longitude: 123.0
+  samp_store_temp:
+    has_raw_value: -80 C
+    has_unit: coulomb
+    has_numeric_value: -80.0
+  store_cond:
+    has_raw_value: fresh
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Bulk soil
+  specific_ecosystem: Agricultural soil
+  source_mat_id:
+    has_raw_value: soilscan:013
+  analysis_type: metabolomics;metatranscriptomics
+  project_ID: 555.0
+  sample_type: water_extract_soil
+  sample_shipped: 20 g
+  EMSL_store_temp: -70.0
+  dna_seq_project: 97531.0
+  dna_seq_project_name: interstellar overdrive
+  dna_samp_ID: 123.0
+  dna_sample_name: g123
+  dna_concentration: 1300.0
+  dna_volume: 310.0
+  dna_absorb1: 0.5
+  dna_absorb2: 0.5
+  dna_container_ID: look here
+  dna_cont_type: plate
+  dna_cont_well: B3
+  dna_sample_format: 10 mM Tris-HCl
+  dna_dnase: 'no'
+  dna_organisms: cows
+  dna_collect_site: the moon
+  dna_isolate_meth: blender
+  dna_seq_project_PI: Martha
+  dna_project_contact: George
+  proposal_dna: 2468.0
+  growth_facil:
+    has_raw_value: experimental_garden
+- id: nmdc:fk01v2v64
+  name: latrine 4
+  part_of:
+  - nmdc:submission_3e919e97-0437-4ca7-a758-ac36c45b908d
+  env_broad_scale:
+    has_raw_value: __temperate woodland biome [ENVO:01000221]
+    term:
+      id: ENVO:01000221
+      name: temperate woodland biome
+  env_local_scale:
+    has_raw_value: plateau [ENVO:00000182]
+    term:
+      id: ENVO:00000182
+      name: plateau
+  env_medium:
+    has_raw_value: alpine soil [ENVO:00005741]
+    term:
+      id: ENVO:00005741
+      name: alpine soil
+  collection_date:
+    has_raw_value: '2022-01-17'
+  depth:
+    has_raw_value: 7-17
+    has_minimum_numeric_value: 7.0
+    has_maximum_numeric_value: 17.0
+  elev:
+    has_raw_value: 100 m
+    has_unit: metre
+    has_numeric_value: 100.0
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'US: California, snow mountain'
+  lat_lon:
+    has_raw_value: 45 -111
+    latitude: 45.0
+    longitude: -111.0
+  samp_store_temp:
+    has_raw_value: -70 C
+    has_unit: coulomb
+    has_numeric_value: -70.0
+  store_cond:
+    has_raw_value: fresh
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Bulk soil
+  specific_ecosystem: Forest soil
+  source_mat_id:
+    has_raw_value: soilscan:014
+  analysis_type: metabolomics;metatranscriptomics
+  project_ID: 555.0
+  sample_type: soil
+  sample_shipped: 20 g
+  EMSL_store_temp: -85.0
+  dna_seq_project: 97531.0
+  dna_seq_project_name: interstellar overdrive
+  dna_samp_ID: 555.0
+  dna_sample_name: m555
+  dna_concentration: 880.0
+  dna_volume: 808.0
+  dna_absorb1: 0.5
+  dna_absorb2: 0.5
+  dna_container_ID: look5678901234567890
+  dna_cont_type: tube
+  dna_cont_well: F9
+  dna_sample_format: DNAStable
+  dna_dnase: 'yes'
+  dna_organisms: flamingos
+  dna_collect_site: the moon
+  dna_isolate_meth: glass beads
+  dna_seq_project_PI: Martha
+  dna_project_contact: Martha
+  proposal_dna: 2468.0
+  growth_facil:
+    has_raw_value: experimental_garden
+- id: nmdc:fk0bz2c98
+  name: tree line 1
+  part_of:
+  - nmdc:submission_3e919e97-0437-4ca7-a758-ac36c45b908d
+  env_broad_scale:
+    has_raw_value: shrubland biome [ENVO:01000176]
+    term:
+      id: ENVO:01000176
+      name: shrubland biome
+  env_local_scale:
+    has_raw_value: hill [ENVO:00000083]
+    term:
+      id: ENVO:00000083
+      name: hill
+  env_medium:
+    has_raw_value: __volcanic soil [ENVO:01001841]
+    term:
+      id: ENVO:01001841
+      name: volcanic soil
+  collection_date:
+    has_raw_value: 2022-01
+  depth:
+    has_raw_value: '5'
+    has_numeric_value: 5.0
+  elev:
+    has_raw_value: 100 m
+    has_unit: metre
+    has_numeric_value: 100.0
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'US: California, sunny beach'
+  lat_lon:
+    has_raw_value: -89 123
+    latitude: -89.0
+    longitude: 123.0
+  samp_store_temp:
+    has_raw_value: -80 C
+    has_unit: coulomb
+    has_numeric_value: -80.0
+  store_cond:
+    has_raw_value: fresh
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Bulk soil
+  specific_ecosystem: Agricultural soil
+  source_mat_id:
+    has_raw_value: soilscan:015
+  analysis_type: metabolomics;metagenomics
+  project_ID: 555.0
+  sample_type: water_extract_soil
+  sample_shipped: 20 g
+  EMSL_store_temp: -70.0
+  dna_seq_project: 97531.0
+  dna_seq_project_name: interstellar overdrive
+  dna_samp_ID: 123.0
+  dna_sample_name: g123
+  dna_concentration: 1300.0
+  dna_volume: 310.0
+  dna_absorb1: 0.5
+  dna_absorb2: 0.5
+  dna_container_ID: look here
+  dna_cont_type: plate
+  dna_cont_well: B3
+  dna_sample_format: 10 mM Tris-HCl
+  dna_dnase: 'no'
+  dna_organisms: cows
+  dna_collect_site: the moon
+  dna_isolate_meth: blender
+  dna_seq_project_PI: Martha
+  dna_project_contact: George
+  proposal_dna: 2468.0
+  growth_facil:
+    has_raw_value: experimental_garden
+- id: nmdc:fk0avxe34
+  name: tree line 2
+  part_of:
+  - nmdc:submission_3e919e97-0437-4ca7-a758-ac36c45b908d
+  env_broad_scale:
+    has_raw_value: shrubland biome [ENVO:01000176]
+    term:
+      id: ENVO:01000176
+      name: shrubland biome
+  env_local_scale:
+    has_raw_value: hill [ENVO:00000083]
+    term:
+      id: ENVO:00000083
+      name: hill
+  env_medium:
+    has_raw_value: alpine soil [ENVO:00005741]
+    term:
+      id: ENVO:00005741
+      name: alpine soil
+  collection_date:
+    has_raw_value: '2022-01-17'
+  depth:
+    has_raw_value: 7-17
+    has_minimum_numeric_value: 7.0
+    has_maximum_numeric_value: 17.0
+  elev:
+    has_raw_value: 100 m
+    has_unit: metre
+    has_numeric_value: 100.0
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'US: California, snow mountain'
+  lat_lon:
+    has_raw_value: 45 -111
+    latitude: 45.0
+    longitude: -111.0
+  samp_store_temp:
+    has_raw_value: -70 C
+    has_unit: coulomb
+    has_numeric_value: -70.0
+  store_cond:
+    has_raw_value: fresh
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Bulk soil
+  specific_ecosystem: Forest soil
+  source_mat_id:
+    has_raw_value: soilscan:016
+  analysis_type: metabolomics;metagenomics
+  project_ID: 555.0
+  sample_type: soil
+  sample_shipped: 20 g
+  EMSL_store_temp: -85.0
+  dna_seq_project: 97531.0
+  dna_seq_project_name: interstellar overdrive
+  dna_samp_ID: 555.0
+  dna_sample_name: m555
+  dna_concentration: 880.0
+  dna_volume: 808.0
+  dna_absorb1: 0.5
+  dna_absorb2: 0.5
+  dna_container_ID: look5678901234567890
+  dna_cont_type: tube
+  dna_cont_well: F9
+  dna_sample_format: DNAStable
+  dna_dnase: 'yes'
+  dna_organisms: flamingos
+  dna_collect_site: the moon
+  dna_isolate_meth: glass beads
+  dna_seq_project_PI: Martha
+  dna_project_contact: Martha
+  proposal_dna: 2468.0
+  growth_facil:
+    has_raw_value: experimental_garden
+- id: nmdc:fk0emgy62
+  name: tree line 3
+  part_of:
+  - nmdc:submission_3e919e97-0437-4ca7-a758-ac36c45b908d
+  env_broad_scale:
+    has_raw_value: shrubland biome [ENVO:01000176]
+    term:
+      id: ENVO:01000176
+      name: shrubland biome
+  env_local_scale:
+    has_raw_value: hill [ENVO:00000083]
+    term:
+      id: ENVO:00000083
+      name: hill
+  env_medium:
+    has_raw_value: __volcanic soil [ENVO:01001841]
+    term:
+      id: ENVO:01001841
+      name: volcanic soil
+  collection_date:
+    has_raw_value: 2022-01
+  depth:
+    has_raw_value: '5'
+    has_numeric_value: 5.0
+  elev:
+    has_raw_value: 100 m
+    has_unit: metre
+    has_numeric_value: 100.0
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'US: California, sunny beach'
+  lat_lon:
+    has_raw_value: -89 123
+    latitude: -89.0
+    longitude: 123.0
+  samp_store_temp:
+    has_raw_value: -80 C
+    has_unit: coulomb
+    has_numeric_value: -80.0
+  store_cond:
+    has_raw_value: fresh
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Bulk soil
+  specific_ecosystem: Agricultural soil
+  source_mat_id:
+    has_raw_value: soilscan:017
+  analysis_type: metaproteomics;metatranscriptomics
+  project_ID: 555.0
+  sample_type: water_extract_soil
+  sample_shipped: 20 g
+  EMSL_store_temp: -70.0
+  dna_seq_project: 97531.0
+  dna_seq_project_name: interstellar overdrive
+  dna_samp_ID: 123.0
+  dna_sample_name: g123
+  dna_concentration: 1300.0
+  dna_volume: 310.0
+  dna_absorb1: 0.5
+  dna_absorb2: 0.5
+  dna_container_ID: look here
+  dna_cont_type: plate
+  dna_cont_well: B3
+  dna_sample_format: 10 mM Tris-HCl
+  dna_dnase: 'no'
+  dna_organisms: cows
+  dna_collect_site: the moon
+  dna_isolate_meth: blender
+  dna_seq_project_PI: Martha
+  dna_project_contact: George
+  proposal_dna: 2468.0
+  growth_facil:
+    has_raw_value: experimental_garden
+- id: nmdc:fk05msb30
+  name: tree line 4
+  part_of:
+  - nmdc:submission_3e919e97-0437-4ca7-a758-ac36c45b908d
+  env_broad_scale:
+    has_raw_value: shrubland biome [ENVO:01000176]
+    term:
+      id: ENVO:01000176
+      name: shrubland biome
+  env_local_scale:
+    has_raw_value: hill [ENVO:00000083]
+    term:
+      id: ENVO:00000083
+      name: hill
+  env_medium:
+    has_raw_value: alpine soil [ENVO:00005741]
+    term:
+      id: ENVO:00005741
+      name: alpine soil
+  collection_date:
+    has_raw_value: '2022-01-17'
+  depth:
+    has_raw_value: 7-17
+    has_minimum_numeric_value: 7.0
+    has_maximum_numeric_value: 17.0
+  elev:
+    has_raw_value: 100 m
+    has_unit: metre
+    has_numeric_value: 100.0
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'US: California, snow mountain'
+  lat_lon:
+    has_raw_value: 45 -111
+    latitude: 45.0
+    longitude: -111.0
+  samp_store_temp:
+    has_raw_value: -70 C
+    has_unit: coulomb
+    has_numeric_value: -70.0
+  store_cond:
+    has_raw_value: fresh
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Bulk soil
+  specific_ecosystem: Forest soil
+  source_mat_id:
+    has_raw_value: soilscan:018
+  analysis_type: metaproteomics;metatranscriptomics
+  project_ID: 555.0
+  sample_type: soil
+  sample_shipped: 20 g
+  EMSL_store_temp: -85.0
+  dna_seq_project: 97531.0
+  dna_seq_project_name: interstellar overdrive
+  dna_samp_ID: 555.0
+  dna_sample_name: m555
+  dna_concentration: 880.0
+  dna_volume: 808.0
+  dna_absorb1: 0.5
+  dna_absorb2: 0.5
+  dna_container_ID: look5678901234567890
+  dna_cont_type: tube
+  dna_cont_well: F9
+  dna_sample_format: DNAStable
+  dna_dnase: 'yes'
+  dna_organisms: flamingos
+  dna_collect_site: the moon
+  dna_isolate_meth: glass beads
+  dna_seq_project_PI: Martha
+  dna_project_contact: Martha
+  proposal_dna: 2468.0
+  growth_facil:
+    has_raw_value: experimental_garden
+- id: nmdc:fk01br334
+  name: west exposure 1
+  part_of:
+  - nmdc:submission_3e919e97-0437-4ca7-a758-ac36c45b908d
+  env_broad_scale:
+    has_raw_value: __montane shrubland biome [ENVO:01000216]
+    term:
+      id: ENVO:01000216
+      name: montane shrubland biome
+  env_local_scale:
+    has_raw_value: mountain [ENVO:00000081]
+    term:
+      id: ENVO:00000081
+      name: mountain
+  env_medium:
+    has_raw_value: __volcanic soil [ENVO:01001841]
+    term:
+      id: ENVO:01001841
+      name: volcanic soil
+  collection_date:
+    has_raw_value: 2022-01
+  depth:
+    has_raw_value: '5'
+    has_numeric_value: 5.0
+  elev:
+    has_raw_value: 100 m
+    has_unit: metre
+    has_numeric_value: 100.0
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'US: California, sunny beach'
+  lat_lon:
+    has_raw_value: -89 123
+    latitude: -89.0
+    longitude: 123.0
+  samp_store_temp:
+    has_raw_value: -80 C
+    has_unit: coulomb
+    has_numeric_value: -80.0
+  store_cond:
+    has_raw_value: fresh
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Bulk soil
+  specific_ecosystem: Agricultural soil
+  source_mat_id:
+    has_raw_value: soilscan:019
+  analysis_type: metabolomics;metagenomics
+  project_ID: 555.0
+  sample_type: water_extract_soil
+  sample_shipped: 20 g
+  EMSL_store_temp: -70.0
+  dna_seq_project: 97531.0
+  dna_seq_project_name: interstellar overdrive
+  dna_samp_ID: 123.0
+  dna_sample_name: g123
+  dna_concentration: 1300.0
+  dna_volume: 310.0
+  dna_absorb1: 0.5
+  dna_absorb2: 0.5
+  dna_container_ID: look here
+  dna_cont_type: plate
+  dna_cont_well: B3
+  dna_sample_format: 10 mM Tris-HCl
+  dna_dnase: 'no'
+  dna_organisms: cows
+  dna_collect_site: the moon
+  dna_isolate_meth: blender
+  dna_seq_project_PI: Martha
+  dna_project_contact: George
+  proposal_dna: 2468.0
+  growth_facil:
+    has_raw_value: experimental_garden
+- id: nmdc:fk0j5p767
+  name: west exposure 2
+  part_of:
+  - nmdc:submission_3e919e97-0437-4ca7-a758-ac36c45b908d
+  env_broad_scale:
+    has_raw_value: __montane shrubland biome [ENVO:01000216]
+    term:
+      id: ENVO:01000216
+      name: montane shrubland biome
+  env_local_scale:
+    has_raw_value: mountain [ENVO:00000081]
+    term:
+      id: ENVO:00000081
+      name: mountain
+  env_medium:
+    has_raw_value: alpine soil [ENVO:00005741]
+    term:
+      id: ENVO:00005741
+      name: alpine soil
+  collection_date:
+    has_raw_value: '2022-01-17'
+  depth:
+    has_raw_value: 7-17
+    has_minimum_numeric_value: 7.0
+    has_maximum_numeric_value: 17.0
+  elev:
+    has_raw_value: 100 m
+    has_unit: metre
+    has_numeric_value: 100.0
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'US: California, snow mountain'
+  lat_lon:
+    has_raw_value: 45 -111
+    latitude: 45.0
+    longitude: -111.0
+  samp_store_temp:
+    has_raw_value: -70 C
+    has_unit: coulomb
+    has_numeric_value: -70.0
+  store_cond:
+    has_raw_value: fresh
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Bulk soil
+  specific_ecosystem: Forest soil
+  source_mat_id:
+    has_raw_value: soilscan:020
+  analysis_type: metabolomics;metagenomics
+  project_ID: 555.0
+  sample_type: soil
+  sample_shipped: 20 g
+  EMSL_store_temp: -85.0
+  dna_seq_project: 97531.0
+  dna_seq_project_name: interstellar overdrive
+  dna_samp_ID: 555.0
+  dna_sample_name: m555
+  dna_concentration: 880.0
+  dna_volume: 808.0
+  dna_absorb1: 0.5
+  dna_absorb2: 0.5
+  dna_container_ID: look5678901234567890
+  dna_cont_type: tube
+  dna_cont_well: F9
+  dna_sample_format: DNAStable
+  dna_dnase: 'yes'
+  dna_organisms: flamingos
+  dna_collect_site: the moon
+  dna_isolate_meth: glass beads
+  dna_seq_project_PI: Martha
+  dna_project_contact: Martha
+  proposal_dna: 2468.0
+  growth_facil:
+    has_raw_value: experimental_garden
+- id: nmdc:fk0c77104
+  name: west exposure 3
+  part_of:
+  - nmdc:submission_3e919e97-0437-4ca7-a758-ac36c45b908d
+  env_broad_scale:
+    has_raw_value: __montane shrubland biome [ENVO:01000216]
+    term:
+      id: ENVO:01000216
+      name: montane shrubland biome
+  env_local_scale:
+    has_raw_value: mountain [ENVO:00000081]
+    term:
+      id: ENVO:00000081
+      name: mountain
+  env_medium:
+    has_raw_value: __volcanic soil [ENVO:01001841]
+    term:
+      id: ENVO:01001841
+      name: volcanic soil
+  collection_date:
+    has_raw_value: 2022-01
+  depth:
+    has_raw_value: '5'
+    has_numeric_value: 5.0
+  elev:
+    has_raw_value: 100 m
+    has_unit: metre
+    has_numeric_value: 100.0
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'US: California, sunny beach'
+  lat_lon:
+    has_raw_value: -89 123
+    latitude: -89.0
+    longitude: 123.0
+  samp_store_temp:
+    has_raw_value: -80 C
+    has_unit: coulomb
+    has_numeric_value: -80.0
+  store_cond:
+    has_raw_value: fresh
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Bulk soil
+  specific_ecosystem: Agricultural soil
+  source_mat_id:
+    has_raw_value: soilscan:021
+  analysis_type: metagenomics;metatranscriptomics
+  project_ID: 555.0
+  sample_type: water_extract_soil
+  sample_shipped: 20 g
+  EMSL_store_temp: -70.0
+  dna_seq_project: 97531.0
+  dna_seq_project_name: interstellar overdrive
+  dna_samp_ID: 123.0
+  dna_sample_name: g123
+  dna_concentration: 1300.0
+  dna_volume: 310.0
+  dna_absorb1: 0.5
+  dna_absorb2: 0.5
+  dna_container_ID: look here
+  dna_cont_type: plate
+  dna_cont_well: B3
+  dna_sample_format: 10 mM Tris-HCl
+  dna_dnase: 'no'
+  dna_organisms: cows
+  dna_collect_site: the moon
+  dna_isolate_meth: blender
+  dna_seq_project_PI: Martha
+  dna_project_contact: George
+  proposal_dna: 2468.0
+  growth_facil:
+    has_raw_value: experimental_garden
+- id: nmdc:fk00r5f50
+  name: west exposure 4
+  part_of:
+  - nmdc:submission_3e919e97-0437-4ca7-a758-ac36c45b908d
+  env_broad_scale:
+    has_raw_value: __montane shrubland biome [ENVO:01000216]
+    term:
+      id: ENVO:01000216
+      name: montane shrubland biome
+  env_local_scale:
+    has_raw_value: mountain [ENVO:00000081]
+    term:
+      id: ENVO:00000081
+      name: mountain
+  env_medium:
+    has_raw_value: alpine soil [ENVO:00005741]
+    term:
+      id: ENVO:00005741
+      name: alpine soil
+  collection_date:
+    has_raw_value: '2022-01-17'
+  depth:
+    has_raw_value: 7-17
+    has_minimum_numeric_value: 7.0
+    has_maximum_numeric_value: 17.0
+  elev:
+    has_raw_value: 100 m
+    has_unit: metre
+    has_numeric_value: 100.0
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'US: California, snow mountain'
+  lat_lon:
+    has_raw_value: 45 -111
+    latitude: 45.0
+    longitude: -111.0
+  samp_store_temp:
+    has_raw_value: -70 C
+    has_unit: coulomb
+    has_numeric_value: -70.0
+  store_cond:
+    has_raw_value: fresh
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Bulk soil
+  specific_ecosystem: Forest soil
+  source_mat_id:
+    has_raw_value: soilscan:022
+  analysis_type: metagenomics;metatranscriptomics
+  project_ID: 555.0
+  sample_type: soil
+  sample_shipped: 20 g
+  EMSL_store_temp: -85.0
+  dna_seq_project: 97531.0
+  dna_seq_project_name: interstellar overdrive
+  dna_samp_ID: 555.0
+  dna_sample_name: m555
+  dna_concentration: 880.0
+  dna_volume: 808.0
+  dna_absorb1: 0.5
+  dna_absorb2: 0.5
+  dna_container_ID: look5678901234567890
+  dna_cont_type: tube
+  dna_cont_well: F9
+  dna_sample_format: DNAStable
+  dna_dnase: 'yes'
+  dna_organisms: flamingos
+  dna_collect_site: the moon
+  dna_isolate_meth: glass beads
+  dna_seq_project_PI: Martha
+  dna_project_contact: Martha
+  proposal_dna: 2468.0
+  growth_facil:
+    has_raw_value: experimental_garden
+- id: nmdc:fk0zfs725
+  name: west exposure 1
+  part_of:
+  - nmdc:submission_3e919e97-0437-4ca7-a758-ac36c45b908d
+  env_broad_scale:
+    has_raw_value: __montane shrubland biome [ENVO:01000216]
+    term:
+      id: ENVO:01000216
+      name: montane shrubland biome
+  env_local_scale:
+    has_raw_value: mountain [ENVO:00000081]
+    term:
+      id: ENVO:00000081
+      name: mountain
+  env_medium:
+    has_raw_value: __volcanic soil [ENVO:01001841]
+    term:
+      id: ENVO:01001841
+      name: volcanic soil
+  collection_date:
+    has_raw_value: 2022-01
+  depth:
+    has_raw_value: '5'
+    has_numeric_value: 5.0
+  elev:
+    has_raw_value: 100 m
+    has_unit: metre
+    has_numeric_value: 100.0
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'US: California, sunny beach'
+  lat_lon:
+    has_raw_value: -89 123
+    latitude: -89.0
+    longitude: 123.0
+  samp_store_temp:
+    has_raw_value: -80 C
+    has_unit: coulomb
+    has_numeric_value: -80.0
+  store_cond:
+    has_raw_value: fresh
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Bulk soil
+  specific_ecosystem: Agricultural soil
+  source_mat_id:
+    has_raw_value: soilscan:023
+  analysis_type: metagenomics;metatranscriptomics
+  project_ID: 555.0
+  sample_type: water_extract_soil
+  sample_shipped: 20 g
+  EMSL_store_temp: -70.0
+  dna_seq_project: 97531.0
+  dna_seq_project_name: interstellar overdrive
+  dna_samp_ID: 123.0
+  dna_sample_name: g123
+  dna_concentration: 1300.0
+  dna_volume: 310.0
+  dna_absorb1: 0.5
+  dna_absorb2: 0.5
+  dna_container_ID: look here
+  dna_cont_type: plate
+  dna_cont_well: B3
+  dna_sample_format: 10 mM Tris-HCl
+  dna_dnase: 'no'
+  dna_organisms: cows
+  dna_collect_site: the moon
+  dna_isolate_meth: blender
+  dna_seq_project_PI: Martha
+  dna_project_contact: George
+  proposal_dna: 2468.0
+  growth_facil:
+    has_raw_value: experimental_garden
+- id: nmdc:fk0dd3g07
+  name: west exposure 2
+  part_of:
+  - nmdc:submission_3e919e97-0437-4ca7-a758-ac36c45b908d
+  env_broad_scale:
+    has_raw_value: __montane shrubland biome [ENVO:01000216]
+    term:
+      id: ENVO:01000216
+      name: montane shrubland biome
+  env_local_scale:
+    has_raw_value: mountain [ENVO:00000081]
+    term:
+      id: ENVO:00000081
+      name: mountain
+  env_medium:
+    has_raw_value: alpine soil [ENVO:00005741]
+    term:
+      id: ENVO:00005741
+      name: alpine soil
+  collection_date:
+    has_raw_value: '2022-01-17'
+  depth:
+    has_raw_value: 7-17
+    has_minimum_numeric_value: 7.0
+    has_maximum_numeric_value: 17.0
+  elev:
+    has_raw_value: 100 m
+    has_unit: metre
+    has_numeric_value: 100.0
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'US: California, snow mountain'
+  lat_lon:
+    has_raw_value: 45 -111
+    latitude: 45.0
+    longitude: -111.0
+  samp_store_temp:
+    has_raw_value: -70 C
+    has_unit: coulomb
+    has_numeric_value: -70.0
+  store_cond:
+    has_raw_value: fresh
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Bulk soil
+  specific_ecosystem: Forest soil
+  source_mat_id:
+    has_raw_value: soilscan:024
+  analysis_type: metagenomics;metatranscriptomics
+  project_ID: 555.0
+  sample_type: soil
+  sample_shipped: 20 g
+  EMSL_store_temp: -85.0
+  dna_seq_project: 97531.0
+  dna_seq_project_name: interstellar overdrive
+  dna_samp_ID: 555.0
+  dna_sample_name: m555
+  dna_concentration: 880.0
+  dna_volume: 808.0
+  dna_absorb1: 0.5
+  dna_absorb2: 0.5
+  dna_container_ID: look5678901234567890
+  dna_cont_type: tube
+  dna_cont_well: F9
+  dna_sample_format: DNAStable
+  dna_dnase: 'yes'
+  dna_organisms: flamingos
+  dna_collect_site: the moon
+  dna_isolate_meth: glass beads
+  dna_seq_project_PI: Martha
+  dna_project_contact: Martha
+  proposal_dna: 2468.0
+  growth_facil:
+    has_raw_value: experimental_garden
+- id: nmdc:fk08bty42
+  name: fred
+  part_of:
+  - nmdc:submission_6b1e4498-529d-4813-bf8b-b69572183330
+  env_broad_scale:
+    has_raw_value: ____mediterranean shrubland biome [ENVO:01000217]
+    term:
+      id: ENVO:01000217
+      name: mediterranean shrubland biome
+  env_local_scale:
+    has_raw_value: cave [ENVO:00000067]
+    term:
+      id: ENVO:00000067
+      name: cave
+  env_medium:
+    has_raw_value: __volcanic soil [ENVO:01001841]
+    term:
+      id: ENVO:01001841
+      name: volcanic soil
+  collection_date:
+    has_raw_value: 2022-01
+  depth:
+    has_raw_value: '5'
+    has_numeric_value: 5.0
+  elev:
+    has_raw_value: 100 m
+    has_unit: metre
+    has_numeric_value: 100.0
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'US: California, sunny beach'
+  lat_lon:
+    has_raw_value: -89 123
+    latitude: -89.0
+    longitude: 123.0
+  samp_store_temp:
+    has_raw_value: -80 C
+    has_unit: coulomb
+    has_numeric_value: -80.0
+  store_cond:
+    has_raw_value: fresh
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Bulk soil
+  specific_ecosystem: Agricultural soil
+  source_mat_id:
+    has_raw_value: a:1
+  analysis_type: metabolomics
+  project_ID: 555.0
+  sample_type: water_extract_soil
+  sample_shipped: 20 g
+  EMSL_store_temp: -70.0
+  dna_seq_project: 97531.0
+  dna_seq_project_name: interstellar overdrive
+  dna_samp_ID: 123.0
+  dna_sample_name: g123
+  dna_concentration: 1300.0
+  dna_volume: 310.0
+  dna_absorb1: 0.5
+  dna_absorb2: 0.5
+  dna_container_ID: look here
+  dna_cont_type: plate
+  dna_cont_well: B3
+  dna_sample_format: 10 mM Tris-HCl
+  dna_dnase: 'no'
+  dna_organisms: cows
+  dna_collect_site: the moon
+  dna_isolate_meth: blender
+  dna_seq_project_PI: Martha
+  dna_project_contact: George
+  proposal_dna: 2468.0
+  growth_facil:
+    has_raw_value: experimental_garden
+- id: nmdc:fk05j2x83
+  name: fred
+  part_of:
+  - nmdc:submission_6b1e4498-529d-4813-bf8b-b69572183330
+  env_broad_scale:
+    has_raw_value: ______mediterranean savanna biome [ENVO:01000229]
+    term:
+      id: ENVO:01000229
+      name: mediterranean savanna biome
+  env_local_scale:
+    has_raw_value: hill [ENVO:00000083]
+    term:
+      id: ENVO:00000083
+      name: hill
+  env_medium:
+    has_raw_value: alpine soil [ENVO:00005741]
+    term:
+      id: ENVO:00005741
+      name: alpine soil
+  collection_date:
+    has_raw_value: '2022-01-17'
+  depth:
+    has_raw_value: 7-17
+    has_minimum_numeric_value: 7.0
+    has_maximum_numeric_value: 17.0
+  elev:
+    has_raw_value: 100 m
+    has_unit: metre
+    has_numeric_value: 100.0
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'US: California, snow mountain'
+  lat_lon:
+    has_raw_value: 45 -111
+    latitude: 45.0
+    longitude: -111.0
+  samp_store_temp:
+    has_raw_value: -70 C
+    has_unit: coulomb
+    has_numeric_value: -70.0
+  store_cond:
+    has_raw_value: fresh
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Bulk soil
+  specific_ecosystem: Forest soil
+  source_mat_id:
+    has_raw_value: b:2
+  analysis_type: metabolomics
+  project_ID: 555.0
+  sample_type: soil
+  sample_shipped: 20 g
+  EMSL_store_temp: -85.0
+  dna_seq_project: 97531.0
+  dna_seq_project_name: interstellar overdrive
+  dna_samp_ID: 555.0
+  dna_sample_name: m555
+  dna_concentration: 880.0
+  dna_volume: 808.0
+  dna_absorb1: 0.5
+  dna_absorb2: 0.5
+  dna_container_ID: look5678901234567890
+  dna_cont_type: tube
+  dna_cont_well: F9
+  dna_sample_format: DNAStable
+  dna_dnase: 'yes'
+  dna_organisms: flamingos
+  dna_collect_site: the moon
+  dna_isolate_meth: glass beads
+  dna_seq_project_PI: Martha
+  dna_project_contact: Martha
+  proposal_dna: 2468.0
+  growth_facil:
+    has_raw_value: experimental_garden
+- id: nmdc:fk01fg066
+  name: fred
+  part_of:
+  - nmdc:submission_6b1e4498-529d-4813-bf8b-b69572183330
+  env_broad_scale:
+    has_raw_value: ____mediterranean shrubland biome [ENVO:01000217]
+    term:
+      id: ENVO:01000217
+      name: mediterranean shrubland biome
+  env_local_scale:
+    has_raw_value: cave [ENVO:00000067]
+    term:
+      id: ENVO:00000067
+      name: cave
+  env_medium:
+    has_raw_value: __volcanic soil [ENVO:01001841]
+    term:
+      id: ENVO:01001841
+      name: volcanic soil
+  collection_date:
+    has_raw_value: 2022-01
+  depth:
+    has_raw_value: '5'
+    has_numeric_value: 5.0
+  elev:
+    has_raw_value: 100 m
+    has_unit: metre
+    has_numeric_value: 100.0
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'US: California, sunny beach'
+  lat_lon:
+    has_raw_value: -89 123
+    latitude: -89.0
+    longitude: 123.0
+  samp_store_temp:
+    has_raw_value: -80 C
+    has_unit: coulomb
+    has_numeric_value: -80.0
+  store_cond:
+    has_raw_value: fresh
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Bulk soil
+  specific_ecosystem: Agricultural soil
+  source_mat_id:
+    has_raw_value: z:8675309
+  analysis_type: metabolomics
+  project_ID: 555.0
+  sample_type: water_extract_soil
+  sample_shipped: 20 g
+  EMSL_store_temp: -70.0
+  dna_seq_project: 97531.0
+  dna_seq_project_name: interstellar overdrive
+  dna_samp_ID: 123.0
+  dna_sample_name: g123
+  dna_concentration: 1300.0
+  dna_volume: 310.0
+  dna_absorb1: 0.5
+  dna_absorb2: 0.5
+  dna_container_ID: look here
+  dna_cont_type: plate
+  dna_cont_well: B3
+  dna_sample_format: 10 mM Tris-HCl
+  dna_dnase: 'no'
+  dna_organisms: cows
+  dna_collect_site: the moon
+  dna_isolate_meth: blender
+  dna_seq_project_PI: Martha
+  dna_project_contact: George
+  proposal_dna: 2468.0
+  growth_facil:
+    has_raw_value: experimental_garden
+- id: nmdc:fk0q5dx68
+  name: fred
+  part_of:
+  - nmdc:submission_6b1e4498-529d-4813-bf8b-b69572183330
+  env_broad_scale:
+    has_raw_value: ______mediterranean savanna biome [ENVO:01000229]
+    term:
+      id: ENVO:01000229
+      name: mediterranean savanna biome
+  env_local_scale:
+    has_raw_value: hill [ENVO:00000083]
+    term:
+      id: ENVO:00000083
+      name: hill
+  env_medium:
+    has_raw_value: alpine soil [ENVO:00005741]
+    term:
+      id: ENVO:00005741
+      name: alpine soil
+  collection_date:
+    has_raw_value: '2022-01-17'
+  depth:
+    has_raw_value: 7-17
+    has_minimum_numeric_value: 7.0
+    has_maximum_numeric_value: 17.0
+  elev:
+    has_raw_value: 100 m
+    has_unit: metre
+    has_numeric_value: 100.0
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'US: California, snow mountain'
+  lat_lon:
+    has_raw_value: 45 -111
+    latitude: 45.0
+    longitude: -111.0
+  samp_store_temp:
+    has_raw_value: -70 C
+    has_unit: coulomb
+    has_numeric_value: -70.0
+  store_cond:
+    has_raw_value: fresh
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Bulk soil
+  specific_ecosystem: Forest soil
+  source_mat_id:
+    has_raw_value: z:8675310
+  analysis_type: metabolomics
+  project_ID: 555.0
+  sample_type: soil
+  sample_shipped: 20 g
+  EMSL_store_temp: -85.0
+  dna_seq_project: 97531.0
+  dna_seq_project_name: interstellar overdrive
+  dna_samp_ID: 555.0
+  dna_sample_name: m555
+  dna_concentration: 880.0
+  dna_volume: 808.0
+  dna_absorb1: 0.5
+  dna_absorb2: 0.5
+  dna_container_ID: look5678901234567890
+  dna_cont_type: tube
+  dna_cont_well: F9
+  dna_sample_format: DNAStable
+  dna_dnase: 'yes'
+  dna_organisms: flamingos
+  dna_collect_site: the moon
+  dna_isolate_meth: glass beads
+  dna_seq_project_PI: Martha
+  dna_project_contact: Martha
+  proposal_dna: 2468.0
+  growth_facil:
+    has_raw_value: experimental_garden
+- id: nmdc:fk0bj7208
+  name: qiita_sid_13114:13114.king.27.s002
+  part_of:
+  - nmdc:submission_845c313d-3959-47c5-8722-866de1e59cbb
+  env_broad_scale:
+    has_raw_value: woodland biome [ENVO:01000175]
+    term:
+      id: ENVO:01000175
+      name: woodland biome
+  env_local_scale:
+    has_raw_value: volcano [ENVO:00000247]
+    term:
+      id: ENVO:00000247
+      name: volcano
+  env_medium:
+    has_raw_value: __volcanic soil [ENVO:01001841]
+    term:
+      id: ENVO:01001841
+      name: volcanic soil
+  collection_date:
+    has_raw_value: '2014-04-24'
+  depth:
+    has_raw_value: '0.02'
+    has_numeric_value: 0.02
+  elev:
+    has_raw_value: 1500 m
+    has_unit: metre
+    has_numeric_value: 1500.0
+  env_package:
+    has_raw_value: bread
+  geo_loc_name:
+    has_raw_value: 'USA: State of Hawaii, Kilauea Volcano'
+  lat_lon:
+    has_raw_value: 19.388694 -155.249333
+    latitude: 19.388694
+    longitude: -155.249333
+  samp_store_temp:
+    has_raw_value: -80 C
+    has_unit: coulomb
+    has_numeric_value: -80.0
+  store_cond:
+    has_raw_value: frozen
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Biocrust
+  specific_ecosystem: Unclassified
+  source_mat_id:
+    has_raw_value: NMDC:SAMEA7723901
+  analysis_type: metagenomics;metaproteomics
+  project_ID: .nan
+  sample_type: .nan
+  sample_shipped: .nan
+  EMSL_store_temp: .nan
+  technical_reps: .nan
+  replicate_number: .nan
+  dna_seq_project: .nan
+  dna_seq_project_name: .nan
+  dna_samp_ID: .nan
+  dna_sample_name: .nan
+  dna_concentration: .nan
+  dna_volume: .nan
+  dna_absorb1: .nan
+  dna_absorb2: .nan
+  dna_container_ID: .nan
+  dna_cont_type: .nan
+  dna_cont_well: .nan
+  dna_sample_format: .nan
+  dna_dnase: .nan
+  dna_organisms: .nan
+  dna_collect_site: .nan
+  dna_isolate_meth: .nan
+  dna_seq_project_PI: .nan
+  dna_project_contact: .nan
+  proposal_dna: .nan
+  growth_facil:
+    has_raw_value: other
+- id: nmdc:fk00q2k03
+  name: qiita_sid_13114:13114.king.27.s005
+  part_of:
+  - nmdc:submission_845c313d-3959-47c5-8722-866de1e59cbb
+  env_broad_scale:
+    has_raw_value: woodland biome [ENVO:01000175]
+    term:
+      id: ENVO:01000175
+      name: woodland biome
+  env_local_scale:
+    has_raw_value: volcano [ENVO:00000247]
+    term:
+      id: ENVO:00000247
+      name: volcano
+  env_medium:
+    has_raw_value: __volcanic soil [ENVO:01001841]
+    term:
+      id: ENVO:01001841
+      name: volcanic soil
+  collection_date:
+    has_raw_value: '2014-04-24'
+  depth:
+    has_raw_value: '0.02'
+    has_numeric_value: 0.02
+  elev:
+    has_raw_value: 1500 m
+    has_unit: metre
+    has_numeric_value: 1500.0
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'USA: State of Hawaii, Kilauea Volcano'
+  lat_lon:
+    has_raw_value: 19.388694 -155.249333
+    latitude: 19.388694
+    longitude: -155.249333
+  samp_store_temp:
+    has_raw_value: -80 C
+    has_unit: coulomb
+    has_numeric_value: -80.0
+  store_cond:
+    has_raw_value: frozen
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Biocrust
+  specific_ecosystem: Unclassified
+  source_mat_id:
+    has_raw_value: NMDC:SAMEA7723902
+  analysis_type: metagenomics;metaproteomics
+  project_ID: .nan
+  sample_type: .nan
+  sample_shipped: .nan
+  EMSL_store_temp: .nan
+  technical_reps: .nan
+  replicate_number: .nan
+  dna_seq_project: .nan
+  dna_seq_project_name: .nan
+  dna_samp_ID: .nan
+  dna_sample_name: .nan
+  dna_concentration: .nan
+  dna_volume: .nan
+  dna_absorb1: .nan
+  dna_absorb2: .nan
+  dna_container_ID: .nan
+  dna_cont_type: .nan
+  dna_cont_well: .nan
+  dna_sample_format: .nan
+  dna_dnase: .nan
+  dna_organisms: .nan
+  dna_collect_site: .nan
+  dna_isolate_meth: .nan
+  dna_seq_project_PI: .nan
+  dna_project_contact: .nan
+  proposal_dna: .nan
+  growth_facil:
+    has_raw_value: other
+- id: nmdc:fk01n8056
+  name: qiita_sid_13114:13114.king.27.s010
+  part_of:
+  - nmdc:submission_845c313d-3959-47c5-8722-866de1e59cbb
+  env_broad_scale:
+    has_raw_value: woodland biome [ENVO:01000175]
+    term:
+      id: ENVO:01000175
+      name: woodland biome
+  env_local_scale:
+    has_raw_value: volcano [ENVO:00000247]
+    term:
+      id: ENVO:00000247
+      name: volcano
+  env_medium:
+    has_raw_value: __volcanic soil [ENVO:01001841]
+    term:
+      id: ENVO:01001841
+      name: volcanic soil
+  collection_date:
+    has_raw_value: '2014-04-24'
+  depth:
+    has_raw_value: '0.02'
+    has_numeric_value: 0.02
+  elev:
+    has_raw_value: 1500 m
+    has_unit: metre
+    has_numeric_value: 1500.0
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'USA: State of Hawaii, Kilauea Volcano'
+  lat_lon:
+    has_raw_value: 19.389305 -155.2485
+    latitude: 19.389305
+    longitude: -155.2485
+  samp_store_temp:
+    has_raw_value: -80 C
+    has_unit: coulomb
+    has_numeric_value: -80.0
+  store_cond:
+    has_raw_value: frozen
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Biocrust
+  specific_ecosystem: Unclassified
+  source_mat_id:
+    has_raw_value: NMDC:SAMEA7723903
+  analysis_type: metagenomics;metaproteomics
+  project_ID: .nan
+  sample_type: .nan
+  sample_shipped: .nan
+  EMSL_store_temp: .nan
+  technical_reps: .nan
+  replicate_number: .nan
+  dna_seq_project: .nan
+  dna_seq_project_name: .nan
+  dna_samp_ID: .nan
+  dna_sample_name: .nan
+  dna_concentration: .nan
+  dna_volume: .nan
+  dna_absorb1: .nan
+  dna_absorb2: .nan
+  dna_container_ID: .nan
+  dna_cont_type: .nan
+  dna_cont_well: .nan
+  dna_sample_format: .nan
+  dna_dnase: .nan
+  dna_organisms: .nan
+  dna_collect_site: .nan
+  dna_isolate_meth: .nan
+  dna_seq_project_PI: .nan
+  dna_project_contact: .nan
+  proposal_dna: .nan
+  growth_facil:
+    has_raw_value: other
+- id: nmdc:fk0r3fn84
+  name: qiita_sid_13114:13114.king.27.s011
+  part_of:
+  - nmdc:submission_845c313d-3959-47c5-8722-866de1e59cbb
+  env_broad_scale:
+    has_raw_value: woodland biome [ENVO:01000175]
+    term:
+      id: ENVO:01000175
+      name: woodland biome
+  env_local_scale:
+    has_raw_value: volcano [ENVO:00000247]
+    term:
+      id: ENVO:00000247
+      name: volcano
+  env_medium:
+    has_raw_value: __volcanic soil [ENVO:01001841]
+    term:
+      id: ENVO:01001841
+      name: volcanic soil
+  collection_date:
+    has_raw_value: '2014-04-24'
+  depth:
+    has_raw_value: '0.02'
+    has_numeric_value: 0.02
+  elev:
+    has_raw_value: 1500 m
+    has_unit: metre
+    has_numeric_value: 1500.0
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'USA: State of Hawaii, Kilauea Volcano'
+  lat_lon:
+    has_raw_value: 19.389305 -155.2485
+    latitude: 19.389305
+    longitude: -155.2485
+  samp_store_temp:
+    has_raw_value: -80 C
+    has_unit: coulomb
+    has_numeric_value: -80.0
+  store_cond:
+    has_raw_value: frozen
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Biocrust
+  specific_ecosystem: Unclassified
+  source_mat_id:
+    has_raw_value: NMDC:SAMEA7723904
+  analysis_type: metagenomics;metaproteomics
+  project_ID: .nan
+  sample_type: .nan
+  sample_shipped: .nan
+  EMSL_store_temp: .nan
+  technical_reps: .nan
+  replicate_number: .nan
+  dna_seq_project: .nan
+  dna_seq_project_name: .nan
+  dna_samp_ID: .nan
+  dna_sample_name: .nan
+  dna_concentration: .nan
+  dna_volume: .nan
+  dna_absorb1: .nan
+  dna_absorb2: .nan
+  dna_container_ID: .nan
+  dna_cont_type: .nan
+  dna_cont_well: .nan
+  dna_sample_format: .nan
+  dna_dnase: .nan
+  dna_organisms: .nan
+  dna_collect_site: .nan
+  dna_isolate_meth: .nan
+  dna_seq_project_PI: .nan
+  dna_project_contact: .nan
+  proposal_dna: .nan
+  growth_facil:
+    has_raw_value: other
+- id: nmdc:fk062yq59
+  name: qiita_sid_13114:13114.king.27.s012
+  part_of:
+  - nmdc:submission_845c313d-3959-47c5-8722-866de1e59cbb
+  env_broad_scale:
+    has_raw_value: woodland biome [ENVO:01000175]
+    term:
+      id: ENVO:01000175
+      name: woodland biome
+  env_local_scale:
+    has_raw_value: volcano [ENVO:00000247]
+    term:
+      id: ENVO:00000247
+      name: volcano
+  env_medium:
+    has_raw_value: __volcanic soil [ENVO:01001841]
+    term:
+      id: ENVO:01001841
+      name: volcanic soil
+  collection_date:
+    has_raw_value: '2014-04-24'
+  depth:
+    has_raw_value: '0.02'
+    has_numeric_value: 0.02
+  elev:
+    has_raw_value: 1500 m
+    has_unit: metre
+    has_numeric_value: 1500.0
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'USA: State of Hawaii, Kilauea Volcano'
+  lat_lon:
+    has_raw_value: 19.389305 -155.2485
+    latitude: 19.389305
+    longitude: -155.2485
+  samp_store_temp:
+    has_raw_value: -80 C
+    has_unit: coulomb
+    has_numeric_value: -80.0
+  store_cond:
+    has_raw_value: frozen
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Biocrust
+  specific_ecosystem: Unclassified
+  source_mat_id:
+    has_raw_value: NMDC:SAMEA7723905
+  analysis_type: metagenomics;metaproteomics
+  project_ID: .nan
+  sample_type: .nan
+  sample_shipped: .nan
+  EMSL_store_temp: .nan
+  technical_reps: .nan
+  replicate_number: .nan
+  dna_seq_project: .nan
+  dna_seq_project_name: .nan
+  dna_samp_ID: .nan
+  dna_sample_name: .nan
+  dna_concentration: .nan
+  dna_volume: .nan
+  dna_absorb1: .nan
+  dna_absorb2: .nan
+  dna_container_ID: .nan
+  dna_cont_type: .nan
+  dna_cont_well: .nan
+  dna_sample_format: .nan
+  dna_dnase: .nan
+  dna_organisms: .nan
+  dna_collect_site: .nan
+  dna_isolate_meth: .nan
+  dna_seq_project_PI: .nan
+  dna_project_contact: .nan
+  proposal_dna: .nan
+  growth_facil:
+    has_raw_value: other
+- id: nmdc:fk016as85
+  name: qiita_sid_13114:13114.king.27.s016
+  part_of:
+  - nmdc:submission_845c313d-3959-47c5-8722-866de1e59cbb
+  env_broad_scale:
+    has_raw_value: woodland biome [ENVO:01000175]
+    term:
+      id: ENVO:01000175
+      name: woodland biome
+  env_local_scale:
+    has_raw_value: volcano [ENVO:00000247]
+    term:
+      id: ENVO:00000247
+      name: volcano
+  env_medium:
+    has_raw_value: __volcanic soil [ENVO:01001841]
+    term:
+      id: ENVO:01001841
+      name: volcanic soil
+  collection_date:
+    has_raw_value: '2014-04-24'
+  depth:
+    has_raw_value: '0.02'
+    has_numeric_value: 0.02
+  elev:
+    has_raw_value: 1500 m
+    has_unit: metre
+    has_numeric_value: 1500.0
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'USA: State of Hawaii, Kilauea Volcano'
+  lat_lon:
+    has_raw_value: 19.389389 -155.25
+    latitude: 19.389389
+    longitude: -155.25
+  samp_store_temp:
+    has_raw_value: -80 C
+    has_unit: coulomb
+    has_numeric_value: -80.0
+  store_cond:
+    has_raw_value: frozen
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Biocrust
+  specific_ecosystem: Unclassified
+  source_mat_id:
+    has_raw_value: NMDC:SAMEA7723906
+  analysis_type: metagenomics;metaproteomics
+  project_ID: .nan
+  sample_type: .nan
+  sample_shipped: .nan
+  EMSL_store_temp: .nan
+  technical_reps: .nan
+  replicate_number: .nan
+  dna_seq_project: .nan
+  dna_seq_project_name: .nan
+  dna_samp_ID: .nan
+  dna_sample_name: .nan
+  dna_concentration: .nan
+  dna_volume: .nan
+  dna_absorb1: .nan
+  dna_absorb2: .nan
+  dna_container_ID: .nan
+  dna_cont_type: .nan
+  dna_cont_well: .nan
+  dna_sample_format: .nan
+  dna_dnase: .nan
+  dna_organisms: .nan
+  dna_collect_site: .nan
+  dna_isolate_meth: .nan
+  dna_seq_project_PI: .nan
+  dna_project_contact: .nan
+  proposal_dna: .nan
+  growth_facil:
+    has_raw_value: other
+- id: nmdc:fk0s3bt22
+  name: qiita_sid_13114:13114.king.27.s020
+  part_of:
+  - nmdc:submission_845c313d-3959-47c5-8722-866de1e59cbb
+  env_broad_scale:
+    has_raw_value: woodland biome [ENVO:01000175]
+    term:
+      id: ENVO:01000175
+      name: woodland biome
+  env_local_scale:
+    has_raw_value: volcano [ENVO:00000247]
+    term:
+      id: ENVO:00000247
+      name: volcano
+  env_medium:
+    has_raw_value: __volcanic soil [ENVO:01001841]
+    term:
+      id: ENVO:01001841
+      name: volcanic soil
+  collection_date:
+    has_raw_value: '2014-04-24'
+  depth:
+    has_raw_value: '0.02'
+    has_numeric_value: 0.02
+  elev:
+    has_raw_value: 1500 m
+    has_unit: metre
+    has_numeric_value: 1500.0
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'USA: State of Hawaii, Kilauea Volcano'
+  lat_lon:
+    has_raw_value: 19.389389 -155.25
+    latitude: 19.389389
+    longitude: -155.25
+  samp_store_temp:
+    has_raw_value: -80 C
+    has_unit: coulomb
+    has_numeric_value: -80.0
+  store_cond:
+    has_raw_value: frozen
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Biocrust
+  specific_ecosystem: Unclassified
+  source_mat_id:
+    has_raw_value: NMDC:SAMEA7723907
+  analysis_type: metagenomics;metaproteomics
+  project_ID: .nan
+  sample_type: .nan
+  sample_shipped: .nan
+  EMSL_store_temp: .nan
+  technical_reps: .nan
+  replicate_number: .nan
+  dna_seq_project: .nan
+  dna_seq_project_name: .nan
+  dna_samp_ID: .nan
+  dna_sample_name: .nan
+  dna_concentration: .nan
+  dna_volume: .nan
+  dna_absorb1: .nan
+  dna_absorb2: .nan
+  dna_container_ID: .nan
+  dna_cont_type: .nan
+  dna_cont_well: .nan
+  dna_sample_format: .nan
+  dna_dnase: .nan
+  dna_organisms: .nan
+  dna_collect_site: .nan
+  dna_isolate_meth: .nan
+  dna_seq_project_PI: .nan
+  dna_project_contact: .nan
+  proposal_dna: .nan
+  growth_facil:
+    has_raw_value: other
+- id: nmdc:fk0c4jd77
+  name: qiita_sid_13114:13114.metcalf.40.s003
+  part_of:
+  - nmdc:submission_845c313d-3959-47c5-8722-866de1e59cbb
+  env_broad_scale:
+    has_raw_value: __temperate savanna biome [ENVO:01000189]
+    term:
+      id: ENVO:01000189
+      name: temperate savanna biome
+  env_local_scale:
+    has_raw_value: __dry valley [ENVO:00000128]
+    term:
+      id: ENVO:00000128
+      name: dry valley
+  env_medium:
+    has_raw_value: bare soil [ENVO:01001616]
+    term:
+      id: ENVO:01001616
+      name: bare soil
+  collection_date:
+    has_raw_value: '2012-06-12'
+  depth:
+    has_raw_value: '0.02'
+    has_numeric_value: 0.02
+  elev:
+    has_raw_value: 1624.1 m
+    has_unit: metre
+    has_numeric_value: 1624.1
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'USA: State of Colorado, City of Boulder'
+  lat_lon:
+    has_raw_value: 40.015 -105.27
+    latitude: 40.015
+    longitude: -105.27
+  samp_store_temp:
+    has_raw_value: -80 C
+    has_unit: coulomb
+    has_numeric_value: -80.0
+  store_cond:
+    has_raw_value: frozen
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Biocrust
+  specific_ecosystem: Unclassified
+  source_mat_id:
+    has_raw_value: NMDC:SAMEA7723924
+  analysis_type: metagenomics;metaproteomics
+  project_ID: .nan
+  sample_type: .nan
+  sample_shipped: .nan
+  EMSL_store_temp: .nan
+  technical_reps: .nan
+  replicate_number: .nan
+  dna_seq_project: .nan
+  dna_seq_project_name: .nan
+  dna_samp_ID: .nan
+  dna_sample_name: .nan
+  dna_concentration: .nan
+  dna_volume: .nan
+  dna_absorb1: .nan
+  dna_absorb2: .nan
+  dna_container_ID: .nan
+  dna_cont_type: .nan
+  dna_cont_well: .nan
+  dna_sample_format: .nan
+  dna_dnase: .nan
+  dna_organisms: .nan
+  dna_collect_site: .nan
+  dna_isolate_meth: .nan
+  dna_seq_project_PI: .nan
+  dna_project_contact: .nan
+  proposal_dna: .nan
+  growth_facil:
+    has_raw_value: other
+- id: nmdc:fk0m7d833
+  name: qiita_sid_13114:13114.metcalf.40.s004
+  part_of:
+  - nmdc:submission_845c313d-3959-47c5-8722-866de1e59cbb
+  env_broad_scale:
+    has_raw_value: __temperate savanna biome [ENVO:01000189]
+    term:
+      id: ENVO:01000189
+      name: temperate savanna biome
+  env_local_scale:
+    has_raw_value: __dry valley [ENVO:00000128]
+    term:
+      id: ENVO:00000128
+      name: dry valley
+  env_medium:
+    has_raw_value: bare soil [ENVO:01001616]
+    term:
+      id: ENVO:01001616
+      name: bare soil
+  collection_date:
+    has_raw_value: '2012-06-27'
+  depth:
+    has_raw_value: '0.02'
+    has_numeric_value: 0.02
+  elev:
+    has_raw_value: 1624.1 m
+    has_unit: metre
+    has_numeric_value: 1624.1
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'USA: State of Colorado, City of Boulder'
+  lat_lon:
+    has_raw_value: 40.015 -105.27
+    latitude: 40.015
+    longitude: -105.27
+  samp_store_temp:
+    has_raw_value: -80 C
+    has_unit: coulomb
+    has_numeric_value: -80.0
+  store_cond:
+    has_raw_value: frozen
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Sand
+  specific_ecosystem: Desert
+  source_mat_id:
+    has_raw_value: NMDC:SAMEA7723925
+  analysis_type: metagenomics;metaproteomics
+  project_ID: .nan
+  sample_type: .nan
+  sample_shipped: .nan
+  EMSL_store_temp: .nan
+  technical_reps: .nan
+  replicate_number: .nan
+  dna_seq_project: .nan
+  dna_seq_project_name: .nan
+  dna_samp_ID: .nan
+  dna_sample_name: .nan
+  dna_concentration: .nan
+  dna_volume: .nan
+  dna_absorb1: .nan
+  dna_absorb2: .nan
+  dna_container_ID: .nan
+  dna_cont_type: .nan
+  dna_cont_well: .nan
+  dna_sample_format: .nan
+  dna_dnase: .nan
+  dna_organisms: .nan
+  dna_collect_site: .nan
+  dna_isolate_meth: .nan
+  dna_seq_project_PI: .nan
+  dna_project_contact: .nan
+  proposal_dna: .nan
+  growth_facil:
+    has_raw_value: other
+- id: nmdc:fk00vsz21
+  name: qiita_sid_13114:13114.metcalf.40.s012
+  part_of:
+  - nmdc:submission_845c313d-3959-47c5-8722-866de1e59cbb
+  env_broad_scale:
+    has_raw_value: __temperate savanna biome [ENVO:01000189]
+    term:
+      id: ENVO:01000189
+      name: temperate savanna biome
+  env_local_scale:
+    has_raw_value: plain [ENVO:00000086]
+    term:
+      id: ENVO:00000086
+      name: plain
+  env_medium:
+    has_raw_value: bare soil [ENVO:01001616]
+    term:
+      id: ENVO:01001616
+      name: bare soil
+  collection_date:
+    has_raw_value: '2012-06-27'
+  depth:
+    has_raw_value: '0.02'
+    has_numeric_value: 0.02
+  elev:
+    has_raw_value: 1624.1 m
+    has_unit: metre
+    has_numeric_value: 1624.1
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'USA: State of Colorado, City of Boulder'
+  lat_lon:
+    has_raw_value: 40.015 -105.27
+    latitude: 40.015
+    longitude: -105.27
+  samp_store_temp:
+    has_raw_value: -80 C
+    has_unit: coulomb
+    has_numeric_value: -80.0
+  store_cond:
+    has_raw_value: frozen
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Sand
+  specific_ecosystem: Desert
+  source_mat_id:
+    has_raw_value: NMDC:SAMEA7723926
+  analysis_type: metagenomics;metaproteomics
+  project_ID: .nan
+  sample_type: .nan
+  sample_shipped: .nan
+  EMSL_store_temp: .nan
+  technical_reps: .nan
+  replicate_number: .nan
+  dna_seq_project: .nan
+  dna_seq_project_name: .nan
+  dna_samp_ID: .nan
+  dna_sample_name: .nan
+  dna_concentration: .nan
+  dna_volume: .nan
+  dna_absorb1: .nan
+  dna_absorb2: .nan
+  dna_container_ID: .nan
+  dna_cont_type: .nan
+  dna_cont_well: .nan
+  dna_sample_format: .nan
+  dna_dnase: .nan
+  dna_organisms: .nan
+  dna_collect_site: .nan
+  dna_isolate_meth: .nan
+  dna_seq_project_PI: .nan
+  dna_project_contact: .nan
+  proposal_dna: .nan
+  growth_facil:
+    has_raw_value: other
+- id: nmdc:fk03fhk21
+  name: qiita_sid_13114:13114.metcalf.40.s014
+  part_of:
+  - nmdc:submission_845c313d-3959-47c5-8722-866de1e59cbb
+  env_broad_scale:
+    has_raw_value: __temperate woodland biome [ENVO:01000221]
+    term:
+      id: ENVO:01000221
+      name: temperate woodland biome
+  env_local_scale:
+    has_raw_value: plain [ENVO:00000086]
+    term:
+      id: ENVO:00000086
+      name: plain
+  env_medium:
+    has_raw_value: bare soil [ENVO:01001616]
+    term:
+      id: ENVO:01001616
+      name: bare soil
+  collection_date:
+    has_raw_value: '2013-04-25'
+  depth:
+    has_raw_value: '0.02'
+    has_numeric_value: 0.02
+  elev:
+    has_raw_value: 113.1 m
+    has_unit: metre
+    has_numeric_value: 113.1
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'USA: State of Texas, City of Huntsville'
+  lat_lon:
+    has_raw_value: 30.71308 -95.55
+    latitude: 30.71308
+    longitude: -95.55
+  samp_store_temp:
+    has_raw_value: -80 C
+    has_unit: coulomb
+    has_numeric_value: -80.0
+  store_cond:
+    has_raw_value: frozen
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Organic layer
+  specific_ecosystem: Grasslands
+  source_mat_id:
+    has_raw_value: NMDC:SAMEA7723927
+  analysis_type: metagenomics;metaproteomics
+  project_ID: .nan
+  sample_type: .nan
+  sample_shipped: .nan
+  EMSL_store_temp: .nan
+  technical_reps: .nan
+  replicate_number: .nan
+  dna_seq_project: .nan
+  dna_seq_project_name: .nan
+  dna_samp_ID: .nan
+  dna_sample_name: .nan
+  dna_concentration: .nan
+  dna_volume: .nan
+  dna_absorb1: .nan
+  dna_absorb2: .nan
+  dna_container_ID: .nan
+  dna_cont_type: .nan
+  dna_cont_well: .nan
+  dna_sample_format: .nan
+  dna_dnase: .nan
+  dna_organisms: .nan
+  dna_collect_site: .nan
+  dna_isolate_meth: .nan
+  dna_seq_project_PI: .nan
+  dna_project_contact: .nan
+  proposal_dna: .nan
+  growth_facil:
+    has_raw_value: other
+- id: nmdc:fk00xh364
+  name: qiita_sid_13114:13114.rohwer.84.s001
+  part_of:
+  - nmdc:submission_845c313d-3959-47c5-8722-866de1e59cbb
+  env_broad_scale:
+    has_raw_value: tundra biome [ENVO:01000180]
+    term:
+      id: ENVO:01000180
+      name: tundra biome
+  env_local_scale:
+    has_raw_value: __glacial valley [ENVO:00000248]
+    term:
+      id: ENVO:00000248
+      name: glacial valley
+  env_medium:
+    has_raw_value: bare soil [ENVO:01001616]
+    term:
+      id: ENVO:01001616
+      name: bare soil
+  collection_date:
+    has_raw_value: '2013-08-02'
+  depth:
+    has_raw_value: '0.02'
+    has_numeric_value: 0.02
+  elev:
+    has_raw_value: 0 m
+    has_unit: metre
+    has_numeric_value: 0.0
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'Arctic Ocean: Franz Josef Land, Hook Island'
+  lat_lon:
+    has_raw_value: 80.33333333 52.78333333
+    latitude: 80.33333333
+    longitude: 52.78333333
+  samp_store_temp:
+    has_raw_value: -80 C
+    has_unit: coulomb
+    has_numeric_value: -80.0
+  store_cond:
+    has_raw_value: frozen
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Soil crust
+  specific_ecosystem: Forest soil
+  source_mat_id:
+    has_raw_value: NMDC:SAMEA7723944
+  analysis_type: metagenomics;metaproteomics
+  project_ID: .nan
+  sample_type: .nan
+  sample_shipped: .nan
+  EMSL_store_temp: .nan
+  technical_reps: .nan
+  replicate_number: .nan
+  dna_seq_project: .nan
+  dna_seq_project_name: .nan
+  dna_samp_ID: .nan
+  dna_sample_name: .nan
+  dna_concentration: .nan
+  dna_volume: .nan
+  dna_absorb1: .nan
+  dna_absorb2: .nan
+  dna_container_ID: .nan
+  dna_cont_type: .nan
+  dna_cont_well: .nan
+  dna_sample_format: .nan
+  dna_dnase: .nan
+  dna_organisms: .nan
+  dna_collect_site: .nan
+  dna_isolate_meth: .nan
+  dna_seq_project_PI: .nan
+  dna_project_contact: .nan
+  proposal_dna: .nan
+  growth_facil:
+    has_raw_value: other
+- id: nmdc:fk0wzka69
+  name: qiita_sid_13114:13114.rohwer.84.s002
+  part_of:
+  - nmdc:submission_845c313d-3959-47c5-8722-866de1e59cbb
+  env_broad_scale:
+    has_raw_value: tundra biome [ENVO:01000180]
+    term:
+      id: ENVO:01000180
+      name: tundra biome
+  env_local_scale:
+    has_raw_value: __glacial valley [ENVO:00000248]
+    term:
+      id: ENVO:00000248
+      name: glacial valley
+  env_medium:
+    has_raw_value: bare soil [ENVO:01001616]
+    term:
+      id: ENVO:01001616
+      name: bare soil
+  collection_date:
+    has_raw_value: '2013-08-02'
+  depth:
+    has_raw_value: '0.02'
+    has_numeric_value: 0.02
+  elev:
+    has_raw_value: 0 m
+    has_unit: metre
+    has_numeric_value: 0.0
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'Arctic Ocean: Franz Josef Land, Hook Island'
+  lat_lon:
+    has_raw_value: 80.33333333 52.78333333
+    latitude: 80.33333333
+    longitude: 52.78333333
+  samp_store_temp:
+    has_raw_value: -80 C
+    has_unit: coulomb
+    has_numeric_value: -80.0
+  store_cond:
+    has_raw_value: frozen
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Soil crust
+  specific_ecosystem: Permafrost
+  source_mat_id:
+    has_raw_value: NMDC:SAMEA7723945
+  analysis_type: metagenomics;metaproteomics
+  project_ID: .nan
+  sample_type: .nan
+  sample_shipped: .nan
+  EMSL_store_temp: .nan
+  technical_reps: .nan
+  replicate_number: .nan
+  dna_seq_project: .nan
+  dna_seq_project_name: .nan
+  dna_samp_ID: .nan
+  dna_sample_name: .nan
+  dna_concentration: .nan
+  dna_volume: .nan
+  dna_absorb1: .nan
+  dna_absorb2: .nan
+  dna_container_ID: .nan
+  dna_cont_type: .nan
+  dna_cont_well: .nan
+  dna_sample_format: .nan
+  dna_dnase: .nan
+  dna_organisms: .nan
+  dna_collect_site: .nan
+  dna_isolate_meth: .nan
+  dna_seq_project_PI: .nan
+  dna_project_contact: .nan
+  proposal_dna: .nan
+  growth_facil:
+    has_raw_value: other
+- id: nmdc:fk0tdef44
+  name: qiita_sid_13114:13114.rohwer.84.s003
+  part_of:
+  - nmdc:submission_845c313d-3959-47c5-8722-866de1e59cbb
+  env_broad_scale:
+    has_raw_value: tundra biome [ENVO:01000180]
+    term:
+      id: ENVO:01000180
+      name: tundra biome
+  env_local_scale:
+    has_raw_value: __glacial valley [ENVO:00000248]
+    term:
+      id: ENVO:00000248
+      name: glacial valley
+  env_medium:
+    has_raw_value: bare soil [ENVO:01001616]
+    term:
+      id: ENVO:01001616
+      name: bare soil
+  collection_date:
+    has_raw_value: '2013-08-02'
+  depth:
+    has_raw_value: '0.02'
+    has_numeric_value: 0.02
+  elev:
+    has_raw_value: 0 m
+    has_unit: metre
+    has_numeric_value: 0.0
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'Arctic Ocean: Franz Josef Land, Hook Island'
+  lat_lon:
+    has_raw_value: 80.33333333 52.78333333
+    latitude: 80.33333333
+    longitude: 52.78333333
+  samp_store_temp:
+    has_raw_value: -80 C
+    has_unit: coulomb
+    has_numeric_value: -80.0
+  store_cond:
+    has_raw_value: frozen
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Soil crust
+  specific_ecosystem: Permafrost
+  source_mat_id:
+    has_raw_value: NMDC:SAMEA7723946
+  analysis_type: metagenomics;metaproteomics
+  project_ID: .nan
+  sample_type: .nan
+  sample_shipped: .nan
+  EMSL_store_temp: .nan
+  technical_reps: .nan
+  replicate_number: .nan
+  dna_seq_project: .nan
+  dna_seq_project_name: .nan
+  dna_samp_ID: .nan
+  dna_sample_name: .nan
+  dna_concentration: .nan
+  dna_volume: .nan
+  dna_absorb1: .nan
+  dna_absorb2: .nan
+  dna_container_ID: .nan
+  dna_cont_type: .nan
+  dna_cont_well: .nan
+  dna_sample_format: .nan
+  dna_dnase: .nan
+  dna_organisms: .nan
+  dna_collect_site: .nan
+  dna_isolate_meth: .nan
+  dna_seq_project_PI: .nan
+  dna_project_contact: .nan
+  proposal_dna: .nan
+  growth_facil:
+    has_raw_value: other
+- id: nmdc:fk0av7248
+  name: qiita_sid_13114:13114.rohwer.84.s004
+  part_of:
+  - nmdc:submission_845c313d-3959-47c5-8722-866de1e59cbb
+  env_broad_scale:
+    has_raw_value: tundra biome [ENVO:01000180]
+    term:
+      id: ENVO:01000180
+      name: tundra biome
+  env_local_scale:
+    has_raw_value: __glacial valley [ENVO:00000248]
+    term:
+      id: ENVO:00000248
+      name: glacial valley
+  env_medium:
+    has_raw_value: bare soil [ENVO:01001616]
+    term:
+      id: ENVO:01001616
+      name: bare soil
+  collection_date:
+    has_raw_value: '2013-08-02'
+  depth:
+    has_raw_value: '0.02'
+    has_numeric_value: 0.02
+  elev:
+    has_raw_value: 0 m
+    has_unit: metre
+    has_numeric_value: 0.0
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'Arctic Ocean: Franz Josef Land, Hook Island'
+  lat_lon:
+    has_raw_value: 80.33333333 52.78333333
+    latitude: 80.33333333
+    longitude: 52.78333333
+  samp_store_temp:
+    has_raw_value: -80 C
+    has_unit: coulomb
+    has_numeric_value: -80.0
+  store_cond:
+    has_raw_value: frozen
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Soil crust
+  specific_ecosystem: Permafrost
+  source_mat_id:
+    has_raw_value: NMDC:SAMEA7723947
+  analysis_type: metagenomics;metaproteomics
+  project_ID: .nan
+  sample_type: .nan
+  sample_shipped: .nan
+  EMSL_store_temp: .nan
+  technical_reps: .nan
+  replicate_number: .nan
+  dna_seq_project: .nan
+  dna_seq_project_name: .nan
+  dna_samp_ID: .nan
+  dna_sample_name: .nan
+  dna_concentration: .nan
+  dna_volume: .nan
+  dna_absorb1: .nan
+  dna_absorb2: .nan
+  dna_container_ID: .nan
+  dna_cont_type: .nan
+  dna_cont_well: .nan
+  dna_sample_format: .nan
+  dna_dnase: .nan
+  dna_organisms: .nan
+  dna_collect_site: .nan
+  dna_isolate_meth: .nan
+  dna_seq_project_PI: .nan
+  dna_project_contact: .nan
+  proposal_dna: .nan
+  growth_facil:
+    has_raw_value: other
+- id: nmdc:fk0spcb94
+  name: qiita_sid_13114:13114.rohwer.84.s005
+  part_of:
+  - nmdc:submission_845c313d-3959-47c5-8722-866de1e59cbb
+  env_broad_scale:
+    has_raw_value: tundra biome [ENVO:01000180]
+    term:
+      id: ENVO:01000180
+      name: tundra biome
+  env_local_scale:
+    has_raw_value: __glacial valley [ENVO:00000248]
+    term:
+      id: ENVO:00000248
+      name: glacial valley
+  env_medium:
+    has_raw_value: bare soil [ENVO:01001616]
+    term:
+      id: ENVO:01001616
+      name: bare soil
+  collection_date:
+    has_raw_value: '2013-08-06'
+  depth:
+    has_raw_value: '0.02'
+    has_numeric_value: 0.02
+  elev:
+    has_raw_value: 0 m
+    has_unit: metre
+    has_numeric_value: 0.0
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'Arctic Ocean: Franz Josef Land, Luigi island'
+  lat_lon:
+    has_raw_value: 80.76666667 54.65
+    latitude: 80.76666667
+    longitude: 54.65
+  samp_store_temp:
+    has_raw_value: -80 C
+    has_unit: coulomb
+    has_numeric_value: -80.0
+  store_cond:
+    has_raw_value: frozen
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Soil crust
+  specific_ecosystem: Permafrost
+  source_mat_id:
+    has_raw_value: NMDC:SAMEA7723948
+  analysis_type: metagenomics;metaproteomics
+  project_ID: .nan
+  sample_type: .nan
+  sample_shipped: .nan
+  EMSL_store_temp: .nan
+  technical_reps: .nan
+  replicate_number: .nan
+  dna_seq_project: .nan
+  dna_seq_project_name: .nan
+  dna_samp_ID: .nan
+  dna_sample_name: .nan
+  dna_concentration: .nan
+  dna_volume: .nan
+  dna_absorb1: .nan
+  dna_absorb2: .nan
+  dna_container_ID: .nan
+  dna_cont_type: .nan
+  dna_cont_well: .nan
+  dna_sample_format: .nan
+  dna_dnase: .nan
+  dna_organisms: .nan
+  dna_collect_site: .nan
+  dna_isolate_meth: .nan
+  dna_seq_project_PI: .nan
+  dna_project_contact: .nan
+  proposal_dna: .nan
+  growth_facil:
+    has_raw_value: other
+- id: nmdc:fk062p896
+  name: qiita_sid_13114:13114.rohwer.84.s006
+  part_of:
+  - nmdc:submission_845c313d-3959-47c5-8722-866de1e59cbb
+  env_broad_scale:
+    has_raw_value: tundra biome [ENVO:01000180]
+    term:
+      id: ENVO:01000180
+      name: tundra biome
+  env_local_scale:
+    has_raw_value: __glacial valley [ENVO:00000248]
+    term:
+      id: ENVO:00000248
+      name: glacial valley
+  env_medium:
+    has_raw_value: bare soil [ENVO:01001616]
+    term:
+      id: ENVO:01001616
+      name: bare soil
+  collection_date:
+    has_raw_value: '2013-08-06'
+  depth:
+    has_raw_value: '0.02'
+    has_numeric_value: 0.02
+  elev:
+    has_raw_value: 0 m
+    has_unit: metre
+    has_numeric_value: 0.0
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'Arctic Ocean: Franz Josef Land, Luigi island'
+  lat_lon:
+    has_raw_value: 80.76666667 54.65
+    latitude: 80.76666667
+    longitude: 54.65
+  samp_store_temp:
+    has_raw_value: -80 C
+    has_unit: coulomb
+    has_numeric_value: -80.0
+  store_cond:
+    has_raw_value: frozen
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Soil crust
+  specific_ecosystem: Permafrost
+  source_mat_id:
+    has_raw_value: NMDC:SAMEA7723949
+  analysis_type: metagenomics;metaproteomics
+  project_ID: .nan
+  sample_type: .nan
+  sample_shipped: .nan
+  EMSL_store_temp: .nan
+  technical_reps: .nan
+  replicate_number: .nan
+  dna_seq_project: .nan
+  dna_seq_project_name: .nan
+  dna_samp_ID: .nan
+  dna_sample_name: .nan
+  dna_concentration: .nan
+  dna_volume: .nan
+  dna_absorb1: .nan
+  dna_absorb2: .nan
+  dna_container_ID: .nan
+  dna_cont_type: .nan
+  dna_cont_well: .nan
+  dna_sample_format: .nan
+  dna_dnase: .nan
+  dna_organisms: .nan
+  dna_collect_site: .nan
+  dna_isolate_meth: .nan
+  dna_seq_project_PI: .nan
+  dna_project_contact: .nan
+  proposal_dna: .nan
+  growth_facil:
+    has_raw_value: other
+- id: nmdc:fk0rbxn63
+  name: fred
+  part_of:
+  - nmdc:submission_456a82a2-8832-4669-b1a1-7b8fd4a11962
+  env_broad_scale:
+    has_raw_value: ocean [ENVO:999]
+    term:
+      id: ENVO:999
+      name: ocean
+  env_local_scale:
+    has_raw_value: ocean [ENVO:999]
+    term:
+      id: ENVO:999
+      name: ocean
+  env_medium:
+    has_raw_value: ocean [ENVO:999]
+    term:
+      id: ENVO:999
+      name: ocean
+  elev:
+    has_raw_value: 100 m
+    has_unit: metre
+    has_numeric_value: 100.0
+  env_package:
+    has_raw_value: soil
+  store_cond:
+    has_raw_value: fresh
+  project_ID: .nan
+  sample_type: .nan
+  sample_shipped: .nan
+  EMSL_store_temp: .nan
+  technical_reps: .nan
+  replicate_number: .nan
+  dna_seq_project: .nan
+  dna_seq_project_name: .nan
+  dna_samp_ID: .nan
+  dna_sample_name: .nan
+  dna_concentration: .nan
+  dna_volume: .nan
+  dna_absorb1: .nan
+  dna_absorb2: .nan
+  dna_container_ID: .nan
+  dna_cont_type: .nan
+  dna_cont_well: .nan
+  dna_sample_format: .nan
+  dna_dnase: .nan
+  dna_organisms: .nan
+  dna_collect_site: .nan
+  dna_isolate_meth: .nan
+  dna_seq_project_PI: .nan
+  dna_project_contact: .nan
+  proposal_dna: .nan
+  growth_facil:
+    has_raw_value: experimental_garden
+- id: nmdc:fk0v6kz25
+  name: fred
+  part_of:
+  - nmdc:submission_456a82a2-8832-4669-b1a1-7b8fd4a11962
+  env_broad_scale:
+    has_raw_value: ocean [ENVO:999]
+    term:
+      id: ENVO:999
+      name: ocean
+  env_local_scale:
+    has_raw_value: ocean [ENVO:999]
+    term:
+      id: ENVO:999
+      name: ocean
+  env_medium:
+    has_raw_value: ocean [ENVO:999]
+    term:
+      id: ENVO:999
+      name: ocean
+  elev:
+    has_raw_value: 100 m
+    has_unit: metre
+    has_numeric_value: 100.0
+  env_package:
+    has_raw_value: soil
+  store_cond:
+    has_raw_value: fresh
+  project_ID: .nan
+  sample_type: .nan
+  sample_shipped: .nan
+  EMSL_store_temp: .nan
+  technical_reps: .nan
+  replicate_number: .nan
+  dna_seq_project: .nan
+  dna_seq_project_name: .nan
+  dna_samp_ID: .nan
+  dna_sample_name: .nan
+  dna_concentration: .nan
+  dna_volume: .nan
+  dna_absorb1: .nan
+  dna_absorb2: .nan
+  dna_container_ID: .nan
+  dna_cont_type: .nan
+  dna_cont_well: .nan
+  dna_sample_format: .nan
+  dna_dnase: .nan
+  dna_organisms: .nan
+  dna_collect_site: .nan
+  dna_isolate_meth: .nan
+  dna_seq_project_PI: .nan
+  dna_project_contact: .nan
+  proposal_dna: .nan
+  growth_facil:
+    has_raw_value: experimental_garden
+- id: nmdc:fk0ddv176
+  part_of:
+  - nmdc:submission_456a82a2-8832-4669-b1a1-7b8fd4a11962
+  env_broad_scale:
+    has_raw_value: tes
+  project_ID: .nan
+  sample_type: .nan
+  sample_shipped: .nan
+  EMSL_store_temp: .nan
+  technical_reps: .nan
+  replicate_number: .nan
+  dna_seq_project: .nan
+  dna_seq_project_name: .nan
+  dna_samp_ID: .nan
+  dna_sample_name: .nan
+  dna_concentration: .nan
+  dna_volume: .nan
+  dna_absorb1: .nan
+  dna_absorb2: .nan
+  dna_container_ID: .nan
+  dna_cont_type: .nan
+  dna_cont_well: .nan
+  dna_sample_format: .nan
+  dna_dnase: .nan
+  dna_organisms: .nan
+  dna_collect_site: .nan
+  dna_isolate_meth: .nan
+  dna_seq_project_PI: .nan
+  dna_project_contact: .nan
+  proposal_dna: .nan
+- id: nmdc:fk00chv30
+  name: fred
+  part_of:
+  - nmdc:submission_962efbd1-5269-47cf-bd65-7bdf213d38ec
+  env_broad_scale:
+    has_raw_value: ____mediterranean shrubland biome [ENVO:01000217]
+    term:
+      id: ENVO:01000217
+      name: mediterranean shrubland biome
+  env_local_scale:
+    has_raw_value: cave [ENVO:00000067]
+    term:
+      id: ENVO:00000067
+      name: cave
+  env_medium:
+    has_raw_value: __volcanic soil [ENVO:01001841]
+    term:
+      id: ENVO:01001841
+      name: volcanic soil
+  collection_date:
+    has_raw_value: 2022-01
+  depth:
+    has_raw_value: '5'
+    has_numeric_value: 5.0
+  elev:
+    has_raw_value: 100 m
+    has_unit: metre
+    has_numeric_value: 100.0
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'US: California, sunny beach'
+  lat_lon:
+    has_raw_value: -89 123
+    latitude: -89.0
+    longitude: 123.0
+  samp_store_temp:
+    has_raw_value: -80 C
+    has_unit: coulomb
+    has_numeric_value: -80.0
+  store_cond:
+    has_raw_value: fresh
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Bulk soil
+  specific_ecosystem: Agricultural soil
+  source_mat_id:
+    has_raw_value: a:1
+  analysis_type: metabolomics
+  project_ID: 555.0
+  sample_type: water_extract_soil
+  sample_shipped: 20 g
+  EMSL_store_temp: -70.0
+  dna_seq_project: 97531.0
+  dna_seq_project_name: interstellar overdrive
+  dna_samp_ID: 123.0
+  dna_sample_name: g123
+  dna_concentration: 1300.0
+  dna_volume: 310.0
+  dna_absorb1: 0.5
+  dna_absorb2: 0.5
+  dna_container_ID: look here
+  dna_cont_type: plate
+  dna_cont_well: B3
+  dna_sample_format: 10 mM Tris-HCl
+  dna_dnase: 'no'
+  dna_organisms: cows
+  dna_collect_site: the moon
+  dna_isolate_meth: blender
+  dna_seq_project_PI: Martha
+  dna_project_contact: George
+  proposal_dna: 2468.0
+  growth_facil:
+    has_raw_value: experimental_garden
+- id: nmdc:fk06t7q28
+  name: fred
+  part_of:
+  - nmdc:submission_962efbd1-5269-47cf-bd65-7bdf213d38ec
+  env_broad_scale:
+    has_raw_value: ______mediterranean savanna biome [ENVO:01000229]
+    term:
+      id: ENVO:01000229
+      name: mediterranean savanna biome
+  env_local_scale:
+    has_raw_value: hill [ENVO:00000083]
+    term:
+      id: ENVO:00000083
+      name: hill
+  env_medium:
+    has_raw_value: alpine soil [ENVO:00005741]
+    term:
+      id: ENVO:00005741
+      name: alpine soil
+  collection_date:
+    has_raw_value: '2022-01-17'
+  depth:
+    has_raw_value: 7-17
+    has_minimum_numeric_value: 7.0
+    has_maximum_numeric_value: 17.0
+  elev:
+    has_raw_value: 100 m
+    has_unit: metre
+    has_numeric_value: 100.0
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'US: California, snow mountain'
+  lat_lon:
+    has_raw_value: 45 -111
+    latitude: 45.0
+    longitude: -111.0
+  samp_store_temp:
+    has_raw_value: -70 C
+    has_unit: coulomb
+    has_numeric_value: -70.0
+  store_cond:
+    has_raw_value: fresh
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Bulk soil
+  specific_ecosystem: Forest soil
+  source_mat_id:
+    has_raw_value: b:2
+  analysis_type: metabolomics
+  project_ID: 555.0
+  sample_type: soil
+  sample_shipped: 20 g
+  EMSL_store_temp: -85.0
+  dna_seq_project: 97531.0
+  dna_seq_project_name: interstellar overdrive
+  dna_samp_ID: 555.0
+  dna_sample_name: m555
+  dna_concentration: 880.0
+  dna_volume: 808.0
+  dna_absorb1: 0.5
+  dna_absorb2: 0.5
+  dna_container_ID: look5678901234567890
+  dna_cont_type: tube
+  dna_cont_well: F9
+  dna_sample_format: DNAStable
+  dna_dnase: 'yes'
+  dna_organisms: flamingos
+  dna_collect_site: the moon
+  dna_isolate_meth: glass beads
+  dna_seq_project_PI: Martha
+  dna_project_contact: Martha
+  proposal_dna: 2468.0
+  growth_facil:
+    has_raw_value: experimental_garden
+- id: nmdc:fk0hcj254
+  name: fred
+  part_of:
+  - nmdc:submission_0504deaa-4d68-450e-9fec-a73f402104e3
+  env_broad_scale:
+    has_raw_value: ____mediterranean shrubland biome [ENVO:01000217]
+    term:
+      id: ENVO:01000217
+      name: mediterranean shrubland biome
+  env_local_scale:
+    has_raw_value: cave [ENVO:00000067]
+    term:
+      id: ENVO:00000067
+      name: cave
+  env_medium:
+    has_raw_value: __volcanic soil [ENVO:01001841]
+    term:
+      id: ENVO:01001841
+      name: volcanic soil
+  collection_date:
+    has_raw_value: 2022-01
+  depth:
+    has_raw_value: '5'
+    has_numeric_value: 5.0
+  elev:
+    has_raw_value: 100 m
+    has_unit: metre
+    has_numeric_value: 100.0
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'US: California, sunny beach'
+  lat_lon:
+    has_raw_value: -89 123
+    latitude: -89.0
+    longitude: 123.0
+  samp_store_temp:
+    has_raw_value: -80 C
+    has_unit: coulomb
+    has_numeric_value: -80.0
+  store_cond:
+    has_raw_value: fresh
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Bulk soil
+  specific_ecosystem: Agricultural soil
+  source_mat_id:
+    has_raw_value: a:1
+  analysis_type: metabolomics
+  project_ID: 555.0
+  sample_type: water_extract_soil
+  sample_shipped: 20 g
+  EMSL_store_temp: -70.0
+  dna_seq_project: 97531.0
+  dna_seq_project_name: interstellar overdrive
+  dna_samp_ID: 123.0
+  dna_sample_name: g123
+  dna_concentration: 1300.0
+  dna_volume: 310.0
+  dna_absorb1: 0.5
+  dna_absorb2: 0.5
+  dna_container_ID: look here
+  dna_cont_type: plate
+  dna_cont_well: B3
+  dna_sample_format: 10 mM Tris-HCl
+  dna_dnase: 'no'
+  dna_organisms: cows
+  dna_collect_site: the moon
+  dna_isolate_meth: blender
+  dna_seq_project_PI: Martha
+  dna_project_contact: George
+  proposal_dna: 2468.0
+  growth_facil:
+    has_raw_value: experimental_garden
+- id: nmdc:fk04cjz41
+  name: fred
+  part_of:
+  - nmdc:submission_0504deaa-4d68-450e-9fec-a73f402104e3
+  env_broad_scale:
+    has_raw_value: ______mediterranean savanna biome [ENVO:01000229]
+    term:
+      id: ENVO:01000229
+      name: mediterranean savanna biome
+  env_local_scale:
+    has_raw_value: hill [ENVO:00000083]
+    term:
+      id: ENVO:00000083
+      name: hill
+  env_medium:
+    has_raw_value: alpine soil [ENVO:00005741]
+    term:
+      id: ENVO:00005741
+      name: alpine soil
+  collection_date:
+    has_raw_value: '2022-01-17'
+  depth:
+    has_raw_value: 7-17
+    has_minimum_numeric_value: 7.0
+    has_maximum_numeric_value: 17.0
+  elev:
+    has_raw_value: 100 m
+    has_unit: metre
+    has_numeric_value: 100.0
+  env_package:
+    has_raw_value: soil
+  geo_loc_name:
+    has_raw_value: 'US: California, snow mountain'
+  lat_lon:
+    has_raw_value: 45 -111
+    latitude: 45.0
+    longitude: -111.0
+  samp_store_temp:
+    has_raw_value: -70 C
+    has_unit: coulomb
+    has_numeric_value: -70.0
+  store_cond:
+    has_raw_value: fresh
+  ecosystem: Environmental
+  ecosystem_category: Terrestrial
+  ecosystem_type: Soil
+  ecosystem_subtype: Bulk soil
+  specific_ecosystem: Forest soil
+  source_mat_id:
+    has_raw_value: b:2
+  analysis_type: metabolomics
+  project_ID: 555.0
+  sample_type: soil
+  sample_shipped: 20 g
+  EMSL_store_temp: -85.0
+  dna_seq_project: 97531.0
+  dna_seq_project_name: interstellar overdrive
+  dna_samp_ID: 555.0
+  dna_sample_name: m555
+  dna_concentration: 880.0
+  dna_volume: 808.0
+  dna_absorb1: 0.5
+  dna_absorb2: 0.5
+  dna_container_ID: look5678901234567890
+  dna_cont_type: tube
+  dna_cont_well: F9
+  dna_sample_format: DNAStable
+  dna_dnase: 'yes'
+  dna_organisms: flamingos
+  dna_collect_site: the moon
+  dna_isolate_meth: glass beads
+  dna_seq_project_PI: Martha
+  dna_project_contact: Martha
+  proposal_dna: 2468.0
+  growth_facil:
+    has_raw_value: experimental_garden

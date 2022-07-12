@@ -1,4 +1,7 @@
 RUN = poetry run
+# SESSION_COOKIE? See https://github.com/microbiomedata/sample-annotator/issues/90
+SESSION_COOKIE = $(shell cat local/SESSION_COOKIE.txt)
+NMDC_SCHEMA_PATH = /Users/MAM/Documents/gitrepos/nmdc-schema/src/schema/nmdc.yaml
 
 biosample_sqlite_file = ~/biosample_basex_data_good_subset.db
 
@@ -57,3 +60,42 @@ downloads/bibo.owl:
 assets/bibo_DocumentStatus.tsv: downloads/bibo.owl bin/robot.jar
 	java -jar bin/robot.jar query --input $< --query sparql/bibo_DocumentStatus.sparql $@
 	sed --in-place=.bak 's/^\?//' $@
+
+.PHONY: clean_loosies
+clean_loosies:
+	rm -rf assets/out/*json
+	rm -rf assets/out/*tsv
+	rm -rf assets/out/*yaml
+	rm -rf bs_db.json instantiation_log.yml submission_frame.tsv sample_data.tsv
+
+#assets/out/biosample_collection.json: $(NMDC_SCHEMA_PATH) clean_loosies
+#	$(RUN) python sample_annotator/clients/nmdc/get_metadata_submissions.py \
+#		--session_cookie $(SESSION_COOKIE) \
+#		--study_id "cc498964-d1da-416d-b353-aecf5f6c749d"
+
+assets/out/submissions_as_studies.yaml:
+	$(RUN) python sample_annotator/clients/nmdc/submissions_to_nmdc_databases.py \
+		--merge_known_orcids False
+
+assets/out/biosmaples_tsv_to_json.json:
+	$(RUN) python sample_annotator/clients/nmdc/biosamples_tsv_to_json.py \
+		--csv_in /Users/MAM/Bioscales_NMDC_import_nospace_temps.csv \
+		--yaml_out /Users/MAM/Bioscales_NMDC_import_nospace_temps.yaml \
+		--asserted_template bioscales \
+		--asserted_study study1234
+  #  --infer / --no-infer            Infer missing slot values  [default: no-
+  #                                  infer]
+
+# todo if including --module /Users/MAM/Documents/gitrepos/nmdc-schema/nmdc_schema/nmdc.py
+#   KeyError: 'applies to person'
+assets/out/submissions_as_studies.json: assets/in/study_database_bottomup.yaml
+	$(RUN) linkml-validate \
+		--target-class Database \
+		--index-slot study_set \
+		--schema /Users/MAM/Documents/gitrepos/nmdc-schema/src/schema/nmdc.yaml $<
+	$(RUN) linkml-convert \
+		--output $@ \
+		--target-class Database \
+		--index-slot study_set \
+		--schema /Users/MAM/Documents/gitrepos/nmdc-schema/src/schema/nmdc.yaml \
+		--module /Users/MAM/Documents/gitrepos/nmdc-schema/nmdc_schema/nmdc.py $<
