@@ -251,6 +251,68 @@ class GoldClient:
                     ids.append(line.strip())
         return self.fetch_studies(ids, **kwargs)
 
+    def fetch_biosample_by_project(self, id: str) -> List[SampleDict]:
+        """Fetch the biosample from which the sequencing project
+        was generated.
+
+        :param id: GOLD project id. Ex.: Gp0503330
+        :return: List of SampleDict objects
+        """
+        id = self._normalize_id(id)
+        results = self._call("biosamples", {"projectGoldId": id})
+        
+        biosample_id = results[0]["biosampleGoldId"]
+        return biosample_id
+
+    def fetch_study_by_project(self, id: str) -> List[SampleDict]:
+        """Fetch the study for which the sequencing project
+        was performed.
+
+        :param id: GOLD project id. Ex.: Gp0503330
+        :return: List of SampleDict objects
+        """
+        id = self._normalize_id(id)
+        results = self._call("studies", {"projectGoldId": id})
+
+        study_id = results[0]["studyGoldId"]
+        return study_id
+
+    def fetch_study_by_analysis_id(self, id: str) -> List[SampleDict]:
+        """Fetch the study id for which the informatics processing 
+        of a sequencing project was performed.
+        :param id: GOLD Analysis id. Ex.: Ga0466468
+        :return: List of SampleDict objects
+        """
+        id = self._normalize_id(id)
+        results = self._call("studies", {"apGoldId": id})
+
+        study_id = results[0]["studyGoldId"]
+        return study_id
+
+    def fetch_biosample_by_analysis_id(self, id: str) -> List[SampleDict]:
+        """Fetch the biosample id for which the informatics processing 
+        of a sequencing project was performed.
+        :param id: GOLD Analysis id. Ex.: Ga0466468
+        :return: List of SampleDict objects
+        """
+        id = self._normalize_id(id)
+        results = self._call("biosamples", {"apGoldId": id})
+
+        biosample_id = results[0]["biosampleGoldId"]
+        return biosample_id
+
+    def fetch_project_by_analysis_id(self, id: str) -> List[SampleDict]:
+        """Fetch the project id for which the informatics processing 
+        of a sequencing project was performed.
+        :param id: GOLD Analysis id. Ex.: Ga0466468
+        :return: List of SampleDict objects
+        """
+        id = self._normalize_id(id)
+        results = self._call("projects", {"apGoldId": id})
+
+        project_id = results[0]["projectGoldId"]
+        return project_id
+        
 
 @click.group()
 @click.option("-v", "--verbose", count=True)
