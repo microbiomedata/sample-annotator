@@ -21,6 +21,7 @@ TEST_BIOSAMPLE_IDS = ['Gb0255525', 'Gb0255899', 'Gb0255966',  ## in Gs0144570
                       'Gb0011929',
                       'Gb0051032'  ## sample with no study
                       ]
+TEST_PROJECT_ID = 'Gp0503317'
 
 #logging.basicConfig(level=logging.DEBUG)
 
@@ -88,3 +89,25 @@ class TestGoldClient(unittest.TestCase):
         else:
             print(f'Skipping sample tests')
             print(f'To enable these, add your apikey to {KEYPATH}')
+
+    def test_fetches_by_project(self):
+        """Tests for all methods in the library that seek to fetch 
+        biosample and study information from gold database based on 
+        supplied project ids.
+        """
+        gc = GoldClient()
+        gc.clear_cache()
+
+        if os.path.exists(KEYPATH):
+            gc.load_key(KEYPATH)
+
+            expected_biosample_id = 'Gb0258249'
+            actual_biosample_id = gc.fetch_biosample_by_project(TEST_PROJECT_ID)
+
+            self.assertEqual(expected_biosample_id, actual_biosample_id)
+
+            expected_study_id = 'Gs0149396'
+            actual_study_id = gc.fetch_study_by_project(TEST_PROJECT_ID)
+
+            self.assertEqual(expected_study_id, actual_study_id)
+            
