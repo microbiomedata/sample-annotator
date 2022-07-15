@@ -22,6 +22,7 @@ TEST_BIOSAMPLE_IDS = ['Gb0255525', 'Gb0255899', 'Gb0255966',  ## in Gs0144570
                       'Gb0051032'  ## sample with no study
                       ]
 TEST_PROJECT_ID = 'Gp0503317'
+TEST_ANALYSIS_ID = 'Ga0451502'
 
 #logging.basicConfig(level=logging.DEBUG)
 
@@ -110,4 +111,30 @@ class TestGoldClient(unittest.TestCase):
             actual_study_id = gc.fetch_study_by_project(TEST_PROJECT_ID)
 
             self.assertEqual(expected_study_id, actual_study_id)
+            
+    def test_fetches_by_analysis(self):
+        """Tests for all methods in the library that seek to fetch 
+        biosample, study and project information from gold database based 
+        on supplied project analysis ids.
+        """
+        gc = GoldClient()
+        gc.clear_cache()
+
+        if os.path.exists(KEYPATH):
+            gc.load_key(KEYPATH)
+
+            expected_biosample_id = 'Gb0258249'
+            actual_biosample_id = gc.fetch_biosample_by_analysis_id(TEST_ANALYSIS_ID)
+
+            self.assertEqual(expected_biosample_id, actual_biosample_id)
+
+            expected_study_id = 'Gs0149396'
+            actual_study_id = gc.fetch_study_by_analysis_id(TEST_ANALYSIS_ID)
+
+            self.assertEqual(expected_study_id, actual_study_id)
+
+            expected_project_id = TEST_PROJECT_ID
+            actual_project_id = gc.fetch_project_by_analysis_id(TEST_ANALYSIS_ID)
+
+            self.assertEqual(expected_project_id, actual_project_id)
             
