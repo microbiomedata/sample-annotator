@@ -99,3 +99,6 @@ assets/out/submissions_as_studies.json: assets/in/study_database_bottomup.yaml
 		--index-slot study_set \
 		--schema /Users/MAM/Documents/gitrepos/nmdc-schema/src/schema/nmdc.yaml \
 		--module /Users/MAM/Documents/gitrepos/nmdc-schema/nmdc_schema/nmdc.py $<
+
+temp:
+	poetry run python sample_annotator/clients/nmdc/api_or_tsv_metadata_submissions_to_json.py
