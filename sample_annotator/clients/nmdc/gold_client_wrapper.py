@@ -1,8 +1,10 @@
+from cmath import pi
 import io
 import os
 import json
 import pkgutil
 import logging
+import re
 
 from typing import Dict, List, Union
 
@@ -104,7 +106,35 @@ class GoldNMDC(GoldClient):
 
         return project_has_output_list
 
-    def transform_emp500_nmdc(
+    def get_pi_dict(self, nmdc_entry: Dict[str, str]) -> Dict[str, str]:
+        """Get dictionary with PI information like name, email, etc.
+
+        :param nmdc_entry: An NMDC record like study, project, etc.
+        :return: dictionary with PI information.
+        """
+        pi_dict = next(
+            (contact for contact in nmdc_entry["contacts"] if "PI" in contact["roles"])
+        )
+
+        return pi_dict
+
+    def mod_date_handler(self, nmdc_entry: Dict[str, str]) -> XSDDateTime:
+        """Compute modDate in GOLD if it has not been populated in the database.
+
+        :param nmdc_entry: An NMDC record like study, project, etc.
+        :return: XSDDateTime formatted datetime
+        """
+        # use below logic to determine modDate if it is not
+        # populated in GOLD
+        mod_date = (
+            XSDDateTime(nmdc_entry["addDate"])
+            if nmdc_entry["modDate"] is None
+            else XSDDateTime(nmdc_entry["modDate"])
+        )
+
+        return mod_date
+
+    def transform_gold_nmdc(
         self, file_name: Union[str, bytes, os.PathLike] = None
     ) -> str:
         """Transform EMP500 data fetched from GOLD Database into
@@ -135,9 +165,7 @@ class GoldNMDC(GoldClient):
 
         study_data = self.fetch_study(id=self.study_id)
 
-        pi_dict = next(
-            (contact for contact in study_data["contacts"] if "PI" in contact["roles"])
-        )
+        pi_dict = self.get_pi_dict(study_data)
 
         self.nmdc_db.study_set.append(
             nmdc.Study(
@@ -156,13 +184,7 @@ class GoldNMDC(GoldClient):
 
         for biosample in biosamples:
             try:
-                # use below logic to determine modDate if it is not
-                # populated in GOLD
-                mod_date = (
-                    XSDDateTime(biosample["addDate"])
-                    if biosample["modDate"] is None
-                    else XSDDateTime(biosample["modDate"])
-                )
+                mod_date = self.mod_date_handler(biosample)
 
                 # use the logic in if conditional to populate value for
                 # depth, when depth can be retreived from GOLD API
@@ -280,22 +302,9 @@ class GoldNMDC(GoldClient):
 
         for project in projects:
             try:
-                # construct Principal Investigator term
-                pi_dict = next(
-                    (
-                        contact
-                        for contact in project["contacts"]
-                        if "PI" in contact["roles"]
-                    )
-                )
-
-                # use below logic to determine modDate if it is not
-                # populated in GOLD
-                mod_date = (
-                    XSDDateTime(project["addDate"])
-                    if project["modDate"] is None
-                    else XSDDateTime(project["modDate"])
-                )
+                pi_dict = self.get_pi_dict(project)
+                
+                mod_date = self.mod_date_handler(project)
 
                 project_has_output_dict = self.project_has_output_dict()
 
