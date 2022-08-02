@@ -34,7 +34,7 @@ class TestGoldNMDC(unittest.TestCase):
             gc.load_key(KEYPATH)
 
             # unit test for transform_emp500_nmdc()
-            _ = gc.transform_emp500_nmdc(file_name=file_path)
+            _ = gc.transform_gold_nmdc(file_name=file_path)
 
             # assert that True is always returned when we compare
             # two JSON files
