@@ -100,11 +100,46 @@ assets/out/submissions_as_studies.json: assets/in/study_database_bottomup.yaml
 		--schema /Users/MAM/Documents/gitrepos/nmdc-schema/src/schema/nmdc.yaml \
 		--module /Users/MAM/Documents/gitrepos/nmdc-schema/nmdc_schema/nmdc.py $<
 
-api_temp:
-	poetry run python sample_annotator/clients/nmdc/api_or_tsv_metadata_submissions_to_json.py \
-		--data_portal_url https://data.microbiomedata.org/
 
-csv_temp:
-	poetry run python sample_annotator/clients/nmdc/api_or_tsv_metadata_submissions_to_json.py \
-		--data_csv /Users/MAM/Documents/Bioscales_NMDC_import_nospace_temps.csv \
-		--csv_proj_id bioscales
+# usages of sample_annotator/clients/nmdc/api_or_tsv_metadata_submissions_to_json.py
+
+.PHONY: api_or_tsv_clean
+
+PLACEHOLDER_TEXT="forces creation of this directory"
+
+api_or_tsv_clean:
+	rm -rf assets/out/*
+	mkdir -p assets/out
+	echo $(PLACEHOLDER_TEXT) > assets/out/README.md
+
+
+assets/out/sample_metadata_from_api.csv: api_or_tsv_clean
+	$(RUN) api_or_tsv_metadata_submissions_to_json \
+		--data_portal_url https://data.dev.microbiomedata.org/ \
+		--sample_metadata_csv_file $@ \
+		--sample_metadata_yaml_file $(basename $@).yaml \
+		--study_metadata_yaml_file $(subst sample,study,$(basename $@)).yaml
+
+
+ONE_PROJ_BIOSAMPLE_CSV=/Users/MAM/Documents/Bioscales_NMDC_import_nospace_temps.csv
+#ONE_PROJ_BIOSAMPLE_CSV=/Users/MAM/Documents/Bioscales_NMDC_import_nospace_temps_one_bs_ctv_gf.csv
+# ONE_PROJ_PROJ_ID may need to match something that's currently hardcoded
+ONE_PROJ_PROJ_ID=bioscales
+
+assets/out/sample_metadata_from_csv.csv: api_or_tsv_clean
+	$(RUN) api_or_tsv_metadata_submissions_to_json \
+		--data_csv $(ONE_PROJ_BIOSAMPLE_CSV) \
+		--csv_proj_id $(ONE_PROJ_PROJ_ID) \
+		--sample_metadata_csv_file $@ \
+		--sample_metadata_yaml_file $(basename $@).yaml
+
+# todo read the sample data form MongoDB and apply revisions (including identifier shuffling)
+
+# todo read from Biosmaple SQLites database
+
+# Sujay already has a method for obtaining sample metadata (and more) from GOLD
+#   and converting into Biosample objects as JSON with NMDC Database as the root container
+
+# new principle: do the deepest possible parse of GeolocationValues, ControlledTermValues etc.
+
+# todo integrate all of this
