@@ -114,18 +114,22 @@ api_or_tsv_clean:
 
 
 # todo this errors out if 0 valid biosample rows are found
-#  do be careful with start and stop values
+#  do be careful with start and stop values (0-1 is a failure case?)
 #  these are pages of submissions
 #  2022-08-09 2-4 works nicely
-#  4-9 picks up some soil horizon problems
-#  4-7 OK
+#  0-8, 10-11 OK
+#  9-9 picks up some soil horizon problems
+# 12 problems with sample_type and samp_collec_device:russiancorer
+
 assets/out/sample_metadata_from_api.yaml: api_or_tsv_clean
+	# --data_portal_url https://data.dev.microbiomedata.org/ or https://data.microbiomedata.org/
 	$(RUN) api_or_tsv_metadata_submissions_to_json from-submissions \
-		--page_start 4 \
-		--page_stop 7 \
+		--data_portal_url https://data.microbiomedata.org/ \
+		--page_start 0 \
+		--page_stop 999 \
 		--sample_metadata_csv_file $(basename $@).csv  \
 		--sample_metadata_yaml_file $@ \
-		--study_metadata_yaml_file $(subst sample,study,$(basename $@)).yaml
+		--study_metadata_yaml_file $(subst sample,study,$(basename $@)).yaml 2> assets/out/api_or_tsv_metadata_submissions_to_json.log
 	# todo refactor everything below
 	$(RUN) linkml-validate \
 		--target-class Database \
@@ -198,12 +202,6 @@ assets/out/sample_metadata_from_sqlite.yaml: api_or_tsv_clean
 	jq 'del(."@type")' $(basename $@).json > $(basename $@)_untyped.json
 	$(RUN) jsonschema -i $(basename $@)_untyped.json /Users/MAM/Documents/gitrepos/nmdc-schema/jsonschema/nmdc.schema.json
 
-json.json:
-	poetry run linkml-convert \
-		--target-class Database \
-		--module /Users/MAM/Documents/gitrepos/nmdc-schema/python/nmdc.py \
-		--schema /Users/MAM/Documents/gitrepos/nmdc-schema/src/schema/nmdc.yaml \
-		--output json.json assets/out/sample_metadata_from_sqlite.yaml
 
 # todo read the sample data form MongoDB and apply revisions (including identifier shuffling)
 

@@ -68,18 +68,35 @@ click_log.basic_config(logger)
 
 # todo dangerous to hardcode repairs like this
 
-drop_cols_pending_research = []
+# #sample_type:
+# #has_raw_value:soil
+# technical_reps:'1'
+# analysis_type:
+# -naturalorganicmatter
+# #samp_collec_device:russiancorer
+
+# todo use SSSOM files for these overrides?
+
+drop_cols_pending_research = [
+    "horizon",
+    "soil horizon",
+    "soil_horizon",
+    "prev_land_use_meth",
+    "samp_collec_device",
+    "samp_type",
+    "sample_type",
+]
 
 biosample_sqlite_to_dh_field_name = {
     "title": {"dh": "samp_name", "format": "scalar"},
     "id": {"dh": "INSDC biosample identifiers", "format": "list"},
-    # todo the schema is giving mixed messages about whether INSDC secondary sample identifiers is multivalued or not
-    "sra_id": {"dh": "INSDC secondary sample identifiers", "format": "list"},
+    # # todo the schema is giving mixed messages about whether INSDC secondary sample identifiers is multivalued or not
+    # "sra_id": {"dh": "INSDC secondary sample identifiers", "format": "list"},
 }
 
 dh_field_name_overrides = {
     "samp_name": "name",
-    "samp_type": "sample_type",
+    # "samp_type": "sample_type",
     "ammonium nitrogen": "ammonium_nitrogen",
     "nitrate nitrogen": "nitrate_nitrogen",
     "nitrite nitrogen": "nitrite_nitrogen",
@@ -781,42 +798,45 @@ class SubmissionsSandbox:
 
                 if biosample_instance:
                     for ltk, ltv in lists_for_appending.items():
-                        # todo get this as the slot name or alias? may require some induction?
-                        underscored = re.sub(" ", "_", ltk)
-                        slot = self.nmdc_view.get_slot(ltk)
-                        logger.warning(f"{ltk} has slot definition:")
-                        logger.warning(yaml_dumper.dumps(slot))
-                        multivalued = slot["multivalued"]
-                        list_len = len(ltv)
-                        logger.info(
-                            f"working on {ltv} from {ltk}. List len: {list_len}. Multivalued? {multivalued}"
-                        )
-
-                        if list_len == 0:
+                        if ltk in drop_cols_pending_research:
                             pass
-                        elif list_len == 1:
-                            if multivalued:
-                                for i in ltv:
-                                    logger.warning(
-                                        f"adding singleton {i} to {underscored}"
-                                    )
-                                    biosample_instance[underscored].append(i)
-                            else:
-                                logger.warning(
-                                    f"setting singleton {i} to {underscored}"
-                                )
-                                biosample_instance[underscored] = ltv[0]
                         else:
-                            if multivalued:
-                                for i in ltv:
-                                    logger.warning(
-                                        f"adding list item {i} to {underscored}"
+                            # todo get this as the slot name or alias? may require some induction?
+                            underscored = re.sub(" ", "_", ltk)
+                            slot = self.nmdc_view.get_slot(ltk)
+                            logger.debug(f"{ltk} has slot definition:")
+                            logger.debug(yaml_dumper.dumps(slot))
+                            multivalued = slot["multivalued"]
+                            list_len = len(ltv)
+                            logger.debug(
+                                f"working on {ltv} from {ltk}. List len: {list_len}. Multivalued? {multivalued}"
+                            )
+
+                            if list_len == 0:
+                                pass
+                            elif list_len == 1:
+                                if multivalued:
+                                    for i in ltv:
+                                        logger.debug(
+                                            f"adding singleton {i} to {underscored}"
+                                        )
+                                        biosample_instance[underscored].append(i)
+                                else:
+                                    logger.debug(
+                                        f"setting singleton {i} to {underscored}"
                                     )
-                                    biosample_instance[underscored].append(i)
+                                    biosample_instance[underscored] = ltv[0]
                             else:
-                                logger.warning(
-                                    f"{ltk} is not multivalued, but multiple values were provided: {ltv}"
-                                )
+                                if multivalued:
+                                    for i in ltv:
+                                        logger.debug(
+                                            f"adding list item {i} to {underscored}"
+                                        )
+                                        biosample_instance[underscored].append(i)
+                                else:
+                                    logger.warning(
+                                        f"{ltk} is not multivalued, but multiple values were provided: {ltv}"
+                                    )
                 if biosample_instance:
                     self.biosample_database["biosample_set"].append(biosample_instance)
 
