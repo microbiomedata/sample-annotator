@@ -1,3 +1,5 @@
+# SETUP
+
 # get an ORCID if you don't have one: https://orcid.org/register
 # log into https://data.microbiomedata.org or https://data.dev.microbiomedata.org with your ORCID
 # get the NMDC session cookie value
@@ -12,6 +14,8 @@
 #     enter the session cookie value into the session_cookie row in local/.env
 #       what are the other env variables for ?
 
+# todo are we properly handling multivalued, non-enum slots?
+
 # todo tests, more typing, docstrings, etc.
 
 # todo: /Users/MAM/Library/Caches/pypoetry/virtualenvs/sample-annotator-G4hsqM_G-py3.9/lib/python3.9/site-packages/requests/__init__.py:109: RequestsDependencyWarning: urllib3 (1.26.9) or chardet (5.0.0)/charset_normalizer (2.0.12) doesn't match a supported version!
@@ -22,12 +26,18 @@
 
 # todo return None in all fallback cases
 
+# todo add ability to iterate over the dev and prod endpoints
+#   how to assert which endpoint a study or biosample "came" from?
+
 import csv
 import logging
 import os
 import pprint
 import re
+import sqlite3
+import traceback
 from dataclasses import dataclass
+from datetime import datetime
 from typing import Dict, List, Optional, Any
 
 import click
@@ -46,32 +56,40 @@ from nmdc_schema.nmdc import (
     TextValue,
     ControlledTermValue,
     TimestampValue,
+    Database,
+    Study,
 )
 from quantulum3 import parser
 
 import sample_annotator.clients.nmdc.nmdc_runtime_snippets as nrs
 
-# #todo no, use real requests
-# from sphinx.util import requests
-# import datetime
-
 logger = logging.getLogger(__name__)
 click_log.basic_config(logger)
 
-# todo slots are called "part of" in the schema, but Biosample validation
-#   looks for a part_of assertion
-#   remember, we have decided to use sample_link instead
 # todo dangerous to hardcode repairs like this
 
-drop_cols = [
-    "samp_name",
-]
-misnamed_cols = {
-    "part of": "part_of",
+drop_cols_pending_research = []
+
+biosample_sqlite_to_dh_field_name = {
+    "title": {"dh": "samp_name", "format": "scalar"},
+    "id": {"dh": "INSDC biosample identifiers", "format": "list"},
+    # todo the schema is giving mixed messages about whether INSDC secondary sample identifiers is multivalued or not
+    "sra_id": {"dh": "INSDC secondary sample identifiers", "format": "list"},
+}
+
+dh_field_name_overrides = {
+    "samp_name": "name",
+    "samp_type": "sample_type",
     "ammonium nitrogen": "ammonium_nitrogen",
     "nitrate nitrogen": "nitrate_nitrogen",
     "nitrite nitrogen": "nitrite_nitrogen",
     "tot_nitro": "tot_nitro_content",
+    "soil_horizon": "horizon",
+}
+
+unit_overrides = {
+    "coulomb": "degree Celsius",
+    "degree angle coulomb": "degree Celsius",
 }
 
 
@@ -103,14 +121,17 @@ def get_sample_data_from_metadata_submission(metadata_submission):
 
 def get_view(schema_url):
     logger.info(f"creating a view of {schema_url}")
-    view = SchemaView(schema_url)
-    # todo error handling
-    logger.info(f"confirming load of schema '{view.schema.name}'")
-    return view
+    try:
+        view = SchemaView(schema_url)
+        logger.info(f"confirming load of schema '{view.schema.name}'")
+        return view
+    except Exception as e:
+        logger.critical(f"failed to load schema: {e}")
+        exit()
 
 
 def process_qv(raw_value: str):
-    # todo more than one qv get parsed out?
+    # todo what if more than one qv gets parsed out?
     # todo units are expressed as words. convert to symbols?
     # todo units my be surprising, like Coulombs for degrees Celsius
     qv = QuantityValue(has_raw_value=raw_value)
@@ -124,54 +145,68 @@ def process_qv(raw_value: str):
             qv.has_maximum_numeric_value = quant.value + quant.uncertainty
         else:
             qv.has_numeric_value = quant.value
-        # todo unit is required
-        # if quant.unit and quant.unit.name != "dimensionless":
-        qv.has_unit = quant.unit.name
+        # todo unit is required ?
+        if quant.unit and quant.unit.name != "dimensionless":
+            if quant.unit.name in unit_overrides:
+                qv.has_unit = unit_overrides[quant.unit.name]
+            else:
+                qv.has_unit = quant.unit.name
     else:
         logger.error(f"quantulum3 couldn't parse any quantities out of {raw_value}")
         # todo this will just return the has_raw_value portion of the QV
         #   better than nothing?
-    # qv = None
     return qv
 
 
 def extract_lat_lon(raw_value: str):
     # if DH validation worked,
     # should be one decimal value, then a single whitespace, then another decimal value
+    gv = GeolocationValue(has_raw_value=raw_value)
     if raw_value:
-        splitted = raw_value.split(" ")
-        # todo what if there are anything other than two chunks?
-        decimals = [float(i) for i in splitted]
+        logger.debug(f"extracting lat/lon from {raw_value}")
+        strip_ed = raw_value.strip()
+        logger.debug(f"{raw_value} stripped as {strip_ed}")
+        pattern = r"\s+"
+        split_ed = re.split(pattern, strip_ed)
+        logger.debug(f"split {strip_ed} into {split_ed}")
+        decimals = []
+        for i in split_ed:
+            try:
+                decimals.append(float(i))
+                logger.debug(f"successful parse of {i} as a geolocation float")
+            except ValueError:
+                logger.error(f"failed to parse {i} as a geolocation float")
+
         if len(decimals) != 2:
             logger.error(
                 f"there should be two and exactly two space-separated chunks in {decimals}"
             )
             return None
         else:
-            lat = decimals[0]
-            long = decimals[1]
+            latv = decimals[0]
+            longv = decimals[1]
             if (
                 len(decimals) == 2
-                and lat > -90
-                and lat < 90
-                and long > -180
-                and long < 180
+                and latv > -90
+                and latv < 90
+                and longv > -180
+                and longv < 180
             ):
-                gv = GeolocationValue(
-                    has_raw_value=raw_value, latitude=lat, longitude=long
-                )
-                return gv
+                gv.latitude = latv
+                gv.longitude = longv
             else:
                 logger.error(f"invalid lat/lon: {raw_value}")
+    logger.debug(gv)
+    return gv
 
 
 def extract_ctv(raw_value: str, strip_initial_underscores=True):
-    # # ____mediterranean shrubland biome [ENVO:01000217]
-    # # todo could be more than one term id
-    # #  pipe or semicolon separated?
-    # #  or just one big mess?
-    # #  in any case, could be label only, id only, matching label and id, mismatch...
-    # #  check ontology owner to see if term is still active and label/id match?
+    # ____mediterranean shrubland biome [ENVO:01000217]
+    # todo could be more than one term id
+    #  pipe or semicolon separated?
+    #  or just one big mess?
+    #  in any case, could be label only, id only, matching label and id, mismatch...
+    #  check ontology owner to see if term is still active and label/id match?
     ctv = ControlledTermValue(has_raw_value=raw_value)
     if raw_value:
         if raw_value != "":
@@ -184,10 +219,10 @@ def extract_ctv(raw_value: str, strip_initial_underscores=True):
                 )
             else:
                 possibly_underscoreless = raw_value
-                logger.warning(
+                logger.debug(
                     f"would process {raw_value} as a controlled term value, keeping any initial underscores"
                 )
-            p = re.compile(r"\[(.*)\]")
+            p = re.compile(r"\[(.*)]")
             term_id = p.findall(possibly_underscoreless)
             if len(term_id) == 0:
                 logger.error(f"no [term id] found in {possibly_underscoreless}")
@@ -197,13 +232,10 @@ def extract_ctv(raw_value: str, strip_initial_underscores=True):
                 label = label.strip()
                 if label:
                     logger.debug(f"label {label} found in {possibly_underscoreless}")
+                    # todo what is required for an OntologyClass?
                     oc = OntologyClass(id=term_id[0], name=label)
                     ctv["term"] = oc
-                    # ctv = ControlledTermValue(has_raw_value=raw_value, term=oc)
                     logger.debug(yaml_dumper.dumps(ctv))
-                    # todo is any more modeling required before the return
-                    #  what's the relationship between an ontology class and a controlled term value?
-                    # return ctv
                 else:
                     logger.error(f"no label found in {possibly_underscoreless}")
             else:
@@ -218,19 +250,19 @@ def extract_ctv(raw_value: str, strip_initial_underscores=True):
     return ctv
 
 
-def set_to_list(set_input, do_sort=True):
-    temp = list(set_input)
-    if do_sort:
-        temp.sort()
-    return temp
+# def set_to_list(set_input, do_sort=True):
+#     temp = list(set_input)
+#     if do_sort:
+#         temp.sort()
+#     return temp
 
 
-def is_number(s):
-    try:
-        float(s)
-        return True
-    except ValueError:
-        return False
+# def is_number(s):
+#     try:
+#         float(s)
+#         return True
+#     except ValueError:
+#         return False
 
 
 @dataclass
@@ -266,12 +298,13 @@ class SubmissionsSandbox:
 
     minting_client: Optional[nrs.RuntimeApiSiteClient] = None
 
-    # env_pack_title_to_key: Optional[Dict[str, Dict[str, str]]] = None
-
     env_pack_title_to_key = {}
 
+    biosample_database: Optional[Database] = Database()
+    study_database: Optional[Database] = Database()
+
     def view_setup(self):
-        self.mixs_view = get_view(self.mixs_url)
+        # self.mixs_view = get_view(self.mixs_url)
 
         self.nmdc_view = get_view(self.nmdc_url)
 
@@ -298,7 +331,7 @@ class SubmissionsSandbox:
         logger.debug(f"session_cookie: {self.session_cookie}")
         logger.info(f"api_url: {self.api_url}")
         metadata_api_url = f"{self.api_url}{self.url_suffix}"
-        logger.info(f"whole_url: {metadata_api_url}")
+        logger.debug(f"whole_url: {metadata_api_url}")
         params = {"offset": start, "limit": stop}
         cookies = {"session": self.session_cookie}
 
@@ -324,48 +357,48 @@ class SubmissionsSandbox:
     ) -> List[Dict[str, str]]:
 
         logger.debug(f"study_metadata: {self.study_metadata}")
-        # todo may need to add study id
+        # todo may need to add or mint study id
         #   reuse the UUID that Kitware assigns to id,
         #   or some study identifier from the metadata_submission.multiOmicsForm or metadata_submission.studyForm paths?
-        #   NMDC sample to study relationship expressed with sample_link? part of?
-        # todo may need to mint sample id
+        #   NMDC sample to study relationship expressed with sample_link?
         sample_data_row_count = len(sample_data)
-        if result_id and sample_data_row_count > 2:
-            logger.info(f"{result_id} started")
-            logger.debug(f"{result_id} uses environmental package ...")
-            # logger.debug(f"{result_id} was created {self.study_metadata[result_id]}")
-            # todo make this test more flexible
-            provided = set(sample_data[1])
-            expected = set(self.submission_slot_title_to_x.keys())
-            intersection = provided.intersection(expected)
-            purity = len(intersection) / len(provided)
-            # purity will almost always be a little lower than 1
-            #   due to re-titling of slots in environmental package slot usages
-            # but won't we have to resolve that eventually?
-            # todo lookup the submission's template
-            if purity < 0.9:  # todo make this a parameter
-                logger.error(
-                    f"{result_id} doesn't seem to have the expected header rows: {sample_data[0:3]}"
-                )
-                # todo try to infer columns from template?
-                return [{}]
-            else:
-                sample_data_headers = sample_data[1]
-                sample_data_body = sample_data[2:sample_data_row_count]
-                # todo the sample_data_headers values are term titles, not names
-                #  lookup with the latest version for now,
-                #  but work on better recording and reporting of schema version
-                body_list = []
-                for body_row in sample_data_body:
-                    row_dict = dict(zip(sample_data_headers, body_row))
-                    row_dict["part of"] = result_id
-                    body_list.append(row_dict)
+        if result_id:
+            if sample_data_row_count > 2:
+                # todo make this test more flexible
+                provided = set(sample_data[1])
+                expected = set(self.submission_slot_title_to_x.keys())
+                intersection = provided.intersection(expected)
+                purity = len(intersection) / len(provided)
+                # purity will almost always be a little lower than 1
+                #   due to re-titling of slots in environmental package slot usages
+                # but won't we have to resolve that eventually?
+                if purity < 0.9:  # todo make this a parameter
+                    logger.error(
+                        f"study {result_id} doesn't seem to have the expected header rows: {sample_data[0:3]}"
+                    )
+                    # todo try to infer columns from template? what about versioning?
+                    return [{}]
+                else:
+                    sample_data_headers = sample_data[1]
+                    sample_data_body = sample_data[2:sample_data_row_count]
+                    # todo the sample_data_headers values are term titles, not names
+                    #  lookup with the latest version for now,
+                    #  but work on better recording and reporting of schema version
+                    body_list = []
+                    for body_row in sample_data_body:
+                        row_dict = dict(zip(sample_data_headers, body_row))
+                        row_dict["sample_link"] = result_id
+                        # row_dict['canary'] = 'canary'
+                        body_list.append(row_dict)
 
-                return body_list
+                    return body_list
+            else:
+                logger.error(
+                    f"study {result_id} has less than three sample data rows (including the expected two headers)"
+                )
+                return [{}]
         else:
-            logger.error(
-                f"{result_id} is either lacking study metadata or has less than three sample data rows"
-            )
+            logger.error(f"Empty result_id")
             return [{}]
 
     def del_sample_data_from_result(self, result):
@@ -375,12 +408,10 @@ class SubmissionsSandbox:
                 for_counting = metadata_submission["sampleData"]
                 del metadata_submission["sampleData"]
                 if len(for_counting) > 2:
-                    # significant_row_count = len(for_counting) - 2
                     result["sample_data_total_rows"] = len(for_counting)
                     result["metadata_submission"] = metadata_submission
                     return result
                 else:
-                    logger.error(f"{result['id']} has no sample data rows")
                     result["sample_data_total_rows"] = 0
                     return result
         else:
@@ -393,6 +424,7 @@ class SubmissionsSandbox:
         sample_metadata_by_title = {}
         for result in results:
             result_id = result["id"]
+            logger.info(f"{result_id} started")
             logger.debug(f"result_id: {result_id}")
             if "metadata_submission" in result:
                 metadata_submission = result["metadata_submission"]
@@ -416,6 +448,7 @@ class SubmissionsSandbox:
             source_dict = self.sample_metadata_by_title
         elif source == "tidied":
             source_dict = self.sample_metadata_by_slotname
+        # todo AttributeError: 'NoneType' object has no attribute 'items' IF there weren't any acceptable studies
         for k, v in source_dict.items():
             current_status = None
             if k in self.study_metadata:
@@ -473,7 +506,10 @@ class SubmissionsSandbox:
                 current_slot_dict[iv["title"]] = ik
             else:
                 current_slot_dict[ik] = ik
-        current_slot_dict["part of"] = "part of"
+        # todo pull this out to the top
+        current_slot_dict["sample_link"] = "sample_link"
+        # current_slot_dict['canary'] = 'canary'
+        #
         logger.debug(
             f"current_slot_dict for {current_template}: {pprint.pformat(current_slot_dict)}"
         )
@@ -528,7 +564,6 @@ class SubmissionsSandbox:
                                 fks_key = self.env_pack_title_to_key[current_template][
                                     fk
                                 ]
-                                # todo still need to deep parse
                                 filtered_row[fks_key] = fv
                         filtered_row["id"] = id_list.pop()
                         logger.debug(f"filtered_row: {filtered_row}")
@@ -548,36 +583,43 @@ class SubmissionsSandbox:
             pass
 
     def parse_any_range(self, sample_value, ssd_range, range_type):
-        # todo branch on the types, not the types pre-extracted class names
+        # todo branch on the types, not the type's pre-extracted class names
         if range_type == "type_definition":
             # todo i think sample_link is handled here, since it has the default range of string
-            # but what about part of (range named thing)
+            #   change to range named thing?
             return sample_value
+
         elif range_type == "enum_definition":
             # todo DH entries may be ; separated lists
-            #   sure hope we cont have any PVs with ; in them
+            #   sure hope we don't have any PVs with ; in them
             #   should check
-            individual_values = sample_value.split(";")
+            logger.debug(f"{ssd_range} raw value: {sample_value}")
+            raw_strip_ed = sample_value.strip()
+            individual_values = raw_strip_ed.split(";")
+            logger.debug(f"{ssd_range} spit value: {individual_values}")
+            # todo trim?
 
             current_enum = self.nmdc_view.get_enum(ssd_range)
             current_pvs = current_enum.permissible_values
             current_pv_texts = [v.text for k, v in current_pvs.items()]
+            passing_individuals = []
             for individual in individual_values:
+                ind_strip_ed = individual.strip()
                 logger.debug(
-                    f"need to check {individual} against {ssd_range} with PVs {current_pv_texts}"
+                    f"need to check {ind_strip_ed} against {ssd_range} with PVs {current_pv_texts}"
                 )
-                passing_individuals = []
-                if individual not in current_pv_texts:
+                if ind_strip_ed not in current_pv_texts:
                     # todo flag the study and sample this came from
                     logger.error(
-                        f"{individual} is not in {current_pv_texts}, so it's an invalid {ssd_range}"
+                        f"{ind_strip_ed} is not in {current_pv_texts}, so it's an invalid {ssd_range}"
                     )
                 else:
-                    passing_individuals.append(individual)
+                    passing_individuals.append(ind_strip_ed)
                     logger.debug(
-                        f"{individual} is in {current_pv_texts}, so it's a valid {ssd_range}"
+                        f"{ind_strip_ed} is in {current_pv_texts}, so it's a valid {ssd_range}"
                     )
-                return passing_individuals
+            logger.debug(f"{ssd_range} passing values: {passing_individuals}")
+            return passing_individuals
 
         elif ssd_range == "text value":
 
@@ -609,54 +651,75 @@ class SubmissionsSandbox:
             return ctv
 
         elif ssd_range == "named thing":
-            # todo named thing
-            #   from part of?
-            #   part of:
-            #     aliases: [ 'is part of' ]
-            #     range: named thing
-            #     domain: named thing
-            #     multivalued: true
-            #     slot_uri: dcterms:isPartOf
-            #     description: >-
-            #       Links a resource to another resource that either logically or physically includes it.
-            # not inlined, so should accept an identifier
-
-            # logger.error(
-            #     f"Don't know how to validate {ssd_range} / {range_type} value of {sample_value}"
-            # )
-
             return sample_value
 
-    def instantiate_biosample(self, tidied_dict):
-        # todo don't append if there are validation errors
-
+    def instantiate_biosample(self, deep_parse_dict, study_id):
         # todo do this based on introspection of the nmdc-schema and the submission portal schema
-        for i in drop_cols:
-            logger.warning(f"dropping column {i}")
-            del tidied_dict[i]
+        for i in drop_cols_pending_research:
+            if i in deep_parse_dict:
+                logger.warning(f"dropping column {i}")
+                del deep_parse_dict[i]
 
-        for k, v in misnamed_cols.items():
-            if k in tidied_dict:
+        for k, v in dh_field_name_overrides.items():
+            if k in deep_parse_dict:
                 logger.warning(f"replacing Biosample slot {k} with {v}")
-                tidied_dict[v] = tidied_dict.pop(k)
+                deep_parse_dict[v] = deep_parse_dict.pop(k)
+
+        # todo determine the biosample_requireds by introspection
+        biosample_requireds = [
+            "id",
+            "sample_link",
+            "env_broad_scale",
+            "env_local_scale",
+            "env_medium",
+        ]
+        logger.debug(f"biosample_requireds: {biosample_requireds}")
+        required_values = {
+            key: value
+            for key, value in deep_parse_dict.items()
+            if key in biosample_requireds
+        }
+        logger.debug(f"required_values: {pprint.pformat(required_values)}")
+        remaining_slots = list(set(deep_parse_dict.keys()) - set(biosample_requireds))
+        logger.debug(f"remaining_slots: {remaining_slots}")
 
         try:
-            instantiated_biosample = Biosample(**tidied_dict)
-            logger.info(f"INSTANTIATED!")
-            logger.info(f"{yaml_dumper.dumps(instantiated_biosample)}")
+            instantiated_biosample = Biosample(**required_values)
+            logger.debug(f"INSTANTIATED!")
+            for current_remaining in remaining_slots:
+                logger.debug(
+                    f"still need to add: {current_remaining} of {deep_parse_dict[current_remaining]}"
+                )
+                try:
+                    instantiated_biosample[current_remaining] = deep_parse_dict[
+                        current_remaining
+                    ]
+                except (KeyError, ValueError, TypeError) as add_e:
+                    logger.error(f"addition error: {add_e}")
             return instantiated_biosample
 
-            # add into some class variable
-            # tidied_lod.append(filtered_row)
-
         except (ValueError, TypeError) as e:
-            logger.warning(f"Biosample instantiation error {e}")
-            logger.warning(f"{pprint.pformat(tidied_dict)}")
+            available_identifiers = ""
+            if "name" in deep_parse_dict:
+                available_identifiers = f"with name {deep_parse_dict['name']}"
+            if "source_mat_id" in deep_parse_dict:
+                if "has_raw_value" in deep_parse_dict["source_mat_id"]:
+                    available_identifiers = (
+                        available_identifiers
+                        + f" with source_mat_id {deep_parse_dict['source_mat_id']['has_raw_value']}"
+                    )
+            logger.error(
+                f"study {study_id} error instantiating Biosample {available_identifiers}: {e}"
+            )
+            logger.debug(traceback.format_exc())
+            logger.debug(f"{pprint.pformat(deep_parse_dict)}")
 
-    def deep_parse_sample_metadata(self, acceptable_statuses):
-        tidied_dict = {}
+    def deep_parse_sample_metadata(self, sample_database_file):
         for study_id, samples in self.sample_metadata_by_slotname.items():
             for sample in samples:
+                logger.debug(f"current sample:\n{pprint.pformat(sample)}")
+                dp_sample_dict = {}
+                lists_for_appending = {}
                 if sample:
                     for sample_slot, sample_value in sample.items():
                         if sample_value:
@@ -667,24 +730,32 @@ class SubmissionsSandbox:
                                 sample_slot
                             )
                             logger.debug(yaml_dumper.dumps(sample_slot_definition))
+                            # if not sample_slot_definition:
+                            #     underscored = re.sub(" ", "_", sample_slot)
+                            #     logger.warning(
+                            #         f"attempting to lookup {sample_slot} as {underscored}"
+                            #     )
+                            #     sample_slot_definition = self.nmdc_view.get_slot(
+                            #         underscored
+                            #     )
+                            logger.debug(yaml_dumper.dumps(sample_slot_definition))
                             if sample_slot_definition:
                                 ssd_range = sample_slot_definition["range"]
                                 if ssd_range:
                                     logger.debug(
                                         f"{sample_slot} has an explicit range of {ssd_range}"
                                     )
-                                    pass
                                 else:
                                     schema_default_range = (
                                         self.nmdc_view.schema.default_range
                                     )
-                                    logger.debug(
+                                    logger.info(
                                         f"{sample_slot} uses the default range: {schema_default_range}"
                                     )
                                     ssd_range = schema_default_range
                             else:
                                 logger.warning(
-                                    "data still contains a slot that is not in the schema"
+                                    f"data still contains a slot {sample_slot}, which is not in the schema"
                                 )
                             # todo check for special cases like enums
                             range_def = self.nmdc_view.get_element(ssd_range)
@@ -692,19 +763,64 @@ class SubmissionsSandbox:
                             parse_result = self.parse_any_range(
                                 sample_value, ssd_range, range_type
                             )
-                            # logger.debug(f"parse_result: {parse_result}")
                             logger.debug(
                                 f"{study_id}'s sample {sample['source_mat_id']}/{sample['samp_name']}'s {sample_slot} value of  _{sample_value}_ with range {ssd_range} and type {range_type} was converted to {parse_result}"
                             )
-                            tidied_dict[sample_slot] = parse_result
+                            if type(parse_result) == list:
+                                lists_for_appending[sample_slot] = parse_result
+                            else:
+                                dp_sample_dict[sample_slot] = parse_result
                         else:
                             logger.debug("saw an empty-ish value")
                 else:
                     logger.debug(f"the whole sample was empty")
 
-                biosample_instance = self.instantiate_biosample(tidied_dict)
+                biosample_instance = self.instantiate_biosample(
+                    dp_sample_dict, study_id
+                )
 
-            # logger.info(f"tidied_dict: {pprint.pformat(tidied_dict)}")
+                if biosample_instance:
+                    for ltk, ltv in lists_for_appending.items():
+                        # todo get this as the slot name or alias? may require some induction?
+                        underscored = re.sub(" ", "_", ltk)
+                        slot = self.nmdc_view.get_slot(ltk)
+                        logger.warning(f"{ltk} has slot definition:")
+                        logger.warning(yaml_dumper.dumps(slot))
+                        multivalued = slot["multivalued"]
+                        list_len = len(ltv)
+                        logger.info(
+                            f"working on {ltv} from {ltk}. List len: {list_len}. Multivalued? {multivalued}"
+                        )
+
+                        if list_len == 0:
+                            pass
+                        elif list_len == 1:
+                            if multivalued:
+                                for i in ltv:
+                                    logger.warning(
+                                        f"adding singleton {i} to {underscored}"
+                                    )
+                                    biosample_instance[underscored].append(i)
+                            else:
+                                logger.warning(
+                                    f"setting singleton {i} to {underscored}"
+                                )
+                                biosample_instance[underscored] = ltv[0]
+                        else:
+                            if multivalued:
+                                for i in ltv:
+                                    logger.warning(
+                                        f"adding list item {i} to {underscored}"
+                                    )
+                                    biosample_instance[underscored].append(i)
+                            else:
+                                logger.warning(
+                                    f"{ltk} is not multivalued, but multiple values were provided: {ltv}"
+                                )
+                if biosample_instance:
+                    self.biosample_database["biosample_set"].append(biosample_instance)
+
+        yaml_dumper.dump(self.biosample_database, sample_database_file)
 
     def sample_metadata_to_csv(self, sample_metadata_csv_file):
         logger.debug(f"self.updatable_monikers: {self.updatable_monikers}")
@@ -731,7 +847,11 @@ class SubmissionsSandbox:
         pass
 
 
-# todo try @click.group()
+@click.group()
+def cli():
+    pass
+
+
 @click.command()
 @click_log.simple_verbosity_option(logger)
 @click.option(
@@ -743,6 +863,8 @@ class SubmissionsSandbox:
     type=click.Choice(
         ["https://data.dev.microbiomedata.org/", "https://data.microbiomedata.org/"]
     ),
+    default="https://data.microbiomedata.org/",
+    # required=True,
 )
 @click.option("--page_start", default=0)
 @click.option("--page_stop", default=999)
@@ -758,22 +880,20 @@ class SubmissionsSandbox:
     default="sample_metadata.yaml",
     help="This is a relatively flat and study-indexed file, not directly suitable for the NMDC schema.",
 )
-@click.option("--data_csv", type=click.Path(exists=True))
-@click.option("--csv_proj_id")
 @click.option(
+    # todo need better handling when only complete is considered acceptable and there are no complete studies
     "--acceptable_statuses",
-    type=click.Choice(["complete"]),
-    default=["complete"],
+    type=click.Choice(["complete", "in-progress"]),
+    default=["complete", "in-progress"],
     multiple=True,
 )
 @click.option(
     "--suggested_initial_columns",
-    # switch from part of to sample_link
-    type=click.Choice(["samp_name", "source_mat_id", "id", "part of"]),
-    default=["samp_name", "source_mat_id", "id", "part of"],
+    type=click.Choice(["samp_name", "source_mat_id", "id", "sample_link"]),
+    default=["samp_name", "source_mat_id", "id", "sample_link"],
     multiple=True,
 )
-def cli(
+def from_submissions(
     env_file,
     data_portal_url,
     study_metadata_yaml_file,
@@ -782,122 +902,320 @@ def cli(
     page_stop,
     acceptable_statuses,
     suggested_initial_columns,
-    data_csv,
-    csv_proj_id,
     sample_metadata_yaml_file,
 ):
-    """
-    CLI for converting a csv file or the response from the NMDC metadata_submission API to a JSON file,
-    validatable by the NMDC schema.
-    """
+    """from submissions help"""
 
     load_vars_from_env_file(env_file)
 
-    if data_portal_url:
-        if data_csv:
-            raise Exception("don't provide a data_csv when providing a data_portal_url")
-        else:
-            sandbox = SubmissionsSandbox(
-                api_url=data_portal_url, session_cookie=get_session_cookie()
-            )
+    sandbox = SubmissionsSandbox(
+        api_url=data_portal_url, session_cookie=get_session_cookie()
+    )
 
-            sandbox.minting_client = nrs.RuntimeApiSiteClient(
-                base_url="https://api.dev.microbiomedata.org",
-                site_id=os.getenv("site_id"),
-                client_id=os.getenv("client_id"),
-                client_secret=os.getenv("client_secret"),
-            )
+    sandbox.minting_client = nrs.RuntimeApiSiteClient(
+        base_url="https://api.dev.microbiomedata.org",
+        site_id=os.getenv("site_id"),
+        client_id=os.getenv("client_id"),
+        client_secret=os.getenv("client_secret"),
+    )
 
-            sandbox.view_setup()
+    sandbox.view_setup()
 
-            sandbox.get_submission_titles_and_names()
+    sandbox.get_submission_titles_and_names()
 
-            sandbox.get_one_submission_page_from_api(start=page_start, stop=page_stop)
+    sandbox.get_one_submission_page_from_api(start=page_start, stop=page_stop)
 
-            sandbox.update_monikers(
-                acceptable_statuses=acceptable_statuses,
-                suggested_initial_columns=[],
-            )
+    sandbox.update_monikers(
+        acceptable_statuses=acceptable_statuses,
+        suggested_initial_columns=[],
+    )
 
-            sandbox.tidy_flat_sample_metadata(acceptable_statuses=acceptable_statuses)
+    sandbox.tidy_flat_sample_metadata(acceptable_statuses=acceptable_statuses)
 
-            sandbox.update_monikers(
-                acceptable_statuses=acceptable_statuses,
-                suggested_initial_columns=suggested_initial_columns,
-                source="tidied",
-            )
+    #  todo need better handling when only complete is considered acceptable and there are no complete studies
+    sandbox.update_monikers(
+        acceptable_statuses=acceptable_statuses,
+        suggested_initial_columns=suggested_initial_columns,
+        source="tidied",
+    )
 
-            sandbox.deep_parse_sample_metadata(acceptable_statuses)
+    # todo separate out write step?
+    sandbox.deep_parse_sample_metadata(sample_database_file=sample_metadata_yaml_file)
 
-            # sandbox.sample_metadata_to_csv(
-            #     sample_metadata_csv_file=sample_metadata_csv_file
-            # )
-            #
-            # sandbox.study_metadata_to_yaml(
-            #     study_metadata_yaml_file=study_metadata_yaml_file
-            # )
-            #
-            # sandbox.sample_metadata_to_yaml(
-            #     sample_metadata_yaml_file=sample_metadata_yaml_file
-            # )
+    sandbox.sample_metadata_to_csv(sample_metadata_csv_file=sample_metadata_csv_file)
 
-    elif data_csv:
-        if data_portal_url:
-            raise Exception("don't provide a data_portal_url when providing a data_csv")
-        if csv_proj_id:
-            with open(data_csv, newline="") as csvfile:
-                rows = []
-                reader = csv.DictReader(csvfile)
-                for row in reader:
-                    if row:
-                        row["part of"] = csv_proj_id
-                        rows.append(row)
-            sandbox = SubmissionsSandbox()
-            sandbox.sample_metadata_by_title = {csv_proj_id: rows}
+    sandbox.study_metadata_to_yaml(study_metadata_yaml_file=study_metadata_yaml_file)
 
-            # todo parameterize this
-            #  use today's date as the created date?
-            sandbox.study_metadata = {
-                csv_proj_id: {
-                    "created": "2022-08-03",
-                    "metadata_submission": {"template": csv_proj_id},
-                    "status": "complete",
-                }
-            }
+    # sandbox.sample_metadata_to_yaml(sample_metadata_yaml_file=sample_metadata_yaml_file)
 
-            sandbox.update_monikers(
-                acceptable_statuses=acceptable_statuses,
-                suggested_initial_columns=suggested_initial_columns,
-            )
 
-            sandbox.minting_client = nrs.RuntimeApiSiteClient(
-                base_url="https://api.dev.microbiomedata.org",
-                site_id=os.getenv("site_id"),
-                client_id=os.getenv("client_id"),
-                client_secret=os.getenv("client_secret"),
-            )
+@click.command()
+@click_log.simple_verbosity_option(logger)
+@click.option(
+    "--env_file",
+    default="local/.env",
+)
+@click.option(
+    "--sample_metadata_csv_file", type=click.Path(), default="sample_metadata.csv"
+)
+@click.option(
+    "--sample_metadata_yaml_file",
+    type=click.Path(),
+    default="sample_metadata.yaml",
+    help="This is a relatively flat and study-indexed file, not directly suitable for the NMDC schema.",
+)
+@click.option("--data_csv", type=click.Path(exists=True))
+@click.option("--static_project_id", required=True)
+@click.option("--static_dh_template", required=True)
+@click.option(
+    "--suggested_initial_columns",
+    type=click.Choice(["samp_name", "source_mat_id", "id", "sample_link"]),
+    default=["samp_name", "source_mat_id", "id", "sample_link"],
+    multiple=True,
+)
+def from_csv(
+    env_file,
+    sample_metadata_csv_file,
+    suggested_initial_columns,
+    data_csv,
+    static_project_id,
+    static_dh_template,
+    sample_metadata_yaml_file,
+):
+    """from submissions help"""
 
-            sandbox.view_setup()
+    static_project_status = "placeholder"
 
-            sandbox.tidy_flat_sample_metadata(acceptable_statuses=acceptable_statuses)
+    load_vars_from_env_file(env_file)
 
-            sandbox.update_monikers(
-                acceptable_statuses=acceptable_statuses,
-                suggested_initial_columns=suggested_initial_columns,
-                source="tidied",
-            )
+    with open(data_csv, newline="") as csvfile:
+        rows = []
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            if row:
+                row["sample_link"] = static_project_id
+                rows.append(row)
+    sandbox = SubmissionsSandbox()
+    sandbox.sample_metadata_by_title = {static_project_id: rows}
 
-            sandbox.sample_metadata_to_csv(
-                sample_metadata_csv_file=sample_metadata_csv_file
-            )
+    logger.debug(pprint.pformat(sandbox.sample_metadata_by_title))
 
-            sandbox.deep_parse_sample_metadata(acceptable_statuses)
+    # todo use today's date as the created date?
+    #  do we capture the study start or end date anywhere?
+    sandbox.study_metadata = {
+        static_project_id: {
+            "created": datetime.today().strftime("%Y-%m-%d"),
+            "metadata_submission": {"template": static_dh_template},
+            "status": static_project_status,
+        }
+    }
 
-        else:
-            raise Exception("csv_proj_id is required with data_csv")
-    else:
-        raise Exception("must specify either data_portal_url or data_csv")
+    logger.debug(pprint.pformat(sandbox.study_metadata))
 
+    sandbox.update_monikers(
+        acceptable_statuses=[static_project_status],
+        suggested_initial_columns=suggested_initial_columns,
+    )
+
+    sandbox.minting_client = nrs.RuntimeApiSiteClient(
+        base_url="https://api.dev.microbiomedata.org",
+        site_id=os.getenv("site_id"),
+        client_id=os.getenv("client_id"),
+        client_secret=os.getenv("client_secret"),
+    )
+
+    sandbox.view_setup()
+
+    sandbox.tidy_flat_sample_metadata(acceptable_statuses=[static_project_status])
+
+    sandbox.update_monikers(
+        acceptable_statuses=static_project_status,
+        suggested_initial_columns=suggested_initial_columns,
+        source="tidied",
+    )
+
+    sandbox.sample_metadata_to_csv(sample_metadata_csv_file=sample_metadata_csv_file)
+
+    # todo separate out write step?
+    sandbox.deep_parse_sample_metadata(sample_database_file=sample_metadata_yaml_file)
+
+    # sandbox.sample_metadata_to_yaml(sample_metadata_yaml_file=sample_metadata_yaml_file)
+
+
+@click.command()
+@click_log.simple_verbosity_option(logger)
+@click.option(
+    "--env_file",
+    default="local/.env",
+)
+@click.option(
+    "--biosample_sql_file",
+    type=click.Path(exists=True),
+    required=True,
+)
+@click.option(
+    "--biosample_id_file",
+    type=click.Path(exists=True),
+    required=True,
+    help="Biosample IDs, like SAMN00000002, one per line with no header, no prefixes and no quotes",
+)
+@click.option(
+    "--static_project_id",
+    required=True,
+)
+@click.option(
+    "--sample_metadata_yaml_file",
+    type=click.Path(),
+    default="sample_metadata.yaml",
+    help="This is a relatively flat and study-indexed file, not directly suitable for the NMDC schema.",
+)
+def from_sqlite(
+    env_file,
+    biosample_sql_file,
+    biosample_id_file,
+    static_project_id,
+    sample_metadata_yaml_file,
+):
+    """biosample_sql_file help"""
+
+    # MIMS Environmental/Metagenome sample from soil metagenome (NAME)
+
+    # Identifiers
+    # BioSample: SAMN08902828; Sample name: 14_0903_02_20cm; SRA: SRS3199723
+    # Organism
+    # soil metagenome
+    # unclassified entries; unclassified sequences; metagenomes; ecological metagenomes
+    # Package
+    # MIMS: metagenome/environmental, soil; version 5.0
+    # Attributes
+    # collection date	2014-09-03
+    # depth	10-20 cm
+    # elevation	1417 ft
+    # broad-scale environmental context	temperate grassland biome
+    # local-scale environmental context	meadow soil
+    # environmental medium	soil
+    # geographic location	USA: Angelo Coast Range Reserve, CA
+    # latitude and longitude	39.74 N 123.63 W
+    # isolation source	Plot 2
+    # Description
+    # Keywords: GSC:MIxS;MIMS:5.0
+    #
+    # BioProject
+    # PRJNA449266 soil metagenome
+    # Retrieve all samples from this project
+    #
+    # Submission
+    # BanfieldLab; 2018-04-09
+    # Accession: SAMN08902828 ID: 8902828
+    # BioProject SRA
+
+    logger.debug(biosample_sql_file)
+
+    with open(biosample_id_file) as f:
+        biosample_ids = f.readlines()
+
+    accession_list = [x.strip() for x in biosample_ids]
+
+    logger.debug(accession_list)
+
+    sandbox = SubmissionsSandbox()
+
+    # todo may not need submission portal view
+    sandbox.view_setup()
+
+    bs_attributes = sandbox.nmdc_view.induced_class("biosample").attributes
+
+    bs_attribute_names = [k for k, v in bs_attributes.items()]
+
+    bs_attribute_names.sort()
+
+    logger.info(f"bs_attribute_names: {bs_attribute_names}")
+
+    conn = None
+
+    try:
+        conn = sqlite3.connect(biosample_sql_file)
+        conn.row_factory = sqlite3.Row
+    except Exception as e:
+        logger.critical(e)
+        exit()
+
+    cursor = conn.cursor()
+
+    accession_core = "', '".join(accession_list)
+
+    accession_tidy = f"('{accession_core}')"
+
+    query = f"SELECT * FROM harmonized_wide hw join non_attribute_metadata nam on hw.raw_id = nam.raw_id where accession in {accession_tidy}"
+
+    cursor.execute(query)
+
+    rows = cursor.fetchall()
+
+    row_count = len(rows)
+
+    # todo report column names
+    logger.info(f"{row_count} SQLite rows retrieved")
+
+    load_vars_from_env_file(env_file)
+
+    sandbox.minting_client = nrs.RuntimeApiSiteClient(
+        base_url="https://api.dev.microbiomedata.org",
+        site_id=os.getenv("site_id"),
+        client_id=os.getenv("client_id"),
+        client_secret=os.getenv("client_secret"),
+    )
+
+    id_list = sandbox.get_ids_list(row_count)
+
+    # biosample_sqlite_to_dh_field_name = {
+    #     "title": {"dh": "samp_name", "format": "scalar"},
+    #     "id": {"dh": "INSDC biosample identifiers", "format": "list"},
+    #     "sra_id": {"dh": "INSDC secondary sample identifiers", "format": "list"},
+    # }
+
+    rows_list = []
+    for row in rows:
+        row_dict = {}
+        logger.info(row["id"])
+        sqlite_cols = list(row.keys())
+        for k in sqlite_cols:
+            if row[k] and k in biosample_sqlite_to_dh_field_name:
+                mapping_dict = biosample_sqlite_to_dh_field_name[k]
+                dh_name = mapping_dict["dh"]
+                mapping_format = mapping_dict["format"]
+                logger.info(f"mapping: {k} {row[k]} {dh_name} {mapping_format}")
+                # todo why isn't INSDC_secondary_sample_identifiers being treated like a list?
+                if mapping_format == "list":
+                    row_dict[dh_name] = [row[k]]
+                else:
+                    row_dict[dh_name] = row[k]
+            elif row[k] and k in bs_attribute_names:
+                row_dict[k] = row[k]
+            elif row[k]:
+                logger.info(f"don't know what to do with {k}")
+
+        row_dict["id"] = id_list.pop()
+        row_dict["sample_link"] = static_project_id
+        row_dict["source_mat_id"] = "requires new functionality in biosample-basex"
+        rows_list.append(row_dict)
+
+    # https://www.ncbi.nlm.nih.gov/biosample/8902828
+
+    for i in rows_list:
+        logger.debug(pprint.pformat(i))
+
+    sandbox.sample_metadata_by_slotname = {static_project_id: rows_list}
+
+    # todo monitor INSDC_biosample_identifiers
+    #  None → 0..* ExternalIdentifier (which is a type with root URIorCURIE and representation str)
+    #    currently passing a scalar, which is silently repaired to a list at instantiation time?
+    sandbox.deep_parse_sample_metadata(sample_database_file=sample_metadata_yaml_file)
+
+
+cli.add_command(from_submissions)
+cli.add_command(from_csv)
+cli.add_command(from_sqlite)
 
 if __name__ == "__main__":
     cli()

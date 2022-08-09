@@ -113,29 +113,99 @@ api_or_tsv_clean:
 	echo $(PLACEHOLDER_TEXT) > assets/out/README.md
 
 
-assets/out/sample_metadata_from_api.csv: api_or_tsv_clean
-	$(RUN) api_or_tsv_metadata_submissions_to_json \
-		--data_portal_url https://data.dev.microbiomedata.org/ \
-		--sample_metadata_csv_file $@ \
-		--sample_metadata_yaml_file $(basename $@).yaml \
+# todo this errors out if 0 valid biosample rows are found
+#  do be careful with start and stop values
+#  these are pages of submissions
+#  2022-08-09 2-4 works nicely
+#  4-9 picks up some soil horizon problems
+#  4-7 OK
+assets/out/sample_metadata_from_api.yaml: api_or_tsv_clean
+	$(RUN) api_or_tsv_metadata_submissions_to_json from-submissions \
+		--page_start 4 \
+		--page_stop 7 \
+		--sample_metadata_csv_file $(basename $@).csv  \
+		--sample_metadata_yaml_file $@ \
 		--study_metadata_yaml_file $(subst sample,study,$(basename $@)).yaml
+	# todo refactor everything below
+	$(RUN) linkml-validate \
+		--target-class Database \
+		--index-slot biosample_set \
+		--schema $(PROJ_SCHEMA) $@
+	$(RUN) linkml-convert \
+		--target-class Database \
+		--module /Users/MAM/Documents/gitrepos/nmdc-schema/python/nmdc.py \
+		--schema /Users/MAM/Documents/gitrepos/nmdc-schema/src/schema/nmdc.yaml \
+		--output $(basename $@).json $@
+	# todo why is this @type removal required?
+	# todo where did it come from?
+	jq 'del(."@type")' $(basename $@).json > $(basename $@)_untyped.json
+	$(RUN) jsonschema -i $(basename $@)_untyped.json /Users/MAM/Documents/gitrepos/nmdc-schema/jsonschema/nmdc.schema.json
 
 
-ONE_PROJ_BIOSAMPLE_CSV=/Users/MAM/Documents/Bioscales_NMDC_import_nospace_temps.csv
-#ONE_PROJ_BIOSAMPLE_CSV=/Users/MAM/Documents/Bioscales_NMDC_import_nospace_temps_one_bs_ctv_gf.csv
-# ONE_PROJ_PROJ_ID may need to match something that's currently hardcoded
-ONE_PROJ_PROJ_ID=bioscales
 
-assets/out/sample_metadata_from_csv.csv: api_or_tsv_clean
-	$(RUN) api_or_tsv_metadata_submissions_to_json \
-		--data_csv $(ONE_PROJ_BIOSAMPLE_CSV) \
-		--csv_proj_id $(ONE_PROJ_PROJ_ID) \
-		--sample_metadata_csv_file $@ \
-		--sample_metadata_yaml_file $(basename $@).yaml
+PROJ_BIOSAMPLE_CSV=/Users/MAM/Documents/Bioscales_NMDC_import_nospace_temps.csv
+PROJ_ID_FOR_CSV='gold:Gs0154044'
+PROJ_DH_TEMPLATE=bioscales
+PROJ_SCHEMA=/Users/MAM/Documents/gitrepos/nmdc-schema/src/schema/nmdc.yaml
+
+assets/out/sample_metadata_from_csv.yaml: api_or_tsv_clean
+	$(RUN) api_or_tsv_metadata_submissions_to_json from-csv \
+		--data_csv $(PROJ_BIOSAMPLE_CSV) \
+		--sample_metadata_csv_file $(basename $@).csv \
+		--static_dh_template $(PROJ_DH_TEMPLATE) \
+		--static_project_id $(PROJ_ID_FOR_CSV) \
+		--sample_metadata_yaml_file $@
+	$(RUN) linkml-validate \
+		--target-class Database \
+		--index-slot biosample_set \
+		--schema $(PROJ_SCHEMA) $@
+	$(RUN) linkml-convert \
+		--target-class Database \
+		--module /Users/MAM/Documents/gitrepos/nmdc-schema/python/nmdc.py \
+		--schema /Users/MAM/Documents/gitrepos/nmdc-schema/src/schema/nmdc.yaml \
+		--output $(basename $@).json $@
+	# todo why is this @type removal required?
+	# todo where did it come from?
+	jq 'del(."@type")' $(basename $@).json > $(basename $@)_untyped.json
+	$(RUN) jsonschema -i $(basename $@)_untyped.json /Users/MAM/Documents/gitrepos/nmdc-schema/jsonschema/nmdc.schema.json
+
+# see also biosample_sqlite_file
+# m-cafes
+PROJ_SQLITE_FILE = /Users/MAM/Documents/biosample_basex.db
+PROJ_ACCESSIONS_FILE = assets/in/mcafe_accessions.txt
+#PROJ_ID_FOR_SQLITE='BIOPROJECT:PRJNA692505'
+PROJ_ID_FOR_SQLITE='gold:Gs0110119'
+
+
+assets/out/sample_metadata_from_sqlite.yaml: api_or_tsv_clean
+	$(RUN) api_or_tsv_metadata_submissions_to_json from-sqlite \
+		--biosample_sql_file $(PROJ_SQLITE_FILE) \
+		--biosample_id_file $(PROJ_ACCESSIONS_FILE) \
+		--static_project_id $(PROJ_ID_FOR_SQLITE) \
+		--sample_metadata_yaml_file $@
+	# todo refactor from here down
+	$(RUN) linkml-validate \
+		--target-class Database \
+		--index-slot biosample_set \
+		--schema $(PROJ_SCHEMA) $@
+	$(RUN) linkml-convert \
+		--target-class Database \
+		--module /Users/MAM/Documents/gitrepos/nmdc-schema/python/nmdc.py \
+		--schema /Users/MAM/Documents/gitrepos/nmdc-schema/src/schema/nmdc.yaml \
+		--output $(basename $@).json $@
+	# todo why is this @type removal required?
+	# todo where did it come from?
+	jq 'del(."@type")' $(basename $@).json > $(basename $@)_untyped.json
+	$(RUN) jsonschema -i $(basename $@)_untyped.json /Users/MAM/Documents/gitrepos/nmdc-schema/jsonschema/nmdc.schema.json
+
+json.json:
+	poetry run linkml-convert \
+		--target-class Database \
+		--module /Users/MAM/Documents/gitrepos/nmdc-schema/python/nmdc.py \
+		--schema /Users/MAM/Documents/gitrepos/nmdc-schema/src/schema/nmdc.yaml \
+		--output json.json assets/out/sample_metadata_from_sqlite.yaml
 
 # todo read the sample data form MongoDB and apply revisions (including identifier shuffling)
-
-# todo read from Biosmaple SQLites database
 
 # Sujay already has a method for obtaining sample metadata (and more) from GOLD
 #   and converting into Biosample objects as JSON with NMDC Database as the root container
