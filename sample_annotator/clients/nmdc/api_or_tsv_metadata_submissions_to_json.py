@@ -87,11 +87,42 @@ drop_cols_pending_research = [
     "sample_type",
 ]
 
-biosample_sqlite_to_dh_field_name = {
-    "title": {"dh": "samp_name", "format": "scalar"},
-    "id": {"dh": "INSDC biosample identifiers", "format": "list"},
-    # # todo the schema is giving mixed messages about whether INSDC secondary sample identifiers is multivalued or not
-    # "sra_id": {"dh": "INSDC secondary sample identifiers", "format": "list"},
+# these columns aren't necessary for insertion into Biosample instances
+#   either because there isn't a corresponding slot
+#   or because the same information is being inserted form another source
+sqlite_accounted_for = [
+    'accession',
+    'bp_id',
+    'primary_id',
+    'raw_id'
+]
+
+# don't know what to do with package env_package 0..1 ?
+# don't know what to do with package_name
+
+# I don't think there are any Biosmaple slots for these:
+#  taxonomy_id
+#  isolation_source
+#  model
+#  status
+#  status_date
+
+biosample_sqlite_col_name_overrides = {
+    # QUESTIONS:
+    #   spell slots with spaces or underscores?
+    #     if both cases are tried somewhere, where is that?
+    "title": {"dh": "name", "format": "scalar"},  # 0..1
+    "id": {"dh": "INSDC biosample identifiers", "format": "list"},  # 0..*
+    #   what's the right biosample slot for SRAs
+    "sra_id": {"dh": "INSDC_secondary_sample_identifiers", "format": "scalar"},
+    # ...secondary... is 0..* according to the docs at https://microbiomedata.github.io/nmdc-schema/Biosample/#class-biosample
+    # but NOT multivalued according to the term definition at
+    #   https://github.com/microbiomedata/nmdc-schema/blob/b0775ffd354f6064124bef34bb9fc15eb6ae4084/src/schema/external_identifiers.yaml#L173-L184
+    "samp_name": {"dh": "source_mat_id", "format": "scalar"},  # 0..1
+    "bp_acc": {"dh": "project_ID", "format": "scalar"},  # 0..1  ALSO, added join with the accession table, which required a new index
+    # CREATE INDEX bp_id_accession_bp_id_IDX ON bp_id_accession (bp_id);
+    "taxonomy_name": {"dh": "ncbi_taxonomy_name", "format": "scalar"},  # 0..1
+    "paragraph": {"dh": "description", "format": "scalar"},  # 0..1
 }
 
 dh_field_name_overrides = {
@@ -203,11 +234,11 @@ def extract_lat_lon(raw_value: str):
             latv = decimals[0]
             longv = decimals[1]
             if (
-                len(decimals) == 2
-                and latv > -90
-                and latv < 90
-                and longv > -180
-                and longv < 180
+                    len(decimals) == 2
+                    and latv > -90
+                    and latv < 90
+                    and longv > -180
+                    and longv < 180
             ):
                 gv.latitude = latv
                 gv.longitude = longv
@@ -370,7 +401,7 @@ class SubmissionsSandbox:
         ) = self.split_study_and_sample_metadata(results)
 
     def make_sample_data_dict(
-        self, sample_data: List[List[str]], result_id: str
+            self, sample_data: List[List[str]], result_id: str
     ) -> List[Dict[str, str]]:
 
         logger.debug(f"study_metadata: {self.study_metadata}")
@@ -457,7 +488,7 @@ class SubmissionsSandbox:
         return study_metadata, sample_metadata_by_title
 
     def update_monikers(
-        self, acceptable_statuses, suggested_initial_columns, source="raw"
+            self, acceptable_statuses, suggested_initial_columns, source="raw"
     ):
         all_headers = set()
         logger.debug(f"updating monikers from {source} sample metadata")
@@ -488,7 +519,7 @@ class SubmissionsSandbox:
             remainder_headers = list(remainder_headers)
             remainder_headers.sort()
             self.updatable_monikers = (
-                list(suggested_initial_columns) + remainder_headers
+                    list(suggested_initial_columns) + remainder_headers
             )
         else:
             self.updatable_monikers = all_headers
@@ -563,8 +594,8 @@ class SubmissionsSandbox:
                 logger.info(f"{k} comes from server: {self.api_url}")
 
                 if (
-                    not self.env_pack_title_to_key
-                    or current_template not in self.env_pack_title_to_key
+                        not self.env_pack_title_to_key
+                        or current_template not in self.env_pack_title_to_key
                 ):
                     self.load_env_pack_title_to_key(current_template)
             else:
@@ -722,8 +753,8 @@ class SubmissionsSandbox:
             if "source_mat_id" in deep_parse_dict:
                 if "has_raw_value" in deep_parse_dict["source_mat_id"]:
                     available_identifiers = (
-                        available_identifiers
-                        + f" with source_mat_id {deep_parse_dict['source_mat_id']['has_raw_value']}"
+                            available_identifiers
+                            + f" with source_mat_id {deep_parse_dict['source_mat_id']['has_raw_value']}"
                     )
             logger.error(
                 f"study {study_id} error instantiating Biosample {available_identifiers}: {e}"
@@ -780,9 +811,10 @@ class SubmissionsSandbox:
                             parse_result = self.parse_any_range(
                                 sample_value, ssd_range, range_type
                             )
-                            logger.debug(
-                                f"{study_id}'s sample {sample['source_mat_id']}/{sample['samp_name']}'s {sample_slot} value of  _{sample_value}_ with range {ssd_range} and type {range_type} was converted to {parse_result}"
-                            )
+                            # todo need for flexible sample identification
+                            # logger.debug(
+                            #     f"{study_id}'s sample {sample['source_mat_id']}/{sample['samp_name']}'s {sample_slot} value of  _{sample_value}_ with range {ssd_range} and type {range_type} was converted to {parse_result}"
+                            # )
                             if type(parse_result) == list:
                                 lists_for_appending[sample_slot] = parse_result
                             else:
@@ -802,10 +834,13 @@ class SubmissionsSandbox:
                             pass
                         else:
                             # todo get this as the slot name or alias? may require some induction?
-                            underscored = re.sub(" ", "_", ltk)
                             slot = self.nmdc_view.get_slot(ltk)
-                            logger.debug(f"{ltk} has slot definition:")
-                            logger.debug(yaml_dumper.dumps(slot))
+                            underscored = re.sub(" ", "_", ltk)
+                            if not slot:
+                                logger.warning(f"{ltk} is not in the schema, so trying {underscored}")
+                                slot = self.nmdc_view.get_slot(underscored)
+                            logger.info(f"{ltk} has slot definition:")
+                            logger.info(yaml_dumper.dumps(slot))
                             multivalued = slot["multivalued"]
                             list_len = len(ltv)
                             logger.debug(
@@ -914,15 +949,15 @@ def cli():
     multiple=True,
 )
 def from_submissions(
-    env_file,
-    data_portal_url,
-    study_metadata_yaml_file,
-    sample_metadata_csv_file,
-    page_start,
-    page_stop,
-    acceptable_statuses,
-    suggested_initial_columns,
-    sample_metadata_yaml_file,
+        env_file,
+        data_portal_url,
+        study_metadata_yaml_file,
+        sample_metadata_csv_file,
+        page_start,
+        page_stop,
+        acceptable_statuses,
+        suggested_initial_columns,
+        sample_metadata_yaml_file,
 ):
     """from submissions help"""
 
@@ -994,13 +1029,13 @@ def from_submissions(
     multiple=True,
 )
 def from_csv(
-    env_file,
-    sample_metadata_csv_file,
-    suggested_initial_columns,
-    data_csv,
-    static_project_id,
-    static_dh_template,
-    sample_metadata_yaml_file,
+        env_file,
+        sample_metadata_csv_file,
+        suggested_initial_columns,
+        data_csv,
+        static_project_id,
+        static_dh_template,
+        sample_metadata_yaml_file,
 ):
     """from submissions help"""
 
@@ -1090,11 +1125,11 @@ def from_csv(
     help="This is a relatively flat and study-indexed file, not directly suitable for the NMDC schema.",
 )
 def from_sqlite(
-    env_file,
-    biosample_sql_file,
-    biosample_id_file,
-    static_project_id,
-    sample_metadata_yaml_file,
+        env_file,
+        biosample_sql_file,
+        biosample_id_file,
+        static_project_id,
+        sample_metadata_yaml_file,
 ):
     """biosample_sql_file help"""
 
@@ -1166,7 +1201,13 @@ def from_sqlite(
 
     accession_tidy = f"('{accession_core}')"
 
-    query = f"SELECT * FROM harmonized_wide hw join non_attribute_metadata nam on hw.raw_id = nam.raw_id where accession in {accession_tidy}"
+    # query = f"SELECT * FROM harmonized_wide hw join non_attribute_metadata nam on hw.raw_id = nam.raw_id where accession in {accession_tidy}"
+
+    query = f"""
+    SELECT * FROM harmonized_wide hw 
+    join non_attribute_metadata nam on hw.raw_id = nam.raw_id 
+    join bp_id_accession bia on nam.bp_id = bia.bp_id
+    where accession in {accession_tidy}"""
 
     cursor.execute(query)
 
@@ -1188,23 +1229,18 @@ def from_sqlite(
 
     id_list = sandbox.get_ids_list(row_count)
 
-    # biosample_sqlite_to_dh_field_name = {
-    #     "title": {"dh": "samp_name", "format": "scalar"},
-    #     "id": {"dh": "INSDC biosample identifiers", "format": "list"},
-    #     "sra_id": {"dh": "INSDC secondary sample identifiers", "format": "list"},
-    # }
-
     rows_list = []
     for row in rows:
         row_dict = {}
         logger.info(row["id"])
         sqlite_cols = list(row.keys())
         for k in sqlite_cols:
-            if row[k] and k in biosample_sqlite_to_dh_field_name:
-                mapping_dict = biosample_sqlite_to_dh_field_name[k]
+            if row[k] and k in biosample_sqlite_col_name_overrides:
+                mapping_dict = biosample_sqlite_col_name_overrides[k]
                 dh_name = mapping_dict["dh"]
                 mapping_format = mapping_dict["format"]
-                logger.info(f"mapping: {k} {row[k]} {dh_name} {mapping_format}")
+                logger.info(
+                    f"mapping SQLite column {k} with value {row[k]} to DH column {dh_name}. Format =  {mapping_format}")
                 # todo why isn't INSDC_secondary_sample_identifiers being treated like a list?
                 if mapping_format == "list":
                     row_dict[dh_name] = [row[k]]
@@ -1217,7 +1253,6 @@ def from_sqlite(
 
         row_dict["id"] = id_list.pop()
         row_dict["sample_link"] = static_project_id
-        row_dict["source_mat_id"] = "requires new functionality in biosample-basex"
         rows_list.append(row_dict)
 
     # https://www.ncbi.nlm.nih.gov/biosample/8902828

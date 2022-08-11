@@ -175,7 +175,38 @@ assets/out/sample_metadata_from_csv.yaml: api_or_tsv_clean
 
 # see also biosample_sqlite_file
 # m-cafes
-PROJ_SQLITE_FILE = /Users/MAM/Documents/biosample_basex.db
+#PROJ_SQLITE_FILE = /Users/MAM/Documents/biosample_basex.db
+# with new samp_name column in non_attribute_metadata
+PROJ_SQLITE_FILE = /Users/MAM/Downloads/biosample_basex.db
+# -- non_attribute_metadata definition
+  #
+  #CREATE TABLE non_attribute_metadata(
+  #  "id" TEXT,
+  #  "accession" TEXT,
+  #  "raw_id" INTEGER PRIMARY KEY,
+  #  "primary_id" TEXT,
+  #  "sra_id" TEXT,
+  #  "bp_id" TEXT,
+  #  "model" TEXT,
+  #  "package" TEXT,
+  #  "package_name" TEXT,
+  #  "status" TEXT,
+  #  "status_date" TEXT,
+  #  "taxonomy_id" TEXT,
+  #  "taxonomy_name" TEXT,
+  #  "title" TEXT,
+  #  "samp_name" TEXT,
+  #  "paragraph" TEXT
+  #
+  #);
+  #
+  #CREATE INDEX non_attribute_metadata_accession_IDX ON non_attribute_metadata (accession,raw_id);
+
+# CREATE UNIQUE INDEX harmonized_wide_raw_id_idx ON
+  #harmonized_wide("raw_id");
+  #CREATE INDEX harmonized_wide_env_package_idx ON
+  #harmonized_wide(env_package);
+
 PROJ_ACCESSIONS_FILE = assets/in/mcafe_accessions.txt
 #PROJ_ID_FOR_SQLITE='BIOPROJECT:PRJNA692505'
 PROJ_ID_FOR_SQLITE='gold:Gs0110119'
@@ -187,6 +218,7 @@ assets/out/sample_metadata_from_sqlite.yaml: api_or_tsv_clean
 		--biosample_id_file $(PROJ_ACCESSIONS_FILE) \
 		--static_project_id $(PROJ_ID_FOR_SQLITE) \
 		--sample_metadata_yaml_file $@
+		# 2> assets/out/api_or_tsv_metadata_submissions_to_json.log
 	# todo refactor from here down
 	$(RUN) linkml-validate \
 		--target-class Database \
@@ -197,6 +229,7 @@ assets/out/sample_metadata_from_sqlite.yaml: api_or_tsv_clean
 		--module /Users/MAM/Documents/gitrepos/nmdc-schema/python/nmdc.py \
 		--schema /Users/MAM/Documents/gitrepos/nmdc-schema/src/schema/nmdc.yaml \
 		--output $(basename $@).json $@
+	# WARNING:root:There is no established path to /Users/MAM/Documents/gitrepos/nmdc-schema/python/nmdc.py - compile_python may or may not work
 	# todo why is this @type removal required?
 	# todo where did it come from?
 	jq 'del(."@type")' $(basename $@).json > $(basename $@)_untyped.json

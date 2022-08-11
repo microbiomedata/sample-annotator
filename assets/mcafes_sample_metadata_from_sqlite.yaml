@@ -1,6 +1,7 @@
 biosample_set:
-- id: nmdc:fk0x61984
+- id: nmdc:fk0hd7f36
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -26,13 +27,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902828
   INSDC_secondary_sample_identifiers: SRS3199723
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk0mfvp67
+    has_raw_value: 14_0903_02_20cm
+  project_ID: PRJNA449266
+- id: nmdc:fk0b23274
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -58,13 +62,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902829
   INSDC_secondary_sample_identifiers: SRS3199722
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk0s31866
+    has_raw_value: 14_0903_02_30cm
+  project_ID: PRJNA449266
+- id: nmdc:fk0g0c489
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -90,13 +97,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902830
   INSDC_secondary_sample_identifiers: SRS3199726
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk0fxa294
+    has_raw_value: 14_0903_02_40cm
+  project_ID: PRJNA449266
+- id: nmdc:fk0fshx86
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -122,13 +132,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902831
   INSDC_secondary_sample_identifiers: SRS3199724
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk0d9vq76
+    has_raw_value: 14_0919_02_20cm
+  project_ID: PRJNA449266
+- id: nmdc:fk0fpvb54
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -154,13 +167,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902832
   INSDC_secondary_sample_identifiers: SRS3199727
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk0awes18
+    has_raw_value: 14_0927_02_20cm
+  project_ID: PRJNA449266
+- id: nmdc:fk0x5g191
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -186,13 +202,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902833
   INSDC_secondary_sample_identifiers: SRS3199725
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk08zwd56
+    has_raw_value: 14_0927_02_40cm
+  project_ID: PRJNA449266
+- id: nmdc:fk07sq911
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -218,13 +237,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902834
   INSDC_secondary_sample_identifiers: SRS3199730
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk02e2559
+    has_raw_value: 14_0929_02_20cm
+  project_ID: PRJNA449266
+- id: nmdc:fk0c3fx91
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -250,13 +272,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902835
   INSDC_secondary_sample_identifiers: SRS3199728
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk0k6st02
+    has_raw_value: 14_0929_02_30cm
+  project_ID: PRJNA449266
+- id: nmdc:fk05ky521
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -282,13 +307,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902836
   INSDC_secondary_sample_identifiers: SRS3199720
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk0qpaq45
+    has_raw_value: 14_0929_02_40cm
+  project_ID: PRJNA449266
+- id: nmdc:fk0rj8e93
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -314,13 +342,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902837
   INSDC_secondary_sample_identifiers: SRS3199719
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk0714f79
+    has_raw_value: 14_1009_02_20cm
+  project_ID: PRJNA449266
+- id: nmdc:fk0ddtn15
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -346,13 +377,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902838
   INSDC_secondary_sample_identifiers: SRS3199743
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk0876663
+    has_raw_value: 14_1009_02_30cm
+  project_ID: PRJNA449266
+- id: nmdc:fk0sn5s13
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -378,13 +412,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902839
   INSDC_secondary_sample_identifiers: SRS3199742
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk003jb82
+    has_raw_value: 14_1009_02_40cm
+  project_ID: PRJNA449266
+- id: nmdc:fk0tacs13
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -410,13 +447,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902840
   INSDC_secondary_sample_identifiers: SRS3199744
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk04m7h37
+    has_raw_value: 14_0903_05_20cm
+  project_ID: PRJNA449266
+- id: nmdc:fk0t62h93
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -442,13 +482,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902841
   INSDC_secondary_sample_identifiers: SRS3199745
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk0ypxp57
+    has_raw_value: 14_0903_05_30cm
+  project_ID: PRJNA449266
+- id: nmdc:fk0xdpe23
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -474,13 +517,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902842
   INSDC_secondary_sample_identifiers: SRS3199747
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk0c1bc74
+    has_raw_value: 14_0903_05_40cm
+  project_ID: PRJNA449266
+- id: nmdc:fk08dvp34
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -506,13 +552,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902843
   INSDC_secondary_sample_identifiers: SRS3199746
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk0d9y827
+    has_raw_value: 14_0919_05_20cm
+  project_ID: PRJNA449266
+- id: nmdc:fk04a9c25
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -538,13 +587,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902844
   INSDC_secondary_sample_identifiers: SRS3199749
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk0633k76
+    has_raw_value: 14_0927_05_20cm
+  project_ID: PRJNA449266
+- id: nmdc:fk0kre063
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -570,13 +622,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902845
   INSDC_secondary_sample_identifiers: SRS3199748
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk0sqzp15
+    has_raw_value: 14_0927_05_40cm
+  project_ID: PRJNA449266
+- id: nmdc:fk00p3320
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -602,13 +657,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902846
   INSDC_secondary_sample_identifiers: SRS3199751
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk00pwd15
+    has_raw_value: 14_0929_05_20cm
+  project_ID: PRJNA449266
+- id: nmdc:fk0h5hn63
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -634,13 +692,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902847
   INSDC_secondary_sample_identifiers: SRS3199750
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk0ngmy25
+    has_raw_value: 14_0929_05_30cm
+  project_ID: PRJNA449266
+- id: nmdc:fk0tmza09
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -666,13 +727,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902848
   INSDC_secondary_sample_identifiers: SRS3199700
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk0449b30
+    has_raw_value: 14_0929_05_40cm
+  project_ID: PRJNA449266
+- id: nmdc:fk0dg4m92
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -698,13 +762,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902849
   INSDC_secondary_sample_identifiers: SRS3199702
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk0acra46
+    has_raw_value: 14_1009_05_20cm
+  project_ID: PRJNA449266
+- id: nmdc:fk087p582
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -730,13 +797,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902850
   INSDC_secondary_sample_identifiers: SRS3199701
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk04e6r17
+    has_raw_value: 14_1009_05_30cm
+  project_ID: PRJNA449266
+- id: nmdc:fk0pc2023
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -762,13 +832,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902851
   INSDC_secondary_sample_identifiers: SRS3199703
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk0ccc754
+    has_raw_value: 14_1009_05_40cm
+  project_ID: PRJNA449266
+- id: nmdc:fk00xtw95
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -794,13 +867,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902852
   INSDC_secondary_sample_identifiers: SRS3199704
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk0asnt23
+    has_raw_value: 14_0903_09_20cm
+  project_ID: PRJNA449266
+- id: nmdc:fk0t8q811
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -826,13 +902,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902853
   INSDC_secondary_sample_identifiers: SRS3199705
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk0jsgk83
+    has_raw_value: 14_0903_09_30cm
+  project_ID: PRJNA449266
+- id: nmdc:fk0fjc138
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -858,13 +937,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902854
   INSDC_secondary_sample_identifiers: SRS3199706
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk02ac053
+    has_raw_value: 14_0903_09_40cm
+  project_ID: PRJNA449266
+- id: nmdc:fk0dd4a26
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -890,13 +972,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902855
   INSDC_secondary_sample_identifiers: SRS3199708
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk0h8sy43
+    has_raw_value: 14_0919_09_20cm
+  project_ID: PRJNA449266
+- id: nmdc:fk0d26b61
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -922,13 +1007,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902856
   INSDC_secondary_sample_identifiers: SRS3199698
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk0xsb632
+    has_raw_value: 14_0927_09_20cm
+  project_ID: PRJNA449266
+- id: nmdc:fk0981t84
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -954,13 +1042,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902857
   INSDC_secondary_sample_identifiers: SRS3199699
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk0z6fw52
+    has_raw_value: 14_0927_09_40cm
+  project_ID: PRJNA449266
+- id: nmdc:fk0z9ex47
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -986,13 +1077,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902858
   INSDC_secondary_sample_identifiers: SRS3199741
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk0zkmy79
+    has_raw_value: 14_0929_09_20cm
+  project_ID: PRJNA449266
+- id: nmdc:fk0tz9c42
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -1018,13 +1112,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902859
   INSDC_secondary_sample_identifiers: SRS3199740
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk0zs2n86
+    has_raw_value: 14_0929_09_30cm
+  project_ID: PRJNA449266
+- id: nmdc:fk0p9b809
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -1050,13 +1147,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902860
   INSDC_secondary_sample_identifiers: SRS3199739
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk06j4k72
+    has_raw_value: 14_0929_09_40cm
+  project_ID: PRJNA449266
+- id: nmdc:fk0h70658
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -1082,13 +1182,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902861
   INSDC_secondary_sample_identifiers: SRS3199738
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk04vzt64
+    has_raw_value: 14_1009_09_20cm
+  project_ID: PRJNA449266
+- id: nmdc:fk0705m33
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -1114,13 +1217,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902862
   INSDC_secondary_sample_identifiers: SRS3199737
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk0b3v136
+    has_raw_value: 14_1009_09_30cm
+  project_ID: PRJNA449266
+- id: nmdc:fk0t0f644
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -1146,13 +1252,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902863
   INSDC_secondary_sample_identifiers: SRS3199736
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk0adbs20
+    has_raw_value: 14_1009_09_40cm
+  project_ID: PRJNA449266
+- id: nmdc:fk0nx6z36
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -1178,13 +1287,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902864
   INSDC_secondary_sample_identifiers: SRS3199735
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk0zybf79
+    has_raw_value: 14_0903_12_20cm
+  project_ID: PRJNA449266
+- id: nmdc:fk0dw5n86
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -1210,13 +1322,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902865
   INSDC_secondary_sample_identifiers: SRS3199734
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk0fmbp38
+    has_raw_value: 14_0903_12_30cm
+  project_ID: PRJNA449266
+- id: nmdc:fk04a2b21
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -1242,13 +1357,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902866
   INSDC_secondary_sample_identifiers: SRS3199733
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk0djsp74
+    has_raw_value: 14_0903_12_40cm
+  project_ID: PRJNA449266
+- id: nmdc:fk0zj8513
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -1274,13 +1392,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902867
   INSDC_secondary_sample_identifiers: SRS3199732
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk0ag6m29
+    has_raw_value: 14_0919_12_20cm
+  project_ID: PRJNA449266
+- id: nmdc:fk0m2p294
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -1306,13 +1427,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902868
   INSDC_secondary_sample_identifiers: SRS3199717
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk0zjwn82
+    has_raw_value: 14_0927_12_20cm
+  project_ID: PRJNA449266
+- id: nmdc:fk0zh5w06
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -1338,13 +1462,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902869
   INSDC_secondary_sample_identifiers: SRS3199718
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk053fk34
+    has_raw_value: 14_0927_12_40cm
+  project_ID: PRJNA449266
+- id: nmdc:fk04cvq74
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -1370,13 +1497,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902870
   INSDC_secondary_sample_identifiers: SRS3199715
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk06ace33
+    has_raw_value: 14_0929_12_20cm
+  project_ID: PRJNA449266
+- id: nmdc:fk003j503
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -1402,13 +1532,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902871
   INSDC_secondary_sample_identifiers: SRS3199716
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk0127g78
+    has_raw_value: 14_0929_12_30cm
+  project_ID: PRJNA449266
+- id: nmdc:fk0xzb824
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -1434,13 +1567,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902872
   INSDC_secondary_sample_identifiers: SRS3199714
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk0qg9x28
+    has_raw_value: 14_0929_12_40cm
+  project_ID: PRJNA449266
+- id: nmdc:fk0tvyz72
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -1466,13 +1602,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902873
   INSDC_secondary_sample_identifiers: SRS3199713
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk08m4f62
+    has_raw_value: 14_1009_12_20cm
+  project_ID: PRJNA449266
+- id: nmdc:fk0cmts76
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -1498,13 +1637,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902874
   INSDC_secondary_sample_identifiers: SRS3199711
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk05ss514
+    has_raw_value: 14_1009_12_30cm
+  project_ID: PRJNA449266
+- id: nmdc:fk0psjm07
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -1530,13 +1672,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902875
   INSDC_secondary_sample_identifiers: SRS3199712
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk0zq2t07
+    has_raw_value: 14_1009_12_40cm
+  project_ID: PRJNA449266
+- id: nmdc:fk0057p05
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -1562,13 +1707,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902876
   INSDC_secondary_sample_identifiers: SRS3199709
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk0578b82
+    has_raw_value: 14_0903_13_20cm
+  project_ID: PRJNA449266
+- id: nmdc:fk096jn52
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -1594,13 +1742,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902877
   INSDC_secondary_sample_identifiers: SRS3199710
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk0f98q68
+    has_raw_value: 14_0903_13_30cm
+  project_ID: PRJNA449266
+- id: nmdc:fk0t16958
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -1626,13 +1777,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902878
   INSDC_secondary_sample_identifiers: SRS3199755
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk0sfz407
+    has_raw_value: 14_0903_13_40cm
+  project_ID: PRJNA449266
+- id: nmdc:fk0c02651
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -1658,13 +1812,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902879
   INSDC_secondary_sample_identifiers: SRS3199754
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk0ebd928
+    has_raw_value: 14_1009_13_20cm
+  project_ID: PRJNA449266
+- id: nmdc:fk0yd9203
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -1690,13 +1847,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902880
   INSDC_secondary_sample_identifiers: SRS3199757
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk02tgq15
+    has_raw_value: 14_1009_13_30cm
+  project_ID: PRJNA449266
+- id: nmdc:fk0nmn438
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -1722,13 +1882,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902881
   INSDC_secondary_sample_identifiers: SRS3199756
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk027nm03
+    has_raw_value: 14_1009_13_40cm
+  project_ID: PRJNA449266
+- id: nmdc:fk05p0y12
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -1754,13 +1917,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902882
   INSDC_secondary_sample_identifiers: SRS3199731
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk03q0k66
+    has_raw_value: 14_0903_16_20cm
+  project_ID: PRJNA449266
+- id: nmdc:fk0wv4d14
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -1786,13 +1952,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902883
   INSDC_secondary_sample_identifiers: SRS3199729
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk0n7pz27
+    has_raw_value: 14_0903_16_30cm
+  project_ID: PRJNA449266
+- id: nmdc:fk00e0e19
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -1818,13 +1987,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902884
   INSDC_secondary_sample_identifiers: SRS3199753
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk0xhnw11
+    has_raw_value: 14_0903_16_40cm
+  project_ID: PRJNA449266
+- id: nmdc:fk0yk9k47
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -1850,13 +2022,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902885
   INSDC_secondary_sample_identifiers: SRS3199752
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk0mpr063
+    has_raw_value: 14_1009_16_20cm
+  project_ID: PRJNA449266
+- id: nmdc:fk0tdab52
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -1882,13 +2057,16 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902886
   INSDC_secondary_sample_identifiers: SRS3199721
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
-- id: nmdc:fk04n3213
+    has_raw_value: 14_1009_16_30cm
+  project_ID: PRJNA449266
+- id: nmdc:fk0nnny89
   name: MIMS Environmental/Metagenome sample from soil metagenome
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
   env_broad_scale:
     has_raw_value: temperate grassland biome
   env_local_scale:
@@ -1914,8 +2092,10 @@ biosample_set:
     has_raw_value: 39.74 N 123.63 W
     latitude: 39.74
     longitude: 123.63
+  ncbi_taxonomy_name: soil metagenome
   INSDC_biosample_identifiers:
   - BIOSAMPLE:SAMN08902887
   INSDC_secondary_sample_identifiers: SRS3199707
   source_mat_id:
-    has_raw_value: requires new functionality in biosample-basex
+    has_raw_value: 14_1009_16_40cm
+  project_ID: PRJNA449266
