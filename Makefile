@@ -173,43 +173,14 @@ assets/out/sample_metadata_from_csv.yaml: api_or_tsv_clean
 	jq 'del(."@type")' $(basename $@).json > $(basename $@)_untyped.json
 	$(RUN) jsonschema -i $(basename $@)_untyped.json /Users/MAM/Documents/gitrepos/nmdc-schema/jsonschema/nmdc.schema.json
 
-# see also biosample_sqlite_file
 # m-cafes
-#PROJ_SQLITE_FILE = /Users/MAM/Documents/biosample_basex.db
-# with new samp_name column in non_attribute_metadata
+# BIOPROJECT:PRJNA692505
 PROJ_SQLITE_FILE = /Users/MAM/Downloads/biosample_basex.db
-# -- non_attribute_metadata definition
-  #
-  #CREATE TABLE non_attribute_metadata(
-  #  "id" TEXT,
-  #  "accession" TEXT,
-  #  "raw_id" INTEGER PRIMARY KEY,
-  #  "primary_id" TEXT,
-  #  "sra_id" TEXT,
-  #  "bp_id" TEXT,
-  #  "model" TEXT,
-  #  "package" TEXT,
-  #  "package_name" TEXT,
-  #  "status" TEXT,
-  #  "status_date" TEXT,
-  #  "taxonomy_id" TEXT,
-  #  "taxonomy_name" TEXT,
-  #  "title" TEXT,
-  #  "samp_name" TEXT,
-  #  "paragraph" TEXT
-  #
-  #);
-  #
-  #CREATE INDEX non_attribute_metadata_accession_IDX ON non_attribute_metadata (accession,raw_id);
-
-# CREATE UNIQUE INDEX harmonized_wide_raw_id_idx ON
-  #harmonized_wide("raw_id");
-  #CREATE INDEX harmonized_wide_env_package_idx ON
-  #harmonized_wide(env_package);
-
+# not to be confused with biosample_sqlite_file
 PROJ_ACCESSIONS_FILE = assets/in/mcafe_accessions.txt
-#PROJ_ID_FOR_SQLITE='BIOPROJECT:PRJNA692505'
 PROJ_ID_FOR_SQLITE='gold:Gs0110119'
+
+# todo click options should always be hyphen seperated not underscore seperated
 
 
 assets/out/sample_metadata_from_sqlite.yaml: api_or_tsv_clean
@@ -217,30 +188,83 @@ assets/out/sample_metadata_from_sqlite.yaml: api_or_tsv_clean
 		--biosample_sql_file $(PROJ_SQLITE_FILE) \
 		--biosample_id_file $(PROJ_ACCESSIONS_FILE) \
 		--static_project_id $(PROJ_ID_FOR_SQLITE) \
-		--sample_metadata_yaml_file $@
-		# 2> assets/out/api_or_tsv_metadata_submissions_to_json.log
+		--sample_metadata_yaml_file $@ \
+		--lookup_file /Users/MAM/Documents/Angelo_2014-Banfield-JGI-data.tsv \
+		--lookup_style mcafes_gold_lookup 2> assets/out/api_or_tsv_metadata_submissions_to_json.log
+
 	# todo refactor from here down
 	$(RUN) linkml-validate \
 		--target-class Database \
 		--index-slot biosample_set \
 		--schema $(PROJ_SCHEMA) $@
+
+	# provides some silent repairs
 	$(RUN) linkml-convert \
 		--target-class Database \
 		--module /Users/MAM/Documents/gitrepos/nmdc-schema/python/nmdc.py \
 		--schema /Users/MAM/Documents/gitrepos/nmdc-schema/src/schema/nmdc.yaml \
 		--output $(basename $@).json $@
+
 	# WARNING:root:There is no established path to /Users/MAM/Documents/gitrepos/nmdc-schema/python/nmdc.py - compile_python may or may not work
 	# todo why is this @type removal required?
 	# todo where did it come from?
-	jq 'del(."@type")' $(basename $@).json > $(basename $@)_untyped.json
-	$(RUN) jsonschema -i $(basename $@)_untyped.json /Users/MAM/Documents/gitrepos/nmdc-schema/jsonschema/nmdc.schema.json
+	# todo: on the other hand, the linkml yaml->json conversion does some nice silent repair
+	# todo: but those repairs should trigger some review of the schema
+	cat $(basename $@).json | \
+		jq 'del(."@type")'  \
+		>  $(basename $@)_no_outer_type.json
+	$(RUN) jsonschema -i $(basename $@)_no_outer_type.json /Users/MAM/Documents/gitrepos/nmdc-schema/jsonschema/nmdc.schema.json
 
+	# remove schema v6 only slots
+	cat $(basename $@)_no_outer_type.json | \
+		jq 'del(.biosample_set[].sample_link)' | \
+		jq 'del(.biosample_set[].project_ID)' > \
+		$(basename $@)_no_outer_type_no_sample_link.json
+	# create v3-like depths and depth2s from v6 depths
+	#   tried but failed to do this in jq
+	$(RUN) python sample_annotator/clients/nmdc/depth_fix_for_v3.py \
+		--input_json_file $(basename $@)_no_outer_type_no_sample_link.json \
+		--output_json_file $(basename $@)_no_outer_type_no_sample_link_plus_depth2.json
 
 # todo read the sample data form MongoDB and apply revisions (including identifier shuffling)
 
 # Sujay already has a method for obtaining sample metadata (and more) from GOLD
 #   and converting into Biosample objects as JSON with NMDC Database as the root container
-
 # new principle: do the deepest possible parse of GeolocationValues, ControlledTermValues etc.
-
 # todo integrate all of this
+
+
+assets/out/sample_metadata_from_pure_sqlite.yaml: api_or_tsv_clean
+	$(RUN) api_or_tsv_metadata_submissions_to_json pure-from-sqlite \
+		--biosample-sql-file $(PROJ_SQLITE_FILE) \
+		--biosample-id-file $(PROJ_ACCESSIONS_FILE) \
+		--static-project-id $(PROJ_ID_FOR_SQLITE) \
+		--sqlite-to-biosample-file assets/in/sqlite_to_v3_plus_v6.tsv \
+		--sample-metadata-yaml-file $@
+
+	# todo refactor from here down
+	$(RUN) linkml-validate \
+		--target-class Database \
+		--index-slot biosample_set \
+		--schema $(PROJ_SCHEMA) $@
+
+	# provides some silent repairs
+	$(RUN) linkml-convert \
+		--target-class Database \
+		--module /Users/MAM/Documents/gitrepos/nmdc-schema/python/nmdc.py \
+		--schema /Users/MAM/Documents/gitrepos/nmdc-schema/src/schema/nmdc.yaml \
+		--output $(basename $@).json $@
+
+	# remove schema v6 only slots
+	cat $(basename $@).json | \
+		jq 'del(."@type")' | \
+		jq 'del(.biosample_set[].sample_link)' | \
+		jq 'del(.biosample_set[].project_ID)' > \
+		$(basename $@)_no_outer_type_no_v6_only.json
+	# create v3-like depths and depth2s from v6 depths
+	#   tried but failed to do this in jq
+	$(RUN) python sample_annotator/clients/nmdc/depth_fix_for_v3.py \
+		--input_json_file $(basename $@)_no_outer_type_no_v6_only.json \
+		--output_json_file $(basename $@)_v3_with_depth2.json
+	# todo validate against v3 !
+

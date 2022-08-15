@@ -1,0 +1,150 @@
+{
+  "study_set": [
+    {
+      "id": "gold:Gs0110119",
+      "name": "Meadow Soil Metagenomes from the Angelo Coast Range Reserve",
+      "principal_investigator": {
+        "orcid": "https://orcid.org/0000-0001-8203-8771",
+        "name": "Jillian F. Banfield",
+        "email": "jbanfield@berkeley.edu",
+        "profile_image_url": "https://upload.wikimedia.org/wikipedia/commons/4/41/Rick_Astley_Dallas.jpg"
+      },
+      "description": "Assembled metagenomes for 60 soil samples across multiple soil plots from a meadow in the Angelo Coastal Range Reserve, CA. This location is part of an on-going climate change experiment where some meadow plots have received additional rainfall via a sprinkler system since 2001. Soil samples were taken and sequenced from three depths (10-20 cm, 20-30 cm, and 30-40 cm) and from plots that have both received additional rainfall and control plots that have received ambient rainfall",
+      "GOLD_study_identifiers": [
+        "https://identifiers.org/gold:Gs0144557"
+      ],
+      "websites": [
+        "https://nanogeoscience.berkeley.edu/"
+      ],
+      "doi": {
+        "has_raw_value": "https://doi.org/10.1038/s41564-019-0449-y"
+      },
+      "has_credit_associations": [
+        {
+          "applies_to_person": {
+            "name": "Spencer Diamond",
+            "orcid": "https://orcid.org/0000-0003-4131-341X"
+          },
+          "applied_roles": [
+            "Conceptualization",
+            "Formal Analysis",
+            "Writing original draft",
+            "Methodology",
+            "Data curation"
+          ]
+        },
+        {
+          "applies_to_person": {
+            "name": "Karthik Anantharaman",
+            "orcid": "https://orcid.org/0000-0002-9584-2491"
+          },
+          "applied_roles": [
+            "Data curation",
+            "Methodology",
+            "Writing review and editing"
+          ]
+        },
+        {
+          "applies_to_person": {
+            "name": "Peter F. Andeer",
+            "orcid": ""
+          },
+          "applied_roles": [
+            "Conceptualization",
+            "Data curation",
+            "Formal Analysis",
+            "Writing original draft",
+            "Methodology"
+          ]
+        },
+        {
+          "applies_to_person": {
+            "name": "Zhou Li",
+            "orcid": ""
+          },
+          "applied_roles": [
+            "Data curation",
+            "Formal Analysis",
+            "Writing review and editing"
+          ]
+        },
+        {
+          "applies_to_person": {
+            "name": "Alexander Crits-Christoph",
+            "orcid": ""
+          },
+          "applied_roles": [
+            "Data curation",
+            "Formal Analysis",
+            "Methodology",
+            "Software",
+            "Visualization",
+            "Writing original draft"
+          ]
+        },
+        {
+          "applies_to_person": {
+            "name": "David Burstein",
+            "orcid": ""
+          },
+          "applied_roles": [
+            "Conceptualization",
+            "Data curation",
+            "Writing review and editing"
+          ]
+        },
+        {
+          "applies_to_person": {
+            "name": "Katherine R. Lane",
+            "orcid": ""
+          },
+          "applied_roles": [
+            "Resources",
+            "Data curation"
+          ]
+        },
+        {
+          "applies_to_person": {
+            "name": "Brian C. Thomas",
+            "orcid": ""
+          },
+          "applied_roles": [
+            "Data curation",
+            "Formal Analysis",
+            "Conceptualization",
+            "Methodology",
+            "Software"
+          ]
+        },
+        {
+          "applies_to_person": {
+            "name": "Chongle Pan",
+            "orcid": "https://orcid.org/0000-0003-2860-0334"
+          },
+          "applied_roles": [
+            "Formal Analysis",
+            "Funding acquisition",
+            "Principal Investigator",
+            "Writing review and editing",
+            "Supervision",
+            "Project administration"
+          ]
+        },
+        {
+          "applies_to_person": {
+            "name": "Trent R. Northen",
+            "orcid": "https://orcid.org/0000-0001-8404-3259"
+          },
+          "applied_roles": [
+            "Conceptualization",
+            "Funding acquisition",
+            "Project administration",
+            "Supervision",
+            "Principal Investigator",
+            "Writing review and editing"
+          ]
+        }
+      ]
+    }
+  ]
+}
