@@ -1535,14 +1535,6 @@ def pure_from_sqlite(
 
     sandbox.view_setup(schemas_to_load=["nmdc"])
 
-    # todo move all of this to get_biosamples_from_sqlite_by_accession
-
-    #     def get_biosamples_from_sqlite_by_accession(self,
-    #                                                 biosample_id_file,
-    #                                                 biosample_sql_file,
-    #                                                 sqlite_to_biosample_file
-    #                                                 ):
-
     rows_list = sandbox.get_biosamples_from_sqlite_by_accession(biosample_id_file=biosample_id_file,
                                                                 biosample_sql_file=biosample_sql_file,
                                                                 sqlite_to_biosample_file=sqlite_to_biosample_file,
