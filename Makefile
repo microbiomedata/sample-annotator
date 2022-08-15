@@ -68,6 +68,7 @@ clean_loosies:
 	rm -rf assets/out/*yaml
 	rm -rf bs_db.json instantiation_log.yml submission_frame.tsv sample_data.tsv
 
+# todo delete
 #assets/out/biosample_collection.json: $(NMDC_SCHEMA_PATH) clean_loosies
 #	$(RUN) python sample_annotator/clients/nmdc/get_metadata_submissions.py \
 #		--session_cookie $(SESSION_COOKIE) \
@@ -102,6 +103,8 @@ assets/out/submissions_as_studies.json: assets/in/study_database_bottomup.yaml
 
 
 # usages of sample_annotator/clients/nmdc/api_or_tsv_metadata_submissions_to_json.py
+
+# NEW BIOSAMPLE INSTANTIATION
 
 .PHONY: api_or_tsv_clean
 
@@ -268,3 +271,8 @@ assets/out/sample_metadata_from_pure_sqlite.yaml: api_or_tsv_clean
 		--output_json_file $(basename $@)_v3_with_depth2.json
 	# todo validate against v3 !
 
+assets/out/sample_metadata_from_pure_gold_api.yaml: api_or_tsv_clean
+	$(RUN) api_or_tsv_metadata_submissions_to_json pure-from-gold-study \
+			--gold-study-id "gold:Gs0110119" \
+			--gold-mapping-file assets/in/gold_nmdc_mapping.tsv \
+			--sample-metadata-yaml-file $@

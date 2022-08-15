@@ -814,7 +814,7 @@ class SubmissionsSandbox:
 
                             slot = self.slot_def_from_underscored_or_whitespaced(ltk)
 
-                            slot_name = slot["name"]
+                            slot_name = re.sub(" ", "_", slot["name"])
 
                             logger.debug(f"{slot_name} has slot definition:")
                             logger.debug(yaml_dumper.dumps(slot))
@@ -1001,8 +1001,162 @@ class SubmissionsSandbox:
 
         return rows_list
 
-    def get_biosamples_from_gold_by_seq_proj(self, seq_proj_ids):
-        pass
+    def get_biosamples_from_gold_by_seq_proj(self, gold_study_id, gold_mapping_file):
+        logger.debug(f"will query {gold_study_id}")
+
+        gold_mapping_dict = {}
+        with open(gold_mapping_file, newline='') as file:
+            reader = csv.DictReader(file, delimiter="\t")
+            for row in reader:
+                gold_mapping_dict[row["GOLD field"]] = row
+
+        # todo analysis of gold mapped fields vs gold retrieved fields
+
+        logger.debug(f"gold_mapping_dict: {gold_mapping_dict}")
+
+        user = os.getenv('nmdc_gold_api_user')
+        logger.debug(user)
+        password = os.getenv('nmdc_gold_api_password')
+        logger.debug(password)
+        endpoint_url = 'https://gold.jgi.doe.gov/rest/nmdc/projects'
+
+        params = {"studyGoldId": re.sub(pattern="^gold:", repl="", string=gold_study_id)}
+
+        logger.debug(f"params: {pprint.pformat(params)}")
+
+        results = requests.get(
+            endpoint_url, params=params, auth=HTTPBasicAuth(user, password)
+        )
+
+        projects_list = results.json()
+
+        logger.debug(f"{pprint.pformat(projects_list[0])}")
+
+        identifiable_projects = {}
+        for current_project in projects_list:
+            if "biosampleGoldId" in current_project and current_project["biosampleGoldId"]:
+                if "ncbiBioSampleAccession" in current_project and current_project["ncbiBioSampleAccession"]:
+                    logger.debug(
+                        f"biosampleGoldId: {current_project['projectGoldId']} from project {current_project['projectGoldId']} from study {current_project['studyGoldId']}; ncbiBioSampleAccession: {current_project['ncbiBioSampleAccession']}")
+                    identifiable_projects[current_project["projectGoldId"]] = current_project
+                else:
+                    logger.warning(
+                        f"{current_project['projectGoldId']} from study {current_project['studyGoldId']} has no ncbiBioSampleAccession")
+            else:
+                logger.warning(
+                    f"{current_project['projectGoldId']} from study {current_project['studyGoldId']} has no biosampleGoldId")
+
+        logger.warning(f"retained {len(identifiable_projects)} of {len(projects_list)} projects")
+
+        outer_biosample_list = []
+        project_ids = [v['projectGoldId'] for k, v in identifiable_projects.items()]
+        project_ids.sort()
+        last_project = project_ids[-1]
+        # todo remove constraint on last project
+        for current_identifiable in project_ids[0:4]:
+
+            biosample_dict = {}
+
+            civ = identifiable_projects[current_identifiable]
+            logger.info(f"working on {current_identifiable} of {last_project}")
+
+            logger.debug(f"{pprint.pformat(civ)}")
+
+            endpoint_url = 'https://gold.jgi.doe.gov/rest/nmdc/biosamples'
+
+            params = {"biosampleGoldId": civ['biosampleGoldId']}
+
+            logger.debug(f"params: {pprint.pformat(params)}")
+
+            logger.info(f"{civ['biosampleGoldId']}")
+
+            results = requests.get(
+                endpoint_url, params=params, auth=HTTPBasicAuth(user, password)
+            )
+
+            biosample_list = results.json()
+
+            if len(biosample_list) != 1:
+                logger.warning(f"results mention {len(biosample_list)} biosamples")
+
+            biosample_obj = biosample_list[0]
+
+            for bk, bv in biosample_obj.items():
+                if bv:
+                    logger.debug(f"{bk}: {bv}")
+                    if bk in gold_mapping_dict:
+                        if "NMDC field" in gold_mapping_dict[bk]:
+                            if gold_mapping_dict[bk]["NMDC field"]:
+                                mapped_col_name = gold_mapping_dict[bk]['NMDC field']
+                                logger.debug(f"{bk}: {bv} -> {mapped_col_name}")
+                                current_is_list = bool(gold_mapping_dict[bk]['NMDC field is a list'])
+                                current_is_path = bool(gold_mapping_dict[bk]['NMDC field is a path'])
+                                if not current_is_list and not current_is_path:
+                                    biosample_dict[mapped_col_name] = bv
+                                elif current_is_list and not current_is_path:
+                                    biosample_dict[mapped_col_name] = [bv]
+                                # elif current_is_path and not current_is_list:
+                                #     logger.warning(f"will process {bk} with {bv} as a non-list path")
+                                # else:
+                                #     logger.warning(
+                                #         f"don't know how to process {bk} yet because it is both a path and a list")
+                            else:
+                                logger.warning(f"{bk} is in gold_mapping_dict but is not mapped")
+                    else:
+                        logger.warning(f"{bk} not in gold_mapping_dict")
+                else:
+                    logger.debug(f"skipping null {bk}")
+
+            # todo switch to declarative mapping document
+            if "envoBroadScale" in biosample_obj:
+                if "id" in biosample_obj["envoBroadScale"] and "label" in biosample_obj["envoBroadScale"]:
+                    biosample_dict[
+                        'env_broad_scale'] = f'{biosample_obj["envoBroadScale"]["label"]} [{underscored_to_coloned(biosample_obj["envoBroadScale"]["id"])}]'
+            if "envoLocalScale" in biosample_obj:
+                if "id" in biosample_obj["envoLocalScale"] and "label" in biosample_obj["envoLocalScale"]:
+                    biosample_dict[
+                        'env_local_scale'] = f'{biosample_obj["envoLocalScale"]["label"]} [{underscored_to_coloned(biosample_obj["envoLocalScale"]["id"])}]'
+            if "envoMedium" in biosample_obj:
+                if "id" in biosample_obj["envoMedium"] and "label" in biosample_obj["envoMedium"]:
+                    biosample_dict[
+                        'env_medium'] = f'{biosample_obj["envoMedium"]["label"]} [{underscored_to_coloned(biosample_obj["envoMedium"]["id"])}]'
+
+            if "latitude" in biosample_obj and "longitude":
+                biosample_dict['lat_lon'] = f'{biosample_obj["latitude"]} {biosample_obj["longitude"]}'
+            else:
+                logger.warning(f"{civ['biosampleGoldId']} has no lat/lon")
+
+            if "depthInMeters" in biosample_obj:
+                if biosample_obj["depthInMeters"]:
+                    if "depthInMeters2" in biosample_obj:
+                        if biosample_obj["depthInMeters2"]:
+                            biosample_dict[
+                                "depth"] = f'{biosample_obj["depthInMeters"]} to {biosample_obj["depthInMeters2"]} meters'
+                        else:
+                            logger.info(
+                                f"depthInMeters is present, but no depthInMeters2 for {civ['biosampleGoldId']}")
+                            biosample_dict["depth"] = f'{biosample_obj["depthInMeters"]} meters'
+                else:
+                    logger.warning(f"no depthInMeters for {civ['biosampleGoldId']}")
+
+            biosample_dict['id'] = f"gold:{civ['biosampleGoldId']}"
+
+            logger.warning(f"will use gold:{civ['studyGoldId']} as the study")
+
+            biosample_dict["sample_link"] = f"gold:{civ['studyGoldId']}"
+
+            # biosample_dict["part_of"] = f"gold:{civ['studyGoldId']}"
+
+            logger.info(f"biosample_dict: {pprint.pformat(biosample_dict)}")
+            outer_biosample_list.append(biosample_dict)
+
+        logger.debug(f"outer_biosample_list: {pprint.pformat(outer_biosample_list)}")
+
+        return outer_biosample_list
+
+        # # todo useful form a study perspective, but not for NMDC Biosamples
+        # #   unmapped anyway
+        # biosample_obj['contacts'] = None
 
     def slot_def_from_underscored_or_whitespaced(self, slot_moniker):
         underscored = slot_moniker.replace(" ", "_")
@@ -1554,10 +1708,60 @@ def pure_from_sqlite(
     sandbox.sample_metadata_to_yaml(sample_metadata_yaml_file=sample_metadata_yaml_file)
 
 
+@click.command()
+@click_log.simple_verbosity_option(logger)
+@click.option(
+    "--env-file",
+    default="local/.env",
+    type=click.Path(exists=True),
+)
+@click.option(
+    "--gold-mapping-file",
+    required=True,
+    type=click.Path(exists=True),
+    help="TSV mapping form GOLD biosample fields to NMDC Biosample slots"
+)
+@click.option(
+    "--gold-study-id",
+    required=True,
+    help="Prefixed GOLD study id, like..."
+)
+@click.option(
+    "--sample-metadata-yaml-file",
+    type=click.Path(),
+    default="sample_metadata.yaml",
+    # todo make a separate dumper methods for database of biosamples
+    # help="This is a relatively flat and study-indexed file, not directly suitable for the NMDC schema.",
+)
+def pure_from_gold_study(
+        env_file,
+        gold_mapping_file,
+        gold_study_id,
+        sample_metadata_yaml_file,
+):
+    """"""
+    load_dotenv(dotenv_path=env_file)
+    sandbox = SubmissionsSandbox()
+    sandbox.view_setup(schemas_to_load=["nmdc"])
+
+    rows_list = sandbox.get_biosamples_from_gold_by_seq_proj(gold_study_id=gold_study_id,
+                                                             gold_mapping_file=gold_mapping_file)
+
+    sandbox.sample_metadata_by_slotname = {gold_study_id: rows_list}
+
+    logger.info(f"""pre deep parse dict
+        {pprint.pformat(sandbox.sample_metadata_by_slotname)}""")
+
+    sandbox.deep_parse_sample_metadata()
+
+    sandbox.sample_metadata_to_yaml(sample_metadata_yaml_file=sample_metadata_yaml_file)
+
+
 cli.add_command(from_csv)
 cli.add_command(from_sqlite)
 cli.add_command(from_submissions)
 cli.add_command(pure_from_sqlite)
+cli.add_command(pure_from_gold_study)
 
 if __name__ == "__main__":
     cli()
