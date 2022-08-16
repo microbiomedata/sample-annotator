@@ -1,20 +1,20 @@
 sqlite	action	biosample-slot	format	notes
 accession	ignore/drop			unnecessary
-bp_acc	replace	project_ID	scalar	
 bp_id	ignore/drop			unnecessary
 env_package	ignore/drop			corresponding Bioample field?
-id	replace	id	scalar	or INSDC_biosample_identifiers LIST
 isolation_source	ignore/drop			corresponding Bioample field?
 model	ignore/drop			corresponding Bioample field?
 package	ignore/drop			 is this even a Biosample SQLite column?
 package_name	ignore/drop			corresponding Bioample field?
-paragraph	replace	description	scalar	
 primary_id	ignore/drop			unnecessary. usually identical to accession.
 raw_id	ignore/drop			unnecessary. numeric.
-samp_name	replace	identifier	scalar	or source_mat_id
-sra_id	replace	INSDC_secondary_sample_identifiers	scalar	not really scalar!
 status	ignore/drop			corresponding Bioample field?
 status_date	ignore/drop			corresponding Bioample field?
 taxonomy_id	ignore/drop			corresponding Bioample field?
-taxonomy_name	replace	ncbi_taxonomy_name	scalar	
 title	ignore/drop	name	scalar	
+bp_acc	replace	project_ID	scalar	
+id	replace	id	scalar	or INSDC_biosample_identifiers LIST
+paragraph	replace	description	scalar	
+samp_name	replace	identifier	scalar	or source_mat_id
+sra_id	replace	INSDC_secondary_sample_identifiers	list	
+taxonomy_name	replace	ncbi_taxonomy_name	scalar	

@@ -1,64 +1,70 @@
-GOLD field	NMDC field	Associated GOLD terms	NMDC field is a path	NMDC field is a list
-addDate	add_date			
-altitudeInMeters	alt			
-altitudeInMeters2				
-biosampleGoldId	GOLD_sample_identifiers			TRUE
-biosampleName	name			
-contacts				
-dateCollected	collection_date			
-depthInMeters	depth			
-depthInMeters2	depth2			
-description	description			
-ecosystem	ecosystem			
-ecosystemCategory	ecosystem_category			
-ecosystemPathId				
-ecosystemSubtype	ecosystem_subtype			
-ecosystemType	ecosystem_type			
-elevationInMeters	elev			
-elevationInMeters2				
-envoBroadScale	env_broad_scale		TRUE	
-envoLocalScale	env_local_scale		TRUE	
-envoMedium	env_medium		TRUE	
-geographicLocation	geo_loc_name			
-geoLocation	geo_loc_name			
-habitat	habitat			
-hostDiseases				
-hostGender				
-hostName	host_name			
-hostNcbiTaxid				
-isoCountry	location			
-latitude	lat_lon.latitude		TRUE	
-longhurst				
-longitude	lat_lon.longitude		TRUE	
-mixsPackage	env_package			
-modDate	mod_date			
-ncbiBioSampleAccession	INSDC_biosample_identifiers			TRUE
-ncbiTaxId				
-ncbiTaxName	ncbi_taxonomy_name			
-nitrateConcentration	nitrate			
-oxygenConcentration				
-ph	ph			
-pressure	pressure			
-salinity	salinity	salinityConcentration		
-salinityConcentration				
-sampleBodySite	sample_collection_site			
-sampleBodySubsite				
-sampleCollectionSite				
-sampleCollectionTemperature	temp			
-specificEcosystem	specific_ecosystem			
-study_id	part_of			TRUE
-subsurfaceDepthInMeters				
-subsurfaceDepthInMeters2				
-visitNum				
-	alternative_identifiers			TRUE
-	community			
-	depth.has_numeric_value		TRUE	
-	depth.has_unit		TRUE	
-	depth2.has_numeric_value		TRUE	
-	depth2.has_unit		TRUE	
-	identifier			
-	lat_lon			
-	nitrate.has_unit		TRUE	
-	temp.has_numeric_value		TRUE	
-	temp.has_unit		TRUE	
-	type			
+GOLD field	NMDC field	Associated GOLD terms	NMDC field is a path	NMDC field is a list	notes
+addDate	add_date				
+altitudeInMeters	alt				
+altitudeInMeters2					
+biosampleGoldId	GOLD_sample_identifiers			TRUE	
+biosampleName	name				
+contacts					
+dateCollected	collection_date				
+depthInMeters	depth				
+depthInMeters2	depth2				
+description	description				
+ecosystem	ecosystem				
+ecosystemCategory	ecosystem_category				
+ecosystemPathId					
+ecosystemSubtype	ecosystem_subtype				
+ecosystemType	ecosystem_type				
+elevationInMeters	elev				
+elevationInMeters2					
+envoBroadScale	env_broad_scale		TRUE		
+envoLocalScale	env_local_scale		TRUE		
+envoMedium	env_medium		TRUE		
+geographicLocation	geo_loc_name				
+geoLocation	location				was geo_loc_name
+habitat	habitat				
+hostDiseases					
+hostGender					
+hostName	host_name				
+hostNcbiTaxid					
+isoCountry					was location
+latitude	lat_lon.latitude		TRUE		
+longhurst					
+longitude	lat_lon.longitude		TRUE		
+mixsPackage	env_package				
+modDate	mod_date				
+ncbiBioSampleAccession	INSDC_biosample_identifiers			TRUE	
+ncbiTaxId					
+ncbiTaxName	ncbi_taxonomy_name				
+nitrateConcentration	nitrate				
+oxygenConcentration					
+ph	ph				
+pressure	pressure				
+salinity	salinity	salinityConcentration			
+salinityConcentration					
+sampleBodySite	sample_collection_site				
+sampleBodySubsite					
+sampleCollectionSite	sample_collection_site				
+sampleCollectionTemperature	temp				
+specificEcosystem	specific_ecosystem				
+study_id	part_of			TRUE	
+subsurfaceDepthInMeters					
+subsurfaceDepthInMeters2					
+visitNum					
+	alternative_identifiers			TRUE	
+community	community				
+	depth.has_numeric_value		TRUE		
+	depth.has_unit		TRUE		
+	depth2.has_numeric_value		TRUE		
+	depth2.has_unit		TRUE		
+	identifier				
+	lat_lon				
+	nitrate.has_unit		TRUE		
+	temp.has_numeric_value		TRUE		
+	temp.has_unit		TRUE		
+	type				
+envoBroadScale.id	env_broad_scale				
+envoBroadScale.label	env_broad_scale				
+envoLocalScale.id	env_local_scale				
+envoLocalScale.label	env_local_scale				
+envoMedium.id	env_medium				
+envoMedium.label	env_medium				
