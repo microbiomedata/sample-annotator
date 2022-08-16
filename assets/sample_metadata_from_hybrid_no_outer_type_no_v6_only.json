@@ -1,0 +1,78 @@
+{
+  "biosample_set": [
+    {
+      "id": "gold:Gb0110680",
+      "name": "Grasslands soil microbial communities from the Angelo Coastal Reserve, California, USA - 14_0903_02_20cm",
+      "description": "Grasslands soil microbial communities from the Angelo Coastal Reserve, plot 2. There is a duplicate submission for this entry in NCBI. The NCBI identifiers for a duplicate are PRJNA449266 and SAMN08902828",
+      "env_broad_scale": {
+        "has_raw_value": "grassland biome [ENVO:01000177]",
+        "term": {
+          "id": "ENVO:01000177",
+          "name": "grassland biome"
+        }
+      },
+      "env_local_scale": {
+        "has_raw_value": "biosphere reserve [ENVO:00000376]",
+        "term": {
+          "id": "ENVO:00000376",
+          "name": "biosphere reserve"
+        }
+      },
+      "env_medium": {
+        "has_raw_value": "grassland soil [ENVO:00005750]",
+        "term": {
+          "id": "ENVO:00005750",
+          "name": "grassland soil"
+        }
+      },
+      "part_of": [
+        "gold:Gs0110119"
+      ],
+      "collection_date": {
+        "has_raw_value": "2014-09-03"
+      },
+      "depth": {
+        "has_raw_value": "0.1 to 0.2 meters",
+        "has_unit": "metre",
+        "has_minimum_numeric_value": 0.1,
+        "has_maximum_numeric_value": 0.2
+      },
+      "elev": {
+        "has_raw_value": "432 meters",
+        "has_unit": "metre",
+        "has_numeric_value": 432
+      },
+      "geo_loc_name": {
+        "has_raw_value": "USA: California: Angelo Coastal Reserve"
+      },
+      "lat_lon": {
+        "has_raw_value": "39.7392 -123.6308",
+        "latitude": 39.7392,
+        "longitude": -123.6308
+      },
+      "ecosystem": "Environmental",
+      "ecosystem_category": "Terrestrial",
+      "ecosystem_type": "Soil",
+      "ecosystem_subtype": "Grasslands",
+      "specific_ecosystem": "Unclassified",
+      "add_date": "2015-02-26",
+      "depth2": {
+        "has_raw_value": "0.2 meters",
+        "has_unit": "metre",
+        "has_numeric_value": 0.2
+      },
+      "habitat": "Grasslands soil",
+      "identifier": "14_0903_02_20cm",
+      "location": "USA: California: Angelo Coastal Reserve",
+      "mod_date": "2022-08-02",
+      "ncbi_taxonomy_name": "soil metagenome",
+      "sample_collection_site": "grassland soil",
+      "GOLD_sample_identifiers": [
+        "gold:Gb0110680"
+      ],
+      "INSDC_biosample_identifiers": [
+        "BIOSAMPLE:SAMN08902828"
+      ]
+    }
+  ]
+}
