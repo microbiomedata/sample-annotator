@@ -1,0 +1,2994 @@
+000150d8-15ea-473f-ac11-cbef1f66a532:
+  author:
+    id: 36234d1b-043b-4828-a8bc-506b6bc1fdcb
+    is_admin: false
+    name: Julia Kelliher
+    orcid: 0000-0003-4100-9119
+  author_orcid: 0000-0003-4100-9119
+  created: '2022-07-18T20:50:13.824215'
+  id: 000150d8-15ea-473f-ac11-cbef1f66a532
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes:
+      - nom-emsl
+      studyNumber: '11111'
+    packageName: soil
+    studyForm:
+      contributors:
+      - name: Spencer Roth
+        orcid: ''
+        roles:
+        - Formal Analysis
+        - Data curation
+      description: "Peat soil cores were collected at 3 plots (6, 13, and 17) from\
+        \ the Spruce and Peatland Responses Under Changing Environments (SPRUCE) experiment\
+        \ at the USDA Forest Service Marcell Experimental Forest (MEF), 40km north\
+        \ of Grand Rapids, Minnesota. \n\nTreatment plots at the (SPRUCE) site include\
+        \ 0 (ambient), 4.5, and 9 degrees celsius above ambient. Also present at the\
+        \ site are elevated CO2 treatments, however all samples discussed here are\
+        \ from the ambient CO2 plots."
+      linkOutWebpage:
+      - https://mnspruce.ornl.gov/
+      notes: ''
+      piEmail: schadtcw@ornl.gov
+      piName: Christopher Schadt
+      piOrcid: 0000-0001-8759-2448
+      studyDate: null
+      studyName: 'Julia Kelliher: EMSL Summer School: SPRUCE Key'
+    template: soil_emsl
+  sample_data_total_rows: 15
+  status: in-progress
+085bd65e-f58e-4573-b412-561784cf06fd:
+  author:
+    id: 701de6af-bb07-4238-b5fc-4c272bb1a989
+    is_admin: false
+    name: ''
+    orcid: 0000-0002-2127-2692
+  author_orcid: 0000-0002-2127-2692
+  created: '2022-06-09T16:32:55.065264'
+  id: 085bd65e-f58e-4573-b412-561784cf06fd
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: '000000000000'
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes:
+      - mg-jgi
+      - mp-emsl
+      - mg
+      studyNumber: '000000000000'
+    packageName: soil
+    studyForm:
+      contributors: []
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: p.stein@berkeley.edu
+      piName: ''
+      piOrcid: ''
+      studyDate: null
+      studyName: R3 test Amy
+    template: soil
+  sample_data_total_rows: 17
+  status: in-progress
+09e9ba17-9cfc-4162-b8d3-988092385c81:
+  author:
+    id: 0fdde42e-35fc-4aaf-bdd5-40d067208df5
+    is_admin: false
+    name: Taylor Portman
+    orcid: 0000-0002-3740-2770
+  author_orcid: 0000-0002-3740-2770
+  created: '2022-07-18T20:50:30.497265'
+  id: 09e9ba17-9cfc-4162-b8d3-988092385c81
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes:
+      - nom-emsl
+      studyNumber: '11111'
+    packageName: soil
+    studyForm:
+      contributors: []
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: schadtcw@ornl.gov
+      piName: Christopher Schadt
+      piOrcid: ''
+      studyDate: null
+      studyName: 'Portman- ESS: Spruce Submission Activity'
+    template: soil_emsl
+  sample_data_total_rows: 11
+  status: in-progress
+0bff12db-8710-4b32-8fdc-f87be4000258:
+  author:
+    id: 701de6af-bb07-4238-b5fc-4c272bb1a989
+    is_admin: false
+    name: ''
+    orcid: 0000-0002-2127-2692
+  author_orcid: 0000-0002-2127-2692
+  created: '2022-06-07T19:46:12.914732'
+  id: 0bff12db-8710-4b32-8fdc-f87be4000258
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: '000000000'
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes:
+      - mg-jgi
+      - mp-emsl
+      - mg
+      studyNumber: '00000000000'
+    packageName: soil
+    studyForm:
+      contributors: []
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: p.stein@berkeley.edu
+      piName: ''
+      piOrcid: ''
+      studyDate: null
+      studyName: Test R3
+    template: soil
+  sample_data_total_rows: 17
+  status: in-progress
+1116bc33-416b-44ee-a7b4-e6ece79165d7:
+  author:
+    id: c8514b88-4e69-4639-b33d-917f6b0b724d
+    is_admin: false
+    name: ''
+    orcid: 0000-0002-9231-0692
+  author_orcid: 0000-0002-9231-0692
+  created: '2022-07-22T00:26:07.043505'
+  id: 1116bc33-416b-44ee-a7b4-e6ece79165d7
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes:
+      - mg
+      studyNumber: ''
+    packageName: soil
+    studyForm:
+      contributors: []
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: pvangay@lbl.gov
+      piName: ''
+      piOrcid: ''
+      studyDate: null
+      studyName: test pv 2
+    template: soil
+  sample_data_total_rows: 0
+  status: in-progress
+1258a6ee-39ee-4677-9b56-2e75b2fb5ac7:
+  author:
+    id: 4bf6dad8-1345-4d73-b13c-62ab54d6f76c
+    is_admin: false
+    name: Chelsea St. Germain
+    orcid: 0000-0003-0391-381X
+  author_orcid: 0000-0003-0391-381X
+  created: '2022-07-18T20:35:51.150449'
+  id: 1258a6ee-39ee-4677-9b56-2e75b2fb5ac7
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes: []
+      studyNumber: ''
+    packageName: soil
+    studyForm:
+      contributors: []
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: ''
+      piName: ''
+      piOrcid: ''
+      studyDate: null
+      studyName: ''
+    template: soil
+  sample_data_total_rows: 0
+  status: in-progress
+1cb883d3-21d5-4e1a-9a67-25968c3dfd94:
+  author:
+    id: 16e93541-3d1e-4cfd-825b-8b2de5a0b5b3
+    is_admin: true
+    name: Mark Andrew Miller
+    orcid: 0000-0001-9076-6066
+  author_orcid: 0000-0001-9076-6066
+  created: '2022-06-17T22:56:16.402898'
+  id: 1cb883d3-21d5-4e1a-9a67-25968c3dfd94
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: '1234'
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes:
+      - mg-jgi
+      - mp-emsl
+      studyNumber: '1234'
+    packageName: soil
+    studyForm:
+      contributors: []
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: MAM@lbl.gov
+      piName: 'MAM 2022-06-17 principal investigator name '
+      piOrcid: MAM 2022-06-17 principal investigator orcid
+      studyDate: null
+      studyName: MAM 2022-06-17 study name
+    template: soil_emsl_jgi_mg
+  sample_data_total_rows: 0
+  status: in-progress
+22950b94-1317-4681-b4ef-d3cde33ed10d:
+  author:
+    id: b779642d-88b7-455d-87c7-daf75cfb8c1a
+    is_admin: false
+    name: Katherine Naasko
+    orcid: 0000-0002-5493-885X
+  author_orcid: 0000-0002-5493-885X
+  created: '2022-07-18T20:50:03.303037'
+  id: 22950b94-1317-4681-b4ef-d3cde33ed10d
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes:
+      - nom-emsl
+      studyNumber: '11111'
+    packageName: soil
+    studyForm:
+      contributors:
+      - name: Spencer Roth
+        orcid: ''
+        roles:
+        - Data curation
+        - Formal Analysis
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: shadtcw@ornl.gov
+      piName: Christopher Schadt
+      piOrcid: ''
+      studyDate: null
+      studyName: 'Naasko - ESS: Spruce Submission Activity'
+    template: soil_emsl
+  sample_data_total_rows: 11
+  status: in-progress
+23eec707-52b1-4865-b7d5-2fb251a5a4e5:
+  author:
+    id: b9d7b278-71eb-4a7a-975d-68ca6a7a18c3
+    is_admin: false
+    name: Spencer Diamond
+    orcid: 0000-0003-4131-341X
+  author_orcid: 0000-0003-4131-341X
+  created: '2022-05-25T20:41:26.951810'
+  id: 23eec707-52b1-4865-b7d5-2fb251a5a4e5
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: Gs0144557
+      JGIStudyId: Gs0144557
+      NCBIBioProjectId: PRJNA449266
+      NCBIBioProjectName: Meadow Soil samples from Angelo Coast Range Reserve (2014)
+      alternativeNames: []
+      datasetDoi: https://doi.org/10.1038/s41564-019-0449-y
+      omicsProcessingTypes:
+      - mg-jgi
+      studyNumber: ''
+    packageName: soil
+    studyForm:
+      contributors:
+      - name: Spencer Diamond
+        orcid: https://orcid.org/ 0000-0003-4131-341X
+        roles:
+        - Conceptualization
+        - Formal Analysis
+        - Writing original draft
+        - Methodology
+        - Data curation
+      - name: Karthik Anantharaman
+        orcid: https://orcid.org/ 0000-0002-9584-2491
+        roles:
+        - Data curation
+        - Methodology
+        - Writing review and editing
+      - name: Peter F. Andeer
+        orcid: ''
+        roles:
+        - Conceptualization
+        - Data curation
+        - Formal Analysis
+        - Writing original draft
+        - Methodology
+      - name: Zhou Li
+        orcid: ''
+        roles:
+        - Data curation
+        - Formal Analysis
+        - Writing review and editing
+      - name: Alexander Crits-Christoph
+        orcid: ''
+        roles:
+        - Data curation
+        - Formal Analysis
+        - Methodology
+        - Software
+        - Visualization
+        - Writing original draft
+      - name: David Burstein
+        orcid: ''
+        roles:
+        - Conceptualization
+        - Data curation
+        - Writing review and editing
+      - name: Katherine R. Lane
+        orcid: ''
+        roles:
+        - Resources
+        - Data curation
+      - name: Brian C. Thomas
+        orcid: ''
+        roles:
+        - Data curation
+        - Formal Analysis
+        - Conceptualization
+        - Methodology
+        - Software
+      - name: Chongle Pan
+        orcid: https://orcid.org/ 0000-0003-2860-0334
+        roles:
+        - Formal Analysis
+        - Funding acquisition
+        - Principal Investigator
+        - Writing review and editing
+        - Supervision
+        - Project administration
+      - name: Trent R. Northen
+        orcid: https://orcid.org/ 0000-0001-8404-3259
+        roles:
+        - Conceptualization
+        - Funding acquisition
+        - Project administration
+        - Supervision
+        - Principal Investigator
+        - Writing review and editing
+      description: Assembled metagenomes for 60 soil samples across multiple soil
+        plots from a meadow in the Angelo Coastal Range Reserve, CA. This location
+        is part of an on-going climate change experiment where some meadow plots have
+        received additional rainfall via a sprinkler system since 2001. Soil samples
+        were taken and sequenced from three depths (10-20 cm, 20-30 cm, and 30-40
+        cm) and from plots that have both received additional rainfall and control
+        plots that have received ambient rainfall
+      linkOutWebpage:
+      - https://nanogeoscience.berkeley.edu/
+      notes: Genome Resolved Metagenomics
+      piEmail: jbanfield@berkeley.edu
+      piName: Jillian F. Banfield
+      piOrcid: https://orcid.org/0000-0001-8203-8771
+      studyDate: null
+      studyName: Meadow Soil Metagenomes from the Angelo Coast Range Reserve
+    template: soil_jgi_mg
+  sample_data_total_rows: 0
+  status: in-progress
+25dc2107-af6f-4755-9a1c-d97fd647db15:
+  author:
+    id: b5597157-338a-4d12-ada1-d294b0606602
+    is_admin: true
+    name: Montana Smith
+    orcid: 0000-0002-8683-0050
+  author_orcid: 0000-0002-8683-0050
+  created: '2022-06-21T23:32:24.219444'
+  id: 25dc2107-af6f-4755-9a1c-d97fd647db15
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: '00000'
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: XXXX
+      omicsProcessingTypes:
+      - mg-jgi
+      - mb-emsl
+      - mp-emsl
+      - nom-emsl
+      studyNumber: '00000'
+    packageName: soil
+    studyForm:
+      contributors:
+      - name: Sam Purvine
+        orcid: ''
+        roles:
+        - Data curation
+        - Formal Analysis
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: montana.smith@pnnl.gov
+      piName: ''
+      piOrcid: ''
+      studyDate: null
+      studyName: "Portal Demo- EMSL + JGI\t"
+    template: soil_emsl_jgi_mg
+  sample_data_total_rows: 4
+  status: in-progress
+2d26ffd6-c6a3-4de2-a361-0f3dbbadbdb1:
+  author:
+    id: 7fd7d698-cb6f-4dcb-8cfd-b4453f6a8f09
+    is_admin: true
+    name: Jeffrey Baumes
+    orcid: 0000-0002-4719-3490
+  author_orcid: 0000-0002-4719-3490
+  created: '2022-08-05T16:56:54.060029'
+  id: 2d26ffd6-c6a3-4de2-a361-0f3dbbadbdb1
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes: []
+      studyNumber: ''
+    packageName: soil
+    studyForm:
+      contributors: []
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: jeff.baumes@kitware.com
+      piName: ''
+      piOrcid: ''
+      studyDate: null
+      studyName: Test test test test
+    template: soil
+  sample_data_total_rows: 3
+  status: in-progress
+2f8e149a-042d-411e-ae66-8edda3e81f68:
+  author:
+    id: 15732172-c459-4c5b-af1d-99dbc6ca11b0
+    is_admin: false
+    name: ''
+    orcid: 0000-0002-5466-1432
+  author_orcid: 0000-0002-5466-1432
+  created: '2022-05-17T18:12:05.694139'
+  id: 2f8e149a-042d-411e-ae66-8edda3e81f68
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes: []
+      studyNumber: ''
+    packageName: soil
+    studyForm:
+      contributors: []
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: ''
+      piName: ''
+      piOrcid: ''
+      studyDate: null
+      studyName: ''
+    template: soil
+  sample_data_total_rows: 0
+  status: in-progress
+3051e96e-1806-42f1-95b7-3be2bf0ee8c5:
+  author:
+    id: b4ef78c2-5487-418f-a8d0-d9a772b7dbce
+    is_admin: false
+    name: Nathalie Delherbe
+    orcid: 0000-0003-3906-7301
+  author_orcid: 0000-0003-3906-7301
+  created: '2022-07-18T20:50:31.862705'
+  id: 3051e96e-1806-42f1-95b7-3be2bf0ee8c5
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes:
+      - nom
+      studyNumber: ''
+    packageName: soil
+    studyForm:
+      contributors: []
+      description: Peat
+      linkOutWebpage: []
+      notes: ''
+      piEmail: schadtcw@ornl.gov
+      piName: Christopher Schadt
+      piOrcid: '1111'
+      studyDate: null
+      studyName: Vangay - ESS SPRUCE Submission Activity
+    template: soil
+  sample_data_total_rows: 11
+  status: in-progress
+3102bac7-7c69-4ba3-868a-e84dd15bc552:
+  author:
+    id: d049fa17-9eee-4115-acb3-3fad1415b997
+    is_admin: false
+    name: Steven Wilson
+    orcid: 0000-0002-8489-208X
+  author_orcid: 0000-0002-8489-208X
+  created: '2022-06-28T22:23:37.968706'
+  id: 3102bac7-7c69-4ba3-868a-e84dd15bc552
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes: []
+      studyNumber: ''
+    packageName: soil
+    studyForm:
+      contributors: []
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: ''
+      piName: ''
+      piOrcid: ''
+      studyDate: null
+      studyName: ''
+    template: soil
+  sample_data_total_rows: 0
+  status: in-progress
+341561af-0d24-4447-8ed3-a40ec0ac8ed4:
+  author:
+    id: 057ed2b8-738e-4f25-8f14-3b45c31d2370
+    is_admin: false
+    name: ''
+    orcid: 0000-0003-4656-5480
+  author_orcid: 0000-0003-4656-5480
+  created: '2022-05-20T19:08:02.581491'
+  id: 341561af-0d24-4447-8ed3-a40ec0ac8ed4
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes: []
+      studyNumber: ''
+    packageName: soil
+    studyForm:
+      contributors: []
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: ''
+      piName: ''
+      piOrcid: ''
+      studyDate: null
+      studyName: ''
+    template: soil
+  sample_data_total_rows: 0
+  status: in-progress
+3533cfa1-ddde-4d08-a349-2e666b0518b1:
+  author:
+    id: c8514b88-4e69-4639-b33d-917f6b0b724d
+    is_admin: false
+    name: ''
+    orcid: 0000-0002-9231-0692
+  author_orcid: 0000-0002-9231-0692
+  created: '2022-07-18T20:50:30.637250'
+  id: 3533cfa1-ddde-4d08-a349-2e666b0518b1
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes:
+      - nom-emsl
+      studyNumber: '11111'
+    packageName: soil
+    studyForm:
+      contributors:
+      - name: Spencer Roth
+        orcid: ''
+        roles:
+        - Data curation
+        - Formal Analysis
+      description: Peat soil cores were collected at 3 plots (6, 13, and 17) from
+        the Spruce and Peatland Responses Under Changing Environments (SPRUCE) experiment
+        at the USDA Forest Service Marcell Experimental Forest (MEF), 40km north of
+        Grand Rapids, Minnesota. Treatment plots at the (SPRUCE) site include 0 (ambient),
+        4.5, and 9 degrees celsius above ambient. Also present at the site are elevated
+        CO2 treatments, however all samples discussed here are from the ambient CO2
+        plots.
+      linkOutWebpage:
+      - https://mnspruce.ornl.gov/
+      notes: ''
+      piEmail: schadtcw@ornl.gov
+      piName: Christopher Schadt
+      piOrcid: 0000-0001-8759-2448
+      studyDate: null
+      studyName: 'Vangay - ESS: SPRUCE Submission Activity'
+    template: soil_emsl
+  sample_data_total_rows: 15
+  status: in-progress
+38c996b1-6281-4c1d-8ebe-996cecdbf7a6:
+  author:
+    id: 4f4b0fb2-8a89-4baf-86bb-b21402e3ec88
+    is_admin: false
+    name: ''
+    orcid: 0000-0002-6938-4933
+  author_orcid: 0000-0002-6938-4933
+  created: '2022-05-18T19:20:42.478350'
+  id: 38c996b1-6281-4c1d-8ebe-996cecdbf7a6
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes:
+      - mg
+      studyNumber: ''
+    packageName: host-associated
+    studyForm:
+      contributors: []
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: erdavenport@uwalumni.com
+      piName: Test
+      piOrcid: ''
+      studyDate: null
+      studyName: Testytest
+    template: host-associated
+  sample_data_total_rows: 0
+  status: in-progress
+3a8d507d-8466-45fd-8871-8fda96a48a02:
+  author:
+    id: c8514b88-4e69-4639-b33d-917f6b0b724d
+    is_admin: false
+    name: ''
+    orcid: 0000-0002-9231-0692
+  author_orcid: 0000-0002-9231-0692
+  created: '2022-07-22T00:18:57.877917'
+  id: 3a8d507d-8466-45fd-8871-8fda96a48a02
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes:
+      - mg
+      studyNumber: ''
+    packageName: soil
+    studyForm:
+      contributors: []
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: pvangay@lbl.gov
+      piName: ''
+      piOrcid: ''
+      studyDate: null
+      studyName: plant test study pv
+    template: soil
+  sample_data_total_rows: 0
+  status: in-progress
+3ed2dad5-e12b-413f-b172-8374f6515a7f:
+  author:
+    id: 238f5183-5589-4a31-9c70-e70eaab31ed4
+    is_admin: false
+    name: K. Taylor Cyle
+    orcid: 0000-0003-0647-5341
+  author_orcid: 0000-0003-0647-5341
+  created: '2022-07-18T20:50:14.849253'
+  id: 3ed2dad5-e12b-413f-b172-8374f6515a7f
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes:
+      - nom-emsl
+      studyNumber: '11111'
+    packageName: soil
+    studyForm:
+      contributors:
+      - name: Spencer Roth
+        orcid: ''
+        roles:
+        - Formal Analysis
+        - Data curation
+      description: 'Peat soil cores were collected at 3 plots (6, 13, and 17) from
+        the Spruce and Peatland Responses Under Changing Environments (SPRUCE) experiment
+        at the USDA Forest Service Marcell Experimental Forest (MEF), 40km north of
+        Grand Rapids, Minnesota.
+
+
+        Treatment plots at the (SPRUCE) site include 0 (ambient), 4.5, and 9 degrees
+        celsius above ambient. Also present at the site are elevated CO2 treatments,
+        however all samples discussed here are from the ambient CO2 plots.'
+      linkOutWebpage:
+      - https://mnspruce.ornl.gov/
+      notes: ''
+      piEmail: schadtcw@ornl.gov
+      piName: Christopher Schadt
+      piOrcid: 0000-0001-8759-2448
+      studyDate: null
+      studyName: 'Taylor Cyle: EMSL Summer School: SPRUCE Key'
+    template: soil_emsl
+  sample_data_total_rows: 11
+  status: in-progress
+3ef1bf58-337e-4346-b52f-005fb610fb26:
+  author:
+    id: 9ba2ac92-58d9-4198-aebd-cb6dc2b43920
+    is_admin: false
+    name: Jianqiu Zheng
+    orcid: 0000-0002-1609-9004
+  author_orcid: 0000-0002-1609-9004
+  created: '2022-08-02T19:05:29.892258'
+  id: 3ef1bf58-337e-4346-b52f-005fb610fb26
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes: []
+      studyNumber: ''
+    packageName: soil
+    studyForm:
+      contributors: []
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: ''
+      piName: ''
+      piOrcid: ''
+      studyDate: null
+      studyName: ''
+    template: soil
+  sample_data_total_rows: 0
+  status: in-progress
+402e24af-2223-4b2f-a372-cccc980c5ed2:
+  author:
+    id: b5597157-338a-4d12-ada1-d294b0606602
+    is_admin: true
+    name: Montana Smith
+    orcid: 0000-0002-8683-0050
+  author_orcid: 0000-0002-8683-0050
+  created: '2022-07-18T20:52:17.263188'
+  id: 402e24af-2223-4b2f-a372-cccc980c5ed2
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes: []
+      studyNumber: ''
+    packageName: soil
+    studyForm:
+      contributors: []
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: montana.smith@pnnl.gov
+      piName: ''
+      piOrcid: ''
+      studyDate: null
+      studyName: 'DELETE '
+    template: soil
+  sample_data_total_rows: 0
+  status: in-progress
+4082fa29-9312-4c1c-af5a-072aec49ab0e:
+  author:
+    id: c8514b88-4e69-4639-b33d-917f6b0b724d
+    is_admin: false
+    name: ''
+    orcid: 0000-0002-9231-0692
+  author_orcid: 0000-0002-9231-0692
+  created: '2022-04-28T18:50:40.326381'
+  id: 4082fa29-9312-4c1c-af5a-072aec49ab0e
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes:
+      - mg
+      studyNumber: ''
+    packageName: built environment
+    studyForm:
+      contributors: []
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: pvangay@lbl.gov
+      piName: ''
+      piOrcid: ''
+      studyDate: null
+      studyName: test study pv
+    template: built_env
+  sample_data_total_rows: 3
+  status: in-progress
+47fc50ae-3f27-4bfb-8aa9-58601bd7db02:
+  author:
+    id: df082ec8-a462-4fe8-9d78-51ee8a7ec487
+    is_admin: false
+    name: ''
+    orcid: 0000-0001-7599-9152
+  author_orcid: 0000-0001-7599-9152
+  created: '2022-04-29T19:54:35.096677'
+  id: 47fc50ae-3f27-4bfb-8aa9-58601bd7db02
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes: []
+      studyNumber: ''
+    packageName: soil
+    studyForm:
+      contributors: []
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: ''
+      piName: ''
+      piOrcid: ''
+      studyDate: null
+      studyName: ''
+    template: soil
+  sample_data_total_rows: 0
+  status: in-progress
+4c0da155-ba21-4e46-970b-e85f03b7a728:
+  author:
+    id: 20231163-eba9-44c6-8284-fd0457efb965
+    is_admin: false
+    name: Megan Kelly-Slatten
+    orcid: 0000-0003-0861-6443
+  author_orcid: 0000-0003-0861-6443
+  created: '2022-07-18T20:48:04.544501'
+  id: 4c0da155-ba21-4e46-970b-e85f03b7a728
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes:
+      - nom-emsl
+      studyNumber: '11111'
+    packageName: soil
+    studyForm:
+      contributors:
+      - name: Spencer Roth
+        orcid: ''
+        roles:
+        - Formal Analysis
+        - Data curation
+      description: 'Peat soil cores were collected at 3 plots (6, 13, and 17) from
+        the Spruce and Peatland Responses Under Changing Environments (SPRUCE) experiment
+        at the USDA Forest Service Marcell Experimental Forest (MEF), 40km north of
+        Grand Rapids, Minnesota.
+
+        Treatment plots at the (SPRUCE) site include 0 (ambient), 4.5, and 9 degrees
+        celsius above ambient. Also present at the site are elevated CO2 treatments,
+        however all samples discussed here are from the ambient CO2 plots.'
+      linkOutWebpage:
+      - https://mnspruce.ornl.gov/
+      notes: ''
+      piEmail: schadtcw@ornl.gov
+      piName: Christopher Schadt
+      piOrcid: 0000-0001-8759-2448
+      studyDate: null
+      studyName: 'Kelly-Slatten- ESS: SPRUCE Submission Activity'
+    template: soil_emsl
+  sample_data_total_rows: 11
+  status: in-progress
+4d07e024-32fa-45b5-8591-94f03bb1ec5a:
+  author:
+    id: 7e14fbee-e0a9-42e9-a383-b780085788f6
+    is_admin: false
+    name: Christian Peterson
+    orcid: 0000-0002-6659-6578
+  author_orcid: 0000-0002-6659-6578
+  created: '2022-07-18T20:36:08.469416'
+  id: 4d07e024-32fa-45b5-8591-94f03bb1ec5a
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes:
+      - nom-emsl
+      studyNumber: '11111'
+    packageName: soil
+    studyForm:
+      contributors:
+      - name: Spencer Roth
+        orcid: ''
+        roles:
+        - Data curation
+        - Formal Analysis
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: schadtcw@ornl.gov
+      piName: Christopher Schadt
+      piOrcid: ''
+      studyDate: null
+      studyName: 'Peterson - ESS: SPRUCE Submission Activity'
+    template: soil_emsl
+  sample_data_total_rows: 11
+  status: in-progress
+53da7915-3809-48bd-92b9-42a793b92aa7:
+  author:
+    id: b8f34921-c02c-41a0-9461-c39c28c1ceb7
+    is_admin: true
+    name: Matt Covalt
+    orcid: 0000-0003-4942-7569
+  author_orcid: 0000-0003-4942-7569
+  created: '2022-07-16T23:10:10.963034'
+  id: 53da7915-3809-48bd-92b9-42a793b92aa7
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: '508079'
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes:
+      - mg-jgi
+      - mb-emsl
+      - nom-emsl
+      studyNumber: '60045'
+    packageName: soil
+    studyForm:
+      contributors:
+      - name: Holly M. Andrews
+        orcid: 0000-0002-5173-0826
+        roles:
+        - Data curation
+        - Formal Analysis
+        - Visualization
+        - Writing original draft
+        - Writing review and editing
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: laurameredith@arizona.edu
+      piName: Laura K. Meredith
+      piOrcid: ''
+      studyDate: null
+      studyName: MAC 2021
+    template: soil_emsl_jgi_mg
+  sample_data_total_rows: 73
+  status: in-progress
+53da7915-3809-48bd-92b9-42a793b92aaa:
+  author:
+    id: 754b912c-4fc0-43d7-89ba-f0165c5244c4
+    is_admin: false
+    name: Holly Andrews
+    orcid: 0000-0002-5173-0826
+  author_orcid: 0000-0002-5173-0826
+  created: '2022-07-16T23:10:10.963034'
+  id: 53da7915-3809-48bd-92b9-42a793b92aaa
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: '508079'
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes:
+      - mg-jgi
+      - mb-emsl
+      - nom-emsl
+      studyNumber: '60045'
+    packageName: soil
+    studyForm:
+      contributors:
+      - name: Holly M. Andrews
+        orcid: 0000-0002-5173-0826
+        roles:
+        - Data curation
+        - Formal Analysis
+        - Visualization
+        - Writing original draft
+        - Writing review and editing
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: laurameredith@arizona.edu
+      piName: Laura K. Meredith
+      piOrcid: ''
+      studyDate: null
+      studyName: MAC 2021
+    template: soil_emsl_jgi_mg
+  sample_data_total_rows: 0
+  status: in-progress
+596c30f7-7af0-47e9-a42b-869eeff21562:
+  author:
+    id: 06cb014a-8e50-4a62-ba8a-992fd038c0b9
+    is_admin: false
+    name: Jeffrey Dewey
+    orcid: 0000-0001-7104-2652
+  author_orcid: 0000-0001-7104-2652
+  created: '2022-07-18T20:52:19.664535'
+  id: 596c30f7-7af0-47e9-a42b-869eeff21562
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes:
+      - nom-emsl
+      studyNumber: '11111'
+    packageName: soil
+    studyForm:
+      contributors: []
+      description: 'On August 23rd, 2016, peat soil cores were collected at 3 plots
+        (6, 13, and 17) from the Spruce and Peatland Responses Under Changing Environments
+        (SPRUCE) experiment at the USDA Forest Service Marcell Experimental Forest
+        (MEF), this is a peat bog north of Grand Rapids, Minnesota.
+
+
+        Treatment plots at the SPRUCE site include 0 (ambient, plot 6), 4.5 (plot
+        13), and 9 degrees celsius (plot 17) above ambient.'
+      linkOutWebpage:
+      - https://mnspruce.ornl.gov/
+      notes: ''
+      piEmail: Schadtcw@ornl.gov
+      piName: Christopher Schadt
+      piOrcid: 0000-0001-8759-2448
+      studyDate: null
+      studyName: ESS-Dewey_SPRUCE
+    template: soil_emsl
+  sample_data_total_rows: 3
+  status: in-progress
+59fc6d2f-72a1-446c-b422-70e594c520be:
+  author:
+    id: 36234d1b-043b-4828-a8bc-506b6bc1fdcb
+    is_admin: false
+    name: Julia Kelliher
+    orcid: 0000-0003-4100-9119
+  author_orcid: 0000-0003-4100-9119
+  created: '2022-07-07T20:40:29.174605'
+  id: 59fc6d2f-72a1-446c-b422-70e594c520be
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes:
+      - mg
+      studyNumber: ''
+    packageName: soil
+    studyForm:
+      contributors: []
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: jkelliher@lanl.gov
+      piName: ''
+      piOrcid: ''
+      studyDate: null
+      studyName: 'Kelliher- ESS: SPRUCE Metadata Breakout'
+    template: soil
+  sample_data_total_rows: 3
+  status: in-progress
+5bdb0ca3-d30a-43dd-8a44-2e9e62b75248:
+  author:
+    id: d5808beb-8adb-48be-8c9d-48f3611bf985
+    is_admin: false
+    name: ''
+    orcid: 0000-0002-5660-540X
+  author_orcid: 0000-0002-5660-540X
+  created: '2022-03-01T20:46:17.118530'
+  id: 5bdb0ca3-d30a-43dd-8a44-2e9e62b75248
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes: []
+      studyNumber: ''
+    packageName: soil
+    studyForm:
+      contributors: []
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: ''
+      piName: ''
+      piOrcid: ''
+      studyDate: null
+      studyName: ''
+    template: soil
+  sample_data_total_rows: 17
+  status: in-progress
+602925ac-8fde-4a8c-ac8a-cf9ac6cd2108:
+  author:
+    id: b5597157-338a-4d12-ada1-d294b0606602
+    is_admin: true
+    name: Montana Smith
+    orcid: 0000-0002-8683-0050
+  author_orcid: 0000-0002-8683-0050
+  created: '2022-06-21T17:07:32.669162'
+  id: 602925ac-8fde-4a8c-ac8a-cf9ac6cd2108
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes: []
+      studyNumber: ''
+    packageName: soil
+    studyForm:
+      contributors: []
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: montana.smith@pnnl.gov
+      piName: ''
+      piOrcid: ''
+      studyDate: null
+      studyName: Montana Completed
+    template: soil
+  sample_data_total_rows: 3
+  status: in-progress
+62158c29-d75c-417e-a71e-6f910e5445eb:
+  author:
+    id: b5597157-338a-4d12-ada1-d294b0606602
+    is_admin: true
+    name: Montana Smith
+    orcid: 0000-0002-8683-0050
+  author_orcid: 0000-0002-8683-0050
+  created: '2022-06-23T18:49:58.858326'
+  id: 62158c29-d75c-417e-a71e-6f910e5445eb
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes:
+      - nom-emsl
+      studyNumber: '11111'
+    packageName: soil
+    studyForm:
+      contributors:
+      - name: Spencer Roth
+        orcid: ''
+        roles:
+        - Formal Analysis
+        - Data curation
+      description: "Peat soil cores were collected at 3 plots (6, 13, and 17) from\
+        \ the Spruce and Peatland Responses Under Changing Environments (SPRUCE) experiment\
+        \ at the USDA Forest Service Marcell Experimental Forest (MEF), 40km north\
+        \ of Grand Rapids, Minnesota. \n\nTreatment plots at the (SPRUCE) site include\
+        \ 0 (ambient), 4.5, and 9 degrees celsius above ambient. Also present at the\
+        \ site are elevated CO2 treatments, however all samples discussed here are\
+        \ from the ambient CO2 plots.\n\n"
+      linkOutWebpage:
+      - 'https://mnspruce.ornl.gov/ '
+      notes: ''
+      piEmail: schadtcw@ornl.gov
+      piName: Christopher Schadt
+      piOrcid: 0000-0001-8759-2448
+      studyDate: null
+      studyName: 'EMSL Summer School: SPRUCE Key'
+    template: soil_emsl
+  sample_data_total_rows: 15
+  status: in-progress
+64edf9df-a876-4ed4-860e-8e9754db645e:
+  author:
+    id: dc5cd305-fa3b-4700-9a40-fda161539b7b
+    is_admin: true
+    name: ''
+    orcid: 0000-0002-8162-1276
+  author_orcid: 0000-0002-8162-1276
+  created: '2022-06-22T18:16:33.374152'
+  id: 64edf9df-a876-4ed4-860e-8e9754db645e
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes: []
+      studyNumber: ''
+    packageName: soil
+    studyForm:
+      contributors: []
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: ''
+      piName: ''
+      piOrcid: ''
+      studyDate: null
+      studyName: ''
+    template: soil
+  sample_data_total_rows: 0
+  status: in-progress
+6b7ce685-51c2-4dab-9ecb-62e450f4d05c:
+  author:
+    id: d049fa17-9eee-4115-acb3-3fad1415b997
+    is_admin: false
+    name: Steven Wilson
+    orcid: 0000-0002-8489-208X
+  author_orcid: 0000-0002-8489-208X
+  created: '2022-06-29T22:46:07.343732'
+  id: 6b7ce685-51c2-4dab-9ecb-62e450f4d05c
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes: []
+      studyNumber: ''
+    packageName: soil
+    studyForm:
+      contributors: []
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: ''
+      piName: ''
+      piOrcid: ''
+      studyDate: null
+      studyName: ''
+    template: soil
+  sample_data_total_rows: 0
+  status: in-progress
+6df22157-c7ac-42c1-b2f0-5ed4d2743a1f:
+  author:
+    id: b4e48889-2cd4-4001-afc8-3b9ad16112ea
+    is_admin: false
+    name: Faiza Ahmed
+    orcid: 0000-0001-6687-9941
+  author_orcid: 0000-0001-6687-9941
+  created: '2022-06-29T17:36:34.387323'
+  id: 6df22157-c7ac-42c1-b2f0-5ed4d2743a1f
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes: []
+      studyNumber: ''
+    packageName: soil
+    studyForm:
+      contributors: []
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: fgwertyhfghf@gmail.com
+      piName: d
+      piOrcid: gf
+      studyDate: null
+      studyName: SAMPLE Study Name
+    template: soil
+  sample_data_total_rows: 0
+  status: in-progress
+6f97a2ca-6a49-41f4-97b6-0ed570cb4857:
+  author:
+    id: 12419971-63dc-432c-ad12-425d1d33dcec
+    is_admin: false
+    name: ''
+    orcid: 0000-0001-6870-7289
+  author_orcid: 0000-0001-6870-7289
+  created: '2022-04-28T21:32:00.200188'
+  id: 6f97a2ca-6a49-41f4-97b6-0ed570cb4857
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes: []
+      studyNumber: ''
+    packageName: soil
+    studyForm:
+      contributors: []
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: ''
+      piName: ''
+      piOrcid: ''
+      studyDate: null
+      studyName: ''
+    template: soil
+  sample_data_total_rows: 0
+  status: in-progress
+79eef611-8036-407d-9b87-c836f19f5879:
+  author:
+    id: c4876f51-d58b-4af1-81b9-5a0ab71070ef
+    is_admin: false
+    name: Marina Nieto-Caballero
+    orcid: 0000-0002-7755-2490
+  author_orcid: 0000-0002-7755-2490
+  created: '2022-07-18T20:52:38.459377'
+  id: 79eef611-8036-407d-9b87-c836f19f5879
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes:
+      - nom-emsl
+      studyNumber: '11111'
+    packageName: soil
+    studyForm:
+      contributors:
+      - name: Spencer Roth
+        orcid: ''
+        roles:
+        - Formal Analysis
+        - Data curation
+      description: 'Peat soil cores collected at 3 plots from Spruce and Peatland '
+      linkOutWebpage:
+      - https://mnspruce.ornl.gov
+      notes: ''
+      piEmail: Schadtcw@ornl.gov
+      piName: Christopher Schadt
+      piOrcid: 0000-0001-8759-2448
+      studyDate: null
+      studyName: ESS-Nieto-Caballero_SPRUCE
+    template: soil_emsl
+  sample_data_total_rows: 5
+  status: in-progress
+7a48c118-0459-4b1c-9faa-d1f817cd00e8:
+  author:
+    id: eccda6e2-27fc-48f0-9249-253c446e5778
+    is_admin: false
+    name: Courtney Price
+    orcid: 0000-0001-8003-2253
+  author_orcid: 0000-0001-8003-2253
+  created: '2022-07-18T20:52:17.873642'
+  id: 7a48c118-0459-4b1c-9faa-d1f817cd00e8
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes:
+      - nom-emsl
+      studyNumber: '11111'
+    packageName: soil
+    studyForm:
+      contributors: []
+      description: "Peat soil cores were collected at 3 plots (6, 13, and 17) from\
+        \ the Spruce and Peatland Responses Under Changing Environments (SPRUCE) experiment\
+        \ at the USDA Forest Service Marcell Experimental Forest (MEF), this is a\
+        \ peat bog north of Grand Rapids, Minnesota. This experiment was led by Christopher\
+        \ Schadt with assistance in field work and data analysis by Spencer Roth.\
+        \ Treatment plots at the SPRUCE site include 0 (ambient, plot 6), 4.5 (plot\
+        \ 13), and 9 degrees celsius (plot 17) above ambient. Also present at the\
+        \ site are elevated CO2 treatments, however all samples discussed here are\
+        \ from the ambient CO2 plots. Samples were collected using a russian core,\
+        \ split into 10 depths, homogenized in the field, and flash frozen on dry\
+        \ ice. Of these 30 samples, 10 grams from only 3 pre-selected depths per plot\
+        \ were sent to EMSL for natural organic matter characterization via FTICR-MS\
+        \ (D2: 10-20 cm, D5: 40-50 cm, D7: 75-100 cm) (Proposal 11111). Each sample\
+        \ sent to EMSL was also subsampled for various biogeochemical and soil property\
+        \ analyses. pH was measured following \u201CZhang, Hailin, and Kendal Henderson.\
+        \ Procedures used by OSU Soil, Water and Forage Analytical Laboratory. Oklahoma\
+        \ Cooperative Extension Service, 2016.\u201D and all samples were approximately\
+        \ 4 pH. Soil gravimetric water content (GWC) was also measured by \u201CGardner,\
+        \ Walter H. \"Water content.\" Methods of Soil Analysis: Part 1 Physical and\
+        \ Mineralogical Methods 5 (1986): 493-544.\u201D Samples from the warmest\
+        \ plots (+9 degree C), regardless of depth, averaged 63% moisture. From high\
+        \ (+ 4.5 degrees C) to low treatment temperatures (ambient), the other 2 plots\
+        \ averagest 78% and 84% moisture. Samples were stored at -80 C until extraction\
+        \ and analysis.\n"
+      linkOutWebpage:
+      - https://mnspruce.ornl.gov/
+      notes: ''
+      piEmail: schadtcw@ornl.org
+      piName: Christopher Schadt
+      piOrcid: 0000-0001-8759-2448
+      studyDate: null
+      studyName: ESS Price SPRUCE submission
+    template: soil_emsl
+  sample_data_total_rows: 32
+  status: in-progress
+7b236d0d-e967-4289-ac50-a5384219ff0e:
+  author:
+    id: d7e9af67-b850-49c9-8b88-9ff85d91f26c
+    is_admin: false
+    name: Cameron McMillan
+    orcid: 0000-0002-2721-1532
+  author_orcid: 0000-0002-2721-1532
+  created: '2022-07-18T20:51:43.723473'
+  id: 7b236d0d-e967-4289-ac50-a5384219ff0e
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes:
+      - nom-emsl
+      studyNumber: '1111'
+    packageName: soil
+    studyForm:
+      contributors: []
+      description: "On August 23rd, 2016, peat soil cores were collected at 3 plots\
+        \ (6, 13, and 17) from the Spruce and Peatland Responses Under Changing Environments\
+        \ (SPRUCE) experiment at the USDA Forest Service Marcell Experimental Forest\
+        \ (MEF), this is a peat bog north of Grand Rapids, Minnesota. This experiment\
+        \ was led by Christopher Schadt with assistance in field work and data analysis\
+        \ by Spencer Roth. Treatment plots at the SPRUCE site include 0 (ambient,\
+        \ plot 6), 4.5 (plot 13), and 9 degrees celsius (plot 17) above ambient. Also\
+        \ present at the site are elevated CO2 treatments, however all samples discussed\
+        \ here are from the ambient CO2 plots. Samples were collected using a russian\
+        \ core, split into 10 depths, homogenized in the field, and flash frozen on\
+        \ dry ice. Of these 30 samples, 10 grams from only 3 pre-selected depths per\
+        \ plot were sent to EMSL for natural organic matter characterization via FTICR-MS\
+        \ (D2: 10-20 cm, D5: 40-50 cm, D7: 75-100 cm) (Proposal 11111). Each sample\
+        \ sent to EMSL was also subsampled for various biogeochemical and soil property\
+        \ analyses. pH was measured following \u201CZhang, Hailin, and Kendal Henderson.\
+        \ Procedures used by OSU Soil, Water and Forage Analytical Laboratory. Oklahoma\
+        \ Cooperative Extension Service, 2016.\u201D and all samples were approximately\
+        \ 4 pH. Soil gravimetric water content (GWC) was also measured by \u201CGardner,\
+        \ Walter H. \"Water content.\" Methods of Soil Analysis: Part 1 Physical and\
+        \ Mineralogical Methods 5 (1986): 493-544.\u201D Samples from the warmest\
+        \ plots (+9 degree C), regardless of depth, averaged 63% moisture. From high\
+        \ (+ 4.5 degrees C) to low treatment temperatures (ambient), the other 2 plots\
+        \ averagest 78% and 84% moisture. Samples were stored at -80 C until extraction\
+        \ and analysis.\n"
+      linkOutWebpage:
+      - mnspruce.ornl.gov
+      notes: ''
+      piEmail: Schadtcw@oml.gov
+      piName: Christopher Schadt
+      piOrcid: 0000-0001-8759-2448
+      studyDate: null
+      studyName: ESS McMillan_Spruce submission
+    template: soil_emsl
+  sample_data_total_rows: 11
+  status: in-progress
+7bd61ddf-a45b-48be-a5a9-bb21b0e474ac:
+  author:
+    id: b5597157-338a-4d12-ada1-d294b0606602
+    is_admin: true
+    name: Montana Smith
+    orcid: 0000-0002-8683-0050
+  author_orcid: 0000-0002-8683-0050
+  created: '2022-07-18T20:53:09.645497'
+  id: 7bd61ddf-a45b-48be-a5a9-bb21b0e474ac
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes:
+      - nom-emsl
+      studyNumber: '11111'
+    packageName: soil
+    studyForm:
+      contributors:
+      - name: Spencer Roth
+        orcid: ''
+        roles:
+        - Formal Analysis
+        - Data curation
+      description: "Peat soil cores were collected at 3 plots (6, 13, and 17) from\
+        \ the Spruce and Peatland Responses Under Changing Environments (SPRUCE) experiment\
+        \ at the USDA Forest Service Marcell Experimental Forest (MEF), 40km north\
+        \ of Grand Rapids, Minnesota. \n\nTreatment plots at the (SPRUCE) site include\
+        \ 0 (ambient), 4.5, and 9 degrees celsius above ambient. Also present at the\
+        \ site are elevated CO2 treatments, however all samples discussed here are\
+        \ from the ambient CO2 plots.\n"
+      linkOutWebpage:
+      - "\thttps://mnspruce.ornl.gov/ "
+      notes: ''
+      piEmail: schadtcw@ornl.gov
+      piName: Christopher Schadt
+      piOrcid: "\t0000-0001-8759-2448"
+      studyDate: null
+      studyName: 'ESS-Smith_SPRUCE '
+    template: soil_emsl
+  sample_data_total_rows: 0
+  status: in-progress
+8435dfee-dbad-4085-b149-9025f174d4f8:
+  author:
+    id: b5597157-338a-4d12-ada1-d294b0606602
+    is_admin: true
+    name: Montana Smith
+    orcid: 0000-0002-8683-0050
+  author_orcid: 0000-0002-8683-0050
+  created: '2022-06-23T19:46:09.759533'
+  id: 8435dfee-dbad-4085-b149-9025f174d4f8
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes:
+      - mg
+      - mp
+      - mb
+      studyNumber: ''
+    packageName: soil
+    studyForm:
+      contributors: []
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: montana.smith@pnnl.gov
+      piName: ''
+      piOrcid: ''
+      studyDate: null
+      studyName: Screen Shots
+    template: soil
+  sample_data_total_rows: 4
+  status: in-progress
+8bdc7168-32c2-4d75-b789-ed88d51ea21c:
+  author:
+    id: 16e93541-3d1e-4cfd-825b-8b2de5a0b5b3
+    is_admin: true
+    name: Mark Andrew Miller
+    orcid: 0000-0001-9076-6066
+  author_orcid: 0000-0001-9076-6066
+  created: '2022-06-06T17:13:47.867567'
+  id: 8bdc7168-32c2-4d75-b789-ed88d51ea21c
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: mark miller 2022-06-06
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes:
+      - mg-jgi
+      - mp-emsl
+      - mp
+      studyNumber: mark miller 2022-06-06
+    packageName: soil
+    studyForm:
+      contributors: []
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: mam@lbl.gov
+      piName: ''
+      piOrcid: ''
+      studyDate: null
+      studyName: mark miller 2022-06-06
+    template: soil
+  sample_data_total_rows: 0
+  status: in-progress
+8dc437cc-1d19-4af9-8238-3b24907bc03d:
+  author:
+    id: d335becb-a558-4550-a410-9cf98d7231ae
+    is_admin: false
+    name: Matthew Kellom
+    orcid: 0000-0002-8310-7078
+  author_orcid: 0000-0002-8310-7078
+  created: '2022-08-01T20:24:51.203215'
+  id: 8dc437cc-1d19-4af9-8238-3b24907bc03d
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes: []
+      studyNumber: ''
+    packageName: soil
+    studyForm:
+      contributors: []
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: ''
+      piName: ''
+      piOrcid: ''
+      studyDate: null
+      studyName: ''
+    template: soil
+  sample_data_total_rows: 0
+  status: in-progress
+94b6fe9c-8cb7-47e3-a83b-423ec311edc8:
+  author:
+    id: 1bacac75-218f-4f5a-81c5-c33e430842d0
+    is_admin: false
+    name: Marissa Duckett
+    orcid: 0000-0002-6293-2167
+  author_orcid: 0000-0002-6293-2167
+  created: '2022-07-18T20:50:17.321078'
+  id: 94b6fe9c-8cb7-47e3-a83b-423ec311edc8
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes:
+      - nom-emsl
+      studyNumber: '11111'
+    packageName: soil
+    studyForm:
+      contributors:
+      - name: Spencer Roth
+        orcid: ''
+        roles:
+        - Formal Analysis
+        - Data curation
+      description: "Peat soil cores were collected at 3 plots (6, 13, and 17) from\
+        \ the Spruce and Peatland Responses Under Changing Environments (SPRUCE) experiment\
+        \ at the USDA Forest Service Marcell Experimental Forest (MEF), 40km north\
+        \ of Grand Rapids, Minnesota. \n\nTreatment plots at the (SPRUCE) site include\
+        \ 0 (ambient), 4.5, and 9 degrees celsius above ambient. Also present at the\
+        \ site are elevated CO2 treatments, however all samples discussed here are\
+        \ from the ambient CO2 plots."
+      linkOutWebpage:
+      - https://mnspruce.ornl.gov/
+      notes: ''
+      piEmail: schadtcw@ornl.gov
+      piName: Christopher Schadt
+      piOrcid: 0000-0001-8759-2448
+      studyDate: null
+      studyName: 'Marissa Duckett EMSL Summer School: SPRUCE Key'
+    template: soil_emsl
+  sample_data_total_rows: 5
+  status: in-progress
+95550192-87a5-4215-b373-ee6c8f9a70c0:
+  author:
+    id: 619c7315-7827-4540-a861-daa3374bc8be
+    is_admin: true
+    name: Brandon Davis
+    orcid: 0000-0002-0716-5890
+  author_orcid: 0000-0002-0716-5890
+  created: '2022-04-28T19:49:15.666169'
+  id: 95550192-87a5-4215-b373-ee6c8f9a70c0
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes: []
+      studyNumber: ''
+    packageName: soil
+    studyForm:
+      contributors: []
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: brandon.davis@kitware.com
+      piName: ''
+      piOrcid: ''
+      studyDate: null
+      studyName: Sample Study One
+    template: soil
+  sample_data_total_rows: 19
+  status: in-progress
+9615f72f-221c-4622-98cf-8dc5d74db60b:
+  author:
+    id: 6e7bf2f5-a2e1-4238-bd9b-27a78c9315f4
+    is_admin: false
+    name: Paula Dalcin Martins
+    orcid: 0000-0003-1242-0267
+  author_orcid: 0000-0003-1242-0267
+  created: '2022-07-18T20:53:12.318613'
+  id: 9615f72f-221c-4622-98cf-8dc5d74db60b
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes:
+      - nom-emsl
+      studyNumber: '11111'
+    packageName: soil
+    studyForm:
+      contributors: []
+      description: "On August 23rd, 2016, peat soil cores were collected at 3 plots\
+        \ (6, 13, and 17) from the Spruce and Peatland Responses Under Changing Environments\
+        \ (SPRUCE) experiment at the USDA Forest Service Marcell Experimental Forest\
+        \ (MEF), north of Grand Rapids, Minnesota. This experiment was led by Christopher\
+        \ Schadt with assistance in field work and data analysis by Spencer Roth.\
+        \ Treatment plots at the SPRUCE site include 0 (ambient, plot 6), 4.5 (plot\
+        \ 13), and 9 degrees celsius (plot 17) above ambient. Also present at the\
+        \ site are elevated CO2 treatments, however all samples discussed here are\
+        \ from the ambient CO2 plots. Samples were collected using a russian core,\
+        \ split into 10 depths, homogenized in the field, and flash frozen on dry\
+        \ ice. Of these 30 samples, 10 grams from only 3 pre-selected depths per plot\
+        \ were sent to EMSL for natural organic matter characterization via FTICR-MS\
+        \ (D2: 10-20 cm, D5: 40-50 cm, D7: 75-100 cm) (Proposal 11111). Each sample\
+        \ sent to EMSL was also subsampled for various biogeochemical and soil property\
+        \ analyses. pH was measured following \u201CZhang, Hailin, and Kendal Henderson.\
+        \ Procedures used by OSU Soil, Water and Forage Analytical Laboratory. Oklahoma\
+        \ Cooperative Extension Service, 2016.\u201D and all samples were approximately\
+        \ 4 pH. Soil gravimetric water content (GWC) was also measured by \u201CGardner,\
+        \ Walter H. \"Water content.\" Methods of Soil Analysis: Part 1 Physical and\
+        \ Mineralogical Methods 5 (1986): 493-544.\u201D Samples from the warmest\
+        \ plots, regardless of depth, averaged 63% moisture. From high to low treatment\
+        \ temperatures, the other 2 plots averagest 78% and 84% moisture. Samples\
+        \ were stored at -80 C until extraction and analysis.\n"
+      linkOutWebpage:
+      - 0000-0001-8759-2448
+      notes: ''
+      piEmail: p.dalcinmartins@science.ru.nl
+      piName: Christopher Schadt
+      piOrcid: 0000-0001-8759-2448
+      studyDate: null
+      studyName: ESS-DalcinMartins_SPRUCE
+    template: soil_emsl
+  sample_data_total_rows: 11
+  status: in-progress
+9b5d160d-bd08-4d9a-b3aa-5a3f9fa00399:
+  author:
+    id: 2392beaf-6c41-4bae-b593-6f474f3df332
+    is_admin: false
+    name: Laura Mason
+    orcid: 0000-0002-0766-1480
+  author_orcid: 0000-0002-0766-1480
+  created: '2022-07-18T20:50:35.160376'
+  id: 9b5d160d-bd08-4d9a-b3aa-5a3f9fa00399
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes:
+      - nom-emsl
+      studyNumber: '11111'
+    packageName: soil
+    studyForm:
+      contributors:
+      - name: Spencer Roth
+        orcid: ''
+        roles:
+        - Data curation
+        - Formal Analysis
+      description: "On August 23rd, 2016, peat soil cores were collected at 3 plots\
+        \ (6, 13, and 17) from the Spruce and Peatland Responses Under Changing Environments\
+        \ (SPRUCE) experiment at the USDA Forest Service Marcell Experimental Forest\
+        \ (MEF), this is a peat bog north of Grand Rapids, Minnesota. This experiment\
+        \ was led by Christopher Schadt with assistance in field work and data analysis\
+        \ by Spencer Roth. Treatment plots at the SPRUCE site include 0 (ambient,\
+        \ plot 6), 4.5 (plot 13), and 9 degrees celsius (plot 17) above ambient. Also\
+        \ present at the site are elevated CO2 treatments, however all samples discussed\
+        \ here are from the ambient CO2 plots. Samples were collected using a russian\
+        \ core, split into 10 depths, homogenized in the field, and flash frozen on\
+        \ dry ice. Of these 30 samples, 10 grams from only 3 pre-selected depths per\
+        \ plot were sent to EMSL for natural organic matter characterization via FTICR-MS\
+        \ (D2: 10-20 cm, D5: 40-50 cm, D7: 75-100 cm) (Proposal 11111). Each sample\
+        \ sent to EMSL was also subsampled for various biogeochemical and soil property\
+        \ analyses. pH was measured following \u201CZhang, Hailin, and Kendal Henderson.\
+        \ Procedures used by OSU Soil, Water and Forage Analytical Laboratory. Oklahoma\
+        \ Cooperative Extension Service, 2016.\u201D and all samples were approximately\
+        \ 4 pH. Soil gravimetric water content (GWC) was also measured by \u201CGardner,\
+        \ Walter H. \"Water content.\" Methods of Soil Analysis: Part 1 Physical and\
+        \ Mineralogical Methods 5 (1986): 493-544.\u201D Samples from the warmest\
+        \ plots (+9 degree C), regardless of depth, averaged 63% moisture. From high\
+        \ (+ 4.5 degrees C) to low treatment temperatures (ambient), the other 2 plots\
+        \ averagest 78% and 84% moisture. Samples were stored at -80 C until extraction\
+        \ and analysis."
+      linkOutWebpage: []
+      notes: ''
+      piEmail: shadtcw@ornl.gov
+      piName: Chris Shadt
+      piOrcid: ''
+      studyDate: null
+      studyName: 'Mason- ESS: SPRUCE Submission Activity'
+    template: soil_emsl
+  sample_data_total_rows: 11
+  status: in-progress
+9eccb2b2-ed40-4af0-b3c2-e24ddabaae03:
+  author:
+    id: 36478db8-a1d6-47b4-adfb-5e946fdbd48f
+    is_admin: false
+    name: ''
+    orcid: 0000-0003-4456-517X
+  author_orcid: 0000-0003-4456-517X
+  created: '2022-05-06T19:33:11.575512'
+  id: 9eccb2b2-ed40-4af0-b3c2-e24ddabaae03
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes: []
+      studyNumber: ''
+    packageName: soil
+    studyForm:
+      contributors: []
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: ''
+      piName: ''
+      piOrcid: ''
+      studyDate: null
+      studyName: ''
+    template: soil
+  sample_data_total_rows: 0
+  status: in-progress
+a3a8d05a-4f54-41bd-85be-f1c1c014025a:
+  author:
+    id: 9c8e2658-18b8-46e6-b5cd-15c1e5973df4
+    is_admin: false
+    name: Hannah Goemann
+    orcid: 0000-0001-9802-5625
+  author_orcid: 0000-0001-9802-5625
+  created: '2022-07-18T20:50:49.642076'
+  id: a3a8d05a-4f54-41bd-85be-f1c1c014025a
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes:
+      - nom-emsl
+      studyNumber: '11111'
+    packageName: soil
+    studyForm:
+      contributors:
+      - name: Spencer Roth
+        orcid: ''
+        roles:
+        - Formal Analysis
+        - Data curation
+      description: "Peat soil cores were collected at 3 plots (6, 13, and 17) from\
+        \ the Spruce and Peatland Responses Under Changing Environments (SPRUCE) experiment\
+        \ at the USDA Forest Service Marcell Experimental Forest (MEF), 40km north\
+        \ of Grand Rapids, Minnesota. \n\nTreatment plots at the (SPRUCE) site include\
+        \ 0 (ambient), 4.5, and 9 degrees celsius above ambient. Also present at the\
+        \ site are elevated CO2 treatments, however all samples discussed here are\
+        \ from the ambient CO2 plots.\n"
+      linkOutWebpage:
+      - 'https://mnspruce.ornl.gov/ '
+      notes: ''
+      piEmail: schadtcw@ornl.gov
+      piName: Christopher Schadt
+      piOrcid: 0000-0001-8759-2448
+      studyDate: null
+      studyName: 'Hannah Goemann EMSL Summer School: SPRUCE Key'
+    template: soil_emsl
+  sample_data_total_rows: 3
+  status: in-progress
+a5ef4406-11bb-4299-9efc-dc23eb76704b:
+  author:
+    id: 7fd7d698-cb6f-4dcb-8cfd-b4453f6a8f09
+    is_admin: true
+    name: Jeffrey Baumes
+    orcid: 0000-0002-4719-3490
+  author_orcid: 0000-0002-4719-3490
+  created: '2022-06-16T20:10:35.110730'
+  id: a5ef4406-11bb-4299-9efc-dc23eb76704b
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes: []
+      studyNumber: ''
+    packageName: soil
+    studyForm:
+      contributors: []
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: ''
+      piName: ''
+      piOrcid: ''
+      studyDate: null
+      studyName: ''
+    template: soil
+  sample_data_total_rows: 0
+  status: in-progress
+a8bf6c5a-47fa-4363-b76f-ab9995319ff1:
+  author:
+    id: 701de6af-bb07-4238-b5fc-4c272bb1a989
+    is_admin: false
+    name: ''
+    orcid: 0000-0002-2127-2692
+  author_orcid: 0000-0002-2127-2692
+  created: '2022-05-25T13:48:05.393889'
+  id: a8bf6c5a-47fa-4363-b76f-ab9995319ff1
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: test
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes:
+      - mg-jgi
+      studyNumber: ''
+    packageName: soil
+    studyForm:
+      contributors: []
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: p.stein@berkeley.edu
+      piName: ''
+      piOrcid: ''
+      studyDate: null
+      studyName: Test Test R3
+    template: soil
+  sample_data_total_rows: 0
+  status: in-progress
+ad6a2a03-9229-463c-aeb6-29e1eb90b58f:
+  author:
+    id: 856927d7-b3c9-4c9d-a818-3c3d542bee6a
+    is_admin: false
+    name: Thea Whitman
+    orcid: 0000-0003-2269-5598
+  author_orcid: 0000-0003-2269-5598
+  created: '2022-08-05T18:46:27.485510'
+  id: ad6a2a03-9229-463c-aeb6-29e1eb90b58f
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: '508051'
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes:
+      - mg-jgi
+      studyNumber: '60009'
+    packageName: soil
+    studyForm:
+      contributors:
+      - name: Thea Whitman
+        orcid: 0000-0003-2269-5598
+        roles:
+        - Funding acquisition
+      - name: Si Gao
+        orcid: 0000-0003-2317-6271
+        roles:
+        - Funding acquisition
+      - name: Michael SanClements
+        orcid: 000-0002-1962-3561
+        roles:
+        - Funding acquisition
+      description: Soils hold globally-important stocks of organic matter, with critical
+        relevance for nutrient cycling and climate change. As the primary agents of
+        decomposition, soil microbes play a key role in soil organic matter (SOM)
+        turnover. However, the complexity of interactions among the physical, chemical
+        and biological properties of soil challenges efforts to characterize the mechanisms
+        that control SOM dynamics over space and time. Our proposed project will draw
+        on National Ecological Observatory Network (NEON) soil samples from across
+        the US, using EMSL and JGI facilities to better understand the mechanisms
+        controlling SOM persistence within and across ecosystems, by linking SOM chemistry
+        with soil metabolomics, metaproteomics and metagenomics. Soil samples and
+        data from the NEON Biorepository will be complemented by existing data and
+        samples from an ongoing SOM stabilization mechanism study using NEON soils.
+        Using these diverse samples, we will characterize SOM composition and the
+        microbial metabolite profile using FTICR, GC-MS, and solid- and liquid-state
+        NMR, and we will characterize soil microbial genetic potential and proteins
+        using untargeted metagenomics and metaproteomics. We will test for the relative
+        importance of specific microbial traits associated with SOM persistence by
+        determining the genes and proteins associated with the mechanisms of SOM persistence,
+        as characterized within the NEON datasets and our ongoing study. We will link
+        SOM composition with the microbial metabolite profile, determining how metabolite
+        classes and target metabolites reflect chemical, physical, or biological controls
+        on SOM, and how the strength of these controls is influenced by environmental
+        stress. Together, our proposed analyses will apply the powerful analytical
+        capabilities of EMSL and JGI to the extraordinary datasets and samples afforded
+        by the NEON network, bolstered by the samples from the mechanistic experiments
+        within our ongoing experiment, to probe emerging paradigms of SOM persistence.
+        Our findings will support predictions of continental SOM stabilization under
+        future global change, as well as improving our understanding of the fundamental
+        mechanisms underpinning SOM dynamics.
+      linkOutWebpage:
+      - https://www.mieselecologylab.org
+      notes: ''
+      piEmail: mieselje@msu.edu
+      piName: Jessica Miesel
+      piOrcid: 0000-0001-7446-464X
+      studyDate: null
+      studyName: Investigating interactions between soil microbial communities and
+        soil organic matter dynamics along climate and vegetation gradients
+    template: soil_jgi_mg
+  sample_data_total_rows: 19
+  status: in-progress
+ae69b0d7-0b11-4a2b-94a2-8aa3308ea29c:
+  author:
+    id: 6d0014e0-1930-4fdd-83bd-7e258891911d
+    is_admin: false
+    name: Karen Davenport
+    orcid: 0000-0002-2740-1344
+  author_orcid: 0000-0002-2740-1344
+  created: '2022-04-29T15:44:05.292497'
+  id: ae69b0d7-0b11-4a2b-94a2-8aa3308ea29c
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes:
+      - mg
+      - mt
+      studyNumber: ''
+    packageName: microbial mat_biofilm
+    studyForm:
+      contributors: []
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: kwdavenport@lanl.gov
+      piName: ''
+      piOrcid: ''
+      studyDate: null
+      studyName: testing the submission portal
+    template: biofilm
+  sample_data_total_rows: 0
+  status: in-progress
+af0dedf2-39ee-4b38-8ba3-491731be30e8:
+  author:
+    id: 0e04b322-63d2-4163-b676-e550d7ea4cdf
+    is_admin: false
+    name: Rebecca Evans
+    orcid: 0000-0002-7917-4403
+  author_orcid: 0000-0002-7917-4403
+  created: '2022-07-18T20:50:40.870821'
+  id: af0dedf2-39ee-4b38-8ba3-491731be30e8
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes:
+      - nom-emsl
+      studyNumber: '11111'
+    packageName: soil
+    studyForm:
+      contributors:
+      - name: 'spencer roth '
+        orcid: ''
+        roles:
+        - Data curation
+        - Formal Analysis
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: schadtcw@ornl.gov
+      piName: Christopher Schadt
+      piOrcid: ''
+      studyDate: null
+      studyName: 'Evans-ESS:SPRUCE submission Activity '
+    template: soil_emsl
+  sample_data_total_rows: 11
+  status: in-progress
+b0149249-5a99-4d53-8a78-034552036fc6:
+  author:
+    id: 701de6af-bb07-4238-b5fc-4c272bb1a989
+    is_admin: false
+    name: ''
+    orcid: 0000-0002-2127-2692
+  author_orcid: 0000-0002-2127-2692
+  created: '2022-06-13T18:51:41.768428'
+  id: b0149249-5a99-4d53-8a78-034552036fc6
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: '1001'
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes:
+      - mg-jgi
+      - mp-emsl
+      - nom-emsl
+      - mg
+      studyNumber: '0001'
+    packageName: soil
+    studyForm:
+      contributors: []
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: p.stein@berkeley.edu
+      piName: ''
+      piOrcid: ''
+      studyDate: null
+      studyName: Test Martina
+    template: soil
+  sample_data_total_rows: 19
+  status: in-progress
+b76c395d-69bf-4660-85c6-04c44ff8f8c7:
+  author:
+    id: b7e2ad2c-4dbd-4fcd-b841-8e202df51b42
+    is_admin: false
+    name: Idowu Ademola Atoloye
+    orcid: 0000-0002-9853-1576
+  author_orcid: 0000-0002-9853-1576
+  created: '2022-07-18T20:35:53.434211'
+  id: b76c395d-69bf-4660-85c6-04c44ff8f8c7
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes:
+      - nom-emsl
+      studyNumber: '11111'
+    packageName: soil
+    studyForm:
+      contributors:
+      - name: Spencer Roth
+        orcid: ''
+        roles:
+        - Formal Analysis
+        - Data curation
+      description: "Peat soil cores were collected at 3 plots (6, 13, and 17) from\
+        \ the Spruce and Peatland Responses Under Changing Environments (SPRUCE) experiment\
+        \ at the USDA Forest Service Marcell Experimental Forest (MEF), 40km north\
+        \ of Grand Rapids, Minnesota. \n\nTreatment plots at the (SPRUCE) site include\
+        \ 0 (ambient), 4.5, and 9 degrees celsius above ambient. Also present at the\
+        \ site are elevated CO2 treatments, however all samples discussed here are\
+        \ from the ambient CO2 plots.\n"
+      linkOutWebpage:
+      - 'https://mnspruce.ornl.gov/ '
+      notes: ''
+      piEmail: schadtcw@ornl.gov
+      piName: Christopher Schadt
+      piOrcid: 0000-0001-8759-2448
+      studyDate: null
+      studyName: 'Idowu Atoloye: EMSL Summer School: SPRUCE Key'
+    template: soil_emsl
+  sample_data_total_rows: 11
+  status: in-progress
+bb6bb33f-e3fa-4fc8-a27d-339203257cf7:
+  author:
+    id: 4bf6dad8-1345-4d73-b13c-62ab54d6f76c
+    is_admin: false
+    name: Chelsea St. Germain
+    orcid: 0000-0003-0391-381X
+  author_orcid: 0000-0003-0391-381X
+  created: '2022-07-18T20:50:15.849519'
+  id: bb6bb33f-e3fa-4fc8-a27d-339203257cf7
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes:
+      - nom-emsl
+      studyNumber: '11111'
+    packageName: soil
+    studyForm:
+      contributors:
+      - name: Spencer Roth
+        orcid: ''
+        roles:
+        - Formal Analysis
+        - Data curation
+      description: "Peat soil cores were collected at 3 plots (6, 13, and 17) from\
+        \ the Spruce and Peatland Responses Under Changing Environments (SPRUCE) experiment\
+        \ at the USDA Forest Service Marcell Experimental Forest (MEF), 40km north\
+        \ of Grand Rapids, Minnesota. \n\nTreatment plots at the (SPRUCE) site include\
+        \ 0 (ambient), 4.5, and 9 degrees celsius above ambient. Also present at the\
+        \ site are elevated CO2 treatments, however all samples discussed here are\
+        \ from the ambient CO2 plots.\n"
+      linkOutWebpage:
+      - 'https://mnspruce.ornl.gov/ '
+      notes: ''
+      piEmail: schadtcw@ornl.gov
+      piName: Christopher Schadt
+      piOrcid: 0000-0001-8759-2448
+      studyDate: null
+      studyName: 'Chelsea St. Germain: EMSL Summer School: SPRUCE Key'
+    template: soil_emsl
+  sample_data_total_rows: 11
+  status: in-progress
+bcc73d37-380b-4263-841e-5fc13afba65d:
+  author:
+    id: 76a5b48d-5585-4cc6-a92b-767366278c33
+    is_admin: false
+    name: Nicholas Thrower
+    orcid: 0000-0002-7357-6639
+  author_orcid: 0000-0002-7357-6639
+  created: '2022-07-27T20:34:22.402600'
+  id: bcc73d37-380b-4263-841e-5fc13afba65d
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: '1234567'
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes:
+      - mg-jgi
+      studyNumber: ''
+    packageName: soil
+    studyForm:
+      contributors: []
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: throwern@msu.edu
+      piName: NT
+      piOrcid: ''
+      studyDate: null
+      studyName: Test Submission
+    template: soil_jgi_mg
+  sample_data_total_rows: 0
+  status: in-progress
+cb3b8798-0a4a-43b2-864f-6e2c2d8fcc0f:
+  author:
+    id: f864b15f-a7b0-435c-abfd-2d4cd9f4134a
+    is_admin: false
+    name: ''
+    orcid: 0000-0001-5081-3550
+  author_orcid: 0000-0001-5081-3550
+  created: '2022-03-01T20:46:07.165489'
+  id: cb3b8798-0a4a-43b2-864f-6e2c2d8fcc0f
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes: []
+      studyNumber: ''
+    packageName: soil
+    studyForm:
+      contributors: []
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: montana.smith@pnnl.gov
+      piName: ''
+      piOrcid: ''
+      studyDate: null
+      studyName: Montana Test
+    template: soil
+  sample_data_total_rows: 17
+  status: in-progress
+d26608a6-e28c-4ca6-830a-7be07b48f282:
+  author:
+    id: c8514b88-4e69-4639-b33d-917f6b0b724d
+    is_admin: false
+    name: ''
+    orcid: 0000-0002-9231-0692
+  author_orcid: 0000-0002-9231-0692
+  created: '2022-07-11T20:26:13.890347'
+  id: d26608a6-e28c-4ca6-830a-7be07b48f282
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes:
+      - nom-emsl
+      studyNumber: '11111'
+    packageName: soil
+    studyForm:
+      contributors:
+      - name: Spencer Roth
+        orcid: ''
+        roles:
+        - Formal Analysis
+        - Methodology
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: schadtcw@ornl.gov
+      piName: Christopher Schadt
+      piOrcid: ''
+      studyDate: null
+      studyName: Test EMSL Summer School Activity - Pajau
+    template: soil_emsl
+  sample_data_total_rows: 11
+  status: in-progress
+d4fe7b05-7078-4018-b2d6-ee4c9a885ca7:
+  author:
+    id: 86fb891e-74de-492e-b807-d6afa4a1037c
+    is_admin: false
+    name: Rachel Berner
+    orcid: 0000-0003-3566-7852
+  author_orcid: 0000-0003-3566-7852
+  created: '2022-07-18T20:52:39.411668'
+  id: d4fe7b05-7078-4018-b2d6-ee4c9a885ca7
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes:
+      - nom-emsl
+      studyNumber: '11111'
+    packageName: soil
+    studyForm:
+      contributors:
+      - name: Spencer Roth
+        orcid: ''
+        roles:
+        - Formal Analysis
+        - Data curation
+      description: 'Peat soil cores were collected at 3 plots (6, 13, and 17) from
+        the Spruce and Peatland Responses Under Changing Environments (SPRUCE) experiment
+        at the USDA Forest Service Marcell Experimental Forest (MEF), 40km north of
+        Grand Rapids, Minnesota.
+
+        Treatment plots at the (SPRUCE) site include 0 (ambient), 4.5, and 9 degrees
+        celsius above ambient. Also present at the site are elevated CO2 treatments,
+        however all samples discussed here are from the ambient CO2 plots.
+
+        '
+      linkOutWebpage:
+      - 'https://mnspruce.ornl.gov/ '
+      notes: ''
+      piEmail: schadtcw@ornl.gov
+      piName: Christopher Schadt
+      piOrcid: 0000-0001-8759-2448
+      studyDate: null
+      studyName: 'Rachel Berner EMSL Summer School: SPRUCE Key'
+    template: soil_emsl
+  sample_data_total_rows: 11
+  status: in-progress
+ddc2a2da-2860-4fef-aa10-803c9e8586a6:
+  author:
+    id: b5597157-338a-4d12-ada1-d294b0606602
+    is_admin: true
+    name: Montana Smith
+    orcid: 0000-0002-8683-0050
+  author_orcid: 0000-0002-8683-0050
+  created: '2022-08-11T17:00:30.608844'
+  id: ddc2a2da-2860-4fef-aa10-803c9e8586a6
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: '123456'
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes:
+      - mg-jgi
+      studyNumber: ''
+    packageName: soil
+    studyForm:
+      contributors:
+      - name: Spencer Roth
+        orcid: ''
+        roles:
+        - Formal Analysis
+        - Data curation
+      description: "Peat soil cores were collected at 3 plots (6, 13, and 17) from\
+        \ the Spruce and Peatland Responses Under Changing Environments (SPRUCE) experiment\
+        \ at the USDA Forest Service Marcell Experimental Forest (MEF), 40km north\
+        \ of Grand Rapids, Minnesota. \n\nTreatment plots at the (SPRUCE) site include\
+        \ 0 (ambient), 4.5, and 9 degrees celsius above ambient. "
+      linkOutWebpage:
+      - 'https://mnspruce.ornl.gov/ '
+      notes: ''
+      piEmail: schadtcw@ornl.gov
+      piName: Christopher Schadt
+      piOrcid: 0000-0001-8759-2448
+      studyDate: null
+      studyName: 'JGI User Meeting: SPRUCE Key'
+    template: soil_jgi_mg
+  sample_data_total_rows: 15
+  status: in-progress
+e01ddfdc-3079-40b9-be2e-172ed8198647:
+  author:
+    id: 4cd993a0-ba0f-423f-b9f5-13abc260db1f
+    is_admin: false
+    name: Rene Maurice Boiteau
+    orcid: 0000-0002-4127-4417
+  author_orcid: 0000-0002-4127-4417
+  created: '2022-08-05T22:29:46.692064'
+  id: e01ddfdc-3079-40b9-be2e-172ed8198647
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes: []
+      studyNumber: ''
+    packageName: soil
+    studyForm:
+      contributors: []
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: ''
+      piName: ''
+      piOrcid: ''
+      studyDate: null
+      studyName: ''
+    template: soil
+  sample_data_total_rows: 0
+  status: in-progress
+e14b7afb-4b1d-469f-8f94-559c2d4b8f18:
+  author:
+    id: b5597157-338a-4d12-ada1-d294b0606602
+    is_admin: true
+    name: Montana Smith
+    orcid: 0000-0002-8683-0050
+  author_orcid: 0000-0002-8683-0050
+  created: '2022-06-23T04:08:16.435061'
+  id: e14b7afb-4b1d-469f-8f94-559c2d4b8f18
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: GS0110138
+      JGIStudyId: '1445'
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames:
+      - SPRUCE
+      datasetDoi: https://doi.org/10.25585/1488099
+      omicsProcessingTypes:
+      - mg-jgi
+      - mp-emsl
+      - nom-emsl
+      studyNumber: '49279'
+    packageName: soil
+    studyForm:
+      contributors:
+      - name: Spencer Roth
+        orcid: ''
+        roles:
+        - Data curation
+      description: DescriptionThis study is part of the Spruce and Peatland Responses
+        Under Changing Environments (SPRUCE) experiment, which is the primary component
+        of the Terrestrial Ecosystem Science Focus Area of ORNL's Climate Change Program,
+        focused on terrestrial ecosystems and the mechanisms that underlie their responses
+        to climatic change. This project seeks to assess the response of northern
+        peatland ecosystems to increases in temperature and exposures to elevated
+        atmospheric CO2 concentrations.
+      linkOutWebpage: []
+      notes: ''
+      piEmail: schadtcw@ornl.gov
+      piName: Christopher Schadt
+      piOrcid: ''
+      studyDate: null
+      studyName: 'DELETE: Fungal, bacterial, and archaeal communities mediating C
+        cycling and trace gas flux in peatland ecosystems subject to climate change'
+    template: soil_emsl_jgi_mg
+  sample_data_total_rows: 4
+  status: in-progress
+ec663de5-1073-4edc-be0a-43284c939ab8:
+  author:
+    id: 61e29161-40a4-4a58-bd57-5e81cc5df4cc
+    is_admin: false
+    name: Sadiya Maxamhud
+    orcid: 0000-0002-8849-0619
+  author_orcid: 0000-0002-8849-0619
+  created: '2022-07-18T20:52:25.431407'
+  id: ec663de5-1073-4edc-be0a-43284c939ab8
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes:
+      - nom-emsl
+      studyNumber: '11111'
+    packageName: soil
+    studyForm:
+      contributors: []
+      description: " peat soil cores were collected at 3 plots (6, 13, and 17) from\
+        \ the Spruce and Peatland Responses Under Changing Environments (SPRUCE) experiment\
+        \ at the USDA Forest Service Marcell Experimental Forest (MEF), this is a\
+        \ peat bog north of Grand Rapids, Minnesota. \nTreatment plots at the SPRUCE\
+        \ site include 0 (ambient, plot 6), 4.5 (plot 13), and 9 degrees celsius (plot\
+        \ 17) above ambient. Also present at the site are elevated CO2 treatments,\
+        \ however all samples discussed here are from the ambient CO2 plots. \nSamples\
+        \ were collected using a russian core, split into 10 depths, homogenized in\
+        \ the field, and flash frozen on dry ice. Of these 30 samples, 10 grams from\
+        \ only 3 pre-selected depths per plot were sent to EMSL for natural organic\
+        \ matter characterization via FTICR-MS (D2: 10-20 cm, D5: 40-50 cm, D7: 75-100\
+        \ cm) (Proposal 11111). "
+      linkOutWebpage:
+      - https://mnspruce.ornl.gov/
+      notes: ''
+      piEmail: schadtcw@ornl.gov
+      piName: ' Christopher Schadt'
+      piOrcid: 0000-0001-8759-2448
+      studyDate: null
+      studyName: ESS-Maxamhud_SPRUCE
+    template: soil_emsl
+  sample_data_total_rows: 11
+  status: in-progress
+ef79285a-37d1-4af9-9b0d-d045c60f0ec5:
+  author:
+    id: 701de6af-bb07-4238-b5fc-4c272bb1a989
+    is_admin: false
+    name: ''
+    orcid: 0000-0002-2127-2692
+  author_orcid: 0000-0002-2127-2692
+  created: '2022-06-19T14:32:20.663931'
+  id: ef79285a-37d1-4af9-9b0d-d045c60f0ec5
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes: []
+      studyNumber: ''
+    packageName: soil
+    studyForm:
+      contributors: []
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: ''
+      piName: ''
+      piOrcid: ''
+      studyDate: null
+      studyName: ''
+    template: soil
+  sample_data_total_rows: 0
+  status: in-progress
+efc5356b-28c9-4450-b710-a91c43ec45e6:
+  author:
+    id: d049fa17-9eee-4115-acb3-3fad1415b997
+    is_admin: false
+    name: Steven Wilson
+    orcid: 0000-0002-8489-208X
+  author_orcid: 0000-0002-8489-208X
+  created: '2022-06-29T22:10:10.173935'
+  id: efc5356b-28c9-4450-b710-a91c43ec45e6
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes: []
+      studyNumber: ''
+    packageName: soil
+    studyForm:
+      contributors: []
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: ''
+      piName: ''
+      piOrcid: ''
+      studyDate: null
+      studyName: ''
+    template: soil
+  sample_data_total_rows: 0
+  status: in-progress
+f4ee1751-6c65-448e-b6b0-b3cad93b8473:
+  author:
+    id: fc90d263-de17-4a0c-b066-f04389a5c2e8
+    is_admin: false
+    name: ''
+    orcid: 0000-0003-1411-9814
+  author_orcid: 0000-0003-1411-9814
+  created: '2022-03-01T20:52:41.456476'
+  id: f4ee1751-6c65-448e-b6b0-b3cad93b8473
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes: []
+      studyNumber: ''
+    packageName: soil
+    studyForm:
+      contributors: []
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: ''
+      piName: ''
+      piOrcid: ''
+      studyDate: null
+      studyName: ''
+    template: soil
+  sample_data_total_rows: 17
+  status: in-progress
+f55b50cd-3366-41e7-a5a5-16f24d2bd95b:
+  author:
+    id: f242c9ac-ac8c-4009-8a6e-7d1a2aeb94c5
+    is_admin: false
+    name: Abigail Kargol
+    orcid: 0000-0002-7860-044X
+  author_orcid: 0000-0002-7860-044X
+  created: '2022-07-18T20:50:30.695101'
+  id: f55b50cd-3366-41e7-a5a5-16f24d2bd95b
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes:
+      - nom-emsl
+      studyNumber: '11111'
+    packageName: soil
+    studyForm:
+      contributors: []
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: schadtcw@ornl.gov
+      piName: Christopher Schadt
+      piOrcid: ''
+      studyDate: null
+      studyName: 'Kargol-ESS: SPRUCE Submission Activity'
+    template: soil_emsl
+  sample_data_total_rows: 11
+  status: in-progress
+f6c811bb-4055-4901-840e-cad80d733921:
+  author:
+    id: b5597157-338a-4d12-ada1-d294b0606602
+    is_admin: true
+    name: Montana Smith
+    orcid: 0000-0002-8683-0050
+  author_orcid: 0000-0002-8683-0050
+  created: '2022-06-21T23:33:15.718816'
+  id: f6c811bb-4055-4901-840e-cad80d733921
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: XXX
+      omicsProcessingTypes:
+      - nom
+      - mb
+      - mp
+      - mt
+      - mg
+      studyNumber: ''
+    packageName: soil
+    studyForm:
+      contributors:
+      - name: Pajau Vangay
+        orcid: ''
+        roles:
+        - Project administration
+      description: 'Information!! '
+      linkOutWebpage: []
+      notes: ''
+      piEmail: montana.smith@pnnl.gov
+      piName: PI Name
+      piOrcid: ''
+      studyDate: null
+      studyName: Portal Demo- Non DOE
+    template: soil
+  sample_data_total_rows: 5
+  status: in-progress
+f77af6ca-d790-4dec-8497-146e84debce0:
+  author:
+    id: b5597157-338a-4d12-ada1-d294b0606602
+    is_admin: true
+    name: Montana Smith
+    orcid: 0000-0002-8683-0050
+  author_orcid: 0000-0002-8683-0050
+  created: '2022-06-24T00:25:43.935095'
+  id: f77af6ca-d790-4dec-8497-146e84debce0
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: ''
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes:
+      - mg
+      studyNumber: ''
+    packageName: soil
+    studyForm:
+      contributors: []
+      description: ''
+      linkOutWebpage: []
+      notes: ''
+      piEmail: montana.smith@pnnl.gov
+      piName: ''
+      piOrcid: ''
+      studyDate: null
+      studyName: example
+    template: soil
+  sample_data_total_rows: 4
+  status: in-progress
+f9882a44-8aa0-40bf-9084-0fdcfe41243e:
+  author:
+    id: 50de0a6f-c795-4253-9a3d-4c06db9c00f2
+    is_admin: false
+    name: ''
+    orcid: 0000-0001-9246-8193
+  author_orcid: 0000-0001-9246-8193
+  created: '2022-05-17T16:00:19.926344'
+  id: f9882a44-8aa0-40bf-9084-0fdcfe41243e
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: ''
+      JGIStudyId: '507130'
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: ''
+      omicsProcessingTypes:
+      - nom
+      studyNumber: ''
+    packageName: soil
+    studyForm:
+      contributors:
+      - name: Joseph Ellis
+        orcid: 0000-0002-2510-977X
+        roles:
+        - Formal Analysis
+      - name: Daniel Jacobson
+        orcid: 0000-0002-9822-8251
+        roles:
+        - Formal Analysis
+      - name: Stanton Martin
+        orcid: 0000-0001-9246-8193
+        roles:
+        - Data curation
+        - Software
+        - Visualization
+        - Validation
+      - name: Melanie Mayes
+        orcid: 0000-0001-6368-9210
+        roles:
+        - Investigation
+      - name: Julie Mitchell
+        orcid: ''
+        roles:
+        - Project administration
+      - name: Wellington Muchero
+        orcid: 0000-0002-0200-9856
+        roles:
+        - Investigation
+      - name: Christopher Schadt
+        orcid: 0000-0001-8759-2448
+        roles:
+        - Conceptualization
+        - Investigation
+        - Methodology
+      - name: David Weston
+        orcid: 0000-0002-4794-9913
+        roles:
+        - Investigation
+      description: The goal of this Bio-Scales Pilot Project study is to understand
+        how plant traits modify the microbiome and in particular how the coupled plant-soil-microbial
+        system influences nitrogen transformation patterns and fluxes.
+      linkOutWebpage:
+      - https://www.ornl.gov/content/bio-scales-0
+      notes: ''
+      piEmail: doktyczmj@ornl.gov
+      piName: Mitchel J Doktycz
+      piOrcid: 0000-0003-4856-8343
+      studyDate: null
+      studyName: 'Bio-Scales: Defining plant gene function and its connection to ecosystem
+        nitrogen and carbon cycle'
+    template: soil
+  sample_data_total_rows: 236
+  status: in-progress
+fe9faf49-89f0-436d-958d-c6acb113b19e:
+  author:
+    id: b5597157-338a-4d12-ada1-d294b0606602
+    is_admin: true
+    name: Montana Smith
+    orcid: 0000-0002-8683-0050
+  author_orcid: 0000-0002-8683-0050
+  created: '2022-06-22T19:07:40.206856'
+  id: fe9faf49-89f0-436d-958d-c6acb113b19e
+  metadata_submission:
+    multiOmicsForm:
+      GOLDStudyId: GS0110138
+      JGIStudyId: '1445'
+      NCBIBioProjectId: ''
+      NCBIBioProjectName: ''
+      alternativeNames: []
+      datasetDoi: https://doi.org/10.25585/1488099
+      omicsProcessingTypes:
+      - mg-jgi
+      - mp-emsl
+      - nom-emsl
+      studyNumber: '49279'
+    packageName: soil
+    studyForm:
+      contributors:
+      - name: Spencer Roth
+        orcid: ''
+        roles:
+        - Formal Analysis
+        - Writing review and editing
+      description: DescriptionThis study is part of the Spruce and Peatland Responses
+        Under Changing Environments (SPRUCE) experiment, which is the primary component
+        of the Terrestrial Ecosystem Science Focus Area of ORNL's Climate Change Program,
+        focused on terrestrial ecosystems and the mechanisms that underlie their responses
+        to climatic change. This project seeks to assess the response of northern
+        peatland ecosystems to increases in temperature and exposures to elevated
+        atmospheric CO2 concentrations.
+      linkOutWebpage:
+      - https://mnspruce.ornl.gov/overview
+      notes: ''
+      piEmail: schadtcw@ornl.gov
+      piName: Christopher Schadt
+      piOrcid: 0000-0001-8759-2448
+      studyDate: null
+      studyName: 'DEMO: Fungal, bacterial, and archaeal communities mediating C cycling
+        and trace gas flux in peatland ecosystems subject to climate change'
+    template: soil_emsl_jgi_mg
+  sample_data_total_rows: 4
+  status: in-progress

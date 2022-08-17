@@ -452,7 +452,7 @@ class SubmissionsSandbox:
                         row_dict["sample_link"] = result_id
                         # todo this doesn't seem to work
                         #   would be handy for from_csv, if we want t support nmdc-schema v3 complaint samples
-                        row_dict["part_of"] = result_id
+                        # row_dict["part_of"] = [result_id]
                         body_list.append(row_dict)
 
                     return body_list
@@ -900,6 +900,7 @@ class SubmissionsSandbox:
                     self.biosample_database["biosample_set"].append(biosample_instance)
 
     def sample_metadata_to_csv(self, sample_metadata_csv_file):
+        # todo clarify how much this has been manipulated relative to the rawest input
         logger.debug(f"self.updatable_monikers: {self.updatable_monikers}")
         with open(sample_metadata_csv_file, "w", newline="") as csvfile:
             writer = csv.DictWriter(csvfile, fieldnames=self.updatable_monikers)
@@ -1328,7 +1329,6 @@ def from_submissions(
 
     sandbox.deep_parse_sample_metadata()
 
-    # to what degree
     sandbox.sample_metadata_to_csv(sample_metadata_csv_file=sample_metadata_csv_file)
 
     sandbox.sample_metadata_to_yaml(sample_metadata_yaml_file=sample_metadata_yaml_file)

@@ -13,7 +13,7 @@ click_log.basic_config(logger)
 @click_log.simple_verbosity_option(logger)
 @click.option('--input_json_file', type=click.Path(exists=True), required=True)
 @click.option('--output_json_file', type=click.Path(), required=True)
-def add_depth_2(input_json_file, output_json_file):
+def cli(input_json_file, output_json_file):
     """Simple program that greets NAME for a total of COUNT times."""
 
     logger.info(f"Loading input json file: {input_json_file}")
@@ -46,14 +46,17 @@ def add_depth_2(input_json_file, output_json_file):
         else:
             logger.debug(f"no depth2 in {i['id']}")
             if "depth" in i and "has_maximum_numeric_value" in i['depth']:
-                i['depth2'] = {
-                    'has_raw_value': i['depth']['has_raw_value'],
-                    'has_unit': i['depth']['has_unit'],
-                    'has_numeric_value': i['depth']['has_maximum_numeric_value']
-                }
+                current_depth2 = {}
+                if "has_raw_value" in i['depth']:
+                    current_depth2['has_raw_value'] = i['depth']['has_raw_value']
+                if "has_unit" in i['depth']:
+                    current_depth2['has_unit'] = i['depth']['has_unit']
+                if "has_numeric_value" in i['depth']:
+                    current_depth2['has_numeric_value'] = i['depth']['has_numeric_value']
+                i['depth2'] = current_depth2
                 logger.debug(f"adding depth2 {i['depth2']} for {i['id']}")
             else:
-                logger.warning(f"can't create a depth2 from depth {i['depth']} in {i['id']}")
+                logger.warning(f"can't create a depth2 from {i['id']}")
 
     # pprint.pprint(input_json)
 
@@ -77,4 +80,4 @@ def add_depth_2(input_json_file, output_json_file):
 
 
 if __name__ == '__main__':
-    add_depth_2()
+    cli()

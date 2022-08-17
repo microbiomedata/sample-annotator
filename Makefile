@@ -126,7 +126,7 @@ api_or_tsv_clean:
 #  9-9 picks up some soil horizon problems
 # 12 problems with sample_type and samp_collec_device:russiancorer
 
-assets/out/sample_metadata_from_api.yaml: api_or_tsv_clean
+assets/out/sample_metadata_from_submission_portal.yaml:
 	# --data_portal_url https://data.dev.microbiomedata.org/ or https://data.microbiomedata.org/
 	$(RUN) biosample_instantiator_plus from-submissions \
 		--data_portal_url https://data.microbiomedata.org/ \
@@ -136,21 +136,6 @@ assets/out/sample_metadata_from_api.yaml: api_or_tsv_clean
 		--sample_metadata_yaml_file $@ \
 		--study_metadata_yaml_file $(subst sample,study,$(basename $@)).yaml
 		# 2> assets/out/biosample_instantiator_plus.log
-
-#	# todo refactor everything below
-#	$(RUN) linkml-validate \
-#		--target-class Database \
-#		--index-slot biosample_set \
-#		--schema $(PROJ_SCHEMA) $@
-#	$(RUN) linkml-convert \
-#		--target-class Database \
-#		--module /Users/MAM/Documents/gitrepos/nmdc-schema/python/nmdc.py \
-#		--schema /Users/MAM/Documents/gitrepos/nmdc-schema/src/schema/nmdc.yaml \
-#		--output $(basename $@).json $@
-#	# todo why is this @type removal required?
-#	# todo where did it come from?
-#	jq 'del(."@type")' $(basename $@).json > $(basename $@)_untyped.json
-#	$(RUN) jsonschema -i $(basename $@)_untyped.json /Users/MAM/Documents/gitrepos/nmdc-schema/jsonschema/nmdc.schema.json
 
 DH_BIOSAMPLE_CSV=assets/in/Bioscales_NMDC_import_nospace_temps.csv
 PROJ_ID_FOR_CSV='gold:Gs0154044'
@@ -164,6 +149,7 @@ assets/out/sample_metadata_from_dh_csv.yaml:
 		--data_csv $(DH_BIOSAMPLE_CSV) \
 		--static_dh_template $(DH_TEMPLATE) \
 		--static_project_id $(PROJ_ID_FOR_CSV) \
+		--sample_metadata_csv_file $(basename $@).csv  \
 		--sample_metadata_yaml_file $@
 
 # m-cafes
@@ -175,7 +161,7 @@ PROJ_ID_FOR_SQLITE='gold:Gs0110119'
 
 # todo click options should always be hyphen seperated not underscore seperated
 
-assets/out/sample_metadata_from_pure_sqlite.yaml: api_or_tsv_clean
+assets/out/sample_metadata_from_pure_sqlite.yaml:
 	$(RUN) biosample_instantiator_plus pure-from-sqlite \
 		--biosample-sql-file $(BIOSAMPLE_SQLITE_FILE) \
 		--biosample-id-file $(ACCESSIONS_FILE) \
@@ -183,7 +169,7 @@ assets/out/sample_metadata_from_pure_sqlite.yaml: api_or_tsv_clean
 		--sqlite-to-biosample-file assets/in/sqlite_to_v3_plus_v6.tsv \
 		--sample-metadata-yaml-file $@
 
-assets/out/sample_metadata_from_pure_gold_api.yaml: api_or_tsv_clean
+assets/out/sample_metadata_from_pure_gold_api.yaml:
 	$(RUN) biosample_instantiator_plus pure-from-gold-study \
 			--gold-study-id $(PROJ_ID_FOR_SQLITE) \
 			--gold-mapping-file assets/in/gold_nmdc_mapping.tsv \
@@ -201,35 +187,43 @@ assets/out/sample_metadata_from_hybrid.yaml:
 			--sqlite-to-biosample-file assets/in/sqlite_to_v3_plus_v6.tsv
 
 .PHONY: \
-dh_csv \
+bioscales_dh_csv \
 m-CAFEs-hybrid \
 m-CAFEs-pure-gold-api \
-m-CAFEs-pure-sqlite
+m-CAFEs-pure-sqlite \
+submission-portal
+
+lazy: api_or_tsv_clean
+
+# sample_metadata.csv
 
 # todo could include initial api_or_tsv_clean before any of these
-dh_csv:  assets/out/sample_metadata_from_dh_csv_v3_depthfix.json #  todo complains about non-v3 bioscales slots, and absence of part_of. ignore and consider these samples incompatible with v3?
-m-CAFEs-hybrid:  assets/out/sample_metadata_from_hybrid_v3_depthfix.json
-m-CAFEs-pure-gold-api:  assets/out/sample_metadata_from_pure_gold_api_v3_depthfix.json
-m-CAFEs-pure-sqlite:  assets/out/sample_metadata_from_pure_sqlite_v3_depthfix.json
-submission-portal:  assets/out/sample_metadata_from_api_v3_depthfix.json
+bioscales_dh_csv:  assets/out/sample_metadata_from_dh_csv_v3.json #  todo complains about post-v3 bioscales slots, and absence of part_of. ignore and consider these samples incompatible with v3?
+m-CAFEs-hybrid:  assets/out/sample_metadata_from_hybrid_v3.json
+m-CAFEs-pure-gold-api:  assets/out/sample_metadata_from_pure_gold_api_v3.json
+m-CAFEs-pure-sqlite:  assets/out/sample_metadata_from_pure_sqlite_v3.json
+submission-portal:  assets/out/sample_metadata_from_submission_portal_v3.json # todo complains about post-v3 EMSL etc slots. But there ARE part_of assertions!?
 
-
-assets/out/%_v3_depthfix.json: assets/out/%.yaml
+assets/out/%_v3.json: assets/out/%.yaml
 	# todo why is this @type removal required?
 	# todo where did it come from?
 	cat $(basename $<).json | \
 		jq 'del(."@type")'  > \
 		$(basename $<)_v6_no_outer_type.json
 
-	$(RUN) jsonschema -i $(basename $<)_v6_no_outer_type.json assets/in/nmdc_schema_6/nmdc.schema.json
+	$(RUN) add_depth2 \
+		--input_json_file $(basename $<)_v6_no_outer_type.json \
+		--output_json_file $(basename $<)_v6_no_outer_type_add_depth2.json
 
-	cat $(basename $<)_v6_no_outer_type.json | \
+	$(RUN) jsonschema -i $(basename $<)_v6_no_outer_type_add_depth2.json assets/in/nmdc_schema_6/nmdc.schema.json
+
+	cat $(basename $<)_v6_no_outer_type_add_depth2.json | \
+		jq 'del(.biosample_set[].sample_link)' | \
+		jq 'del(.biosample_set[].project_ID)' | \
+		$(RUN) jsonschema assets/in/nmdc_schema_3_2/nmdc.schema.json
+
+	cat $(basename $<)_v6_no_outer_type_add_depth2.json | \
 		jq 'del(.biosample_set[].sample_link)' | \
 		jq 'del(.biosample_set[].project_ID)' > \
-		$(basename $<)_v3.json
+		$@
 
-	$(RUN) python sample_annotator/clients/nmdc/depth_fix_for_v3.py \
-		--input_json_file $(basename $<)_v3.json \
-		--output_json_file $@
-
-	$(RUN) jsonschema -i $@ assets/in/nmdc_schema_3_2/nmdc.schema.json

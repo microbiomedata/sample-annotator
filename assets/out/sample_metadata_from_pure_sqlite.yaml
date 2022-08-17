@@ -1,0 +1,2041 @@
+biosample_set:
+- id: BIOSAMPLE:SAMN08902828
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-09-03'
+  depth:
+    has_raw_value: 10-20 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 10.0
+    has_maximum_numeric_value: 20.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_0903_02_20cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199723
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902829
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-09-03'
+  depth:
+    has_raw_value: 20-30 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 20.0
+    has_maximum_numeric_value: 30.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_0903_02_30cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199722
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902830
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-09-03'
+  depth:
+    has_raw_value: 30-40 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 30.0
+    has_maximum_numeric_value: 40.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_0903_02_40cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199726
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902831
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-09-19'
+  depth:
+    has_raw_value: 10-20 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 10.0
+    has_maximum_numeric_value: 20.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_0919_02_20cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199724
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902832
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-09-27'
+  depth:
+    has_raw_value: 10-20 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 10.0
+    has_maximum_numeric_value: 20.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_0927_02_20cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199727
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902833
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-09-27'
+  depth:
+    has_raw_value: 30-40 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 30.0
+    has_maximum_numeric_value: 40.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_0927_02_40cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199725
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902834
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-09-29'
+  depth:
+    has_raw_value: 10-20 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 10.0
+    has_maximum_numeric_value: 20.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_0929_02_20cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199730
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902835
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-09-29'
+  depth:
+    has_raw_value: 20-30 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 20.0
+    has_maximum_numeric_value: 30.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_0929_02_30cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199728
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902836
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-09-29'
+  depth:
+    has_raw_value: 30-40 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 30.0
+    has_maximum_numeric_value: 40.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_0929_02_40cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199720
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902837
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-10-09'
+  depth:
+    has_raw_value: 10-20 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 10.0
+    has_maximum_numeric_value: 20.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_1009_02_20cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199719
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902838
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-10-09'
+  depth:
+    has_raw_value: 20-30 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 20.0
+    has_maximum_numeric_value: 30.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_1009_02_30cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199743
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902839
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-10-09'
+  depth:
+    has_raw_value: 30-40 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 30.0
+    has_maximum_numeric_value: 40.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_1009_02_40cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199742
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902840
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-09-03'
+  depth:
+    has_raw_value: 10-20 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 10.0
+    has_maximum_numeric_value: 20.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_0903_05_20cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199744
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902841
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-09-03'
+  depth:
+    has_raw_value: 20-30 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 20.0
+    has_maximum_numeric_value: 30.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_0903_05_30cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199745
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902842
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-09-03'
+  depth:
+    has_raw_value: 30-40 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 30.0
+    has_maximum_numeric_value: 40.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_0903_05_40cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199747
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902843
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-09-19'
+  depth:
+    has_raw_value: 10-20 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 10.0
+    has_maximum_numeric_value: 20.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_0919_05_20cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199746
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902844
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-09-27'
+  depth:
+    has_raw_value: 10-20 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 10.0
+    has_maximum_numeric_value: 20.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_0927_05_20cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199749
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902845
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-09-27'
+  depth:
+    has_raw_value: 30-40 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 30.0
+    has_maximum_numeric_value: 40.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_0927_05_40cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199748
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902846
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-09-29'
+  depth:
+    has_raw_value: 10-20 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 10.0
+    has_maximum_numeric_value: 20.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_0929_05_20cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199751
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902847
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-09-29'
+  depth:
+    has_raw_value: 20-30 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 20.0
+    has_maximum_numeric_value: 30.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_0929_05_30cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199750
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902848
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-09-29'
+  depth:
+    has_raw_value: 30-40 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 30.0
+    has_maximum_numeric_value: 40.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_0929_05_40cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199700
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902849
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-10-09'
+  depth:
+    has_raw_value: 10-20 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 10.0
+    has_maximum_numeric_value: 20.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_1009_05_20cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199702
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902850
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-10-09'
+  depth:
+    has_raw_value: 20-30 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 20.0
+    has_maximum_numeric_value: 30.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_1009_05_30cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199701
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902851
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-10-09'
+  depth:
+    has_raw_value: 30-40 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 30.0
+    has_maximum_numeric_value: 40.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_1009_05_40cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199703
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902852
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-09-03'
+  depth:
+    has_raw_value: 10-20 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 10.0
+    has_maximum_numeric_value: 20.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_0903_09_20cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199704
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902853
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-09-03'
+  depth:
+    has_raw_value: 20-30 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 20.0
+    has_maximum_numeric_value: 30.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_0903_09_30cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199705
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902854
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-09-03'
+  depth:
+    has_raw_value: 30-40 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 30.0
+    has_maximum_numeric_value: 40.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_0903_09_40cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199706
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902855
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-09-19'
+  depth:
+    has_raw_value: 10-20 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 10.0
+    has_maximum_numeric_value: 20.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_0919_09_20cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199708
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902856
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-09-27'
+  depth:
+    has_raw_value: 10-20 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 10.0
+    has_maximum_numeric_value: 20.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_0927_09_20cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199698
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902857
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-09-27'
+  depth:
+    has_raw_value: 30-40 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 30.0
+    has_maximum_numeric_value: 40.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_0927_09_40cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199699
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902858
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-09-29'
+  depth:
+    has_raw_value: 10-20 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 10.0
+    has_maximum_numeric_value: 20.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_0929_09_20cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199741
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902859
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-09-29'
+  depth:
+    has_raw_value: 20-30 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 20.0
+    has_maximum_numeric_value: 30.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_0929_09_30cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199740
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902860
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-09-29'
+  depth:
+    has_raw_value: 30-40 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 30.0
+    has_maximum_numeric_value: 40.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_0929_09_40cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199739
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902861
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-10-09'
+  depth:
+    has_raw_value: 10-20 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 10.0
+    has_maximum_numeric_value: 20.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_1009_09_20cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199738
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902862
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-10-09'
+  depth:
+    has_raw_value: 20-30 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 20.0
+    has_maximum_numeric_value: 30.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_1009_09_30cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199737
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902863
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-10-09'
+  depth:
+    has_raw_value: 30-40 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 30.0
+    has_maximum_numeric_value: 40.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_1009_09_40cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199736
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902864
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-09-03'
+  depth:
+    has_raw_value: 10-20 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 10.0
+    has_maximum_numeric_value: 20.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_0903_12_20cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199735
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902865
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-09-03'
+  depth:
+    has_raw_value: 20-30 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 20.0
+    has_maximum_numeric_value: 30.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_0903_12_30cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199734
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902866
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-09-03'
+  depth:
+    has_raw_value: 30-40 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 30.0
+    has_maximum_numeric_value: 40.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_0903_12_40cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199733
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902867
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-09-19'
+  depth:
+    has_raw_value: 10-20 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 10.0
+    has_maximum_numeric_value: 20.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_0919_12_20cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199732
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902868
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-09-27'
+  depth:
+    has_raw_value: 10-20 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 10.0
+    has_maximum_numeric_value: 20.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_0927_12_20cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199717
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902869
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-09-27'
+  depth:
+    has_raw_value: 30-40 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 30.0
+    has_maximum_numeric_value: 40.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_0927_12_40cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199718
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902870
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-09-29'
+  depth:
+    has_raw_value: 10-20 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 10.0
+    has_maximum_numeric_value: 20.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_0929_12_20cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199715
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902871
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-09-29'
+  depth:
+    has_raw_value: 20-30 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 20.0
+    has_maximum_numeric_value: 30.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_0929_12_30cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199716
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902872
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-09-29'
+  depth:
+    has_raw_value: 30-40 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 30.0
+    has_maximum_numeric_value: 40.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_0929_12_40cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199714
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902873
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-10-09'
+  depth:
+    has_raw_value: 10-20 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 10.0
+    has_maximum_numeric_value: 20.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_1009_12_20cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199713
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902874
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-10-09'
+  depth:
+    has_raw_value: 20-30 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 20.0
+    has_maximum_numeric_value: 30.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_1009_12_30cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199711
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902875
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-10-09'
+  depth:
+    has_raw_value: 30-40 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 30.0
+    has_maximum_numeric_value: 40.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_1009_12_40cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199712
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902876
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-09-03'
+  depth:
+    has_raw_value: 10-20 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 10.0
+    has_maximum_numeric_value: 20.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_0903_13_20cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199709
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902877
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-09-03'
+  depth:
+    has_raw_value: 20-30 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 20.0
+    has_maximum_numeric_value: 30.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_0903_13_30cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199710
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902878
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-09-03'
+  depth:
+    has_raw_value: 30-40 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 30.0
+    has_maximum_numeric_value: 40.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_0903_13_40cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199755
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902879
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-10-09'
+  depth:
+    has_raw_value: 10-20 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 10.0
+    has_maximum_numeric_value: 20.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_1009_13_20cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199754
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902880
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-10-09'
+  depth:
+    has_raw_value: 20-30 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 20.0
+    has_maximum_numeric_value: 30.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_1009_13_30cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199757
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902881
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-10-09'
+  depth:
+    has_raw_value: 30-40 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 30.0
+    has_maximum_numeric_value: 40.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_1009_13_40cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199756
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902882
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-09-03'
+  depth:
+    has_raw_value: 10-20 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 10.0
+    has_maximum_numeric_value: 20.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_0903_16_20cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199731
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902883
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-09-03'
+  depth:
+    has_raw_value: 20-30 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 20.0
+    has_maximum_numeric_value: 30.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_0903_16_30cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199729
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902884
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-09-03'
+  depth:
+    has_raw_value: 30-40 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 30.0
+    has_maximum_numeric_value: 40.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_0903_16_40cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199753
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902885
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-10-09'
+  depth:
+    has_raw_value: 10-20 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 10.0
+    has_maximum_numeric_value: 20.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_1009_16_20cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199752
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902886
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-10-09'
+  depth:
+    has_raw_value: 20-30 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 20.0
+    has_maximum_numeric_value: 30.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_1009_16_30cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199721
+  project_ID: PRJNA449266
+- id: BIOSAMPLE:SAMN08902887
+  description: 'Keywords: GSC:MIxS;MIMS:5.0'
+  env_broad_scale:
+    has_raw_value: temperate grassland biome
+  env_local_scale:
+    has_raw_value: meadow soil
+  env_medium:
+    has_raw_value: soil
+  sample_link:
+  - gold:Gs0110119
+  part_of:
+  - gold:Gs0110119
+  collection_date:
+    has_raw_value: '2014-10-09'
+  depth:
+    has_raw_value: 30-40 cm
+    has_unit: centimetre
+    has_minimum_numeric_value: 30.0
+    has_maximum_numeric_value: 40.0
+  elev:
+    has_raw_value: 1417 ft
+    has_unit: foot
+    has_numeric_value: 1417.0
+  geo_loc_name:
+    has_raw_value: 'USA: Angelo Coast Range Reserve, CA'
+  lat_lon:
+    has_raw_value: 39.74 N 123.63 W
+    latitude: 39.74
+    longitude: -123.63
+  identifier: 14_1009_16_40cm
+  ncbi_taxonomy_name: soil metagenome
+  INSDC_secondary_sample_identifiers:
+  - SRS3199707
+  project_ID: PRJNA449266
