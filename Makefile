@@ -1,3 +1,5 @@
+# todo get rid of embedded absolute paths
+
 RUN = poetry run
 # SESSION_COOKIE? See https://github.com/microbiomedata/sample-annotator/issues/90
 SESSION_COOKIE = $(shell cat local/SESSION_COOKIE.txt)
@@ -255,6 +257,8 @@ assets/out/sample_metadata_from_hybrid.yaml: api_or_tsv_clean
 			--sample-metadata-yaml-file $@ \
 			--sqlite-to-biosample-file assets/in/sqlite_to_v3_plus_v6.tsv
 
+	# todo refactor from here down
+
 	cat $(basename $@).json | \
 		jq 'del(."@type")'  > \
 		$(basename $@)_no_outer_type.json
@@ -266,3 +270,10 @@ assets/out/sample_metadata_from_hybrid.yaml: api_or_tsv_clean
 		jq 'del(.biosample_set[].sample_link)' | \
 		jq 'del(.biosample_set[].project_ID)' > \
 		$(basename $@)_no_outer_type_no_v6_only.json
+
+	$(RUN) python sample_annotator/clients/nmdc/depth_fix_for_v3.py \
+		--input_json_file $(basename $@)_no_outer_type_no_v6_only.json \
+		--output_json_file $(basename $@)_v3_with_depth2.json
+
+	# todo validate against v3 !
+	# https://raw.githubusercontent.com/microbiomedata/nmdc-schema/v3.2.0/src/schema/nmdc.yaml

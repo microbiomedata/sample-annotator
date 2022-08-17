@@ -1138,6 +1138,8 @@ class SubmissionsSandbox:
                     logger.debug(f"skipping null {bk}")
 
             # todo switch to declarative mapping document
+            #   but don't expect 100% declarative functionality
+            #   but DO express a close mapping in teh doc
             if "envoBroadScale" in biosample_obj:
                 if "id" in biosample_obj["envoBroadScale"] and "label" in biosample_obj["envoBroadScale"]:
                     biosample_dict[
