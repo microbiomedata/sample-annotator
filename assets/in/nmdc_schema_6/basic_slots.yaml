@@ -1,0 +1,101 @@
+id: https://microbiomedata/schema/basic_slots
+name: NMDC-Basic-Slots
+title: Basic Slots for NMDC Schema
+description: >-
+  Basic Linkml slots that are used across the Schema for National Microbiome Data Collaborative (NMDC).
+  Examples include "id", "name", "description". These slots have primitive data types (e.g., sting) as ranges.
+license: https://creativecommons.org/publicdomain/zero/1.0/
+
+prefixes:
+  nmdc: https://microbiomedata/meta/
+  linkml: https://w3id.org/linkml/
+  dcterms: http://purl.org/dc/terms/
+    
+default_prefix: nmdc
+default_range: string
+
+default_curi_maps:
+  - obo_context
+  - idot_context
+
+imports:
+  - linkml:types
+
+slots:
+
+  id:
+    identifier: true
+    multivalued: false
+    description: >-
+      A unique identifier for a thing.
+      Must be either a CURIE shorthand for a URI or a complete URI
+    #required: false # for now we are setting this to false until we develop an id template
+
+  name:
+    multivalued: false
+    range: string
+    description: >-
+      A human readable label for an entity
+
+  description:
+    range: string
+    multivalued: false
+    description: >-
+      a human-readable description of a thing
+    slot_uri: dcterms:description
+    
+  type:
+    deprecated: >-
+      Due to confusion about what values are used for this slot, it is best not to use this slot.
+      See https://github.com/microbiomedata/nmdc-schema/issues/248.
+    range: string
+    description: >-
+      An optional string that specifies the type object. 
+      This is used to allow for searches for different kinds of objects.
+    designates_type: true
+    examples:
+      - value: nmdc:Biosample
+      - value: nmdc:Study
+
+  title:
+    range: string
+    multivalued: false
+    description: >-
+      A name given to the entity that differs from the name/label programmatically assigned to it.
+      For example, when extracting study information for GOLD, the GOLD system has assigned a name/label.
+      However, for display purposes, we may also wish the capture the title of the proposal that was used to fund the study.
+    exact_mappings:
+      - dcterms:title
+
+  alternative titles:
+    range: string
+    multivalued: true
+    description: >-
+      A list of alternative titles for the entity.
+      The distinction between title and alternative titles is application-specific.
+    exact_mappings:
+      - dcterms:alternative
+  
+  alternative names:
+    range: string
+    multivalued: true
+    description: >-
+      A list of alternative names used to refer to the entity.
+      The distinction between name and alternative names is application-specific.
+    exact_mappings:
+      - dcterms:alternative
+      - skos:altLabel
+
+  alternative descriptions:
+    range: string
+    multivalued: true
+    description: >-
+      A list of alternative descriptions for the entity.
+      The distinction between description and alternative descriptions is application-specific.
+  
+  alternative identifiers:
+    range: string
+    multivalued: true
+    description: >-
+      A list of alternative identifiers for the entity.
+

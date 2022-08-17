@@ -2,43 +2,58 @@ import json
 import pprint
 
 import click
+import logging
+import click_log
+
+logger = logging.getLogger(__name__)
+click_log.basic_config(logger)
 
 
 @click.command()
+@click_log.simple_verbosity_option(logger)
 @click.option('--input_json_file', type=click.Path(exists=True), required=True)
 @click.option('--output_json_file', type=click.Path(), required=True)
 def add_depth_2(input_json_file, output_json_file):
     """Simple program that greets NAME for a total of COUNT times."""
 
-    print(f"Loading input json file: {input_json_file}")
+    logger.info(f"Loading input json file: {input_json_file}")
     with open(input_json_file) as json_file:
         input_json = json.load(json_file)
 
     bss = input_json['biosample_set']
 
     for i in bss:
+        logger.info(f"Attempting to update depth and depth2 for biosample: {i['id']}")
         if "depth" in i:
-            # pprint.pprint(i['depth'])
+            logger.debug(i['depth'])
             pass
             if "has_numeric_value" in i['depth']:
-                # pprint.pprint(i['depth']['has_numeric_value'])
+                logger.debug(i['depth']['has_numeric_value'])
                 pass
             else:
-                # print("NO DEPTH has_numeric_value")
+                logger.debug("NO DEPTH has_numeric_value")
                 if "has_minimum_numeric_value" in i['depth']:
-                    # pprint.pprint(i['depth']['has_minimum_numeric_value'])
-                    print("updating depth.has_numeric_value with depth.has_minimum_numeric_value")
+                    logger.debug(i['depth']['has_minimum_numeric_value'])
+                    logger.debug("updating depth.has_numeric_value with depth.has_minimum_numeric_value")
                     i['depth']['has_numeric_value'] = i['depth']['has_minimum_numeric_value']
                 else:
-                    print("NO depth.has_minimum_numeric_value for replacing depth.has_numeric_value")
+                    logger.warning(
+                        f"no depth.has_minimum_numeric_value for replacing depth.has_numeric_value in {i['id']}")
         else:
-            print("NO DEPTH")
+            logger.warning(f"no depth in {i['id']}")
         if "depth2" in i:
-            pprint.pprint(i['depth2'])
+            logger.info(f"depth2 {i['depth2']} already present")
         else:
-            print("NO DEPTH2")
-        # pprint.pprint(i)
-        print("\n")
+            logger.debug(f"no depth2 in {i['id']}")
+            if "depth" in i and "has_maximum_numeric_value" in i['depth']:
+                i['depth2'] = {
+                    'has_raw_value': i['depth']['has_raw_value'],
+                    'has_unit': i['depth']['has_unit'],
+                    'has_numeric_value': i['depth']['has_maximum_numeric_value']
+                }
+                logger.debug(f"adding depth2 {i['depth2']} for {i['id']}")
+            else:
+                logger.warning(f"can't create a depth2 from depth {i['depth']} in {i['id']}")
 
     # pprint.pprint(input_json)
 

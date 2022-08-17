@@ -40,7 +40,7 @@ from dataclasses import dataclass
 from datetime import datetime
 from typing import Dict, List, Optional, Any
 
-import chardet
+# import chardet
 import click
 import click_log
 import pendulum
@@ -65,7 +65,7 @@ from requests.auth import HTTPBasicAuth
 
 import sample_annotator.clients.nmdc.nmdc_runtime_snippets as nrs
 
-import LatLon23
+# import LatLon23
 
 logger = logging.getLogger(__name__)
 click_log.basic_config(logger)
@@ -90,25 +90,7 @@ drop_cols_pending_research = [
     "samp_type",
     "sample_type",
 ]
-
-# biosample_sqlite_col_name_overrides = {
-#     # ideally: mention slots wiht underscores and write methods that try underscored or whitesapced
-#     #   better: make a lookup between al schema slots and their induced aliases or keys
-#     # "title": {"dh": "name", "format": "scalar"},  # 0..1
-#     "id": {"dh": "INSDC_biosample_identifiers", "format": "list"},  # 0..*
-#     #   what's the right biosample slot for SRAs
-#     "sra_id": {"dh": "INSDC_secondary_sample_identifiers", "format": "scalar"},
-#     # ...secondary... is 0..* according to the docs at https://microbiomedata.github.io/nmdc-schema/Biosample/#class-biosample
-#     # but NOT multivalued according to the term definition at
-#     #   https://github.com/microbiomedata/nmdc-schema/blob/b0775ffd354f6064124bef34bb9fc15eb6ae4084/src/schema/external_identifiers.yaml#L173-L184
-#     # "samp_name": {"dh": "source_mat_id", "format": "scalar"},  # 0..1
-#     "samp_name": {"dh": "identifier", "format": "scalar"},  # 0..1
-#     "bp_acc": {"dh": "project_ID", "format": "scalar"},  # 0..1
-#     # added join with the accession table, which required a new index
-#     # CREATE INDEX bp_id_accession_bp_id_IDX ON bp_id_accession (bp_id);
-#     "taxonomy_name": {"dh": "ncbi_taxonomy_name", "format": "scalar"},  # 0..1
-#     "paragraph": {"dh": "description", "format": "scalar"},  # 0..1
-# }
+# todo make this a declarative mapping document
 
 dh_field_name_overrides = {
     "samp_name": "name",
@@ -135,7 +117,14 @@ def get_session_cookie() -> str:
 
 
 def get_count_from_response(api_response):
-    return api_response["count"]
+    logger.debug(f"looking for count in api_response")
+    if "count" in api_response:
+        return api_response["count"]
+    else:
+        logger.critical(
+            f"api_response count = 0. {api_response} Do you need to refresh your session cookie in the .env file?")
+        exit()
+    # return api_response["count"]
 
 
 def get_results_from_response(api_response):
@@ -166,7 +155,7 @@ def get_view(schema_url):
 def process_qv(raw_value: str):
     # todo what if more than one qv gets parsed out?
     # todo units are expressed as words. convert to symbols?
-    # todo units my be surprising, like Coulombs for degrees Celsius
+    # todo units my be surprising, like Coulombs for degrees Celsius. see unit_overrides
     logger.debug(f"processing qv: {raw_value}")
     qv = QuantityValue(has_raw_value=raw_value)
     quants = parser.parse(str(raw_value))
@@ -177,10 +166,8 @@ def process_qv(raw_value: str):
         if quant.uncertainty:
             qv.has_minimum_numeric_value = round((quant.value - quant.uncertainty), ndigits=3)
             qv.has_maximum_numeric_value = round((quant.value + quant.uncertainty), ndigits=3)
-            # qv.has_maximum_numeric_value = quant.value + quant.uncertainty
         else:
             qv.has_numeric_value = quant.value
-        # todo unit is required ?
         if quant.unit and quant.unit.name != "dimensionless":
             if quant.unit.name in unit_overrides:
                 qv.has_unit = unit_overrides[quant.unit.name]
@@ -204,6 +191,11 @@ def extract_lat_lon(raw_value: str):
         split_ed = re.split(pattern, strip_ed)
         logger.debug(f"split {strip_ed} into {split_ed}")
 
+        latv = None
+        longv = None
+        lath = None
+        longh = None
+
         if len(split_ed) == 2:
             try:
                 latv = float(split_ed[0])
@@ -211,7 +203,7 @@ def extract_lat_lon(raw_value: str):
             except Exception as e:
                 logger.error(f"failed to parse lat/lon from {raw_value}: {e}")
             if (
-                    len(split_ed) == 2
+                    len(split_ed) == 2 and latv and longv
                     and -90 <= latv <= 90
                     and -180 <= longv <= 180
             ):
@@ -229,7 +221,8 @@ def extract_lat_lon(raw_value: str):
             except Exception as e:
                 logger.error(f"failed to parse lat/lon and hemisphere values from {raw_value}: {e}")
             if (
-                    0 <= latv <= 90
+                    latv and longv
+                    and 0 <= latv <= 90
                     and 0 <= longv <= 180
                     and lath in ['N', 'S']
                     and longh in ['E', 'W']
@@ -353,18 +346,24 @@ class SubmissionsSandbox:
     assess_sqlite_mappings: bool = True
 
     # todo switch to w3id URLs
+    #     mixs_view: Optional[SchemaView] = None
+    #     nmdc_view: Optional[SchemaView] = None
+    #     submission_schema_view: Optional[SchemaView] = None
     schemas_dict = {
         "mixs": "https://raw.githubusercontent.com/GenomicsStandardsConsortium/mixs/main/model/schema/mixs.yaml",
         "nmdc": "https://raw.githubusercontent.com/microbiomedata/nmdc-schema/main/src/schema/nmdc.yaml",
-        "submission": "https://raw.githubusercontent.com/microbiomedata/sheets_and_friends/main/artifacts/nmdc_submission_schema.yaml",
+        "submission_schema": "https://raw.githubusercontent.com/microbiomedata/sheets_and_friends/main/artifacts/nmdc_submission_schema.yaml",
     }
 
     # todo allow user to specify which schemas to load
     def view_setup(self, schemas_to_load: List[str] = None) -> None:
-        if schemas_to_load is None:
-            schemas_to_load = ["nmdc", "submission"]
+        logger.debug(f"will load schemas: {schemas_to_load}")
+        if not schemas_to_load:
+            logger.debug("will load the nmdc and submission schemas")
+            schemas_to_load = ["nmdc", "submission_schema"]
         for schema_key in schemas_to_load:
-            self.nmdc_view = get_view(self.schemas_dict[schema_key])
+            logger.info(f"loading schema {schema_key} into {schema_key}_view")
+            setattr(self, f"{schema_key}_view", get_view(self.schemas_dict[schema_key]))
 
     def get_submission_titles_and_names(self):
         submission_slots = self.submission_schema_view.schema.slots
@@ -395,7 +394,14 @@ class SubmissionsSandbox:
             metadata_api_url, cookies=cookies, params=params
         )
 
+        logger.debug(f"response received")
+
         submission_json = submission_response.json()
+
+        # todo might want to check for response code
+
+        logger.debug(f"conversion to JSON complete. About to get submission count.")
+
         submission_count = get_count_from_response(submission_json)
         logger.info(f"submission_count: {submission_count}")
 
@@ -444,7 +450,9 @@ class SubmissionsSandbox:
                     for body_row in sample_data_body:
                         row_dict = dict(zip(sample_data_headers, body_row))
                         row_dict["sample_link"] = result_id
-                        # row_dict["part_of"] = result_id
+                        # todo this doesn't seem to work
+                        #   would be handy for from_csv, if we want t support nmdc-schema v3 complaint samples
+                        row_dict["part_of"] = result_id
                         body_list.append(row_dict)
 
                     return body_list
@@ -548,6 +556,8 @@ class SubmissionsSandbox:
         return id_list
 
     def load_env_pack_title_to_key(self, current_template):
+        logger.debug(f"entered load_env_pack_title_to_key() with template value: {current_template}")
+        logger.debug(f"submission_schema_view has name: {self.submission_schema_view.schema.name}")
         env_pack_class = self.submission_schema_view.induced_class(current_template)
         env_pack_slot_usage = env_pack_class["slot_usage"]
         current_slot_dict = {}
@@ -562,10 +572,7 @@ class SubmissionsSandbox:
                 current_slot_dict[iv["title"]] = ik
             else:
                 current_slot_dict[ik] = ik
-        # todo pull this out to the top
-        # current_slot_dict["sample_link"] = "sample_link"
-        # current_slot_dict['canary'] = 'canary'
-        #
+
         logger.debug(
             f"current_slot_dict for {current_template}: {pprint.pformat(current_slot_dict)}"
         )
@@ -579,6 +586,7 @@ class SubmissionsSandbox:
         Only processes sample metadata whose study status is in acceptable_statuses
         Puts the resulting dict of dicts, whose leaves are still flat stings, into sample_metadata_by_slotname
         """
+
         # todo do some logging with all of these pass statements
         # todo refactor
         tidied_dict = {}
@@ -605,22 +613,34 @@ class SubmissionsSandbox:
                         not self.env_pack_title_to_key
                         or current_template not in self.env_pack_title_to_key
                 ):
+                    logger.debug("about to assign env_pack_title_to_key")
                     self.load_env_pack_title_to_key(current_template)
+                    logger.debug("assinged env_pack_title_to_key")
+
+
             else:
                 logger.error(
                     f"{k} can't determine status, because no study metadata available"
                 )
             if current_status in acceptable_statuses:
+                logger.debug(f"current status is acceptable")
                 for row in raw_lod:
                     if row:
                         logger.debug(f"row: {row}")
                         filtered_row = {}
                         for fk, fv in row.items():
                             if fk in self.updatable_monikers:
-                                fks_key = self.env_pack_title_to_key[current_template][
-                                    fk
-                                ]
-                                filtered_row[fks_key] = fv
+                                logger.debug(f"trying to resolve monikers for {fk} vis a vis {current_template}")
+                                if fk in self.env_pack_title_to_key[current_template]:
+                                    fks_key = self.env_pack_title_to_key[current_template][
+                                        fk
+                                    ]
+                                    filtered_row[fks_key] = fv
+                                else:
+                                    logger.warning(f"{fk} is not in updatable_monikers. assigning it as is.")
+                                    # todo this is too trusting
+                                    filtered_row[fk] = fv
+
                         filtered_row["id"] = id_list.pop()
                         logger.debug(f"filtered_row: {filtered_row}")
                         tidied_lod.append(filtered_row)
@@ -879,8 +899,6 @@ class SubmissionsSandbox:
                 if biosample_instance:
                     self.biosample_database["biosample_set"].append(biosample_instance)
 
-        # yaml_dumper.dump(self.biosample_database, sample_database_file)
-
     def sample_metadata_to_csv(self, sample_metadata_csv_file):
         logger.debug(f"self.updatable_monikers: {self.updatable_monikers}")
         with open(sample_metadata_csv_file, "w", newline="") as csvfile:
@@ -907,9 +925,6 @@ class SubmissionsSandbox:
 
     def sample_metadata_to_json(self, sample_metadata_json_file):
         json_dumper.dump(self.biosample_database, sample_metadata_json_file)
-
-    # def get_final_slot_names(self):
-    #     pass
 
     def get_biosamples_from_sqlite_by_accession(self,
                                                 biosample_id_file,
@@ -1311,12 +1326,18 @@ def from_submissions(
         source="tidied",
     )
 
-    # todo separate out write step?
-    sandbox.deep_parse_sample_metadata(sample_database_file=sample_metadata_yaml_file)
+    sandbox.deep_parse_sample_metadata()
 
+    # to what degree
     sandbox.sample_metadata_to_csv(sample_metadata_csv_file=sample_metadata_csv_file)
 
-    # sandbox.study_metadata_to_yaml(study_metadata_yaml_file=study_metadata_yaml_file)
+    sandbox.sample_metadata_to_yaml(sample_metadata_yaml_file=sample_metadata_yaml_file)
+
+    sample_metadata_json_file = sample_metadata_yaml_file.replace(".yaml", ".json")
+
+    sandbox.sample_metadata_to_json(sample_metadata_json_file=sample_metadata_json_file)
+
+    sandbox.study_metadata_to_yaml(study_metadata_yaml_file=study_metadata_yaml_file)
 
 
 @click.command()
@@ -1334,7 +1355,7 @@ def from_submissions(
     default="sample_metadata.yaml",
     help="This is a relatively flat and study-indexed file, not directly suitable for the NMDC schema.",
 )
-@click.option("--data_csv", type=click.Path(exists=True))
+@click.option("--data_csv", type=click.Path(exists=True), required=True)
 @click.option("--static_project_id", required=True)
 @click.option("--static_dh_template", required=True)
 @click.option(
@@ -1354,9 +1375,13 @@ def from_csv(
 ):
     """from submissions help"""
 
+    logger.debug(f"starting from_csv()")
+
     static_project_status = "placeholder"
 
     load_vars_from_env_file(env_file)
+
+    logger.debug(f"will try to load {data_csv}")
 
     with open(data_csv, newline="") as csvfile:
         rows = []
@@ -1380,12 +1405,16 @@ def from_csv(
         }
     }
 
+    logger.debug(f"populated sandbox.study_metadata")
+
     logger.debug(pprint.pformat(sandbox.study_metadata))
 
     sandbox.update_monikers(
         acceptable_statuses=[static_project_status],
         suggested_initial_columns=suggested_initial_columns,
     )
+
+    logger.debug(f"updated sandbox.monikers")
 
     sandbox.minting_client = nrs.RuntimeApiSiteClient(
         base_url="https://api.dev.microbiomedata.org",
@@ -1396,7 +1425,13 @@ def from_csv(
 
     sandbox.view_setup()
 
+    logger.debug(f"performed view_setup()")
+
+    logger.debug(f"will attempt to tidy flat sample metadata with static_project_status {static_project_status}")
+
     sandbox.tidy_flat_sample_metadata(acceptable_statuses=[static_project_status])
+
+    logger.debug(f"tidied flat sample metadata")
 
     sandbox.update_monikers(
         acceptable_statuses=static_project_status,
@@ -1406,276 +1441,16 @@ def from_csv(
 
     sandbox.sample_metadata_to_csv(sample_metadata_csv_file=sample_metadata_csv_file)
 
-    # todo separate out write step?
-    sandbox.deep_parse_sample_metadata(sample_database_file=sample_metadata_yaml_file)
+    sandbox.deep_parse_sample_metadata()
+
+    sandbox.sample_metadata_to_yaml(sample_metadata_yaml_file=sample_metadata_yaml_file)
+
+    sample_metadata_json_file = sample_metadata_yaml_file.replace(".yaml", ".json")
+
+    sandbox.sample_metadata_to_json(sample_metadata_json_file=sample_metadata_json_file)
 
 
-# @click.command()
-# @click_log.simple_verbosity_option(logger)
-# @click.option(
-#     "--env_file",
-#     default="local/.env",
-# )
-# @click.option(
-#     "--biosample_sql_file",
-#     type=click.Path(exists=True),
-#     required=True,
-# )
-# @click.option(
-#     "--biosample_id_file",
-#     type=click.Path(exists=True),
-#     required=True,
-#     help="Biosample IDs, like SAMN00000002, one per line with no header, no prefixes and no quotes",
-# )
-# @click.option(
-#     "--static_project_id",
-#     required=True,
-# )
-# @click.option(
-#     "--sample_metadata_yaml_file",
-#     type=click.Path(),
-#     default="sample_metadata.yaml",
-#     help="This is a relatively flat and study-indexed file, not directly suitable for the NMDC schema.",
-# )
-# @click.option(
-#     "--lookup_file",
-#     type=click.Path(exists=True),
-#     help="Provide a id lookup file in a known format if necessary. See also --lookup_style.",
-# )
-# @click.option(
-#     "--lookup_style",
-#     type=click.Choice(["mcafes_gold_lookup"]),
-#     help="Choose a pre-defined id lookup format. See also --lookup_file.", )
-# def from_sqlite(
-#         env_file,
-#         biosample_sql_file,
-#         biosample_id_file,
-#         static_project_id,
-#         sample_metadata_yaml_file,
-#         lookup_file,
-#         lookup_style,
-# ):
-#     """biosample_sql_file help"""
-#
-#     load_dotenv(env_file)
-#
-#     lookup_dict = {}
-#     if lookup_file and lookup_style:
-#         if lookup_style == "mcafes_gold_lookup":
-#
-#             # for subsequent GOLD API steps
-#             user = os.getenv('nmdc_gold_api_user')
-#             logger.debug(user)
-#             password = os.getenv('nmdc_gold_api_password')
-#             logger.debug(password)
-#             endpoint_url = 'https://gold.jgi.doe.gov/rest/nmdc/biosamples'
-#
-#             # bootstrap sample details lookup dict from lookup file
-#             with open(lookup_file, encoding='utf16') as csvfile:
-#                 reader = csv.DictReader(csvfile, delimiter='\t')
-#                 for row in reader:
-#                     lookup_dict[row['Duplicated_NCBI_Biosample']] = row
-#
-#             # now enrich the lookup dict with the GOLD API
-#             for luk, luv in lookup_dict.items():
-#                 # todo this is from an XLSX -> MS Excel utf 16 TSV conversion
-#                 #   looks like there was some garbage in the spreadsheet
-#                 gold_proj = luv['GOLD Sequencing Project ID'].strip()
-#                 logger.info(
-#                     f"richly_annotated: {luv['Duplicated_NCBI_Biosample']}; GOLD's NCBI BS ID: {luv['NBCI_Biosample']}; GOLD's seq proj id: {gold_proj}")
-#
-#                 params = {"projectGoldId": gold_proj}
-#                 results = requests.get(
-#                     endpoint_url, params=params, auth=HTTPBasicAuth(user, password)
-#                 )
-#                 # todo under what circumstances would there be more than one response in the list?
-#                 rj = results.json()
-#                 biosample_response_size = len(rj)
-#                 if biosample_response_size != 1:
-#                     # todo report more GOLD identifiers from lookup table
-#                     #   warning: found 0 biosample, so skipping merge for SAMN08902876
-#                     logger.warning(f"found {biosample_response_size} biosample, so skipping merge for {luk}")
-#                 else:
-#                     logger.debug(f"Will merge in GOLD's one biosample record for {luk}")
-#                     biosample_response = rj[0]
-#                     logger.debug(f"{luk} {biosample_response}")
-#                     lookup_file_keys = set(luv.keys())
-#                     gold_api_keys = set(biosample_response.keys())
-#                     intersection = lookup_file_keys.intersection(gold_api_keys)
-#                     logger.debug(f"lookup file keys: {lookup_file_keys}")
-#                     logger.debug(f"gold api keys: {gold_api_keys}")
-#                     if len(intersection) > 0:
-#                         logger.warning(f"lookup file/gold api key intersection: {intersection}")
-#                     luv = {**luv, **biosample_response}
-#                     lookup_dict[luk] = luv
-#
-#         logger.debug(pprint.pformat(lookup_dict))
-#
-#     logger.debug(f"will query {biosample_sql_file}")
-#
-#     lookup_file_accession_list = [k for k, v in lookup_dict.items()]
-#
-#     with open(biosample_id_file) as f:
-#         biosample_ids = f.readlines()
-#
-#     mcafes_accession_list = [x.strip() for x in biosample_ids]
-#
-#     lookup_only_accessions = set(lookup_file_accession_list) - set(mcafes_accession_list)
-#     if len(lookup_only_accessions) > 0:
-#         logger.warning(f"lookup_only_accessions: {lookup_only_accessions}")
-#     mcafes_only_accessions = set(mcafes_accession_list) - set(lookup_file_accession_list)
-#     if len(mcafes_only_accessions) > 0:
-#         logger.warning(f"mcafes_only_accessions: {mcafes_only_accessions}")
-#     intersection_accessions = set(mcafes_accession_list).intersection(set(lookup_file_accession_list))
-#     intersection_accessions = list(intersection_accessions)
-#     intersection_accessions.sort()
-#     ia_len = len(intersection_accessions)
-#     logger.debug(f"{ia_len} intersection_accessions: {intersection_accessions}")
-#
-#     accession_list = mcafes_accession_list
-#
-#     logger.debug(accession_list)
-#
-#     sandbox = SubmissionsSandbox()
-#
-#     # todo may not need submission portal view
-#     sandbox.view_setup()
-#
-#     bs_attributes = sandbox.nmdc_view.induced_class("biosample").attributes
-#
-#     bs_attribute_names = [k for k, v in bs_attributes.items()]
-#
-#     bs_attribute_names.sort()
-#
-#     logger.info(f"bs_attribute_names: {bs_attribute_names}")
-#
-#     conn = None
-#
-#     try:
-#         conn = sqlite3.connect(biosample_sql_file)
-#         conn.row_factory = sqlite3.Row
-#     except Exception as e:
-#         logger.critical(e)
-#         exit()
-#
-#     cursor = conn.cursor()
-#
-#     accession_core = "', '".join(accession_list)
-#
-#     accession_tidy = f"('{accession_core}')"
-#
-#     query = f"""
-#     SELECT * FROM harmonized_wide hw
-#     join non_attribute_metadata nam on hw.raw_id = nam.raw_id
-#     join bp_id_accession bia on nam.bp_id = bia.bp_id
-#     where accession in {accession_tidy}"""
-#
-#     cursor.execute(query)
-#
-#     rows = cursor.fetchall()
-#
-#     row_count = len(rows)
-#
-#     # todo report column names
-#     logger.info(f"{row_count} SQLite rows retrieved")
-#
-#     load_vars_from_env_file(env_file)
-#
-#     sandbox.minting_client = nrs.RuntimeApiSiteClient(
-#         base_url="https://api.dev.microbiomedata.org",
-#         site_id=os.getenv("site_id"),
-#         client_id=os.getenv("client_id"),
-#         client_secret=os.getenv("client_secret"),
-#     )
-#
-#     id_list = sandbox.get_ids_list(row_count)
-#
-#     rows_list = []
-#     for row in rows:
-#         row_dict = {}
-#         logger.info(f"processing SQLite row for {row['id']}")
-#         sqlite_cols = list(row.keys())
-#         for k in sqlite_cols:
-#             if row[k] and k in biosample_sqlite_col_name_overrides:
-#                 mapping_dict = biosample_sqlite_col_name_overrides[k]
-#                 dh_name = mapping_dict["dh"]
-#                 mapping_format = mapping_dict["format"]
-#                 logger.info(
-#                     f"mapping SQLite column {k} with value {row[k]} to DH column {dh_name}. Format =  {mapping_format}")
-#                 # todo why isn't INSDC_secondary_sample_identifiers being treated like a list?
-#                 if mapping_format == "list":
-#                     row_dict[dh_name] = [row[k]]
-#                 else:
-#                     row_dict[dh_name] = row[k]
-#             elif row[k] and k in bs_attribute_names:
-#                 row_dict[k] = row[k]
-#             elif row[k]:
-#                 logger.info(f"don't know what to do with SQLite column {k}")
-#
-#         if lookup_file and lookup_style and lookup_style == "mcafes_gold_lookup" and row[
-#             'accession'] in lookup_dict and 'biosampleGoldId' in lookup_dict[row['accession']]:
-#             logger.info(f"found lookup record for {row['accession']}")
-#             current_lookup = lookup_dict[row['accession']]
-#
-#             row_dict["description"] = current_lookup['description']
-#             row_dict["id"] = f"gold:{current_lookup['biosampleGoldId']}"
-#             row_dict["name"] = current_lookup['biosampleName']
-#             row_dict["sample_collection_site"] = current_lookup['sampleCollectionSite']
-#             row_dict["habitat"] = current_lookup['habitat']
-#
-#             # todo or check lookup?
-#             # row_dict["part_of"] = static_project_id
-#             row_dict["sample_link"] = static_project_id
-#
-#             # todo
-#             # row_dict["depth2"] = static_project_id
-#
-#             row_dict["ecosystem"] = current_lookup['ecosystem']
-#             row_dict["ecosystem_category"] = current_lookup['ecosystemCategory']
-#             row_dict["ecosystem_subtype"] = current_lookup['ecosystemSubtype']
-#             row_dict["ecosystem_type"] = current_lookup['ecosystemType']
-#             row_dict["specific_ecosystem"] = current_lookup['specificEcosystem']
-#
-#             # todo check this
-#             triad_terms = ["envoBroadScale", "envoLocalScale", "envoMedium"]
-#             for current_from_triad in triad_terms:
-#                 current_term = current_lookup[current_from_triad]['id']
-#                 current_label = current_lookup[current_from_triad]['label']
-#                 coloned_term = underscored_to_coloned(current_term)
-#                 row_dict[current_from_triad] = f"{current_label} [{coloned_term}]"
-#
-#             row_dict["GOLD sample identifiers"] = [f"gold:{current_lookup['biosampleGoldId']}"]
-#
-#             # todo it doesn't look like IMG taxon identifiers are available for all of the GOLD biosample entries
-#             alternative_identifiers = [id_list.pop()]
-#             img_genome_aka_taxon_key = 'IMG Genome ID '
-#             img_genome_aka_taxon_value = current_lookup[img_genome_aka_taxon_key]
-#             if img_genome_aka_taxon_value:
-#                 alternative_identifiers.append(f"img.taxon:{img_genome_aka_taxon_value}")
-#             row_dict["alternative identifiers"] = alternative_identifiers
-#
-#             rows_list.append(row_dict)
-#         else:
-#             row_dict["id"] = id_list.pop()
-#             row_dict["sample_link"] = static_project_id
-#             rows_list.append(row_dict)
-#
-#         # todo advantages and disadvantages?
-#         row_dict["type"] = "nmdc:Biosample"
-#
-#     # https://www.ncbi.nlm.nih.gov/biosample/8902828
-#
-#     for i in rows_list:
-#         logger.debug(pprint.pformat(i))
-#
-#     sandbox.sample_metadata_by_slotname = {static_project_id: rows_list}
-#
-#     # todo monitor INSDC_biosample_identifiers
-#     #  None → 0..* ExternalIdentifier (which is a type with root URIorCURIE and representation str)
-#     #    currently passing a scalar, which is silently repaired to a list at instantiation time?
-#     sandbox.deep_parse_sample_metadata(sample_database_file=sample_metadata_yaml_file)
-
-
+# pure_from_sqlite below
 @click.command()
 @click_log.simple_verbosity_option(logger)
 @click.option(
@@ -1709,8 +1484,6 @@ def from_csv(
     "--sample-metadata-yaml-file",
     type=click.Path(),
     default="sample_metadata.yaml",
-    # todo make a separate dumper methods for database of biosamples
-    # help="This is a relatively flat and study-indexed file, not directly suitable for the NMDC schema.",
 )
 def pure_from_sqlite(
         biosample_id_file,
@@ -1750,8 +1523,10 @@ def pure_from_sqlite(
     sample_metadata_json_file = sample_metadata_yaml_file.replace(".yaml", ".json")
 
     sandbox.sample_metadata_to_json(sample_metadata_json_file=sample_metadata_json_file)
+    # end of pure_from_sqlite
 
 
+# pure_from_gold_study below
 @click.command()
 @click_log.simple_verbosity_option(logger)
 @click.option(
@@ -1774,8 +1549,6 @@ def pure_from_sqlite(
     "--sample-metadata-yaml-file",
     type=click.Path(),
     default="sample_metadata.yaml",
-    # todo make a separate dumper methods for database of biosamples
-    # help="This is a relatively flat and study-indexed file, not directly suitable for the NMDC schema.",
 )
 def pure_from_gold_study(
         env_file,
@@ -1804,7 +1577,10 @@ def pure_from_gold_study(
 
     sandbox.sample_metadata_to_json(sample_metadata_json_file=sample_metadata_json_file)
 
+    # end of pure_from_gold_study
 
+
+# sqlite_gold_hybrid below
 @click.command()
 @click_log.simple_verbosity_option(logger)
 @click.option(
@@ -1962,10 +1738,10 @@ def sqlite_gold_hybrid(
     sample_metadata_json_file = sample_metadata_yaml_file.replace(".yaml", ".json")
 
     sandbox.sample_metadata_to_json(sample_metadata_json_file=sample_metadata_json_file)
+    # end of sqlite_gold_hybrid
 
 
 cli.add_command(from_csv)
-# cli.add_command(from_sqlite)
 cli.add_command(from_submissions)
 cli.add_command(pure_from_sqlite)
 cli.add_command(pure_from_gold_study)

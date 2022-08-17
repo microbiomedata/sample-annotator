@@ -44,5 +44,5 @@ build-backend = "poetry.core.masonry.api"
 annotate-sample = "sample_annotator.sample_annotator:cli"
 sqlite_client_cli = "sample_annotator.clients.biosample_sqlite_client:cli"
 rel_to_oxygen_example = "sample_annotator.rel_to_oxygen_example:cli"
-api_or_tsv_metadata_submissions_to_json = "sample_annotator.clients.nmdc.api_or_tsv_metadata_submissions_to_json:cli"
+biosample_instantiator_plus = "sample_annotator.clients.nmdc.biosample_instantiator_plus:cli"
 
