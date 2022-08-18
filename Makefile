@@ -1,13 +1,23 @@
 # todo get rid of embedded absolute paths
 
 RUN = poetry run
-## SESSION_COOKIE? See https://github.com/microbiomedata/sample-annotator/issues/90
-#SESSION_COOKIE = $(shell cat local/SESSION_COOKIE.txt)
 NMDC_SCHEMA_PATH = assets/in/nmdc_schema_6/nmdc.yaml
+PLACEHOLDER_TEXT="forces creation of this directory"
+
+DH_BIOSAMPLE_CSV=assets/in/Bioscales_NMDC_import_nospace_temps.csv
+PROJ_ID_FOR_CSV='gold:Gs0154044'
+DH_TEMPLATE=bioscales
+
+# m-cafes
+# BIOPROJECT:PRJNA692505
+BIOSAMPLE_SQLITE_FILE = /Users/MAM/Downloads/biosample_basex.db
+# not to be confused with dg_biosample_sqlite_file
+ACCESSIONS_FILE = assets/in/mcafe_accessions.txt
+PROJ_ID_FOR_SQLITE='gold:Gs0110119'
 
 #dg_biosample_sqlite_file = ~/biosample_basex_data_good_subset.db
 
-.PHONY: test clean all
+.PHONY: test clean all api_or_tsv_clean
 
 all: clean test examples/outputs/report.tsv assets/bibo_DocumentStatus.tsv rel_to_oxygen_example \
 examples/outputs/non_attribute_metadata_sel_envs_partial.tsv
@@ -40,16 +50,16 @@ examples/outputs/report.tsv: examples/gold.json
 downloads/mixs6_core.tsv:
 	curl -L -s 'https://docs.google.com/spreadsheets/d/1QDeeUcDqXes69Y2RjU2aWgOpCVWo5OVsBX9MKmMqi_o/export?format=tsv&gid=178015749' > $@
 
-examples/outputs/non_attribute_metadata_sel_envs_partial.tsv:
-	$(RUN) sqlite_client_cli \
-		--sqlite_path $(dg_biosample_sqlite_file) \
-		--query "select * from non_attribute_metadata_sel_envs limit 9" \
-		--tsv_out $@
-
-rel_to_oxygen_example: downloads/mixs6_core.tsv
-	$(RUN) rel_to_oxygen_example \
-		--sqlite_path $(dg_biosample_sqlite_file) \
-		--mixs_core_path $<
+#examples/outputs/non_attribute_metadata_sel_envs_partial.tsv:
+#	$(RUN) sqlite_client_cli \
+#		--sqlite_path $(dg_biosample_sqlite_file) \
+#		--query "select * from non_attribute_metadata_sel_envs limit 9" \
+#		--tsv_out $@
+#
+#rel_to_oxygen_example: downloads/mixs6_core.tsv
+#	$(RUN) rel_to_oxygen_example \
+#		--sqlite_path $(dg_biosample_sqlite_file) \
+#		--mixs_core_path $<
 
 
 bin/robot.jar:
@@ -63,54 +73,9 @@ assets/bibo_DocumentStatus.tsv: downloads/bibo.owl bin/robot.jar
 	java -jar bin/robot.jar query --input $< --query sparql/bibo_DocumentStatus.sparql $@
 	sed --in-place=.bak 's/^\?//' $@
 
-.PHONY: clean_loosies
-clean_loosies:
-	rm -rf assets/out/*json
-	rm -rf assets/out/*tsv
-	rm -rf assets/out/*yaml
-	rm -rf bs_db.json instantiation_log.yml submission_frame.tsv sample_data.tsv
 
-# todo delete
-#assets/out/biosample_collection.json: $(NMDC_SCHEMA_PATH) clean_loosies
-#	$(RUN) python sample_annotator/clients/nmdc/get_metadata_submissions.py \
-#		--session_cookie $(SESSION_COOKIE) \
-#		--study_id "cc498964-d1da-416d-b353-aecf5f6c749d"
-
-assets/out/submissions_as_studies.yaml:
-	$(RUN) python sample_annotator/clients/nmdc/submissions_to_nmdc_databases.py \
-		--merge_known_orcids False
-
-assets/out/biosmaples_tsv_to_json.json:
-	$(RUN) python sample_annotator/clients/nmdc/biosamples_tsv_to_json.py \
-		--csv_in /Users/MAM/Bioscales_NMDC_import_nospace_temps.csv \
-		--yaml_out /Users/MAM/Bioscales_NMDC_import_nospace_temps.yaml \
-		--asserted_template bioscales \
-		--asserted_study study1234
-  #  --infer / --no-infer            Infer missing slot values  [default: no-
-  #                                  infer]
-
-# todo if including --module /Users/MAM/Documents/gitrepos/nmdc-schema/nmdc_schema/nmdc.py
-#   KeyError: 'applies to person'
-assets/out/submissions_as_studies.json: assets/in/study_database_bottomup.yaml
-	$(RUN) linkml-validate \
-		--target-class Database \
-		--index-slot study_set \
-		--schema /Users/MAM/Documents/gitrepos/nmdc-schema/src/schema/nmdc.yaml $<
-	$(RUN) linkml-convert \
-		--output $@ \
-		--target-class Database \
-		--index-slot study_set \
-		--schema /Users/MAM/Documents/gitrepos/nmdc-schema/src/schema/nmdc.yaml \
-		--module /Users/MAM/Documents/gitrepos/nmdc-schema/nmdc_schema/nmdc.py $<
-
-
-# usages of sample_annotator/clients/nmdc/biosample_instantiator_plus.py
 
 # NEW BIOSAMPLE INSTANTIATION
-
-.PHONY: api_or_tsv_clean
-
-PLACEHOLDER_TEXT="forces creation of this directory"
 
 api_or_tsv_clean:
 	rm -rf assets/out/*
@@ -126,10 +91,10 @@ api_or_tsv_clean:
 #  9-9 picks up some soil horizon problems
 # 12 problems with sample_type and samp_collec_device:russiancorer
 
-assets/out/sample_metadata_from_submission_portal.yaml:
+assets/out/sample_metadata_from_dev_submission_portal.yaml:
 	# --data_portal_url https://data.dev.microbiomedata.org/ or https://data.microbiomedata.org/
 	$(RUN) biosample_instantiator_plus from-submissions \
-		--data_portal_url https://data.microbiomedata.org/ \
+		--data_portal_url https://data.dev.microbiomedata.org/ \
 		--page_start 0 \
 		--page_stop 999 \
 		--sample_metadata_csv_file $(basename $@).csv  \
@@ -137,12 +102,7 @@ assets/out/sample_metadata_from_submission_portal.yaml:
 		--study_metadata_yaml_file $(subst sample,study,$(basename $@)).yaml
 		# 2> assets/out/biosample_instantiator_plus.log
 
-DH_BIOSAMPLE_CSV=assets/in/Bioscales_NMDC_import_nospace_temps.csv
-PROJ_ID_FOR_CSV='gold:Gs0154044'
-DH_TEMPLATE=bioscales
-
 # todo switch from csv to tsv or auto-sense
-	# --sample_metadata_csv_file $(basename $@).csv
 
 assets/out/sample_metadata_from_dh_csv.yaml:
 	$(RUN) biosample_instantiator_plus from-csv \
@@ -151,13 +111,6 @@ assets/out/sample_metadata_from_dh_csv.yaml:
 		--static_project_id $(PROJ_ID_FOR_CSV) \
 		--sample_metadata_csv_file $(basename $@).csv  \
 		--sample_metadata_yaml_file $@
-
-# m-cafes
-# BIOPROJECT:PRJNA692505
-BIOSAMPLE_SQLITE_FILE = /Users/MAM/Downloads/biosample_basex.db
-# not to be confused with dg_biosample_sqlite_file
-ACCESSIONS_FILE = assets/in/mcafe_accessions.txt
-PROJ_ID_FOR_SQLITE='gold:Gs0110119'
 
 # todo click options should always be hyphen seperated not underscore seperated
 
@@ -202,7 +155,7 @@ bioscales_dh_csv:  assets/out/sample_metadata_from_dh_csv_v3.json #  todo compla
 m-CAFEs-hybrid:  assets/out/sample_metadata_from_hybrid_v3.json
 m-CAFEs-pure-gold-api:  assets/out/sample_metadata_from_pure_gold_api_v3.json
 m-CAFEs-pure-sqlite:  assets/out/sample_metadata_from_pure_sqlite_v3.json
-submission-portal:  assets/out/sample_metadata_from_submission_portal_v3.json # todo complains about post-v3 EMSL etc slots. But there ARE part_of assertions!?
+submission-portal:  assets/out/sample_metadata_from_submission_portal_v3.json # todo complains about post-v3 EMSL etc slots. But there ARE part_of assertions!?  ALSO don't forge that this only queries one of DEV or PROD at this point in time
 
 assets/out/%_v3.json: assets/out/%.yaml
 	# todo why is this @type removal required?

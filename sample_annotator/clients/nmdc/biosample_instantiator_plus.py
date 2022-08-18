@@ -14,6 +14,10 @@
 #     enter the session cookie value into the session_cookie row in local/.env
 #       what are the other env variables for ?
 
+# todo instantiate studies from
+#   gold api
+#   sqlite
+
 # todo are we properly handling multivalued, non-enum slots?
 
 # todo tests, more typing, docstrings, etc.
@@ -58,12 +62,14 @@ from nmdc_schema.nmdc import (
     ControlledTermValue,
     TimestampValue,
     Database,
-    Study,
+    Study, AttributeValue, PersonValue, CreditAssociation,
 )
 from quantulum3 import parser
 from requests.auth import HTTPBasicAuth
 
 import sample_annotator.clients.nmdc.nmdc_runtime_snippets as nrs
+
+import validators
 
 # import LatLon23
 
@@ -910,8 +916,9 @@ class SubmissionsSandbox:
                     writer.writerows(v)
 
     def study_metadata_to_yaml(self, study_metadata_yaml_file):
-        with open(study_metadata_yaml_file, "w") as outfile:
-            yaml.dump(self.study_metadata, outfile, default_flow_style=False)
+        yaml_dumper.dump(self.study_database, to_file=study_metadata_yaml_file)
+        # with open(study_metadata_yaml_file, "w") as outfile:
+        #     yaml.dump(self.study_metadata, outfile, default_flow_style=False)
 
     # # todo this has keys, so couldn't be directly ingested into LinkML
     # #   also what's the difference between null values and ""?
@@ -1234,6 +1241,120 @@ class SubmissionsSandbox:
                 exit()
         return sample_slot_definition
 
+    def instantiate_studies(self):
+        study_count = len(self.study_metadata.keys())
+        logger.info(f"WOULD INSTANTIATE {study_count} STUDIES")
+        if study_count > 0:
+            for study_id, submission in self.study_metadata.items():
+                logger.info(f"instantiating study with kitware identifier {study_id}")
+                # WOULD INSTANTIATE 8a4d9635-b20d-435f-a9c9-43e33f0b2ae7
+                # todo give studies foreign or nmdc-minted identifiers
+                #   then what to do with the Kitware IDs?
+                logger.debug(pprint.pformat(submission))
+                instantiated = Study(id=f"kitware_submission:{submission['id']}", type="nmdc:Study", )
+
+                contributors_protected = None
+
+                if "metadata_submission" in submission and submission["metadata_submission"]:
+                    metadata_submission = submission["metadata_submission"]
+                    if "studyForm" in metadata_submission and metadata_submission["studyForm"]:
+                        study_form = metadata_submission["studyForm"]
+
+                        if "contributors" in study_form and study_form["contributors"]:
+                            contributors_protected = study_form["contributors"]
+
+                        if "studyName" in study_form and study_form["studyName"]:
+                            instantiated.name = study_form['studyName']
+                        if "linkOutWebpage" in study_form and len(study_form["linkOutWebpage"]) > 0:
+                            for i in study_form["linkOutWebpage"]:
+                                if validators.url(i):
+                                    instantiated.websites.append(i)
+                                else:
+                                    logger.warning(f"{i} is not a valid URL")
+                        if "description" in study_form and study_form["description"]:
+                            instantiated.description = study_form['description']
+                        if "notes" in study_form and study_form["notes"]:
+                            instantiated.alternative_descriptions.append(study_form['description'])
+
+                        if study_form["piOrcid"] or study_form["piName"] or study_form["piEmail"]:
+                            pi_person = PersonValue()
+                            if study_form["piOrcid"] and study_form["piOrcid"]:
+                                pi_person.orcid = study_form["piOrcid"]
+                            if study_form["piName"] and study_form["piName"]:
+                                pi_person.has_raw_value = study_form["piName"]
+                            if study_form["piEmail"] and study_form["piEmail"]:
+                                pi_person.email = study_form["piEmail"]
+                            pi_ca = CreditAssociation(
+                                applies_to_person=pi_person, applied_roles=["Principal Investigator"]
+                            )
+                            instantiated.principal_investigator = pi_person
+                            instantiated.has_credit_associations.append(pi_ca)
+
+                    if "multiOmicsForm" in metadata_submission and metadata_submission["multiOmicsForm"]:
+                        multi_omics_form = metadata_submission["multiOmicsForm"]
+                        if "datasetDoi" in multi_omics_form and multi_omics_form["datasetDoi"]:
+                            instantiated.doi = AttributeValue(has_raw_value=multi_omics_form["datasetDoi"])
+                        if "alternativeNames" in multi_omics_form and multi_omics_form["alternativeNames"]:
+                            instantiated.alternative_names.append(multi_omics_form["datasetDoi"])
+                        if "studyNumber" in multi_omics_form and multi_omics_form["studyNumber"]:
+                            instantiated.alternative_identifiers.append(multi_omics_form["studyNumber"])
+                        if "GOLDStudyId" in multi_omics_form and multi_omics_form["GOLDStudyId"]:
+                            instantiated.GOLD_study_identifiers.append(multi_omics_form["GOLDStudyId"])
+                        if "JGIStudyId" in multi_omics_form and multi_omics_form["JGIStudyId"]:
+                            instantiated.alternative_identifiers.append(multi_omics_form["JGIStudyId"])
+                        # this will probably be an accession, not an identifier (number)
+                        # the form also asks for a NCBIBioProjectName
+                        # todo that should end. we should look it up based on the accession; eliminate typos; decrease workload on submitter
+                        if "NCBIBioProjectId" in multi_omics_form and multi_omics_form["NCBIBioProjectId"]:
+                            instantiated.INSDC_bioproject_identifiers.append(multi_omics_form["NCBIBioProjectId"])
+                        if "NCBIBioProjectName" in multi_omics_form and multi_omics_form["NCBIBioProjectName"]:
+                            instantiated.alternative_titles.append(multi_omics_form['NCBIBioProjectName'])
+
+                if "author" in submission and "orcid" in submission["author"]:
+                    submitter_person = PersonValue(orcid=submission["author"]["orcid"])
+                    if (
+                            submission["author"]["name"]
+                            and submission["author"]["name"]
+                    ):
+                        submitter_person.has_raw_value = submission["author"]["name"]
+                    # todo what role to use? Project administration?
+                    #   parameterize this
+                    submitter_ca = CreditAssociation(
+                        applies_to_person=submitter_person, applied_roles=["Project administration"]
+                    )
+                    instantiated.has_credit_associations.append(submitter_ca)
+
+                already_associated = {}
+                for i in instantiated.has_credit_associations:
+                    if i.applies_to_person.orcid:
+                        already_associated[i.applies_to_person.orcid] = i
+                        logger.info(f"already associated {i.applies_to_person.orcid}")
+
+                if contributors_protected:
+                    for i in contributors_protected:
+                        io = i["orcid"]
+                        if io in already_associated:
+                            aa = already_associated[io]
+                            for j in i["roles"]:
+                                aa.applied_roles.append(j)
+                            already_associated[io] = aa
+                        else:
+                            temp_person = PersonValue(orcid=i["orcid"])
+                            if i["name"] and i["name"] != "":
+                                temp_person.has_raw_value = i["name"]
+                            temp_ca = CreditAssociation(
+                                applies_to_person=temp_person, applied_roles=i["roles"]
+                            )
+                            already_associated[io] = temp_ca
+
+                    for k, v in already_associated.items():
+                        instantiated.has_credit_associations.append(v)
+
+                logger.debug(f"instantiated:\n{yaml_dumper.dumps(instantiated)}")
+                self.study_database.study_set.append(instantiated)
+
+            logger.info(f"study database:\n{yaml_dumper.dumps(self.study_database)}")
+
 
 @click.group()
 def cli():
@@ -1336,6 +1457,8 @@ def from_submissions(
     sample_metadata_json_file = sample_metadata_yaml_file.replace(".yaml", ".json")
 
     sandbox.sample_metadata_to_json(sample_metadata_json_file=sample_metadata_json_file)
+
+    sandbox.instantiate_studies()
 
     sandbox.study_metadata_to_yaml(study_metadata_yaml_file=study_metadata_yaml_file)
 
