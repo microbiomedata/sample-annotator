@@ -1,10 +1,9 @@
-from cmath import pi
 import io
 import os
+import re
 import json
 import pkgutil
 import logging
-import re
 
 from typing import Dict, List, Union
 
@@ -134,6 +133,33 @@ class GoldNMDC(GoldClient):
 
         return mod_date
 
+    def _processing_institute_handler(self, sequencing_centers: List[str]) -> List[str]:
+        """GOLD NMDC transformation pipeline specific term handler.
+        Specific to the ProcessingInstitutionEnum term.
+
+        :param sequencing_centers: List of sequencing centers as stored in GOLD
+        :return: NMDC Schema compliant processing institute names
+        """
+        nmdc_compliant_seq_ctrs = []
+
+        for seq_ctr in sequencing_centers:
+            if re.findall(
+                r"University of California[,]? San Diego", seq_ctr, flags=re.IGNORECASE
+            ):
+                nmdc_compliant_seq_ctrs.append("UCSD")
+
+            if re.findall(
+                r"Environmental Molecular Sciences Laboratory",
+                seq_ctr,
+                flags=re.IGNORECASE,
+            ):
+                nmdc_compliant_seq_ctrs.append("EMSL")
+
+            if re.findall(r"Joint Genome Institute", seq_ctr, flags=re.IGNORECASE):
+                nmdc_compliant_seq_ctrs.append("JGI")
+
+        return nmdc_compliant_seq_ctrs
+
     def transform_gold_nmdc(
         self, file_name: Union[str, bytes, os.PathLike] = None
     ) -> str:
@@ -161,6 +187,16 @@ class GoldNMDC(GoldClient):
         # only for soil related GOLD project IDs
         biosamples = [
             samp for samp in biosamples if samp["biosampleGoldId"] in soil_biosamples
+        ]
+
+        analysis_projects = self.fetch_analysis_projects_by_study(self.study_id)
+
+        # subsetted list of analysis projects filtered
+        # only for soil related GOLD project IDs
+        analysis_projects = [
+            ap
+            for ap in analysis_projects
+            if any(e in soil_projects for e in ap["projects"])
         ]
 
         study_data = self.fetch_study(id=self.study_id)
@@ -226,14 +262,14 @@ class GoldNMDC(GoldClient):
                         part_of=self.study_id,
                         ncbi_taxonomy_name=biosample["ncbiTaxName"],
                         type="nmdc:Biosample",
-
+                        
                         # biosample date information
                         add_date=XSDDateTime(biosample["addDate"]),
                         collection_date=nmdc.TimestampValue(
                             has_raw_value=biosample["dateCollected"]
                         ),
                         mod_date=mod_date,
-
+                        
                         # Earth fields
                         depth=depth,
                         
@@ -293,6 +329,7 @@ class GoldNMDC(GoldClient):
                                 "_", ":"
                             )
                         ),
+                        sample_link="gold:" + study_data["studyGoldId"],
                     )
                 )
             except:
@@ -303,7 +340,7 @@ class GoldNMDC(GoldClient):
         for project in projects:
             try:
                 pi_dict = self.get_pi_dict(project)
-                
+
                 mod_date = self.mod_date_handler(project)
 
                 project_has_output_dict = self.project_has_output_dict()
@@ -318,7 +355,7 @@ class GoldNMDC(GoldClient):
                         id="gold:" + project["projectGoldId"],
                         name=project["projectName"],
                         GOLD_sequencing_project_identifiers="gold:"
-                        + project["biosampleGoldId"],
+                        + project["projectGoldId"],
                         ncbi_project_name=project["projectName"],
                         type="nmdc:OmicsProcessing",
                         has_input="gold:" + project["biosampleGoldId"],
@@ -339,13 +376,33 @@ class GoldNMDC(GoldClient):
                             has_raw_value=project["sequencingStrategy"]
                         ),
                         instrument_name=project["itsSequencingProductName"],
-                        processing_institution=project["sequencingCenters"][0],
+                        processing_institution=self._processing_institute_handler(
+                            project["sequencingCenters"]
+                        ),
                     )
                 )
             except:
                 logger.error(
                     f"Omics processing set not properly annotated: {project['projectGoldId']}"
                 )
+
+        # TODO: AP handling code to be revised after
+        # determining which slots are actually required
+        # for ap in analysis_projects:
+        #     self.nmdc_db.omics_processing_set.append(
+        #         nmdc.MetagenomeAnnotationActivity(
+        #             id=ap["apGoldId"],
+        #             execution_resource=ap["apGoldId"],
+        #             git_url=ap["apGoldId"],
+        #             has_input=ap["apGoldId"],
+        #             has_output=ap["apGoldId"],
+        #             type=ap["apGoldId"],
+        #             started_at_time=XSDDateTime("2022-08-23"),
+        #             ended_at_time=XSDDateTime("2022-08-23"),
+        #             was_informed_by=ap["apGoldId"],
+        #             GOLD_analysis_project_identifiers=ap["apGoldId"]
+        #         )
+        #     )
 
         # dump JSON string serialization of NMDC Schema object
         json_str = json_dumper.dumps(self.nmdc_db, inject_type=False)
