@@ -13,7 +13,13 @@ import nmdc_schema.nmdc as nmdc
 
 from linkml_runtime.dumpers import json_dumper
 from linkml_runtime.linkml_model.types import XSDDateTime
-from sample_annotator.clients.gold_client import GoldClient
+from sample_annotator.clients.gold_client import (
+    GoldClient,
+    StudyDict,
+    ProjectDict,
+    ApDict,
+    SampleDict,
+)
 
 
 logger = logging.getLogger(__name__)  # module level logger
@@ -160,47 +166,8 @@ class GoldNMDC(GoldClient):
 
         return nmdc_compliant_seq_ctrs
 
-    def transform_gold_nmdc(
-        self, file_name: Union[str, bytes, os.PathLike] = None
-    ) -> str:
-        """Transform EMP500 data fetched from GOLD Database into
-        NMDC Schema compliant JSON data.
-
-        :param study_id: Gold study id
-        :param file_name: optional file name argument to write JSON dump
-            output to
-        :return: JSON string
-        """
-        projects = self.fetch_projects_by_study(self.study_id)
-
-        soil_projects = self.soil_projects()
-
-        # subsetted list of projects filtered
-        # only for soil related GOLD project IDs
-        projects = [proj for proj in projects if proj["projectGoldId"] in soil_projects]
-
-        soil_biosamples = [proj["biosampleGoldId"] for proj in projects]
-
-        biosamples = self.fetch_biosamples_by_study(self.study_id)
-
-        # subsetted list of biosamples filtered
-        # only for soil related GOLD project IDs
-        biosamples = [
-            samp for samp in biosamples if samp["biosampleGoldId"] in soil_biosamples
-        ]
-
-        analysis_projects = self.fetch_analysis_projects_by_study(self.study_id)
-
-        # subsetted list of analysis projects filtered
-        # only for soil related GOLD project IDs
-        analysis_projects = [
-            ap
-            for ap in analysis_projects
-            if any(e in soil_projects for e in ap["projects"])
-        ]
-
-        study_data = self.fetch_study(id=self.study_id)
-
+    def compute_study_set(self, study_data: StudyDict):
+        """Compute study_set parameters to be populated from the dataset."""
         pi_dict = self.get_pi_dict(study_data)
 
         self.nmdc_db.study_set.append(
@@ -218,6 +185,10 @@ class GoldNMDC(GoldClient):
             )
         )
 
+    def compute_biosample_set(
+        self, study_data: StudyDict, biosamples: List[str], projects: List[str]
+    ) -> SampleDict:
+        """Compute biosample parameters to be populated from the dataset."""
         for biosample in biosamples:
             try:
                 mod_date = self.mod_date_handler(biosample)
@@ -288,9 +259,7 @@ class GoldNMDC(GoldClient):
                         specific_ecosystem=biosample["specificEcosystem"],
                         
                         # collection site metadata
-                        geo_loc_name=nmdc.TextValue(
-                            has_raw_value=biosample["geoLocation"]
-                        ),
+                        geo_loc_name=nmdc.TextValue(has_raw_value=biosample["geoLocation"]),
                         lat_lon=nmdc.GeolocationValue(
                             has_raw_value=str(biosample["latitude"])
                             + " "
@@ -300,11 +269,11 @@ class GoldNMDC(GoldClient):
                         ),
                         habitat=biosample["habitat"],
                         location=biosample["isoCountry"],
-
+                        
                         # collection metadata fields
                         host_name=biosample["hostName"],
                         sample_collection_site=biosample["sampleBodySite"],
-
+                        
                         # chemical metadata fields
                         nitrate=nmdc.QuantityValue(
                             has_numeric_value=biosample["nitrateConcentration"]
@@ -312,7 +281,7 @@ class GoldNMDC(GoldClient):
                         salinity=nmdc.QuantityValue(
                             has_numeric_value=biosample["salinityConcentration"]
                         ),
-
+                        
                         # environment metadata fields
                         env_broad_scale=nmdc.ControlledTermValue(
                             has_raw_value=biosample["envoBroadScale"]["id"].replace(
@@ -325,9 +294,7 @@ class GoldNMDC(GoldClient):
                             )
                         ),
                         env_medium=nmdc.ControlledTermValue(
-                            has_raw_value=biosample["envoMedium"]["id"].replace(
-                                "_", ":"
-                            )
+                            has_raw_value=biosample["envoMedium"]["id"].replace("_", ":")
                         ),
                         sample_link="gold:" + study_data["studyGoldId"],
                     )
@@ -337,6 +304,8 @@ class GoldNMDC(GoldClient):
                     f"Biosample not properly annotated: {biosample['biosampleGoldId']}"
                 )
 
+    def compute_project_set(self, projects: List[str]) -> ProjectDict:
+        """Compute sequencing project parameters to be populated from the dataset."""
         for project in projects:
             try:
                 pi_dict = self.get_pi_dict(project)
@@ -370,7 +339,7 @@ class GoldNMDC(GoldClient):
                             name=pi_dict["name"],
                             email=pi_dict["email"],
                         ),
-
+                        
                         # sequencing details fields
                         omics_type=nmdc.ControlledTermValue(
                             has_raw_value=project["sequencingStrategy"]
@@ -386,10 +355,11 @@ class GoldNMDC(GoldClient):
                     f"Omics processing set not properly annotated: {project['projectGoldId']}"
                 )
 
+    def compute_analysis_project_set(self, analysis_projects: List[str]) -> ApDict:
+        """Compute analysis project parameters to be populated from the dataset."""
         # TODO: AP handling code to be revised after
         # determining which slots are actually required
         for ap in analysis_projects:
-
             mod_date = self.mod_date_handler(ap)
 
             if re.search("Metagenome Analysis", ap["apType"], re.IGNORECASE):
@@ -406,7 +376,7 @@ class GoldNMDC(GoldClient):
                         started_at_time=XSDDateTime(ap["addDate"]),
                         ended_at_time=XSDDateTime(mod_date),
                         was_informed_by="",
-                        GOLD_analysis_project_identifiers=ap["apGoldId"]
+                        GOLD_analysis_project_identifiers=ap["apGoldId"],
                     )
                 )
 
@@ -424,9 +394,58 @@ class GoldNMDC(GoldClient):
                         started_at_time=XSDDateTime(ap["addDate"]),
                         ended_at_time=XSDDateTime(mod_date),
                         was_informed_by="",
-                        GOLD_analysis_project_identifiers=ap["apGoldId"]
+                        GOLD_analysis_project_identifiers=ap["apGoldId"],
                     )
                 )
+
+    def transform_gold_nmdc(
+        self, file_name: Union[str, bytes, os.PathLike] = None
+    ) -> str:
+        """Transform any dataset fetched from GOLD Database into
+        NMDC Schema compliant JSON data.
+
+        :param study_id: Gold study id
+        :param file_name: optional file name argument to write JSON dump
+            output to
+        :return: JSON string
+        """
+        projects = self.fetch_projects_by_study(self.study_id)
+
+        soil_projects = self.soil_projects()
+
+        # subsetted list of projects filtered
+        # only for soil related GOLD project IDs
+        projects = [proj for proj in projects if proj["projectGoldId"] in soil_projects]
+
+        soil_biosamples = [proj["biosampleGoldId"] for proj in projects]
+
+        biosamples = self.fetch_biosamples_by_study(self.study_id)
+
+        # subsetted list of biosamples filtered
+        # only for soil related GOLD project IDs
+        biosamples = [
+            samp for samp in biosamples if samp["biosampleGoldId"] in soil_biosamples
+        ]
+
+        analysis_projects = self.fetch_analysis_projects_by_study(self.study_id)
+
+        # subsetted list of analysis projects filtered
+        # only for soil related GOLD project IDs
+        analysis_projects = [
+            ap
+            for ap in analysis_projects
+            if any(e in soil_projects for e in ap["projects"])
+        ]
+
+        study_data = self.fetch_study(id=self.study_id)
+
+        self.compute_study_set(study_data)
+
+        self.compute_biosample_set(study_data, biosamples, projects)
+
+        self.compute_project_set(projects)
+
+        self.compute_analysis_project_set(analysis_projects)
 
         # dump JSON string serialization of NMDC Schema object
         json_str = json_dumper.dumps(self.nmdc_db, inject_type=False)
