@@ -378,7 +378,7 @@ class GoldNMDC(GoldClient):
                         instrument_name=project["itsSequencingProductName"],
                         processing_institution=self._processing_institute_handler(
                             project["sequencingCenters"]
-                        ),
+                        )[0],
                     )
                 )
             except:
@@ -388,21 +388,45 @@ class GoldNMDC(GoldClient):
 
         # TODO: AP handling code to be revised after
         # determining which slots are actually required
-        # for ap in analysis_projects:
-        #     self.nmdc_db.omics_processing_set.append(
-        #         nmdc.MetagenomeAnnotationActivity(
-        #             id=ap["apGoldId"],
-        #             execution_resource=ap["apGoldId"],
-        #             git_url=ap["apGoldId"],
-        #             has_input=ap["apGoldId"],
-        #             has_output=ap["apGoldId"],
-        #             type=ap["apGoldId"],
-        #             started_at_time=XSDDateTime("2022-08-23"),
-        #             ended_at_time=XSDDateTime("2022-08-23"),
-        #             was_informed_by=ap["apGoldId"],
-        #             GOLD_analysis_project_identifiers=ap["apGoldId"]
-        #         )
-        #     )
+        for ap in analysis_projects:
+
+            mod_date = self.mod_date_handler(ap)
+
+            if re.search("Metagenome Analysis", ap["apType"], re.IGNORECASE):
+                self.nmdc_db.metagenome_annotation_activity_set.append(
+                    nmdc.MetagenomeAnnotationActivity(
+                        id=ap["apGoldId"],
+                        name=ap["apName"],
+                        part_of=self.study_id,
+                        execution_resource="",
+                        git_url="",
+                        has_input=ap["projects"],
+                        has_output=ap["apGoldId"],
+                        type=ap["apType"],
+                        started_at_time=XSDDateTime(ap["addDate"]),
+                        ended_at_time=XSDDateTime(mod_date),
+                        was_informed_by="",
+                        GOLD_analysis_project_identifiers=ap["apGoldId"]
+                    )
+                )
+
+            if re.search("Metatranscriptome Analysis", ap["apType"], re.IGNORECASE):
+                self.nmdc_db.metatranscriptome_activity_set.append(
+                    nmdc.MetatranscriptomeAnnotationActivity(
+                        id=ap["apGoldId"],
+                        name=ap["apName"],
+                        part_of=self.study_id,
+                        execution_resource="",
+                        git_url="",
+                        has_input=ap["projects"],
+                        has_output=ap["apGoldId"],
+                        type=ap["apType"],
+                        started_at_time=XSDDateTime(ap["addDate"]),
+                        ended_at_time=XSDDateTime(mod_date),
+                        was_informed_by="",
+                        GOLD_analysis_project_identifiers=ap["apGoldId"]
+                    )
+                )
 
         # dump JSON string serialization of NMDC Schema object
         json_str = json_dumper.dumps(self.nmdc_db, inject_type=False)
