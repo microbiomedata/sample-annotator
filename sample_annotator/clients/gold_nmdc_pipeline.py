@@ -445,7 +445,8 @@ class GoldNMDC(GoldClient):
 
         self.compute_project_set(projects)
 
-        self.compute_analysis_project_set(analysis_projects)
+        # nit: enable if you want to pull AP information from GOLD
+        # self.compute_analysis_project_set(analysis_projects)
 
         # dump JSON string serialization of NMDC Schema object
         json_str = json_dumper.dumps(self.nmdc_db, inject_type=False)
