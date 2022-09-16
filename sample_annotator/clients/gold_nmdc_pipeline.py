@@ -34,19 +34,18 @@ class GoldNMDC(GoldClient):
         # set the GOLD study id
         self.study_id = study_id
 
-    def soil_projects(self) -> List[str]:
-        """Get all project ids associated with soil samples from the
-        EMP500 study on GOLD.
+    def project_ids_subset(self) -> List[str]:
+        """List of GOLD project ids to subset the retreived dataset on.
 
-        :return: list of soil sample project ids
+        :return: list of sample project ids in the subset
         """
-        path_to_soil_ids = os.path.join(
-            os.path.dirname(os.path.abspath(__file__)), "input", "soil_ids.txt"
+        path_to_subset_ids = os.path.join(
+            os.path.dirname(os.path.abspath(__file__)), "input", "project_ids_subset.txt"
         )
-        df = pd.read_csv(path_to_soil_ids)
+        df = pd.read_csv(path_to_subset_ids)
 
         # this assumes that at all times there is only one
-        # column in the soil_ids.txt file
+        # column in the project_ids_subset.txt file
         return df[df.columns.values[0]].to_list()
 
     def validate_nmdc(
@@ -411,30 +410,27 @@ class GoldNMDC(GoldClient):
         """
         projects = self.fetch_projects_by_study(self.study_id)
 
-        soil_projects = self.soil_projects()
+        projects_subset = self.project_ids_subset()
 
         # subsetted list of projects filtered
-        # only for soil related GOLD project IDs
-        projects = [proj for proj in projects if proj["projectGoldId"] in soil_projects]
+        projects = [proj for proj in projects if proj["projectGoldId"] in projects_subset]
 
-        soil_biosamples = [proj["biosampleGoldId"] for proj in projects]
+        biosamples_subset = [proj["biosampleGoldId"] for proj in projects]
 
         biosamples = self.fetch_biosamples_by_study(self.study_id)
 
         # subsetted list of biosamples filtered
-        # only for soil related GOLD project IDs
         biosamples = [
-            samp for samp in biosamples if samp["biosampleGoldId"] in soil_biosamples
+            samp for samp in biosamples if samp["biosampleGoldId"] in biosamples_subset
         ]
 
         analysis_projects = self.fetch_analysis_projects_by_study(self.study_id)
 
         # subsetted list of analysis projects filtered
-        # only for soil related GOLD project IDs
         analysis_projects = [
             ap
             for ap in analysis_projects
-            if any(e in soil_projects for e in ap["projects"])
+            if any(e in projects_subset for e in ap["projects"])
         ]
 
         study_data = self.fetch_study(id=self.study_id)
