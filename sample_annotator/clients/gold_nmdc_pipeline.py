@@ -46,12 +46,12 @@ class GoldNMDC(GoldClient):
         return df[df.columns.values[0]].to_list()
 
     def validate_nmdc(
-        self, file_name: Union[str, bytes, os.PathLike], database_set: str = None
+        self, file_path: Union[str, bytes, os.PathLike], database_set: str = None
     ) -> bool:
         """Validate JSON files against the NMDC Schema using the
         jsonschema library.
 
-        :param file_name: path to input JSON file
+        :param file_path: path to input JSON file
         :param database_set: optional top level database set
             (e.g, study_set, biosample_set) that contains the data,
             defaults to None
@@ -62,7 +62,7 @@ class GoldNMDC(GoldClient):
         )
         nmdc_json_schema = json.loads(nmdc_json_schema_bytes.getvalue())
 
-        with open(file_name, "r") as fh:
+        with open(file_path, "r") as fh:
             json_data = json.load(fh)
 
             if database_set:
@@ -395,13 +395,13 @@ class GoldNMDC(GoldClient):
                 )
 
     def transform_gold_nmdc(
-        self, file_name: Union[str, bytes, os.PathLike] = None
+        self, file_path: Union[str, bytes, os.PathLike] = None
     ) -> str:
         """Transform any dataset fetched from GOLD Database into
         NMDC Schema compliant JSON data.
 
         :param study_id: Gold study id
-        :param file_name: optional file name argument to write JSON dump
+        :param file_path: optional file name argument to write JSON dump
             output to
         :return: JSON string
         """
@@ -449,9 +449,9 @@ class GoldNMDC(GoldClient):
         # dump JSON string serialization of NMDC Schema object
         json_str = json_dumper.dumps(self.nmdc_db, inject_type=False)
 
-        # if file_name is provided then additionally write to file at path
-        if file_name:
-            with open(file_name, "w", encoding="utf-8") as f:
+        # if file_path is provided then additionally write to file at path
+        if file_path:
+            with open(file_path, "w", encoding="utf-8") as f:
                 json.dump(json.loads(json_str), f, ensure_ascii=False, indent=4)
 
         return json_str
