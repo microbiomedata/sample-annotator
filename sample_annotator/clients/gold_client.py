@@ -20,6 +20,8 @@ URL = str
 JSON = Any
 SampleDict = JSON
 StudyDict = JSON
+ProjectDict = JSON
+ApDict = JSON
 
 FILENAME = Union[str, bytes, os.PathLike]
 
@@ -251,6 +253,39 @@ class GoldClient:
                     ids.append(line.strip())
         return self.fetch_studies(ids, **kwargs)
 
+    def fetch_biosamples_by_project(self, id: str) -> List[SampleDict]:
+        """Fetch the biosample from which the sequencing project
+        was generated.
+
+        :param id: GOLD project id. Ex.: Gp0503330
+        :return: List of SampleDict objects
+        """
+        id = self._normalize_id(id)
+        results = self._call("biosamples", {"projectGoldId": id})
+        return results
+
+    def fetch_study_by_project(self, id: str) -> List[StudyDict]:
+        """Fetch the study for which the sequencing project
+        was performed.
+
+        :param id: GOLD project id. Ex.: Gp0503330
+        :return: List of SampleDict objects
+        """
+        id = self._normalize_id(id)
+        results = self._call("studies", {"projectGoldId": id})
+        return results
+
+    def fetch_analysis_projects_by_study(self, id: str) -> List[ApDict]:
+        """Fetch the APs for which the study dataset id is given.
+
+        :param id: GOLD study id. Ex.: Gs0154044
+        :return: List of SampleDict objects
+        """
+        id = self._normalize_id(id)
+        results = self._call("analysis_projects", {"studyGoldId": id})
+        return results
+        
+        
 
 @click.group()
 @click.option("-v", "--verbose", count=True)
