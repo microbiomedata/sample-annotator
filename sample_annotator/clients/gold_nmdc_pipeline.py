@@ -85,7 +85,7 @@ class GoldNMDC(GoldClient):
         :return: List of dicts
         """
         read_qc_path = os.path.join(
-            os.path.dirname(os.path.abspath(__file__)), "input", "EMP_soil_readQC.json"
+            os.path.dirname(os.path.abspath(__file__)), "nmdc", "input", "EMP_soil_readQC.json"
         )
 
         with open(read_qc_path) as f:
@@ -361,36 +361,36 @@ class GoldNMDC(GoldClient):
             if re.search("Metagenome Analysis", ap["apType"], re.IGNORECASE):
                 self.nmdc_db.metagenome_annotation_activity_set.append(
                     nmdc.MetagenomeAnnotationActivity(
-                        id=ap["apGoldId"],
+                        id="gold:" + ap["apGoldId"],
                         name=ap["apName"],
-                        part_of=self.study_id,
+                        part_of="gold:" + self.study_id,
                         execution_resource="",
                         git_url="",
-                        has_input=ap["projects"],
-                        has_output=ap["apGoldId"],
+                        has_input=["gold:" + ap_i for ap_i in ap["projects"]],
+                        has_output="gold:" + ap["apGoldId"],
                         type=ap["apType"],
                         started_at_time=XSDDateTime(ap["addDate"]),
                         ended_at_time=XSDDateTime(mod_date),
                         was_informed_by="",
-                        GOLD_analysis_project_identifiers=ap["apGoldId"],
+                        GOLD_analysis_project_identifiers="gold:" + ap["apGoldId"],
                     )
                 )
 
             if re.search("Metatranscriptome Analysis", ap["apType"], re.IGNORECASE):
                 self.nmdc_db.metatranscriptome_activity_set.append(
                     nmdc.MetatranscriptomeAnnotationActivity(
-                        id=ap["apGoldId"],
+                        id="gold:" + ap["apGoldId"],
                         name=ap["apName"],
-                        part_of=self.study_id,
+                        part_of="gold:" + self.study_id,
                         execution_resource="",
                         git_url="",
-                        has_input=ap["projects"],
-                        has_output=ap["apGoldId"],
+                        has_input=["gold:" + ap_i for ap_i in ap["projects"]],
+                        has_output="gold:" + ap["apGoldId"],
                         type=ap["apType"],
                         started_at_time=XSDDateTime(ap["addDate"]),
                         ended_at_time=XSDDateTime(mod_date),
                         was_informed_by="",
-                        GOLD_analysis_project_identifiers=ap["apGoldId"],
+                        GOLD_analysis_project_identifiers="gold:" + ap["apGoldId"],
                     )
                 )
 
@@ -412,7 +412,7 @@ class GoldNMDC(GoldClient):
         analysis_projects = self.fetch_analysis_projects_by_study(self.study_id)
 
         path_to_subset_ids = os.path.join(
-            os.path.dirname(os.path.abspath(__file__)), "input", "project_ids_subset.txt"
+            os.path.dirname(os.path.abspath(__file__)), "nmdc", "input", "project_ids_subset.txt"
         )
 
         projects_subset = self.project_ids_subset(path_to_subset_ids)
