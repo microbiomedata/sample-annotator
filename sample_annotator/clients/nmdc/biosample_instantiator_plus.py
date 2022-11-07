@@ -494,7 +494,7 @@ class SubmissionsSandbox:
         sample_metadata_by_title = {}
         for result in results:
             result_id = result["id"]
-            logger.info(f"{result_id} started")
+            logger.debug(f"{result_id} started")
             logger.debug(f"result_id: {result_id}")
             if "metadata_submission" in result:
                 metadata_submission = result["metadata_submission"]
@@ -665,6 +665,7 @@ class SubmissionsSandbox:
             pass
 
     def parse_any_range(self, sample_value, ssd_range, range_type):
+        logger.debug(f"ssd_range: {ssd_range}, range_type: {range_type}")
         # todo branch on the types, not the type's pre-extracted class names
         if range_type == "type_definition":
             # todo i think sample_link is handled here, since it has the default range of string
@@ -703,20 +704,20 @@ class SubmissionsSandbox:
             logger.debug(f"{ssd_range} passing values: {passing_individuals}")
             return passing_individuals
 
-        elif ssd_range == "text value":
+        elif ssd_range == "TextValue":
 
             tv_obj = TextValue(has_raw_value=sample_value)
             return tv_obj
 
-        elif ssd_range == "geolocation value":
+        elif ssd_range == "GeolocationValue":
             geolocation_value = extract_lat_lon(sample_value)
             return geolocation_value
 
-        elif ssd_range == "quantity value":
+        elif ssd_range == "QuantityValue":
             quantity_value = process_qv(sample_value)
             return quantity_value
 
-        elif ssd_range == "timestamp value":
+        elif ssd_range == "TimestampValue":
             timestamp_value = TimestampValue(has_raw_value=sample_value)
             try:
                 # todo need to try more variations on legal partial date and illegal dates
@@ -728,11 +729,11 @@ class SubmissionsSandbox:
             except ValueError:
                 logger.error(f"{ValueError}: {sample_value} is not a valid timestamp")
 
-        elif ssd_range == "controlled term value":
+        elif ssd_range == "ControlledTermValue":
             ctv = extract_ctv(sample_value)
             return ctv
 
-        elif ssd_range == "named thing":
+        elif ssd_range == "NamedThing":
             return sample_value
 
     def instantiate_biosample(self, deep_parse_dict, study_id):
@@ -765,6 +766,10 @@ class SubmissionsSandbox:
         remaining_slots = list(set(deep_parse_dict.keys()) - set(biosample_requireds))
         logger.debug(f"remaining_slots: {remaining_slots}")
 
+        logger.debug("About to instantiate a Biosample.")
+        # logger.info(pprint.pformat(required_values))
+        logger.debug(pprint.pformat(deep_parse_dict))
+
         try:
             instantiated_biosample = Biosample(**required_values)
             logger.debug(f"INSTANTIATED!")
@@ -784,7 +789,7 @@ class SubmissionsSandbox:
             available_identifiers = ""
             if "name" in deep_parse_dict:
                 available_identifiers = f"with name {deep_parse_dict['name']}"
-            if "source_mat_id" in deep_parse_dict:
+            if "source_mat_id" in deep_parse_dict and deep_parse_dict["source_mat_id"]:
                 if "has_raw_value" in deep_parse_dict["source_mat_id"]:
                     available_identifiers = (
                             available_identifiers
@@ -810,7 +815,9 @@ class SubmissionsSandbox:
                             )
 
                             sample_slot_definition = self.slot_def_from_underscored_or_whitespaced(
-                                slot_moniker=sample_slot)
+                                slot_moniker=sample_slot.lower())
+
+                            logger.debug(f"it's a {sample_slot_definition.name}")
 
                             logger.debug(yaml_dumper.dumps(sample_slot_definition))
 
@@ -835,9 +842,12 @@ class SubmissionsSandbox:
                             # todo check for special cases like enums
                             range_def = self.nmdc_view.get_element(ssd_range)
                             range_type = type(range_def).class_name
+                            logger.debug(
+                                f"sample_value: {sample_value}, range_type: {range_type}, ssd_range: {ssd_range}")
                             parse_result = self.parse_any_range(
                                 sample_value, ssd_range, range_type
                             )
+                            logger.debug(f"parse_result: {parse_result}")
                             # todo need for flexible sample identification
                             # logger.debug(
                             #     f"{study_id}'s sample {sample['source_mat_id']}/{sample['samp_name']}'s {sample_slot} value of  _{sample_value}_ with range {ssd_range} and type {range_type} was converted to {parse_result}"
@@ -1224,26 +1234,27 @@ class SubmissionsSandbox:
     def slot_def_from_underscored_or_whitespaced(self, slot_moniker):
         underscored = slot_moniker.replace(" ", "_")
         whitespaced = slot_moniker.replace("_", " ")
-        logger.debug(f"looking up information about slot {underscored}")
+        # logger.info(f"looking up information about slot {underscored}")
         sample_slot_definition = None
         try:
-            sample_slot_definition = self.nmdc_view.induced_slot(class_name='biosample',
+            sample_slot_definition = self.nmdc_view.induced_slot(class_name='Biosample',
                                                                  slot_name=underscored)
-            logger.debug(f"Found underscored slot model for {underscored}")
+            # logger.info(f"Found underscored slot model for {underscored}")
+            return sample_slot_definition
         except Exception as e:
-            logger.debug(f"Unsuccessful underscored slot lookup: {e}")
+            # logger.info(f"Unsuccessful underscored slot lookup: {e}")
             try:
-                sample_slot_definition = self.nmdc_view.induced_slot(class_name='biosample',
+                sample_slot_definition = self.nmdc_view.induced_slot(class_name='Biosample',
                                                                      slot_name=whitespaced)
-                logger.debug(f"Found whitespaced slot model for {whitespaced}")
+                # logger.info(f"Found whitespaced slot model for {whitespaced}")
+                return sample_slot_definition
             except Exception as e:
                 logger.error(f"Couldn't find a definition of either {underscored} or {whitespaced}: {e}")
-                exit()
-        return sample_slot_definition
+                # exit()
 
     def instantiate_studies(self):
         study_count = len(self.study_metadata.keys())
-        logger.info(f"WOULD INSTANTIATE {study_count} STUDIES")
+        logger.info(f"instantiating {study_count} STUDIES")
         if study_count > 0:
             for study_id, submission in self.study_metadata.items():
                 logger.info(f"instantiating study with kitware identifier {study_id}")
@@ -1328,7 +1339,7 @@ class SubmissionsSandbox:
                 for i in instantiated.has_credit_associations:
                     if i.applies_to_person.orcid:
                         already_associated[i.applies_to_person.orcid] = i
-                        logger.info(f"already associated {i.applies_to_person.orcid}")
+                        logger.debug(f"already associated {i.applies_to_person.orcid}")
 
                 if contributors_protected:
                     for i in contributors_protected:
@@ -1353,7 +1364,7 @@ class SubmissionsSandbox:
                 logger.debug(f"instantiated:\n{yaml_dumper.dumps(instantiated)}")
                 self.study_database.study_set.append(instantiated)
 
-            logger.info(f"study database:\n{yaml_dumper.dumps(self.study_database)}")
+            logger.debug(f"study database:\n{yaml_dumper.dumps(self.study_database)}")
 
 
 @click.group()
@@ -1421,12 +1432,21 @@ def from_submissions(
         api_url=data_portal_url, session_cookie=get_session_cookie()
     )
 
+    site_id_val = os.getenv("site_id")
+    client_id_val = os.getenv("client_id")
+    client_secret_val = os.getenv("client_secret")
+
+    # logger.info(
+    #     f"about to create minting_client with site_id {site_id_val}, client_id {client_id_val}, and client_secret {client_secret_val}")
+
     sandbox.minting_client = nrs.RuntimeApiSiteClient(
         base_url="https://api.dev.microbiomedata.org",
-        site_id=os.getenv("site_id"),
-        client_id=os.getenv("client_id"),
-        client_secret=os.getenv("client_secret"),
+        site_id=site_id_val,
+        client_id=client_id_val,
+        client_secret=client_secret_val,
     )
+
+    logger.info(f"minting_client created")
 
     sandbox.view_setup()
 
