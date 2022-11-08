@@ -85,11 +85,7 @@ api_or_tsv_clean:
 
 # todo this errors out if 0 valid biosample rows are found
 #  do be careful with start and stop values (0-1 is a failure case?)
-#  these are pages of submissions
-#  2022-08-09 2-4 works nicely
-#  0-8, 10-11 OK
-#  9-9 picks up some soil horizon problems
-# 12 problems with sample_type and samp_collec_device:russiancorer
+
 
 assets/out/sample_metadata_from_dev_submission_portal.yaml:
 	# --data_portal_url https://data.dev.microbiomedata.org/ or https://data.microbiomedata.org/
@@ -100,7 +96,7 @@ assets/out/sample_metadata_from_dev_submission_portal.yaml:
 		--sample_metadata_csv_file $(basename $@).csv  \
 		--sample_metadata_yaml_file $@ \
 		--study_metadata_yaml_file $(subst sample,study,$(basename $@)).yaml
-		# 2> assets/out/biosample_instantiator_plus.log
+
 
 # todo switch from csv to tsv or auto-sense
 
@@ -145,10 +141,6 @@ m-CAFEs-hybrid \
 m-CAFEs-pure-gold-api \
 m-CAFEs-pure-sqlite \
 submission-portal
-
-lazy: api_or_tsv_clean
-
-# sample_metadata.csv
 
 # todo could include initial api_or_tsv_clean before any of these
 bioscales_dh_csv:  assets/out/sample_metadata_from_dh_csv_v3.json #  todo complains about post-v3 bioscales slots, and absence of part_of. ignore and consider these samples incompatible with v3?
