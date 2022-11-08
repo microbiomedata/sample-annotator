@@ -1,3 +1,7 @@
+local/
+.idea/
+assets/out_bak/
+
 data
 bin
 
