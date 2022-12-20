@@ -183,7 +183,6 @@ class GoldNMDC(GoldClient):
 
     def compute_biosample_set(
         self,
-        study_data: StudyDict,
         biosamples: List[Dict[str, Union[str, Dict]]],
         projects: List[str],
     ) -> SampleDict:
@@ -498,7 +497,7 @@ class GoldNMDC(GoldClient):
 
         self.compute_study_set(study_data)
 
-        self.compute_biosample_set(study_data, biosamples, projects)
+        self.compute_biosample_set(biosamples, projects)
 
         self.compute_project_set(projects)
 
