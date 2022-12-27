@@ -134,6 +134,14 @@ class GoldNMDC(GoldClient):
         )
 
         return mod_date
+    
+    def field_site_parser(self, biosample_name: str) -> str:
+        """Parse out field site information embedded in biosampleName.
+
+        :param biosample_name: biosampleName field from biosample endpoint.
+        :return: field site
+        """
+        return "gold:" + biosample_name.split("-", 1)[1].lstrip().replace(" ", "_")
 
     def _processing_institute_handler(self, sequencing_centers: List[str]) -> List[str]:
         """GOLD NMDC transformation pipeline specific term handler.
@@ -236,6 +244,9 @@ class GoldNMDC(GoldClient):
                         term=nmdc.OntologyClass(id=""), has_raw_value=""
                     )
 
+                # parse site identifier from GOLD
+                field_site = self.field_site_parser(biosample["biosampleName"])
+
                 self.nmdc_db.biosample_set.append(
                     nmdc.Biosample(
                         # biosample identifiers
@@ -324,6 +335,7 @@ class GoldNMDC(GoldClient):
                         sample_collection_site=biosample.get(
                             "sampleCollectionSite", biosample.get("sampleBodySite", "")
                         ),
+                        collected_from=field_site
                     )
                 )
             except:
