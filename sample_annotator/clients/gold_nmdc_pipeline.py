@@ -128,13 +128,15 @@ class GoldNMDC(GoldClient):
         # use below logic to determine modDate if it is not
         # populated in GOLD
         mod_date = (
-            XSDDateTime(nmdc_entry.get("addDate", ""))
+            XSDDateTime(nmdc_entry.get("addDate"))
+            if nmdc_entry["addDate"]
+            else None
             if nmdc_entry["modDate"] is None
             else XSDDateTime(nmdc_entry["modDate"])
         )
 
         return mod_date
-    
+
     def field_site_parser(self, biosample_name: str) -> str:
         """Parse out field site information embedded in biosampleName.
 
@@ -176,15 +178,19 @@ class GoldNMDC(GoldClient):
         self.nmdc_db.study_set.append(
             nmdc.Study(
                 id="gold:" + study_data["studyGoldId"],
-                description=study_data["description"],
-                title=study_data["studyName"],
-                name=study_data["studyName"],
+                description=study_data["description"]
+                if study_data["description"]
+                else None,
+                title=study_data["studyName"] if study_data["studyName"] else None,
+                name=study_data["studyName"] if study_data["studyName"] else None,
                 gold_study_identifiers="gold:" + study_data["studyGoldId"],
                 principal_investigator=nmdc.PersonValue(
-                    has_raw_value=pi_dict.get("name", ""),
-                    name=pi_dict.get("name", ""),
-                    email=pi_dict.get("email", ""),
-                ),
+                    has_raw_value=pi_dict.get("name"),
+                    name=pi_dict.get("name"),
+                    email=pi_dict.get("email"),
+                )
+                if "name" and "email" in pi_dict
+                else None,
                 type="nmdc:Study",
             )
         )
@@ -216,9 +222,7 @@ class GoldNMDC(GoldClient):
                         has_raw_value=biosample["envoBroadScale"]["id"],
                     )
                 else:
-                    env_broad_scale = nmdc.ControlledIdentifiedTermValue(
-                        term=nmdc.OntologyClass(id=""), has_raw_value=""
-                    )
+                    env_broad_scale = None
 
                 if biosample["envoLocalScale"] is not None:
                     env_local_scale = nmdc.ControlledIdentifiedTermValue(
@@ -228,9 +232,7 @@ class GoldNMDC(GoldClient):
                         has_raw_value=biosample["envoLocalScale"]["id"],
                     )
                 else:
-                    env_local_scale = nmdc.ControlledIdentifiedTermValue(
-                        term=nmdc.OntologyClass(id=""), has_raw_value=""
-                    )
+                    env_local_scale = None
 
                 if biosample["envoMedium"] is not None:
                     env_medium = nmdc.ControlledIdentifiedTermValue(
@@ -240,9 +242,7 @@ class GoldNMDC(GoldClient):
                         has_raw_value=biosample["envoMedium"]["id"],
                     )
                 else:
-                    env_medium = nmdc.ControlledIdentifiedTermValue(
-                        term=nmdc.OntologyClass(id=""), has_raw_value=""
-                    )
+                    env_medium = None
 
                 # parse site identifier from GOLD
                 field_site = self.field_site_parser(biosample["biosampleName"])
@@ -255,16 +255,26 @@ class GoldNMDC(GoldClient):
                         + biosample["biosampleGoldId"],
                         insdc_biosample_identifiers=insdc_biosample_identifiers,
                         # metadata fields
-                        description=biosample.get("description", ""),
-                        name=biosample.get("biosampleName", ""),
+                        description=biosample.get("description")
+                        if biosample["description"]
+                        else None,
+                        name=biosample.get("biosampleName")
+                        if biosample["biosampleName"]
+                        else None,
                         part_of="gold:" + self.study_id,
-                        ncbi_taxonomy_name=biosample.get("ncbiTaxName", ""),
+                        ncbi_taxonomy_name=biosample.get("ncbiTaxName")
+                        if biosample["ncbiTaxName"]
+                        else None,
                         type="nmdc:Biosample",
                         # biosample date information
-                        add_date=XSDDateTime(biosample.get("addDate", "")),
+                        add_date=XSDDateTime(biosample.get("addDate"))
+                        if biosample["addDate"]
+                        else None,
                         collection_date=nmdc.TimestampValue(
                             has_raw_value=biosample.get("dateCollected", "")
-                        ),
+                        )
+                        if biosample["dateCollected"]
+                        else None,
                         mod_date=mod_date,
                         # environment metadata fields
                         env_broad_scale=env_broad_scale,
@@ -272,70 +282,100 @@ class GoldNMDC(GoldClient):
                         env_medium=env_medium,
                         # Earth fields
                         depth=nmdc.QuantityValue(
-                            has_raw_value=biosample.get("depthInMeters", ""),
-                            has_unit="meters"
-                            if biosample.get("depthInMeters", "")
-                            else "",
-                        ),
+                            has_raw_value=biosample.get("depthInMeters"),
+                            has_unit="meters",
+                        )
+                        if biosample["depthInMeters"]
+                        else None,
                         elev=nmdc.QuantityValue(
-                            has_raw_value=biosample.get("elevationInMeters", ""),
-                            has_unit="meters"
-                            if biosample.get("elevationInMeters", "")
-                            else "",
-                        ),
+                            has_raw_value=biosample.get("elevationInMeters"),
+                            has_unit="meters",
+                        )
+                        if biosample["elevationInMeters"]
+                        else None,
                         alt=nmdc.QuantityValue(
-                            has_raw_value=biosample.get("altitudeInMeters", ""),
-                            has_unit="meters"
-                            if biosample.get("altitudeInMeters", "")
-                            else "",
-                        ),
+                            has_raw_value=biosample.get("altitudeInMeters"),
+                            has_unit="meters",
+                        )
+                        if biosample["altitudeInMeters"]
+                        else None,
                         subsurface_depth=nmdc.QuantityValue(
-                            has_raw_value=biosample.get("subsurfaceDepthInMeters", ""),
-                            has_unit="meters"
-                            if biosample.get("subsurfaceDepthInMeters", "")
-                            else "",
-                        ),
+                            has_raw_value=biosample.get("subsurfaceDepthInMeters"),
+                            has_unit="meters",
+                        )
+                        if biosample["subsurfaceDepthInMeters"]
+                        else None,
                         # chemical metadata fields
                         diss_oxygen=nmdc.QuantityValue(
-                            has_raw_value=biosample.get("oxygenConcentration", "")
-                        ),
+                            has_raw_value=biosample.get("oxygenConcentration")
+                        )
+                        if biosample["oxygenConcentration"]
+                        else None,
                         nitrite=nmdc.QuantityValue(
-                            has_raw_value=biosample.get("nitrateConcentration", "")
-                        ),
-                        ph=nmdc.QuantityValue(has_raw_value=biosample.get("ph", "")),
+                            has_raw_value=biosample.get("nitrateConcentration")
+                        )
+                        if biosample["nitrateConcentration"]
+                        else None,
+                        ph=nmdc.QuantityValue(has_raw_value=biosample.get("ph")),
                         pressure=nmdc.QuantityValue(
-                            has_raw_value=biosample.get("pressure", "")
-                        ),
+                            has_raw_value=biosample.get("pressure")
+                        )
+                        if biosample["pressure"]
+                        else None,
                         # ecosystem collected from fields
-                        ecosystem=biosample.get("ecosystem", ""),
-                        ecosystem_category=biosample.get("ecosystemCategory", ""),
-                        ecosystem_subtype=biosample.get("ecosystemSubtype", ""),
-                        ecosystem_type=biosample.get("ecosystemType", ""),
-                        specific_ecosystem=biosample.get("specificEcosystem", ""),
+                        ecosystem=biosample.get("ecosystem")
+                        if biosample["ecosystem"]
+                        else None,
+                        ecosystem_category=biosample.get("ecosystemCategory")
+                        if biosample["ecosystemCategory"]
+                        else None,
+                        ecosystem_subtype=biosample.get("ecosystemSubtype")
+                        if biosample["ecosystemSubtype"]
+                        else None,
+                        ecosystem_type=biosample.get("ecosystemType")
+                        if biosample["ecosystemType"]
+                        else None,
+                        specific_ecosystem=biosample.get("specificEcosystem")
+                        if biosample["specificEcosystem"]
+                        else None,
                         # collection site metadata
                         geo_loc_name=nmdc.TextValue(
-                            has_raw_value=biosample.get("geoLocation", "")
-                        ),
+                            has_raw_value=biosample.get("geoLocation")
+                        )
+                        if biosample["geoLocation"]
+                        else None,
                         lat_lon=nmdc.GeolocationValue(
-                            has_raw_value=str(biosample.get("latitude", ""))
+                            has_raw_value=str(biosample.get("latitude"))
                             + " "
-                            + str(biosample.get("longitude", "")),
-                            latitude=biosample.get("latitude", ""),
-                            longitude=biosample.get("longitude", ""),
-                        ),
-                        habitat=biosample.get("habitat", ""),
-                        location=biosample.get("isoCountry", ""),
+                            + str(biosample.get("longitude")),
+                            latitude=biosample.get("latitude"),
+                            longitude=biosample.get("longitude"),
+                        )
+                        if biosample["latitude"] and biosample["longitude"]
+                        else None,
+                        habitat=biosample.get("habitat")
+                        if biosample["habitat"]
+                        else None,
+                        location=biosample.get("isoCountry")
+                        if biosample["isoCountry"]
+                        else None,
                         # collection metadata fields
-                        host_name=biosample.get("hostName", ""),
+                        host_name=biosample.get("hostName")
+                        if biosample["hostName"]
+                        else None,
                         temp=nmdc.QuantityValue(
                             has_numeric_value=biosample.get(
-                                "sampleCollectionTemperature", ""
+                                "sampleCollectionTemperature"
                             )
-                        ),
-                        sample_collection_site=biosample.get(
-                            "sampleCollectionSite", biosample.get("sampleBodySite", "")
-                        ),
-                        collected_from=field_site
+                        )
+                        if biosample["sampleCollectionTemperature"]
+                        else None,
+                        sample_collection_site=biosample.get("sampleCollectionSite")
+                        if biosample["sampleCollectionSite"]
+                        else biosample.get("sampleBodySite")
+                        if biosample["sampleBodySite"]
+                        else None,
+                        collected_from=field_site,
                     )
                 )
             except:
@@ -374,39 +414,58 @@ class GoldNMDC(GoldClient):
                     # fix for warning: readQC file needs to provided for computation
                     # of this value
                     logger.warning(
-                        f"readQC input output mapping file has not been provided "
-                        f"so {project['projectGoldId']} cannot be processed completely."
+                        f"readQC input output mapping file not provided for {project['projectGoldId']}"
                     )
-                    has_output = "gold:" + project["biosampleGoldId"]
+                    has_output = None
 
                 self.nmdc_db.omics_processing_set.append(
                     nmdc.OmicsProcessing(
                         # omics processing metadata
-                        id="gold:" + project["projectGoldId"],
-                        name=project.get("projectName", ""),
+                        id="gold:" + project["projectGoldId"]
+                        if project["projectGoldId"]
+                        else None,
+                        name=project.get("projectName")
+                        if project["projectName"]
+                        else None,
                         gold_sequencing_project_identifiers="gold:"
-                        + project["projectGoldId"],
-                        ncbi_project_name=project.get("projectName", ""),
+                        + project["projectGoldId"]
+                        if project["projectGoldId"]
+                        else None,
+                        ncbi_project_name=project.get("projectName")
+                        if project["projectName"]
+                        else None,
                         type="nmdc:OmicsProcessing",
-                        has_input="gold:" + project["biosampleGoldId"],
+                        has_input="gold:" + project["biosampleGoldId"]
+                        if project["biosampleGoldId"]
+                        else None,
                         has_output=has_output,
                         part_of="gold:" + self.study_id,
                         # omics processing date fields
-                        add_date=XSDDateTime(project.get("addDate", "")),
+                        add_date=XSDDateTime(project.get("addDate"))
+                        if project["addDate"]
+                        else None,
                         mod_date=mod_date,
                         principal_investigator=nmdc.PersonValue(
-                            has_raw_value=pi_dict.get("name", ""),
-                            name=pi_dict.get("name", ""),
-                            email=pi_dict.get("email", ""),
-                        ),
+                            has_raw_value=pi_dict.get("name"),
+                            name=pi_dict.get("name"),
+                            email=pi_dict.get("email"),
+                        )
+                        if "name" and "email" in pi_dict
+                        else None,
                         # sequencing details fields
                         omics_type=nmdc.ControlledTermValue(
-                            has_raw_value=project.get("sequencingStrategy", "")
-                        ),
-                        instrument_name=project.get("itsSequencingProductName", ""),
+                            has_raw_value=project.get("sequencingStrategy")
+                        )
+                        if project["sequencingStrategy"]
+                        else None,
+                        instrument_name=project.get("itsSequencingProductName")
+                        if project["itsSequencingProductName"]
+                        else None,
                         processing_institution=self._processing_institute_handler(
                             project["sequencingCenters"]
-                        ),
+                        )
+                        if project["sequencingCenters"]
+                        else None,
                     )
                 )
             except:
