@@ -177,7 +177,7 @@ class GoldNMDC(GoldClient):
 
         self.nmdc_db.study_set.append(
             nmdc.Study(
-                id="gold:" + study_data["studyGoldId"],
+                id="nmdc:" + study_data["studyGoldId"],
                 description=study_data["description"]
                 if study_data["description"]
                 else None,
@@ -217,7 +217,8 @@ class GoldNMDC(GoldClient):
                 if biosample["envoBroadScale"] is not None:
                     env_broad_scale = nmdc.ControlledIdentifiedTermValue(
                         term=nmdc.OntologyClass(
-                            id=biosample["envoBroadScale"]["id"].replace("_", ":")
+                            id=biosample["envoBroadScale"]["id"].replace("_", ":"),
+                            name=biosample["envoBroadScale"]["label"]
                         ),
                         has_raw_value=biosample["envoBroadScale"]["id"],
                     )
@@ -227,7 +228,8 @@ class GoldNMDC(GoldClient):
                 if biosample["envoLocalScale"] is not None:
                     env_local_scale = nmdc.ControlledIdentifiedTermValue(
                         term=nmdc.OntologyClass(
-                            id=biosample["envoLocalScale"]["id"].replace("_", ":")
+                            id=biosample["envoLocalScale"]["id"].replace("_", ":"),
+                            name=biosample["envoLocalScale"]["label"]
                         ),
                         has_raw_value=biosample["envoLocalScale"]["id"],
                     )
@@ -237,7 +239,8 @@ class GoldNMDC(GoldClient):
                 if biosample["envoMedium"] is not None:
                     env_medium = nmdc.ControlledIdentifiedTermValue(
                         term=nmdc.OntologyClass(
-                            id=biosample["envoMedium"]["id"].replace("_", ":")
+                            id=biosample["envoMedium"]["id"].replace("_", ":"),
+                            name=biosample["envoMedium"]["label"]
                         ),
                         has_raw_value=biosample["envoMedium"]["id"],
                     )
@@ -250,7 +253,7 @@ class GoldNMDC(GoldClient):
                 self.nmdc_db.biosample_set.append(
                     nmdc.Biosample(
                         # biosample identifiers
-                        id="gold:" + biosample["biosampleGoldId"],
+                        id="nmdc:" + biosample["biosampleGoldId"],
                         gold_biosample_identifiers="gold:"
                         + biosample["biosampleGoldId"],
                         insdc_biosample_identifiers=insdc_biosample_identifiers,
@@ -378,9 +381,10 @@ class GoldNMDC(GoldClient):
                         collected_from=field_site,
                     )
                 )
-            except:
+            except Exception as e:
                 logger.error(
-                    f"Biosample not properly annotated: {biosample['biosampleGoldId']}"
+                    f"Biosample not properly annotated: {biosample['biosampleGoldId']}\n"
+                    f"Reason: {e}"
                 )
 
     def compute_project_set(
@@ -421,7 +425,7 @@ class GoldNMDC(GoldClient):
                 self.nmdc_db.omics_processing_set.append(
                     nmdc.OmicsProcessing(
                         # omics processing metadata
-                        id="gold:" + project["projectGoldId"]
+                        id="nmdc:" + project["projectGoldId"]
                         if project["projectGoldId"]
                         else None,
                         name=project.get("projectName")
@@ -483,7 +487,7 @@ class GoldNMDC(GoldClient):
             if re.search("Metagenome Analysis", ap["apType"], re.IGNORECASE):
                 self.nmdc_db.metagenome_annotation_activity_set.append(
                     nmdc.MetagenomeAnnotationActivity(
-                        id="gold:" + ap["apGoldId"],
+                        id="nmdc:" + ap["apGoldId"],
                         name=ap["apName"],
                         part_of="gold:" + self.study_id,
                         execution_resource="",
@@ -501,7 +505,7 @@ class GoldNMDC(GoldClient):
             if re.search("Metatranscriptome Analysis", ap["apType"], re.IGNORECASE):
                 self.nmdc_db.metatranscriptome_activity_set.append(
                     nmdc.MetatranscriptomeAnnotationActivity(
-                        id="gold:" + ap["apGoldId"],
+                        id="nmdc:" + ap["apGoldId"],
                         name=ap["apName"],
                         part_of="gold:" + self.study_id,
                         execution_resource="",
