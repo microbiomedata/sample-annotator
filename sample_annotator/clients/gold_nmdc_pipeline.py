@@ -264,7 +264,7 @@ class GoldNMDC(GoldClient):
                         name=biosample.get("biosampleName")
                         if biosample["biosampleName"]
                         else None,
-                        part_of="gold:" + self.study_id,
+                        part_of="nmdc:" + self.study_id,
                         ncbi_taxonomy_name=biosample.get("ncbiTaxName")
                         if biosample["ncbiTaxName"]
                         else None,
@@ -439,11 +439,11 @@ class GoldNMDC(GoldClient):
                         if project["projectName"]
                         else None,
                         type="nmdc:OmicsProcessing",
-                        has_input="gold:" + project["biosampleGoldId"]
+                        has_input="nmdc:" + project["biosampleGoldId"]
                         if project["biosampleGoldId"]
                         else None,
                         has_output=has_output,
-                        part_of="gold:" + self.study_id,
+                        part_of="nmdc:" + self.study_id,
                         # omics processing date fields
                         add_date=XSDDateTime(project.get("addDate"))
                         if project["addDate"]
@@ -489,11 +489,11 @@ class GoldNMDC(GoldClient):
                     nmdc.MetagenomeAnnotationActivity(
                         id="nmdc:" + ap["apGoldId"],
                         name=ap["apName"],
-                        part_of="gold:" + self.study_id,
+                        part_of="nmdc:" + self.study_id,
                         execution_resource="",
                         git_url="",
-                        has_input=["gold:" + ap_i for ap_i in ap["projects"]],
-                        has_output="gold:" + ap["apGoldId"],
+                        has_input=["nmdc:" + ap_i for ap_i in ap["projects"]],
+                        has_output="nmdc:" + ap["apGoldId"],
                         type=ap["apType"],
                         started_at_time=XSDDateTime(ap["addDate"]),
                         ended_at_time=XSDDateTime(mod_date),
@@ -507,11 +507,11 @@ class GoldNMDC(GoldClient):
                     nmdc.MetatranscriptomeAnnotationActivity(
                         id="nmdc:" + ap["apGoldId"],
                         name=ap["apName"],
-                        part_of="gold:" + self.study_id,
+                        part_of="nmdc:" + self.study_id,
                         execution_resource="",
                         git_url="",
-                        has_input=["gold:" + ap_i for ap_i in ap["projects"]],
-                        has_output="gold:" + ap["apGoldId"],
+                        has_input=["nmdc:" + ap_i for ap_i in ap["projects"]],
+                        has_output="nmdc:" + ap["apGoldId"],
                         type=ap["apType"],
                         started_at_time=XSDDateTime(ap["addDate"]),
                         ended_at_time=XSDDateTime(mod_date),
