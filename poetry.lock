@@ -734,7 +734,7 @@ testing = ["beautifulsoup4", "coverage", "pytest (>=6,<7)", "pytest-cov", "pytes
 
 [[package]]
 name = "nmdc-schema"
-version = "7.1.6"
+version = "7.3.0"
 description = "Schema resources for the National Microbiome Data Collaborative (NMDC)"
 category = "main"
 optional = false
@@ -1045,6 +1045,17 @@ python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,>=2.7"
 
 [package.dependencies]
 six = ">=1.5"
+
+[[package]]
+name = "python-dotenv"
+version = "0.21.1"
+description = "Read key-value pairs from a .env file and set them as environment variables"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.extras]
+cli = ["click (>=5.0)"]
 
 [[package]]
 name = "pytz"
@@ -1564,7 +1575,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "flake8 (<5)", "pytest-co
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "9d7ff3fc8e1fd5878ae9597df841bdefb6aef1a30b54d05f4a5ff90522cf931b"
+content-hash = "e5a791b127d924cd27bb3973d5f0e139bdd48c43a8c6c8aa70abf9ab1008b482"
 
 [metadata.files]
 alabaster = []
@@ -1653,6 +1664,7 @@ pystow = []
 pytest = []
 pytest-logging = []
 python-dateutil = []
+python-dotenv = []
 pytz = []
 pyyaml = []
 quantulum3 = []
