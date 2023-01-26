@@ -433,7 +433,11 @@ class GoldNMDC(GoldClient):
                 )
 
     def compute_project_set(
-        self, projects: List[Dict[str, Union[str, Dict]]]
+        self,
+        study_id: str,
+        projects: List[Dict[str, Union[str, Dict]]],
+        minted_biosample_ids_dict: Dict[str, str],
+        minted_project_ids_dict: Dict[str, str],
     ) -> ProjectDict:
         """Compute sequencing project parameters to be populated from the dataset."""
         for project in projects:
@@ -470,9 +474,7 @@ class GoldNMDC(GoldClient):
                 self.nmdc_db.omics_processing_set.append(
                     nmdc.OmicsProcessing(
                         # omics processing metadata
-                        id="nmdc:" + project["projectGoldId"]
-                        if project["projectGoldId"]
-                        else None,
+                        id=minted_project_ids_dict[project["projectGoldId"]],
                         name=project.get("projectName")
                         if project["projectName"]
                         else None,
@@ -484,11 +486,9 @@ class GoldNMDC(GoldClient):
                         if project["projectName"]
                         else None,
                         type="nmdc:OmicsProcessing",
-                        has_input="nmdc:" + project["biosampleGoldId"]
-                        if project["biosampleGoldId"]
-                        else None,
+                        has_input=minted_biosample_ids_dict[project["biosampleGoldId"]],
                         has_output=has_output,
-                        part_of="nmdc:" + self.study_id,
+                        part_of=study_id,
                         # omics processing date fields
                         add_date=XSDDateTime(project.get("addDate"))
                         if project["addDate"]
@@ -623,6 +623,12 @@ class GoldNMDC(GoldClient):
         gold_biosample_ids = [biosample["biosampleGoldId"] for biosample in biosamples]
         minted_biosample_ids_dict = dict(zip(gold_biosample_ids, minted_biosample_ids))
 
+        minted_project_ids = self._runtime_api_call(
+            "POST", "/pids/mint", "nmdc:OmicsProcessing", len(projects)
+        )
+        gold_project_ids = [project["projectGoldId"] for project in projects]
+        minted_project_ids_dict = dict(zip(gold_project_ids, minted_project_ids))
+
         self.compute_biosample_set(
             minted_study_id[0],
             biosamples,
@@ -631,7 +637,12 @@ class GoldNMDC(GoldClient):
         )
 
         # TODO: enable if you want to pull sequencing project information from GOLD
-        # self.compute_project_set(projects)
+        self.compute_project_set(
+            minted_study_id[0],
+            projects,
+            minted_biosample_ids_dict,
+            minted_project_ids_dict,
+        )
 
         # TODO: enable if you want to pull AP information from GOLD
         # self.compute_analysis_project_set(analysis_projects)
