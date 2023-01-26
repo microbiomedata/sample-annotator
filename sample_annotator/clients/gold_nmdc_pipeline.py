@@ -9,6 +9,8 @@ from typing import Dict, List, Union
 import jsonschema
 import nmdc_schema.nmdc as nmdc
 import pandas as pd
+import dotenv
+from sample_annotator.clients.nmdc.runtime_api_client import RuntimeApiSiteClient
 from linkml_runtime.dumpers import json_dumper
 from linkml_runtime.linkml_model.types import XSDDateTime
 
@@ -18,12 +20,19 @@ from sample_annotator.clients.gold_client import (
     ProjectDict,
     SampleDict,
     StudyDict,
+    JSON,
 )
 
 FILE_PATH = Union[str, bytes, os.PathLike]
 
 
 logger = logging.getLogger(__name__)  # module level logger
+
+
+def load_dotenv():
+    env_path = dotenv.find_dotenv()
+    if len(env_path) > 0:
+        dotenv.load_dotenv(dotenv_path=env_path, override=True)
 
 
 class GoldNMDC(GoldClient):
@@ -34,6 +43,25 @@ class GoldNMDC(GoldClient):
 
         # set the GOLD study id
         self.study_id = study_id
+
+        # load nmdc-runtime credentials from environment
+        load_dotenv()
+
+    def _get_client(self) -> RuntimeApiSiteClient:
+        env = dict(os.environ)
+        return RuntimeApiSiteClient(
+            env["BASE_URL"], env["SITE_ID"], env["CLIENT_ID"], env["CLIENT_SECRET"]
+        )
+
+    def _runtime_api_call(
+        self, request_type: str, request_url: str, schema_class: str, how_many: str
+    ) -> JSON:
+        client = self._get_client()
+        return client.request(
+            request_type,
+            request_url,
+            {"schema_class": {"id": schema_class}, "how_many": how_many},
+        ).json()
 
     def project_ids_subset(
         self, path_to_subset_ids: Union[str, bytes, os.PathLike]
@@ -171,13 +199,13 @@ class GoldNMDC(GoldClient):
 
         return nmdc_compliant_seq_ctr
 
-    def compute_study_set(self, study_data: StudyDict):
+    def compute_study_set(self, study_data: StudyDict, minted_study_id: str):
         """Compute study_set parameters to be populated from the dataset."""
         pi_dict = self.get_pi_dict(study_data)
 
         self.nmdc_db.study_set.append(
             nmdc.Study(
-                id="nmdc:" + study_data["studyGoldId"],
+                id=minted_study_id,
                 description=study_data["description"]
                 if study_data["description"]
                 else None,
@@ -197,7 +225,9 @@ class GoldNMDC(GoldClient):
 
     def compute_biosample_set(
         self,
+        study_id: str,
         biosamples: List[Dict[str, Union[str, Dict]]],
+        minted_biosample_ids_dict: Dict[str, str],
         projects: List[str],
     ) -> SampleDict:
         """Compute biosample parameters to be populated from the dataset."""
@@ -218,7 +248,7 @@ class GoldNMDC(GoldClient):
                     env_broad_scale = nmdc.ControlledIdentifiedTermValue(
                         term=nmdc.OntologyClass(
                             id=biosample["envoBroadScale"]["id"].replace("_", ":"),
-                            name=biosample["envoBroadScale"]["label"]
+                            name=biosample["envoBroadScale"]["label"],
                         ),
                         has_raw_value=biosample["envoBroadScale"]["id"],
                     )
@@ -229,7 +259,7 @@ class GoldNMDC(GoldClient):
                     env_local_scale = nmdc.ControlledIdentifiedTermValue(
                         term=nmdc.OntologyClass(
                             id=biosample["envoLocalScale"]["id"].replace("_", ":"),
-                            name=biosample["envoLocalScale"]["label"]
+                            name=biosample["envoLocalScale"]["label"],
                         ),
                         has_raw_value=biosample["envoLocalScale"]["id"],
                     )
@@ -240,12 +270,28 @@ class GoldNMDC(GoldClient):
                     env_medium = nmdc.ControlledIdentifiedTermValue(
                         term=nmdc.OntologyClass(
                             id=biosample["envoMedium"]["id"].replace("_", ":"),
-                            name=biosample["envoMedium"]["label"]
+                            name=biosample["envoMedium"]["label"],
                         ),
                         has_raw_value=biosample["envoMedium"]["id"],
                     )
                 else:
                     env_medium = None
+
+                ncbi_tax_name = (
+                    biosample.get("ncbiTaxName") if biosample["ncbiTaxName"] else None
+                )
+
+                if ncbi_tax_name:
+                    if biosample["ncbiTaxId"] is not None:
+                        samp_taxon_id = (
+                            ncbi_tax_name
+                            + " "
+                            + "[NCBITaxon:"
+                            + str(biosample.get("ncbiTaxId"))
+                            + "]"
+                        )
+                else:
+                    samp_taxon_id = None
 
                 # parse site identifier from GOLD
                 field_site = self.field_site_parser(biosample["biosampleName"])
@@ -253,7 +299,7 @@ class GoldNMDC(GoldClient):
                 self.nmdc_db.biosample_set.append(
                     nmdc.Biosample(
                         # biosample identifiers
-                        id="nmdc:" + biosample["biosampleGoldId"],
+                        id=minted_biosample_ids_dict[biosample["biosampleGoldId"]],
                         gold_biosample_identifiers="gold:"
                         + biosample["biosampleGoldId"],
                         insdc_biosample_identifiers=insdc_biosample_identifiers,
@@ -264,10 +310,9 @@ class GoldNMDC(GoldClient):
                         name=biosample.get("biosampleName")
                         if biosample["biosampleName"]
                         else None,
-                        part_of="nmdc:" + self.study_id,
-                        ncbi_taxonomy_name=biosample.get("ncbiTaxName")
-                        if biosample["ncbiTaxName"]
-                        else None,
+                        part_of=study_id,
+                        ncbi_taxonomy_name=ncbi_tax_name,
+                        samp_taxon_id=samp_taxon_id,
                         type="nmdc:Biosample",
                         # biosample date information
                         add_date=XSDDateTime(biosample.get("addDate"))
@@ -568,15 +613,27 @@ class GoldNMDC(GoldClient):
                 if any(e in projects_subset for e in ap["projects"])
             ]
 
+        minted_study_id = self._runtime_api_call("POST", "/pids/mint", "nmdc:Study", 1)
         study_data = self.fetch_study(id=self.study_id)
+        self.compute_study_set(study_data, minted_study_id[0])
 
-        self.compute_study_set(study_data)
+        minted_biosample_ids = self._runtime_api_call(
+            "POST", "/pids/mint", "nmdc:Biosample", len(biosamples)
+        )
+        gold_biosample_ids = [biosample["biosampleGoldId"] for biosample in biosamples]
+        minted_biosample_ids_dict = dict(zip(gold_biosample_ids, minted_biosample_ids))
 
-        self.compute_biosample_set(biosamples, projects)
+        self.compute_biosample_set(
+            minted_study_id[0],
+            biosamples,
+            minted_biosample_ids_dict,
+            projects,
+        )
 
-        self.compute_project_set(projects)
+        # TODO: enable if you want to pull sequencing project information from GOLD
+        # self.compute_project_set(projects)
 
-        # nit: enable if you want to pull AP information from GOLD
+        # TODO: enable if you want to pull AP information from GOLD
         # self.compute_analysis_project_set(analysis_projects)
 
         # dump JSON string serialization of NMDC Schema object
