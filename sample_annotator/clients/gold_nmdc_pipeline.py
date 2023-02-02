@@ -171,7 +171,7 @@ class GoldNMDC(GoldClient):
         :param biosample_name: biosampleName field from biosample endpoint.
         :return: field site
         """
-        return "gold:" + biosample_name.split("-", 1)[1].lstrip().replace(" ", "_")
+        return biosample_name.split("-", 1)[1].lstrip()
 
     def _processing_institute_handler(self, sequencing_centers: List[str]) -> List[str]:
         """GOLD NMDC transformation pipeline specific term handler.
@@ -228,6 +228,7 @@ class GoldNMDC(GoldClient):
         study_id: str,
         biosamples: List[Dict[str, Union[str, Dict]]],
         minted_biosample_ids_dict: Dict[str, str],
+        minted_field_research_site_ids_dict: Dict[str, str],
         projects: List[str],
     ) -> SampleDict:
         """Compute biosample parameters to be populated from the dataset."""
@@ -313,6 +314,7 @@ class GoldNMDC(GoldClient):
                         part_of=study_id,
                         ncbi_taxonomy_name=ncbi_tax_name,
                         samp_taxon_id=samp_taxon_id,
+                        samp_name=field_site if field_site else None,
                         type="nmdc:Biosample",
                         # biosample date information
                         add_date=XSDDateTime(biosample.get("addDate"))
@@ -423,7 +425,9 @@ class GoldNMDC(GoldClient):
                         else biosample.get("sampleBodySite")
                         if biosample["sampleBodySite"]
                         else None,
-                        collected_from=field_site,
+                        collected_from=minted_field_research_site_ids_dict[
+                            biosample["biosampleGoldId"]
+                        ],
                     )
                 )
             except Exception as e:
@@ -623,6 +627,14 @@ class GoldNMDC(GoldClient):
         gold_biosample_ids = [biosample["biosampleGoldId"] for biosample in biosamples]
         minted_biosample_ids_dict = dict(zip(gold_biosample_ids, minted_biosample_ids))
 
+        minted_field_research_site_ids = self._runtime_api_call(
+            "POST", "/pids/mint", "nmdc:FieldResearchSite", len(biosamples)
+        )
+        gold_biosample_ids = [biosample["biosampleGoldId"] for biosample in biosamples]
+        minted_field_research_site_ids_dict = dict(
+            zip(gold_biosample_ids, minted_field_research_site_ids)
+        )
+
         minted_project_ids = self._runtime_api_call(
             "POST", "/pids/mint", "nmdc:OmicsProcessing", len(projects)
         )
@@ -633,6 +645,7 @@ class GoldNMDC(GoldClient):
             minted_study_id[0],
             biosamples,
             minted_biosample_ids_dict,
+            minted_field_research_site_ids_dict,
             projects,
         )
 
