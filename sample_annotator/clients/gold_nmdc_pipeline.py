@@ -230,6 +230,7 @@ class GoldNMDC(GoldClient):
         minted_biosample_ids_dict: Dict[str, str],
         minted_field_research_site_ids_dict: Dict[str, str],
         projects: List[str],
+        analysis_projects: List[Dict],
     ) -> SampleDict:
         """Compute biosample parameters to be populated from the dataset."""
         for biosample in biosamples:
@@ -297,6 +298,11 @@ class GoldNMDC(GoldClient):
                 # parse site identifier from GOLD
                 field_site = self.field_site_parser(biosample["biosampleName"])
 
+                img_identifiers = None
+                for ap in analysis_projects:
+                    if biosample["biosampleGoldId"] in ap["biosampleGoldId"]:
+                        img_identifiers = ap["imgTaxonOid"]
+
                 self.nmdc_db.biosample_set.append(
                     nmdc.Biosample(
                         # biosample identifiers
@@ -316,6 +322,7 @@ class GoldNMDC(GoldClient):
                         samp_taxon_id=samp_taxon_id,
                         samp_name=field_site if field_site else None,
                         type="nmdc:Biosample",
+                        img_identifiers=img_identifiers,
                         # biosample date information
                         add_date=XSDDateTime(biosample.get("addDate"))
                         if biosample["addDate"]
@@ -641,12 +648,26 @@ class GoldNMDC(GoldClient):
         gold_project_ids = [project["projectGoldId"] for project in projects]
         minted_project_ids_dict = dict(zip(gold_project_ids, minted_project_ids))
 
+        # refactor: nested loop to associate analysis project information with biosample
+        # reason: individual API calls to analysis_projects endpoint with biosample id as
+        # query parameter are expensive
+        for ga in analysis_projects:
+            for gb in biosamples:
+                for gp_a in ga["projects"]:
+                    for gp_b in gb["projects"]:
+                        if gp_a == gp_b["projectGoldId"]:
+                            if "biosampleGoldId" in ga:
+                                ga["biosampleGoldId"].append(gb["biosampleGoldId"])
+                            else:
+                                ga["biosampleGoldId"] = gb["biosampleGoldId"]
+
         self.compute_biosample_set(
             minted_study_id[0],
             biosamples,
             minted_biosample_ids_dict,
             minted_field_research_site_ids_dict,
             projects,
+            analysis_projects,
         )
 
         # TODO: enable if you want to pull sequencing project information from GOLD
