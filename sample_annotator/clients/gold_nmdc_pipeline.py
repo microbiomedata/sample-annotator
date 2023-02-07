@@ -285,12 +285,14 @@ class GoldNMDC(GoldClient):
 
                 if ncbi_tax_name:
                     if biosample["ncbiTaxId"] is not None:
-                        samp_taxon_id = (
-                            ncbi_tax_name
-                            + " "
-                            + "[NCBITaxon:"
-                            + str(biosample.get("ncbiTaxId"))
-                            + "]"
+                        samp_taxon_id = nmdc.TextValue(
+                            (
+                                ncbi_tax_name
+                                + " "
+                                + "[NCBITaxon:"
+                                + str(biosample.get("ncbiTaxId"))
+                                + "]"
+                            )
                         )
                 else:
                     samp_taxon_id = None
@@ -320,7 +322,9 @@ class GoldNMDC(GoldClient):
                         part_of=study_id,
                         ncbi_taxonomy_name=ncbi_tax_name,
                         samp_taxon_id=samp_taxon_id,
-                        samp_name=field_site if field_site else None,
+                        samp_name=nmdc.TextValue(has_raw_value=field_site)
+                        if field_site
+                        else None,
                         type="nmdc:Biosample",
                         img_identifiers=img_identifiers,
                         # biosample date information
@@ -344,10 +348,7 @@ class GoldNMDC(GoldClient):
                         )
                         if biosample["depthInMeters"]
                         else None,
-                        elev=nmdc.QuantityValue(
-                            has_raw_value=biosample.get("elevationInMeters"),
-                            has_unit="meters",
-                        )
+                        elev=biosample.get("elevationInMeters")
                         if biosample["elevationInMeters"]
                         else None,
                         alt=nmdc.QuantityValue(
@@ -373,7 +374,7 @@ class GoldNMDC(GoldClient):
                         )
                         if biosample["nitrateConcentration"]
                         else None,
-                        ph=nmdc.QuantityValue(has_raw_value=biosample.get("ph")),
+                        ph=biosample.get("ph") if biosample["ph"] else None,
                         pressure=nmdc.QuantityValue(
                             has_raw_value=biosample.get("pressure")
                         )
@@ -401,12 +402,10 @@ class GoldNMDC(GoldClient):
                         )
                         if biosample["geoLocation"]
                         else None,
-                        lat_lon=nmdc.GeolocationValue(
+                        lat_lon=nmdc.TextValue(
                             has_raw_value=str(biosample.get("latitude"))
                             + " "
-                            + str(biosample.get("longitude")),
-                            latitude=biosample.get("latitude"),
-                            longitude=biosample.get("longitude"),
+                            + str(biosample.get("longitude"))
                         )
                         if biosample["latitude"] and biosample["longitude"]
                         else None,
