@@ -123,7 +123,7 @@ class GoldNMDC(GoldClient):
 
         for item in read_qc_array:
             has_output_dict = {}
-            has_output_dict[item["was_informed_by"].replace("gold:", "")] = item[
+            has_output_dict[item["was_informed_by"].replace("GOLD:", "")] = item[
                 "has_input"
             ][0]
             read_qc_list.append(has_output_dict)
@@ -211,7 +211,7 @@ class GoldNMDC(GoldClient):
                 else None,
                 title=study_data["studyName"] if study_data["studyName"] else None,
                 name=study_data["studyName"] if study_data["studyName"] else None,
-                gold_study_identifiers="gold:" + study_data["studyGoldId"],
+                gold_study_identifiers="GOLD:" + study_data["studyGoldId"],
                 principal_investigator=nmdc.PersonValue(
                     has_raw_value=pi_dict.get("name"),
                     name=pi_dict.get("name"),
@@ -309,7 +309,7 @@ class GoldNMDC(GoldClient):
                     nmdc.Biosample(
                         # biosample identifiers
                         id=minted_biosample_ids_dict[biosample["biosampleGoldId"]],
-                        gold_biosample_identifiers="gold:"
+                        gold_biosample_identifiers="GOLD:"
                         + biosample["biosampleGoldId"],
                         insdc_biosample_identifiers=insdc_biosample_identifiers,
                         # metadata fields
@@ -493,7 +493,7 @@ class GoldNMDC(GoldClient):
                         name=project.get("projectName")
                         if project["projectName"]
                         else None,
-                        gold_sequencing_project_identifiers="gold:"
+                        gold_sequencing_project_identifiers="GOLD:"
                         + project["projectGoldId"]
                         if project["projectGoldId"]
                         else None,
@@ -558,7 +558,7 @@ class GoldNMDC(GoldClient):
                         started_at_time=XSDDateTime(ap["addDate"]),
                         ended_at_time=XSDDateTime(mod_date),
                         was_informed_by="",
-                        gold_analysis_project_identifiers="gold:" + ap["apGoldId"],
+                        gold_analysis_project_identifiers="GOLD:" + ap["apGoldId"],
                     )
                 )
 
@@ -576,7 +576,7 @@ class GoldNMDC(GoldClient):
                         started_at_time=XSDDateTime(ap["addDate"]),
                         ended_at_time=XSDDateTime(mod_date),
                         was_informed_by="",
-                        gold_analysis_project_identifiers="gold:" + ap["apGoldId"],
+                        gold_analysis_project_identifiers="GOLD:" + ap["apGoldId"],
                     )
                 )
 
