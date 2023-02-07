@@ -419,6 +419,11 @@ class GoldNMDC(GoldClient):
                         host_name=biosample.get("hostName")
                         if biosample["hostName"]
                         else None,
+                        host_taxid=nmdc.TextValue(
+                            has_raw_value=biosample.get("ncbiTaxId")
+                        )
+                        if biosample["ncbiTaxId"]
+                        else None,
                         temp=nmdc.QuantityValue(
                             has_numeric_value=biosample.get(
                                 "sampleCollectionTemperature"
