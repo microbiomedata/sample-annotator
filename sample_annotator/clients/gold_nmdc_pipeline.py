@@ -674,7 +674,6 @@ class GoldNMDC(GoldClient):
         study_data_portal = (
             self._get_client().request("GET", f"/studies/gold:{self.study_id}").json()
         )
-        print(study_data_portal)
         self.compute_study_set(study_data, minted_study_id[0], study_data_portal)
 
         minted_biosample_ids = self._runtime_mint_api_call(
