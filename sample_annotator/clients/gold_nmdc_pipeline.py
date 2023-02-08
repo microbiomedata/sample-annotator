@@ -53,7 +53,7 @@ class GoldNMDC(GoldClient):
             env["BASE_URL"], env["SITE_ID"], env["CLIENT_ID"], env["CLIENT_SECRET"]
         )
 
-    def _runtime_api_call(
+    def _runtime_mint_api_call(
         self, request_type: str, request_url: str, schema_class: str, how_many: str
     ) -> JSON:
         client = self._get_client()
@@ -199,9 +199,42 @@ class GoldNMDC(GoldClient):
 
         return nmdc_compliant_seq_ctr
 
-    def compute_study_set(self, study_data: StudyDict, minted_study_id: str):
+    def compute_study_set(
+        self, study_data: StudyDict, minted_study_id: str, sub_port_dict: Dict
+    ):
         """Compute study_set parameters to be populated from the dataset."""
         pi_dict = self.get_pi_dict(study_data)
+
+        credit_associations = []
+        if "has_credit_associations" in sub_port_dict:
+            for cred_assoc in sub_port_dict["has_credit_associations"]:
+                credit_associations.append(
+                    nmdc.CreditAssociation(
+                        applied_roles=cred_assoc.get("applied_roles")
+                        if "applied_roles" in cred_assoc
+                        else None,
+                        applies_to_person=nmdc.PersonValue(
+                            name=cred_assoc["applies_to_person"]["name"]
+                            if "name" in cred_assoc["applies_to_person"]
+                            else None,
+                            email=cred_assoc["applies_to_person"]["email"]
+                            if "email" in cred_assoc["applies_to_person"]
+                            else None,
+                            orcid=cred_assoc["applies_to_person"]["orcid"]
+                            if "orcid" in cred_assoc["applies_to_person"]
+                            else None,
+                            profile_image_url=cred_assoc["applies_to_person"][
+                                "profile_image_url"
+                            ]
+                            if "profile_image_url" in cred_assoc["applies_to_person"]
+                            else None,
+                        ),
+                        applied_role=cred_assoc.get("applied_role")
+                        if "applied_role" in cred_assoc
+                        else None,
+                        type=cred_assoc.get("type") if "type" in cred_assoc else None,
+                    )
+                )
 
         self.nmdc_db.study_set.append(
             nmdc.Study(
@@ -220,6 +253,11 @@ class GoldNMDC(GoldClient):
                 if "name" and "email" in pi_dict
                 else None,
                 type="nmdc:Study",
+                has_credit_associations=credit_associations,
+                websites=sub_port_dict["websites"]
+                if "websites" in sub_port_dict
+                else None,
+                doi=sub_port_dict["doi"] if "doi" in sub_port_dict else None,
             )
         )
 
@@ -522,8 +560,8 @@ class GoldNMDC(GoldClient):
                         )
                         if project["sequencingStrategy"]
                         else None,
-                        instrument_name=project.get("itsSequencingProductName")
-                        if project["itsSequencingProductName"]
+                        instrument_name=project.get("seqMethod")[0]
+                        if project["seqMethod"]
                         else None,
                         processing_institution=self._processing_institute_handler(
                             project["sequencingCenters"]
@@ -628,25 +666,50 @@ class GoldNMDC(GoldClient):
                 if any(e in projects_subset for e in ap["projects"])
             ]
 
-        minted_study_id = self._runtime_api_call("POST", "/pids/mint", "nmdc:Study", 1)
+        minted_study_id = self._runtime_mint_api_call(
+            "POST", "/pids/mint", "nmdc:Study", 1
+        )
         study_data = self.fetch_study(id=self.study_id)
-        self.compute_study_set(study_data, minted_study_id[0])
 
-        minted_biosample_ids = self._runtime_api_call(
+        study_data_portal = (
+            self._get_client().request("GET", f"/studies/gold:{self.study_id}").json()
+        )
+        print(study_data_portal)
+        self.compute_study_set(study_data, minted_study_id[0], study_data_portal)
+
+        minted_biosample_ids = self._runtime_mint_api_call(
             "POST", "/pids/mint", "nmdc:Biosample", len(biosamples)
         )
         gold_biosample_ids = [biosample["biosampleGoldId"] for biosample in biosamples]
         minted_biosample_ids_dict = dict(zip(gold_biosample_ids, minted_biosample_ids))
 
-        minted_field_research_site_ids = self._runtime_api_call(
-            "POST", "/pids/mint", "nmdc:FieldResearchSite", len(biosamples)
+        # code block ensuring that a FieldResearchSite id is associated with
+        # all biosamples from the same site
+        site_ids = [
+            {
+                biosample["biosampleGoldId"]: self.field_site_parser(
+                    biosample["biosampleName"]
+                ).split(" ")[0]
+            }
+            for biosample in biosamples
+        ]
+        gold_site_ids_dict = {}
+        site_vals_list = []
+        for site in site_ids:
+            for gb, site_id in site.items():
+                gold_site_ids_dict[gb] = site_id
+                site_vals_list.append(site_id)
+        site_vals_list = set(site_vals_list)
+        minted_field_research_site_ids = self._runtime_mint_api_call(
+            "POST", "/pids/mint", "nmdc:FieldResearchSite", len(site_vals_list)
         )
+        site_ids_dict = dict(zip(site_vals_list, minted_field_research_site_ids))
         gold_biosample_ids = [biosample["biosampleGoldId"] for biosample in biosamples]
-        minted_field_research_site_ids_dict = dict(
-            zip(gold_biosample_ids, minted_field_research_site_ids)
-        )
+        minted_field_research_site_ids_dict = {
+            k: site_ids_dict.get(v, v) for k, v in gold_site_ids_dict.items()
+        }
 
-        minted_project_ids = self._runtime_api_call(
+        minted_project_ids = self._runtime_mint_api_call(
             "POST", "/pids/mint", "nmdc:OmicsProcessing", len(projects)
         )
         gold_project_ids = [project["projectGoldId"] for project in projects]
