@@ -458,9 +458,9 @@ class GoldNMDC(GoldClient):
                         if biosample["hostName"]
                         else None,
                         host_taxid=nmdc.TextValue(
-                            has_raw_value=biosample.get("ncbiTaxId")
+                            has_raw_value=biosample.get("hostNcbiTaxid")
                         )
-                        if biosample["ncbiTaxId"]
+                        if biosample["hostNcbiTaxid"]
                         else None,
                         temp=nmdc.QuantityValue(
                             has_numeric_value=biosample.get(
