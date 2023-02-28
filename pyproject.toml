@@ -21,6 +21,8 @@ quantulum3 = "^0.7.10"
 recommonmark = "^0.7.1"
 sphinx-rtd-theme = "^1.0.0"
 uvicorn = "^0.17.4"
+bio = "^1.5.5"
+xmltodict = "^0.13.0"
 
 
 [tool.poetry.dev-dependencies]
@@ -37,3 +39,4 @@ build-backend = "poetry.core.masonry.api"
 annotate-sample = "sample_annotator.sample_annotator:cli"
 sqlite_client_cli = "sample_annotator.clients.biosample_sqlite_client:cli"
 rel_to_oxygen_example = "sample_annotator.rel_to_oxygen_example:cli"
+ncbi_client = "sample_annotator.clients.ncbi_client:cli"
