@@ -57,3 +57,10 @@ downloads/bibo.owl:
 assets/bibo_DocumentStatus.tsv: downloads/bibo.owl bin/robot.jar
 	java -jar bin/robot.jar query --input $< --query sparql/bibo_DocumentStatus.sparql $@
 	sed --in-place=.bak 's/^\?//' $@
+
+ncbi_xml_biosamples_dict.json:
+	$(RUN) ncbi_client \
+		--gold-study Gs0154244 \
+		--entrez-email mam@lbl.gov \
+		--gold-nmdc-credentials nmdc_gold_credentials.txt \
+		--output-file $@

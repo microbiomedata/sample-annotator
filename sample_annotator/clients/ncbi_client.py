@@ -94,9 +94,9 @@ class GoldStudyBiosamples:
                                 biosample_xml_dict = self._fetch_biosample_xml(biosample_id)
                                 biosample_accession = biosample_xml_dict['@accession']
                                 self.biosamples_by_accession[biosample_accession] = biosample_xml_dict
-                                print(biosample_accession)
+                                logging.info(biosample_accession)
                             except Exception as e:
-                                print(f"Error fetching Biosample {biosample_id}: {e}")
+                                logging.error(f"Error fetching Biosample {biosample_id}: {e}")
 
     def _fetch_biosample_xml(self, biosample_id):
         handle = Entrez.efetch(db="biosample", id=biosample_id)
@@ -124,12 +124,12 @@ def cli(gold_study: str, entrez_email: str, gold_nmdc_credentials: str, output_f
 
     gsb.set_entrez_email()
     gsb.gold_client_setup()
-    print(gsb)
+    logging.info(gsb)
 
     gsb.get_bioproject_accessions_by_gold_study_id()
-    print(gsb)
+    logging.info(gsb)
     gsb.get_bioproject_ids_by_bioproject_accession()
-    print(gsb)
+    logging.info(gsb)
     gsb.get_biosample_linksets_from_bioproject_id()
     gsb.populate_biosamples()
 
