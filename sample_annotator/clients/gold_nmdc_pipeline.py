@@ -338,11 +338,13 @@ class GoldNMDC(GoldClient):
                 # parse site identifier from GOLD
                 field_site = self.field_site_parser(biosample["biosampleName"])
 
-                img_identifiers = None
+                # there can be multiple IMG identifiers associated with a biosample
+                img_identifiers = []
                 for ap in analysis_projects:
                     if biosample["biosampleGoldId"] in ap["biosampleGoldId"]:
-                        img_identifiers = ap["imgTaxonOid"]
-
+                        if ap["imgTaxonOid"] is not None:
+                            img_identifiers.append(ap["imgTaxonOid"])
+                
                 self.nmdc_db.biosample_set.append(
                     nmdc.Biosample(
                         # biosample identifiers
