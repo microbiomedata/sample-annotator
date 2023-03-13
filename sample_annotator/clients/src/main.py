@@ -1,6 +1,5 @@
 import sys
-sys.path.append('clients')
-from submission_portal_client.py import submission_portal_client
+from clients.submission_portal_client import submission_portal_client
 
 client = submission_portal_client('mappings.csv','no_path')
 map_dict = client.create_mapping_dict()

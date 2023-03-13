@@ -3,6 +3,7 @@ import nmdc_schema.nmdc as nmdc
 import linkml
 import numpy as np
 import linkml_runtime.dumpers.json_dumper as dumper
+#from sample_annotator.clients.nmdc.runtime_api_client import RuntimeApiSiteClient
 
 
 #I had initially misunderstood, and did not design the code as part of an class/object so these are mostly
@@ -17,6 +18,33 @@ class submission_portal_client:
     def __init__(self,mapping_path,env_path):
         self.mapping_path = mapping_path
         self.env_path = env_path
+
+        return
+        #not used for now
+        #collecting api necessities
+        f = open(env_path, "r")
+        line = f.readline()
+        url = line.split("=")[1]
+        
+        line = f.readline()
+        site_id = line.split("=")[1]
+        
+        line = f.readline()
+        client_id = line.split("=")[1]
+
+        line = f.readline()
+        client_secret = line.split("=")[1]
+        f.close()
+
+        self.api_client = RuntimeApiSiteClient(url,site_id,client_id,client_secret)
+
+    
+    def get_submission_json(submission_id):
+        response = selp.api_client.request(method="GET",
+        url_path="/api/docs#/metadata_submission/get_submission_api_metadata_submission__id__get",
+        params_or_json_data=submission_id)
+        
+        return response
         
     #creates a dictionary of the mappings between columns based on the given file
     #returns: dictionary where the key is the column name from the NMDC portal and the value is the bioSample column name
