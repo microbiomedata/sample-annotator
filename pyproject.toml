@@ -14,13 +14,14 @@ funowl = "^0.1.11"
 git-root = "^0.1"
 googlemaps = "^4.6.0"
 linkml = "^1.1.18"
-nmdc-schema = "^2.0.0"
+nmdc-schema = "^7.0.0"
 pandas = "^1.4.1"
 python = "^3.9"
 quantulum3 = "^0.7.10"
 recommonmark = "^0.7.1"
 sphinx-rtd-theme = "^1.0.0"
 uvicorn = "^0.17.4"
+python-dotenv = "^0.21.1"
 
 
 [tool.poetry.dev-dependencies]

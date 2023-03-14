@@ -41,4 +41,4 @@ class TestGoldNMDC(unittest.TestCase):
             self.assertTrue(filecmp.cmp(file_path, OUTPUT_NMDC_JSON))
 
             # assert that tempfile validates against NMDC schema
-            self.assertTrue(gc.validate_nmdc(file_name=file_path))
+            self.assertTrue(gc.validate_nmdc(file_path=file_path))

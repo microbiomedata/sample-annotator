@@ -1,0 +1,111 @@
+sample name,samp_name
+globally unique ID,id
+analysis/data type,analysis_type
+environmental package,env_package
+sample linkage,sample_link
+broad-scale environmental context,env_broad_scale
+local environmental context,env_local_scale
+environmental medium,env_medium
+ecosystem,ecosystem
+ecosystem_category,ecosystem_category
+ecosystem_type,ecosystem_type
+ecosystem_subtype,ecosystem_subtype
+specific_ecosystem,specific_ecosystem
+slope aspect,slope_aspect
+history/agrochemical additions,agrochem_addition
+extreme_unusual_properties/Al saturation,al_sat
+extreme_unusual_properties/Al saturation method,al_sat_meth
+mean annual precipitation,annual_precpt
+mean annual temperature,annual_temp
+history/crop rotation,crop_rotation
+current land use,cur_land_use
+current vegetation,cur_vegetation
+current vegetation method,cur_vegetation_meth
+drainage classification,drainage_class
+experimental factor,experimental_factor
+history/extreme events,extreme_event
+soil_taxonomic/FAO classification,fao_class
+history/fire,fire
+history/flooding,flooding
+extreme_unusual_properties/heavy metals,heavy_metals
+extreme_unusual_properties/heavy metals method,heavy_metals_meth
+horizon method,horizon_meth
+link to classification information,link_class_info
+link to climate information,link_climate_info
+soil_taxonomic/local classification,local_class
+miscellaneous parameter,misc_param
+soil_taxonomic/local classification method,local_class_meth
+oxygenation status of sample,oxy_stat_samp
+history/previous land use method,prev_land_use_meth
+history/previous land use,previous_land_use
+profile position,profile_position
+mean seasonal precipitation,season_precpt
+mean seasonal temperature,season_temp
+slope gradient,slope_gradient
+soil horizon,soil_horizon
+soil texture measurement,soil_text_measure
+soil texture method,soil_texture_meth
+soil type,soil_type
+soil type method,soil_type_meth
+temperature,temp
+history/tillage,tillage
+water content,water_content
+water content method,water_cont_soil_meth
+pH method,ph_meth
+microbial biomass,microbial_biomass
+microbial biomass method,micro_biomass_meth
+carbon/nitrogen ratio,carb_nitro_ratio
+organic matter,org_matter
+organic nitrogen,org_nitro
+total carbon,tot_carb
+total nitrogen content,tot_nitro_content
+total nitrogen content method,tot_nitro_cont_meth
+total organic carbon,tot_org_carb
+total organic carbon method,tot_org_c_meth
+total phosphorus,tot_phosp
+phosphate,phosphate
+salinity,salinity
+salinity method,salinity_meth
+growth facility,growth_facil
+storage conditions,store_cond
+collection date,collection_date
+geographic location (country and/or sea region),geo_loc_name
+geographic location (latitude and longitude),lat_lon
+elevation,elev
+sample storage temperature,samp_store_temp
+composite design/sieving,sieving
+size-fraction lower threshold,size_frac_low
+depth meters,depth
+size-fraction upper threshold,size_frac_up
+sample material processing,samp_mat_process
+biotic regimen,biotic_regm
+sample collection device,samp_collec_device
+sample collection method,samp_collec_method
+air temperature regimen,air_temp_regm
+chemical administration,chem_administration
+amount or size of sample collected,samp_size
+climate environment,climate_environment
+gaseous environment,gaseous_environment
+humidity regimen,humidity_regm
+observed biotic relationship,biotic_relationship
+relationship to oxygen,rel_to_oxygen
+light regimen,light_regm
+watering regimen,watering_regm
+altitude,alt
+pH,ph
+collection time GMT,collection_time
+incubation collection date,collection_date_inc
+incubation collection time GMT,collection_time_inc
+incubation start date,start_date_inc
+incubation start time GMT,start_time_inc
+filter method,filter_method
+experimental factor- other,experimental_factor_other
+non-microbial biomass,non_microb_biomass
+non-microbial biomass method,non_microb_biomass_method
+microbial biomass carbon,microbial_biomass_c
+microbial biomass carbon method,micro_biomass_c_meth
+microbial biomass nitrogen,microbial_biomass_n
+microbial biomass nitrogen method,micro_biomass_n_meth
+organic nitrogen method,org_nitro_method
+other treatments,other_treatment
+isotope exposure/addition,isotope_exposure
