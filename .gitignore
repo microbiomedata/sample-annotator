@@ -1,5 +1,7 @@
 data
 bin
+local
+.idea
 
 ## NEVER EVER COMMIT THIS
 googlemaps-api-key.txt
