@@ -362,7 +362,7 @@ class GoldNMDC(GoldClient):
                         part_of=study_id,
                         ncbi_taxonomy_name=ncbi_tax_name,
                         samp_taxon_id=samp_taxon_id,
-                        # samp_name=field_site if field_site else None,
+                        samp_name=field_site if field_site else None,
                         type="nmdc:Biosample",
                         img_identifiers=img_identifiers,
                         # biosample date information
