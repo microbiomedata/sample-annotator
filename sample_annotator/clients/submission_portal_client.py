@@ -3,7 +3,11 @@ import nmdc_schema.nmdc as nmdc
 import linkml
 import numpy as np
 import linkml_runtime.dumpers.json_dumper as dumper
-#from sample_annotator.clients.nmdc.runtime_api_client import RuntimeApiSiteClient
+import requests
+import json
+from clients.nmdc.runtime_api_client import RuntimeApiSiteClient
+from dotenv import dotenv_values
+
 
 
 #I had initially misunderstood, and did not design the code as part of an class/object so these are mostly
@@ -15,256 +19,160 @@ class submission_portal_client:
     #params:
     #mapping_path: file path to mappings between column names
     #env_path: path to env file with API information (not used yet)
-    def __init__(self,mapping_path,env_path):
-        self.mapping_path = mapping_path
+    def __init__(self,env_path):
         self.env_path = env_path
 
-        return
-        #not used for now
-        #collecting api necessities
-        f = open(env_path, "r")
-        line = f.readline()
-        url = line.split("=")[1]
-        
-        line = f.readline()
-        site_id = line.split("=")[1]
-        
-        line = f.readline()
-        client_id = line.split("=")[1]
+        #API things
+        self.env_vars = dotenv_values(env_path)
 
-        line = f.readline()
-        client_secret = line.split("=")[1]
-        f.close()
-
-        self.api_client = RuntimeApiSiteClient(url,site_id,client_id,client_secret)
+        self.api_client = RuntimeApiSiteClient(self.env_vars['BASE_URL'],self.env_vars['SITE_ID'],self.env_vars['CLIENT_ID'],self.env_vars['CLIENT_SECRET'])
 
     
-    def get_submission_json(submission_id):
-        response = selp.api_client.request(method="GET",
-        url_path="/api/docs#/metadata_submission/get_submission_api_metadata_submission__id__get",
-        params_or_json_data=submission_id)
-        
-        return response
-        
-    #creates a dictionary of the mappings between columns based on the given file
-    #returns: dictionary where the key is the column name from the NMDC portal and the value is the bioSample column name
-    def create_mapping_dict(self):
-        f = open(self.mapping_path, "r")
-        line = f.readline()
-
-        #key and value lists
-        map_dict = {}
-        #collecting keys and values from file
-        while(line != ""):
-            pair = line.split(",")
-            map_dict[pair[0]] = pair[1].replace("\n","")
-            #replacing new line characters with blanks
-            line = f.readline()
-        f.close()
-
-        return map_dict
-    
-    # I know we are intending to use the json response from the API, but I havent' been able to use the API
-    # For the mean time I've saved the example data in a json file and read that in. 
-    # This could be adjusted for the api response with a little tweaking
     #params:
-    #data_path: path to the json formatted data file.
-    #returns: pandas dataframe
-    def read_data_file(self,data_path):
-        f = open(data_path, "r")
-        line = f.readline()
-        rows = []
+    #submission_id: a submission_id for the NMDC data portal
+    #returns: a json type response containing the data of the NMDC submission
+    def get_submission_json(self,submission_id):
+        response = requests.request(
+            "GET",
+            f"https://data.microbiomedata.org/api/metadata_submission/{submission_id}",
+            cookies={"session": self.env_vars["DATA_PORTAL_COOKIE"]},
+        )
+        return response.json()
 
-        #skip through everything that isn't sampleData, we don't need it here
-        while('"sampleData": [' not in line):
-            line = f.readline()
 
-        #reads until we hit the } denoting the closing of the sampleData block
-        line = f.readline()
-        while('}' not in line):
-            temp_lis = []
+    def mint_nmdc_ids(self,num_ids):
+        json_dic = {"schema_class": {"id": "nmdc:Activity"},"how_many": num_ids}
+        response = self.api_client.request(method="POST",
+        url_path="/pids/mint",
+        params_or_json_data=json_dic)
 
-            #collecting each row of data, multiple lines per row
-            while(']' not in line):
-                if(line.strip() != '['):
-                    #removing white space, trailing commas, quotation marks
-                    line = line.strip().strip('"').strip(",").strip('"')
-                    if (line == "depth, meters"):
-                        #this comma will mess up the dictionary creation for the map so we remove it here
-                        line = "depth meters"
-                    elif("GMT" in line):
-                        #removing commas again for the dictionary
-                        line = line.replace(",","")
-                    elif("region" in line):
-                        line = line.replace(","," ")
-
-                    temp_lis.append(line)
-                line = f.readline()
-            line = f.readline()
-
-            #appending the row to the list of rows
-            rows.append(temp_lis)
-
-        #The first row isn't useful for our mongoDB ingestion, so we skip over it
-        rows.pop()
-
-        #converitng to dataframe
-        df = pd.DataFrame(rows[2:len(rows)],columns = rows[1])
-
-        f.close()
-        return df
+        return_lis = json.loads(response.text)
+        return return_lis
         
-    # creates an NMDC database populated with biosamples baed on given mappings and dataframe
-    # params:
-    # map_dict: dictionary mapping the column names from the NMDC portal and the BioSample columns
-    # df: a pandas dataframe created form NMDC portal data
-    # returns: an NMDC database object
-    def create_biosample_set(self, map_dict, df):
-        db = nmdc.Database()
+            #Processing the json response from the API
+    #Will return a pandas dataframe to be used to make the biosample for the database
+    def process_json_response(self,response):
+        #There could be more than one type of sampledata in the sampleData lists, so we'll make a dataframe for each one. This also adds some flexibility and robustness
 
-        #Lists for what each value should be converted to. Strings stay as they are, the rest have a function call associated
-        #These are all the columns from the example data. It would probably be better to have these in a file and read that in (maybe add a step to the mapping read in to do that at the same time)
-        #That is an issue to fix if there is time
-        string_params = ["sample name","globally unique ID","analysis/data type","sample linkage","ecosystem","ecosystem_category",
-                        "ecosystem_type","ecosystem_subtype","specific_ecosystem","history/extreme events","soil_taxonomic/FAO classification",
-                        "history/fire","history/flooding","oxygenation status of sample","history/previous land use method",
-                        "soil horizon","soil texture method","history/tillage","water content","water content method","microbial biomass method",
-                        "total nitrogen content method","sample collection device","sample collection method","observed biotic relationshiop",
-                        "relationship to oxygen","collection time GMT","incubation collection date","incubation collection time GMT",
-                        "incubation start date","incubation start time GMT","filter method","experimental factor- other","non-microbial biomass",
-                        "non-microbial biomass method","microbial biomass carbon","microbial biomass carbon method","microbial biomass nitrogen",
-                        "microbial biomass nitrogen method","organic nitrogen method","other treatments","isotope exposure/addition"]
+        string_params = ['samp_name', 'id', 'analysis_type', 'sample_link', 'ecosystem', 'ecosystem_category', 'ecosystem_type', 'ecosystem_subtype', 'specific_ecosystem', 'extreme_event', 'fao_class', 'fire', 'flooding', 'oxy_stat_samp', 'prev_land_use_meth', 'soil_horizon', 'soil_texture_meth', 'tillage', 'water_content', 'water_cont_soil_meth', 'micro_biomass_meth', 'tot_nitro_cont_meth', 'samp_collec_device', 'samp_collec_method', 'rel_to_oxygen', 'collection_time', 'collection_date_inc', 'collection_time_inc', 'start_date_inc', 'start_time_inc', 'filter_method', 'experimental_factor_other', 'non_microb_biomass', 'non_microb_biomass_method', 'microbial_biomass_c', 'micro_biomass_c_meth', 'microbial_biomass_n', 'micro_biomass_n_meth', 'org_nitro_method', 'other_treatment', 'isotope_exposure']
+        text_params = ['source_mat_id','env_package', 'agrochem_addition', 'al_sat_meth', 'crop_rotation', 'cur_vegetation', 'cur_vegetation_meth', 'heavy_metals', 'heavy_metals_meth', 'horizon_meth', 'link_class_info', 'link_climate_info', 'local_class', 'misc_param', 'local_class_meth', 'previous_land_use', 'soil_type', 'soil_type_meth', 'ph_meth', 'tot_org_c_meth', 'salinity_meth', 'store_cond', 'geo_loc_name', 'sieving', 'biotic_regm', 'air_temp_regm', 'climate_environment', 'gaseous_environment', 'humidity_regm', 'light_regm', 'watering_regm']
+        quantity_params = ['slope_aspect', 'al_sat', 'annual_precpt', 'annual_temp', 'season_precpt', 'season_temp', 'slope_gradient', 'soil_text_measure', 'temp', 'microbial_biomass', 'carb_nitro_ratio', 'org_matter', 'org_nitro', 'tot_carb', 'tot_nitro_content', 'tot_org_carb', 'tot_phosp', 'phosphate', 'salinity', 'samp_store_temp', 'size_frac_low', 'depth', 'size_frac_up', 'samp_size', 'alt']
+        controlled_term_params = ['env_broad_scale', 'env_local_scale', 'env_medium', 'experimental_factor', 'growth_facil', 'samp_mat_process', 'chem_administration']
+        float_params = ['elev', 'ph']
+        time_params = ['collection_date']
+        geoloc_params = ['lat_lon']
 
-        text_params = ['environmental package', 'history/agrochemical additions', 'extreme_unusual_properties/Al saturation method', 
-                       'history/crop rotation', 'current vegetation', 'current vegetation method', 'extreme_unusual_properties/heavy metals', 
-                       'extreme_unusual_properties/heavy metals method', 'horizon method', 'link to classification information', 
-                       'link to climate information', 'soil_taxonomic/local classification', 'miscellaneous parameter', 
-                       'soil_taxonomic/local classification method', 'history/previous land use', 'soil type', 'soil type method', 'pH method', 
-                       'total organic carbon method', 'salinity method', 'storage conditions', 'geographic location (country and/or sea region)', 
-                       'composite design/sieving', 'biotic regimen', 'air temperature regimen', 'climate environment', 'gaseous environment', 
-                       'humidity regimen', 'light regimen', 'watering regimen']
 
-        quantity_params = ['slope aspect', 'extreme_unusual_properties/Al saturation', 'mean annual precipitation', 'mean annual temperature', 
-                           'mean seasonal precipitation', 'mean seasonal temperature', 'slope gradient', 'soil texture measurement', 
-                           'temperature', 'microbial biomass', 'carbon/nitrogen ratio', 'organic matter', 'organic nitrogen', 'total carbon', 
-                           'total nitrogen content', 'total organic carbon', 'total phosphorus', 'phosphate', 'salinity', 'sample storage temperature', 
-                           'size-fraction lower threshold', 'depth meters', 'size-fraction upper threshold', 'amount or size of sample collected', 'altitude']
+        sampledata = response['metadata_submission']['sampleData']
+        db_lis = []
+        for super_keys in sampledata.keys():
+            current_lis = sampledata[super_keys]
+            db = nmdc.Database()
+            id_counter = 0
+            nmdc_ids = self.mint_nmdc_ids(len(current_lis))
 
-        controlled_term_params = ['broad-scale environmental context', 'local environmental context', 'environmental medium', 'experimental factor', 
-                                  'growth facility', 'sample material processing', 'chemical administration']
+            for samp_dic in current_lis:
+                param_dic = {}
+                for key in samp_dic.keys():
 
-        float_params = ["elevation","pH"]
+                    if(samp_dic[key] == 'nan' or samp_dic[key] == 'null' or samp_dic[key] == None):
+                        continue
 
-        time_params = ["collection date"]
-
-        geoloc_params = ['geographic location (latitude and longitude)']
-
-        #iterating through each row/sample
-        for index, row in df.iterrows():
-            param_dic = {}
-
-            #doing necessary conversions and filtering of each column/slot
-            for col in df.columns:
-                if (row[col] == 'null' or row[col] == 'nan' or row[col] == None):
-                    continue
-
-                if (col in string_params):
-                    if (col == 'globally unique ID'):
-                        key = map_dict[col]
-                        param_dic[key] = '0' #need to mint an nmdc unique ID here via the API
-                        param_dic['alternative_identifiers'] = row[col] #this vlue might need to be different than 'alternative_identifiers'
-
-                    else:
-                        key = map_dict[col]
-                        if(";" in row[col]):
-                            temp = row[col].split(";")
+                    if (key in string_params):
+                        if (key == 'id'):
+                            param_dic['alternative_identifiers'] = samp_dic[key] #this vlue might need to be different than 'alternative_identifiers'
+                            param_dic[key] = nmdc_ids[id_counter]
+                            id_counter = id_counter + 1
+                            
                         else:
-                            temp = row[col]
+                            if(";" in samp_dic[key]):
+                                temp = samp_dic[key].split(";")
+                            else:
+                                temp = samp_dic[key]
 
-                        param_dic[key] = temp
-
-                elif (col in controlled_term_params):
-                    #need to add some kind of processing for the environmental context params
-                    #look at the ontology class documentation as well for what params are used
-
-                    #convert then add to dictionary
-                    temp = nmdc.ControlledTermValue(term=nmdc.OntologyClass(id=row[col]))
-                    key = map_dict[col]
-                    param_dic[key] = temp
-
-                elif (col in text_params):
-                    #some may need some processing
-                    temp = nmdc.TextValue(has_raw_value=row[col])
-                    key = map_dict[col]
-                    param_dic[key] = temp
-
-                elif (col in quantity_params):
-                    #some may need some additional processing
-                    if(col == "sample storage temperature"):
-                        temp_lis = row[col].split()
-                        temp = nmdc.QuantityValue(has_raw_value = temp_lis[0],has_unit = temp_lis[1])
-                        key = map_dict[col]
-                        param_dic[key] = temp
-
-                    elif(col == "depth meters"):
-                        depth_lis = row[col].split("-")
-                        if len(depth_lis) != 2:
-                            temp = nmdc.QuantityValue(has_raw_value=row[col])
-                            key = map_dict[col]
-                            param_dic[key] = temp
-                        else:
-                            temp = nmdc.QuantityValue(has_minimum_numeric_value = depth_lis[0],has_maximum_numeric_value = depth_lis[1])
-                            key = map_dict[col]
                             param_dic[key] = temp
 
-                    else:
-                        temp = nmdc.QuantityValue(has_raw_value=row[col])
-                        key = map_dict[col]
+                    elif (key in controlled_term_params):
+
+                        #convert then add to dictionary
+                        if (key == "env_broad_scale" or key == "env_local_scale" or key == "env_medium"):
+                            env_code = samp_dic[key]
+                            env_code = env_code.split("[")[1]
+                            env_code = env_code.replace("]","")
+                            temp = nmdc.ControlledTermValue(term=nmdc.OntologyClass(id=env_code))
+                            param_dic[key] = temp
+                        else:
+                            temp = nmdc.ControlledTermValue(term=nmdc.OntologyClass(id=samp_dic[key]))
+                            param_dic[key] = temp
+
+                    elif (key in text_params):
+                        #some may need some processing
+                        temp = nmdc.TextValue(has_raw_value=samp_dic[key])
                         param_dic[key] = temp
 
-                elif (col in float_params):
-                    if(col == 'elevation'):
-                        temp = row[col].split()
-                        elev = float(temp[0])
-                        key = map_dict[col]
-                        param_dic[key] = elev
-                    else:
-                        temp = float(row[col])
-                        key = map_dict[col]
+                    elif (key in quantity_params):
+                        #some may need some additional processing
+                        if(key == "samp_store_temp"):
+                            temp_lis = samp_dic[key].split()
+                            temp = nmdc.QuantityValue(has_raw_value = temp_lis[0],has_unit = temp_lis[1])
+                            param_dic[key] = temp
+
+                        elif(key == "depth"):
+                            depth_lis = samp_dic[key].split("-")
+                            if len(depth_lis) != 2:
+                                temp = nmdc.QuantityValue(has_raw_value=samp_dic[key])
+                                param_dic[key] = temp
+                            else:
+                                temp = nmdc.QuantityValue(has_minimum_numeric_value = depth_lis[0],has_maximum_numeric_value = depth_lis[1])
+                                param_dic[key] = temp
+
+                        else:
+                            temp = nmdc.QuantityValue(has_raw_value=samp_dic[key])
+                            param_dic[key] = temp
+
+                    elif (key in float_params):
+                        if(key == 'elev'):
+                            temp = samp_dic[key].split()
+                            elev = float(temp[0])
+                            param_dic[key] = elev
+                        else:
+                            temp = float(samp_dic[key])
+                            param_dic[key] = temp
+
+                    elif (key in time_params):
+                        #may need some processing
+                        temp = nmdc.TimestampValue(has_raw_value=samp_dic[key])
                         param_dic[key] = temp
 
-                elif (col in time_params):
-                    #may need some processing
-                    temp = nmdc.TimestampValue(has_raw_value=row[col])
-                    key = map_dict[col]
-                    param_dic[key] = temp
+                    elif (key in geoloc_params):
+                        temp = nmdc.GeolocationValue(has_raw_value=samp_dic[key])
+                        param_dic[key] = temp
+                    
+                    #if something shows up in the else statement it is missing from the mappings
+                    else:
+                        print(key + " not found in any current param list")
 
-                elif (col in geoloc_params):
-                    temp = nmdc.GeolocationValue(has_raw_value=row[col])
-                    key = map_dict[col]
-                    param_dic[key] = temp
-                
-                #if something shows up in the else statement it is missing from the mappings
-                else:
-                    print(col + " not found in any current param list")
+                if ('part_of'  not in param_dic.keys()):
+                    param_dic['part_of'] = '1000 soils'
 
-            if ('part_of'  not in param_dic.keys()):
-                param_dic['part_of'] = '1000 soils'
+                if ('id' not in param_dic.keys()):
+                    param_dic['id'] = nmdc_ids[id_counter]
+                    id_counter = id_counter + 1
 
-            if ('id' not in param_dic.keys()):
-                param_dic['id'] = '0' #mint a key via the api
+                #I don't think any of these should be blank in real data, but they are needed here since the example data is blank
+                #this block of code should be removed once real data is in
+                missing_env = [item for item in ["env_broad_scale","env_local_scale","env_medium"] if item not in param_dic.keys()]
+                for item in missing_env:
+                    temp = nmdc.ControlledTermValue(term=nmdc.OntologyClass(id="0000"))
+                    param_dic[item] = temp
 
-            #I don't think any of these should be blank in real data, but they are needed here since the example data is blank
-            #this block of code should be removed once real data is in
-            missing_env = [item for item in ["env_broad_scale","env_local_scale","env_medium"] if item not in param_dic.keys()]
-            for item in missing_env:
-                temp = nmdc.ControlledTermValue(term=nmdc.OntologyClass(id="0000"))
-                param_dic[item] = temp
-
-            sample = nmdc.Biosample(**param_dic)
-            db.biosample_set.append(sample)
+                sample = nmdc.Biosample(**param_dic)
+                db.biosample_set.append(sample)
+            db_lis.append(db)
+        
             
-        return db
+        return db_lis
+            
     
     #dumps the given database to the given filepath
     #params:
