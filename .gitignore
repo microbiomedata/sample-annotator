@@ -2,6 +2,7 @@ data
 bin
 local
 .idea
+nmdc_gold_credentials.txt
 
 ## NEVER EVER COMMIT THIS
 googlemaps-api-key.txt
