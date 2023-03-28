@@ -54,3 +54,9 @@ class NeonClient:
             if search_string.lower() in v.lower():
                 codes_names_by_string[k] = v
         return codes_names_by_string
+
+# nc = NeonClient()
+#
+# x = nc.get_product_code_to_product_name()
+#
+# pprint.pprint(x)

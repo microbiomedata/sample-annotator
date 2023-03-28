@@ -67,12 +67,14 @@ class TestNeon(unittest.TestCase):
     def test_download_data_package(self):
         url = 'https://data.neonscience.org/api/v0/releases/RELEASE-2023/data/package/DP1.10107.001/BART/2017-06?package=basic'
         # result = requests.get(url=url)
+        # todo not implemented yet
 
     def test_files_by_prod_site_year_month(self):
         url = 'https://data.neonscience.org/api/v0/data/DP1.10107.001/BART/2017-06?package=basic&release=RELEASE-2023'
         result = requests.get(url=url).json()
         print()
         pprint.pprint(result)
+        # todo add assertions
 
     def test_frame_from_filename(self):
         url = 'https://data.neonscience.org/api/v0/data/DP1.10107.001/BART/2017-06/NEON.D01.BART.DP1.10107.001.mms_metagenomeDnaExtraction.2017-06.basic.20230113T224735Z.csv?package=basic&release=RELEASE-2023'
