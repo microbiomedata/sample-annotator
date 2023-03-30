@@ -1,12 +1,13 @@
 import nmdc_schema.nmdc as nmdc
 import linkml
-import linkml_runtime.dumpers.json_dumper as dumper
+from linkml_runtime.dumpers import json_dumper
 import requests
 import json
 import logging
+import sys
 from clients.nmdc.runtime_api_client import RuntimeApiSiteClient
 from dotenv import dotenv_values
-import dateutil.parser as parser
+from dateutil import parser
 
 
 
@@ -47,13 +48,14 @@ class SubmissionPortalClient:
         response = requests.request(
             "GET",
             f"https://data.microbiomedata.org/api/metadata_submission/{submission_id}",
-            cookies={"session": self.env_vars["DATA_PORTAL_COOKIE"]}
+            cookies={"session": self.env_vars["DATA_PORTAL_COOKIE"]},verify=False
         )
         return response.json()
 
 
-    def mint_nmdc_ids(self,num_ids):
-        json_dic = {"schema_class": {"id": "nmdc:Biosample"},"how_many": num_ids}
+    def mint_nmdc_ids(self,num_ids,kind):
+        id_str = "nmdc:" + kind
+        json_dic = {"schema_class": {"id": id_str},"how_many": num_ids}
         response = self.api_client.request(method="POST",
         url_path="/pids/mint",
         params_or_json_data=json_dic)
@@ -75,14 +77,18 @@ class SubmissionPortalClient:
         time_params = ['collection_date','extreme_event','fire', 'flooding']
         geoloc_params = ['lat_lon']
 
+        #making study
+        study = self.parse_study(response)
+        part_of_id = study['id']    
 
         sampledata = response['metadata_submission']['sampleData']
         db_lis = []
         for super_keys in sampledata.keys():
             current_lis = sampledata[super_keys]
             db = nmdc.Database()
+            db.study_set.append(study)
             id_counter = 0
-            nmdc_ids = self.mint_nmdc_ids(len(current_lis))
+            nmdc_ids = self.mint_nmdc_ids(len(current_lis),'Biosample')
 
             for samp_dic in current_lis:
                 param_dic = {}
@@ -91,12 +97,11 @@ class SubmissionPortalClient:
                     if(samp_dic[key] == 'nan' or samp_dic[key] == 'null' or samp_dic[key] == None):
                         continue
 
+
                     if (key in string_params):
-                        #need to see some examples of how time is put in. May need to change to iso formatting
-                        if(";" in samp_dic[key]):
-                            temp = samp_dic[key].split(";")
-                        else:
-                            temp = samp_dic[key]
+                        temp = samp_dic[key]
+                        if (type(temp)==str):
+                            temp = temp.strip()
                         param_dic[key] = temp
                     
                     elif (key in contr_iden_term_params):
@@ -113,15 +118,20 @@ class SubmissionPortalClient:
                         param_dic[key] = temp
 
                     elif (key in text_params):
-                        #some may need some processing
-                        temp = nmdc.TextValue(has_raw_value=samp_dic[key])
-                        param_dic[key] = temp
+                        if (key == 'source_mat_id'):
+                            param_dic['emsl_biosample_identifiers'] = samp_dic[key]
+                        else:
+                            temp = nmdc.TextValue(has_raw_value=samp_dic[key])
+                            param_dic[key] = temp
 
                     elif (key in quantity_params):
                         if(len(samp_dic[key].split()) == 2):
                             quantity_unit = samp_dic[key].split()
                             temp = nmdc.QuantityValue(has_raw_value=samp_dic[key],has_numeric_value = quantity_unit[0] ,has_unit = quantity_unit[1])
-                            param_dic[key] = temp
+                            if(key=="water_content"):
+                                param_dic[key] = {'has_raw_value':samp_dic[key],'has_unit':quantity_unit[1],'has_numeric_value':quantity_unit[0]}
+                            else:
+                                param_dic[key] = temp
                             
                         elif(key == "depth"):
                             depth_lis = samp_dic[key].split("-")
@@ -160,7 +170,7 @@ class SubmissionPortalClient:
                         self.logger.info(key + " not found in any current param list")
 
                 if ('part_of'  not in param_dic.keys()):
-                    param_dic['part_of'] = '1000 soils'
+                    param_dic['part_of'] = part_of_id
 
                 if ('id' not in param_dic.keys()):
                     param_dic['id'] = nmdc_ids[id_counter]
@@ -169,21 +179,66 @@ class SubmissionPortalClient:
                 sample = nmdc.Biosample(**param_dic)
 
                 #For some rason water_content specifically was not being saved in the sample properly when unpacking the dictionary
-                if 'water_content' in param_dic.keys():
-                    sample['water_content'] = param_dic['water_content']
+                #if 'water_content' in param_dic.keys():
+                #    sample['water_content'] = param_dic['water_content']
                 db.biosample_set.append(sample)
             db_lis.append(db)
         
             
         return db_lis
             
+
+    def parse_study(self,response):
+        str_params = {'studyName':'name','description':'description','notes':'notes','alternativeNames':'alternative_names',
+        "GOLDstudyId":"gold_study_identifiers","linkoutWebpage":"websites","contributors":"has_credit_associations",
+        "JGIStudyId":"alternative_identifiers","NCBIBioProjectId":"insdc_bioproject_identifiers","dataset_doi":"doi",
+        "piName":"principal_investigator"}
+        study_dic = response['metadata_submission']['studyForm']
+        omics_dic = response['metadata_submission']['multiOmicsForm']
+        context_dic = response['metadata_submission']['contextForm']
+        dic_lis = [study_dic,omics_dic,context_dic]
+        param_dic = {}
+
+        for dic in dic_lis:
+            for key in dic.keys():
+                if(dic[key] == 'nan' or dic[key] == 'null' or dic[key] == None or dic[key] == [] or dic[key]==''):
+                        continue
+                if (key in str_params.keys()):
+                    if (key == 'piName'):
+                        temp = nmdc.PersonValue(email=dic['piEmail'],name=dic['piName'],orcid=dic['piOrcid'])
+                        param_dic['principal_investigator'] = temp
+                    elif (key == 'dataset_doi'):
+                        temp = nmdc.AttributeValue(has_raw_value=dic[key])
+                        param_dic['doi'] = temp
+                    elif (key == 'contributors'):
+                        cont_lis = []
+                        for contributor in dic[key]:
+                            cont = nmdc.CreditAssociation(applies_to_person=nmdc.PersonValue(name=contributor['name'],orcid=contributor['orcid']),applied_roles=contributor['roles'])
+                            cont_lis.append(cont)
+                        param_dic['has_credit_associations'] = cont_lis
+
+                    else:
+                        param_dic[str_params[key]] = dic[key]
+        #uncomment after this portion is done
+        param_dic['id'] = 'nmdc:sty-11-28tm5d36' #self.mint_nmdc_ids(num_ids=1,kind='Study')[0]
+        study = nmdc.Study(**param_dic)
+        return study
+
+
     
     #dumps the given database to the given filepath
     #params:
     #database: an NMDC database object
     #outfile_path: a string, filepath for desired output
     def dump_db(self,database,outfile_path):
-        dumper.dump(element = database, to_file = outfile_path)
-
+        json_dumper.dump(element = database, to_file = outfile_path)
+        lines = []
+        with open(outfile_path, "r") as f:
+            lines = f.readlines()
+        lines[-3] = lines[-3].replace(",","")
+        with open(outfile_path, "w") as f:
+            for line in lines:
+                if line.strip("\n").strip() != '"@type": "Database"':
+                    f.write(line)
     
     
