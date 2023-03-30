@@ -1,12 +1,12 @@
-import pandas as pd
 import nmdc_schema.nmdc as nmdc
 import linkml
-import numpy as np
 import linkml_runtime.dumpers.json_dumper as dumper
 import requests
 import json
+import logging
 from clients.nmdc.runtime_api_client import RuntimeApiSiteClient
 from dotenv import dotenv_values
+import dateutil.parser as parser
 
 
 
@@ -14,7 +14,7 @@ from dotenv import dotenv_values
 #independent functions that I've added to this overarching class
 
 #API things are still missing as I only just got access to them ~1 hour before pushing this code up
-class submission_portal_client:
+class SubmissionPortalClient:
     
     #params:
     #mapping_path: file path to mappings between column names
@@ -27,6 +27,18 @@ class submission_portal_client:
 
         self.api_client = RuntimeApiSiteClient(self.env_vars['BASE_URL'],self.env_vars['SITE_ID'],self.env_vars['CLIENT_ID'],self.env_vars['CLIENT_SECRET'])
 
+        logger = logging.getLogger()
+        logger.setLevel(logging.INFO)
+        formatter = logging.Formatter('%(asctime)s | %(levelname)s | %(message)s')
+        stdout_handler = logging.StreamHandler(sys.stdout)
+        stdout_handler.setLevel(logging.DEBUG)
+        stdout_handler.setFormatter(formatter)
+        file_handler = logging.FileHandler('submission_portal_log.log')
+        file_handler.setLevel(logging.DEBUG)
+        file_handler.setFormatter(formatter)
+        logger.addHandler(file_handler)
+        logger.addHandler(stdout_handler)
+        self.logger = logger
     
     #params:
     #submission_id: a submission_id for the NMDC data portal
@@ -35,13 +47,13 @@ class submission_portal_client:
         response = requests.request(
             "GET",
             f"https://data.microbiomedata.org/api/metadata_submission/{submission_id}",
-            cookies={"session": self.env_vars["DATA_PORTAL_COOKIE"]},
+            cookies={"session": self.env_vars["DATA_PORTAL_COOKIE"]}
         )
         return response.json()
 
 
     def mint_nmdc_ids(self,num_ids):
-        json_dic = {"schema_class": {"id": "nmdc:Activity"},"how_many": num_ids}
+        json_dic = {"schema_class": {"id": "nmdc:Biosample"},"how_many": num_ids}
         response = self.api_client.request(method="POST",
         url_path="/pids/mint",
         params_or_json_data=json_dic)
@@ -54,12 +66,13 @@ class submission_portal_client:
     def process_json_response(self,response):
         #There could be more than one type of sampledata in the sampleData lists, so we'll make a dataframe for each one. This also adds some flexibility and robustness
 
-        string_params = ['samp_name', 'id', 'analysis_type', 'sample_link', 'ecosystem', 'ecosystem_category', 'ecosystem_type', 'ecosystem_subtype', 'specific_ecosystem', 'extreme_event', 'fao_class', 'fire', 'flooding', 'oxy_stat_samp', 'prev_land_use_meth', 'soil_horizon', 'soil_texture_meth', 'tillage', 'water_content', 'water_cont_soil_meth', 'micro_biomass_meth', 'tot_nitro_cont_meth', 'samp_collec_device', 'samp_collec_method', 'rel_to_oxygen', 'collection_time', 'collection_date_inc', 'collection_time_inc', 'start_date_inc', 'start_time_inc', 'filter_method', 'experimental_factor_other', 'non_microb_biomass', 'non_microb_biomass_method', 'microbial_biomass_c', 'micro_biomass_c_meth', 'microbial_biomass_n', 'micro_biomass_n_meth', 'org_nitro_method', 'other_treatment', 'isotope_exposure']
+        string_params = ['samp_name', 'analysis_type', 'sample_link', 'ecosystem', 'ecosystem_category', 'ecosystem_type', 'ecosystem_subtype', 'specific_ecosystem', 'fao_class', 'oxy_stat_samp', 'prev_land_use_meth', 'soil_horizon', 'soil_texture_meth', 'tillage', 'water_cont_soil_meth', 'micro_biomass_meth', 'tot_nitro_cont_meth', 'samp_collec_device', 'samp_collec_method', 'rel_to_oxygen', 'collection_time', 'collection_date_inc', 'collection_time_inc', 'start_date_inc', 'start_time_inc', 'filter_method', 'experimental_factor_other', 'non_microb_biomass', 'non_microb_biomass_method', 'microbial_biomass_c', 'micro_biomass_c_meth', 'microbial_biomass_n', 'micro_biomass_n_meth', 'org_nitro_method', 'other_treatment', 'isotope_exposure']
         text_params = ['source_mat_id','env_package', 'agrochem_addition', 'al_sat_meth', 'crop_rotation', 'cur_vegetation', 'cur_vegetation_meth', 'heavy_metals', 'heavy_metals_meth', 'horizon_meth', 'link_class_info', 'link_climate_info', 'local_class', 'misc_param', 'local_class_meth', 'previous_land_use', 'soil_type', 'soil_type_meth', 'ph_meth', 'tot_org_c_meth', 'salinity_meth', 'store_cond', 'geo_loc_name', 'sieving', 'biotic_regm', 'air_temp_regm', 'climate_environment', 'gaseous_environment', 'humidity_regm', 'light_regm', 'watering_regm']
-        quantity_params = ['slope_aspect', 'al_sat', 'annual_precpt', 'annual_temp', 'season_precpt', 'season_temp', 'slope_gradient', 'soil_text_measure', 'temp', 'microbial_biomass', 'carb_nitro_ratio', 'org_matter', 'org_nitro', 'tot_carb', 'tot_nitro_content', 'tot_org_carb', 'tot_phosp', 'phosphate', 'salinity', 'samp_store_temp', 'size_frac_low', 'depth', 'size_frac_up', 'samp_size', 'alt']
-        controlled_term_params = ['env_broad_scale', 'env_local_scale', 'env_medium', 'experimental_factor', 'growth_facil', 'samp_mat_process', 'chem_administration']
+        quantity_params = ['water_content','slope_aspect', 'al_sat', 'annual_precpt', 'annual_temp', 'season_precpt', 'season_temp', 'slope_gradient', 'soil_text_measure', 'temp', 'microbial_biomass', 'carb_nitro_ratio', 'org_matter', 'org_nitro', 'tot_carb', 'tot_nitro_content', 'tot_org_carb', 'tot_phosp', 'phosphate', 'salinity', 'samp_store_temp', 'size_frac_low', 'depth', 'size_frac_up', 'samp_size', 'alt']
+        controlled_term_params = ['experimental_factor', 'growth_facil', 'samp_mat_process', 'chem_administration']
+        contr_iden_term_params = ['env_broad_scale', 'env_local_scale', 'env_medium']
         float_params = ['elev', 'ph']
-        time_params = ['collection_date']
+        time_params = ['collection_date','extreme_event','fire', 'flooding']
         geoloc_params = ['lat_lon']
 
 
@@ -79,31 +92,25 @@ class submission_portal_client:
                         continue
 
                     if (key in string_params):
-                        if (key == 'id'):
-                            param_dic['alternative_identifiers'] = samp_dic[key] #this vlue might need to be different than 'alternative_identifiers'
-                            param_dic[key] = nmdc_ids[id_counter]
-                            id_counter = id_counter + 1
-                            
+                        #need to see some examples of how time is put in. May need to change to iso formatting
+                        if(";" in samp_dic[key]):
+                            temp = samp_dic[key].split(";")
                         else:
-                            if(";" in samp_dic[key]):
-                                temp = samp_dic[key].split(";")
-                            else:
-                                temp = samp_dic[key]
-
-                            param_dic[key] = temp
+                            temp = samp_dic[key]
+                        param_dic[key] = temp
+                    
+                    elif (key in contr_iden_term_params):
+                        env_param = samp_dic[key]
+                        env_param_lis = env_param.split("[")
+                        env_code = env_param_lis[1]
+                        env_code = env_code.replace("]","")
+                        descriptor = env_param_lis[0].replace("_","")
+                        temp = nmdc.ControlledIdentifiedTermValue(has_raw_value=env_param ,term=nmdc.OntologyClass(id=env_code,name=descriptor))
+                        param_dic[key] = temp
 
                     elif (key in controlled_term_params):
-
-                        #convert then add to dictionary
-                        if (key == "env_broad_scale" or key == "env_local_scale" or key == "env_medium"):
-                            env_code = samp_dic[key]
-                            env_code = env_code.split("[")[1]
-                            env_code = env_code.replace("]","")
-                            temp = nmdc.ControlledTermValue(term=nmdc.OntologyClass(id=env_code))
-                            param_dic[key] = temp
-                        else:
-                            temp = nmdc.ControlledTermValue(term=nmdc.OntologyClass(id=samp_dic[key]))
-                            param_dic[key] = temp
+                        temp = nmdc.ControlledTermValue(term=nmdc.OntologyClass(id=samp_dic[key]))
+                        param_dic[key] = temp
 
                     elif (key in text_params):
                         #some may need some processing
@@ -111,12 +118,11 @@ class submission_portal_client:
                         param_dic[key] = temp
 
                     elif (key in quantity_params):
-                        #some may need some additional processing
-                        if(key == "samp_store_temp"):
-                            temp_lis = samp_dic[key].split()
-                            temp = nmdc.QuantityValue(has_raw_value = temp_lis[0],has_unit = temp_lis[1])
+                        if(len(samp_dic[key].split()) == 2):
+                            quantity_unit = samp_dic[key].split()
+                            temp = nmdc.QuantityValue(has_raw_value=samp_dic[key],has_numeric_value = quantity_unit[0] ,has_unit = quantity_unit[1])
                             param_dic[key] = temp
-
+                            
                         elif(key == "depth"):
                             depth_lis = samp_dic[key].split("-")
                             if len(depth_lis) != 2:
@@ -140,17 +146,18 @@ class submission_portal_client:
                             param_dic[key] = temp
 
                     elif (key in time_params):
-                        #may need some processing
-                        temp = nmdc.TimestampValue(has_raw_value=samp_dic[key])
+                        iso_date = parser.parse(samp_dic[key]).isoformat()
+                        temp = nmdc.TimestampValue(has_raw_value=iso_date)
                         param_dic[key] = temp
 
                     elif (key in geoloc_params):
-                        temp = nmdc.GeolocationValue(has_raw_value=samp_dic[key])
+                        lat_lon_vals = samp_dic[key].split(',')
+                        temp = nmdc.GeolocationValue(has_raw_value=samp_dic[key],latitude=lat_lon_vals[0],longitude=lat_lon_vals[1])
                         param_dic[key] = temp
                     
                     #if something shows up in the else statement it is missing from the mappings
                     else:
-                        print(key + " not found in any current param list")
+                        self.logger.info(key + " not found in any current param list")
 
                 if ('part_of'  not in param_dic.keys()):
                     param_dic['part_of'] = '1000 soils'
@@ -159,14 +166,11 @@ class submission_portal_client:
                     param_dic['id'] = nmdc_ids[id_counter]
                     id_counter = id_counter + 1
 
-                #I don't think any of these should be blank in real data, but they are needed here since the example data is blank
-                #this block of code should be removed once real data is in
-                missing_env = [item for item in ["env_broad_scale","env_local_scale","env_medium"] if item not in param_dic.keys()]
-                for item in missing_env:
-                    temp = nmdc.ControlledTermValue(term=nmdc.OntologyClass(id="0000"))
-                    param_dic[item] = temp
-
                 sample = nmdc.Biosample(**param_dic)
+
+                #For some rason water_content specifically was not being saved in the sample properly when unpacking the dictionary
+                if 'water_content' in param_dic.keys():
+                    sample['water_content'] = param_dic['water_content']
                 db.biosample_set.append(sample)
             db_lis.append(db)
         
