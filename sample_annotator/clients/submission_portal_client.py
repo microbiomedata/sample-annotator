@@ -48,11 +48,14 @@ class SubmissionPortalClient:
         response = requests.request(
             "GET",
             f"https://data.microbiomedata.org/api/metadata_submission/{submission_id}",
-            cookies={"session": self.env_vars["DATA_PORTAL_COOKIE"]},verify=False
+            cookies={"session": self.env_vars["DATA_PORTAL_COOKIE"]}
         )
         return response.json()
 
-
+    #params:
+    #num_ids: how many IDs you would like to mint
+    #kind: the kind of ID (biosample,study)
+    #returns: a list containing the minted IDs
     def mint_nmdc_ids(self,num_ids,kind):
         id_str = "nmdc:" + kind
         json_dic = {"schema_class": {"id": id_str},"how_many": num_ids}
@@ -63,8 +66,10 @@ class SubmissionPortalClient:
         return_lis = json.loads(response.text)
         return return_lis
         
-            #Processing the json response from the API
-    #Will return a pandas dataframe to be used to make the biosample for the database
+    #Processing the json response from the API. Generates an NMDC study object and biosample objects and populates a database object with them.
+    #params:
+    #response: takes in the json response form get_submission_json
+    #Returns a list of databases (there might be more than one type in the submission)
     def process_json_response(self,response):
         #There could be more than one type of sampledata in the sampleData lists, so we'll make a dataframe for each one. This also adds some flexibility and robustness
 
@@ -129,7 +134,7 @@ class SubmissionPortalClient:
                             quantity_unit = samp_dic[key].split()
                             temp = nmdc.QuantityValue(has_raw_value=samp_dic[key],has_numeric_value = quantity_unit[0] ,has_unit = quantity_unit[1])
                             if(key=="water_content"):
-                                param_dic[key] = {'has_raw_value':samp_dic[key],'has_unit':quantity_unit[1],'has_numeric_value':quantity_unit[0]}
+                                param_dic[key] = [samp_dic[key]]
                             else:
                                 param_dic[key] = temp
                             
@@ -177,17 +182,17 @@ class SubmissionPortalClient:
                     id_counter = id_counter + 1
 
                 sample = nmdc.Biosample(**param_dic)
-
-                #For some rason water_content specifically was not being saved in the sample properly when unpacking the dictionary
-                #if 'water_content' in param_dic.keys():
-                #    sample['water_content'] = param_dic['water_content']
                 db.biosample_set.append(sample)
             db_lis.append(db)
         
             
         return db_lis
             
-
+    #Function parses the information for the study from the submission portal API response
+    #Params:
+    #response: takes in the json response from get_submission_json
+    #returns
+    #an NMDC study object
     def parse_study(self,response):
         str_params = {'studyName':'name','description':'description','notes':'notes','alternativeNames':'alternative_names',
         "GOLDstudyId":"gold_study_identifiers","linkoutWebpage":"websites","contributors":"has_credit_associations",
@@ -219,8 +224,8 @@ class SubmissionPortalClient:
 
                     else:
                         param_dic[str_params[key]] = dic[key]
-        #uncomment after this portion is done
-        param_dic['id'] = 'nmdc:sty-11-28tm5d36' #self.mint_nmdc_ids(num_ids=1,kind='Study')[0]
+
+        param_dic['id'] = self.mint_nmdc_ids(num_ids=1,kind='Study')[0]
         study = nmdc.Study(**param_dic)
         return study
 
