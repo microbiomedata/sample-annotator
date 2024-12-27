@@ -2,8 +2,32 @@
 name = "sample-annotator"
 version = "0.1.0"
 description = "NMDC Sample Annotator"
-authors = ["Chris Mungall <cjmungall@lbl.gov>"]
+authors = [
+    {name = "Chris Mungall", email = "cjmungall@lbl.gov"}
+]
 license = "CC0 1.0 Universal"
+readme = "README.md"
+keywords = [
+    "microbiome",
+    "samples",
+    "metadata",
+    "linkml",
+    "nmdc"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Healthcare Industry",
+    "License :: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9"
+]
+homepage = "https://microbiomedata.github.io/sample-annotator/"
+repository = "https://github.com/microbiomedata/sample-annotator"
 
 [tool.poetry.dependencies]
 Sphinx = "^4.4.0"
@@ -22,7 +46,6 @@ recommonmark = "^0.7.1"
 sphinx-rtd-theme = "^1.0.0"
 uvicorn = "^0.17.4"
 python-dotenv = "^0.21.1"
-
 
 [tool.poetry.dev-dependencies]
 autopep8 = "^1.6.0"
