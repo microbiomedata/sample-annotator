@@ -5,6 +5,7 @@
 
 # in separate PRs!
 
+MAX_STUDY_ID=100
 
 downloads/goldData.xlsx:
 	wget -O $@ "https://gold.jgi.doe.gov/download?mode=site_excel"
@@ -18,10 +19,10 @@ local/gold-studies.tsv: downloads/goldData.xlsx
 local/gold-study-ids.txt: local/gold-studies.tsv
 	tail -n +2 $< | cut -f 1 > $@
 
-local/gold-study-ids-1000.txt: local/gold-study-ids.txt
-	head -n 1000 $< > $@
+local/gold-study-ids-subset.txt: local/gold-study-ids.txt
+	head -n $(MAX_STUDY_ID) $< > $@
 
-local/gold-cache.json: local/gold-study-ids-1000.txt
+local/gold-cache.json: local/gold-study-ids-subset.txt
 	poetry run python sample_annotator/clients/gold_client.py \
 		--verbose \
 		fetch-studies \
