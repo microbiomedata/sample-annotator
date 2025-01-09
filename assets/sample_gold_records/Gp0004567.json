@@ -1,0 +1,76 @@
+[
+  {
+    "projectGoldId": "Gp0004567",
+    "projectName": "Syntrophothermus lipocalidus DSM 12680",
+    "legacyGoldId": "Gc01292",
+    "studyGoldId": "Gs0000008",
+    "biosampleGoldId": null,
+    "organismGoldId": "Go0004567",
+    "itsProposalId": 867,
+    "itsSpid": null,
+    "itsSampleId": null,
+    "pmoProjectId": 97981,
+    "gptsProposalId": 97601,
+    "ncbiBioProjectAccession": "PRJNA37873",
+    "ncbiBioSampleAccession": "SAMN02598518",
+    "projectStatus": "Complete and Published",
+    "sequencingStatus": "Complete",
+    "sequencingCenters": [
+      "DOE Joint Genome Institute (JGI)"
+    ],
+    "jgiFundingProgram": "GEBA",
+    "jgiFundingYear": 2007,
+    "hmpId": null,
+    "seqMethod": [
+      "454 GS FLX",
+      "Illumina GAIIx"
+    ],
+    "contacts": [
+      {
+        "name": "Nikos Kyrpides",
+        "email": "nckyrpides@lbl.gov",
+        "roles": [
+          "submitter"
+        ]
+      },
+      {
+        "name": "Jonathan Eisen",
+        "email": "jonathan.eisen@gmail.com",
+        "roles": [
+          "other",
+          "PI"
+        ]
+      }
+    ],
+    "genomePublications": [
+      {
+        "pubmedId": 21304731,
+        "journalName": "Standards in genomic sciences",
+        "volume": "3",
+        "issue": "3",
+        "page": "268-75",
+        "title": "Complete genome sequence of Syntrophothermus lipocalidus type strain (TGB-C1).",
+        "publicationDate": null,
+        "doi": "10.4056/sigs.1233249"
+      },
+      {
+        "pubmedId": 28604660,
+        "journalName": "Nature biotechnology",
+        "volume": "35",
+        "issue": "7",
+        "page": "676-683",
+        "title": "1,003 reference genomes of bacterial and archaeal isolates expand coverage of the tree of life.",
+        "publicationDate": "2017-02-01",
+        "doi": "10.1038/nbt.3886"
+      }
+    ],
+    "otherPublications": [],
+    "sraExperimentIds": [
+      "SRX1950465",
+      "SRX1950464"
+    ],
+    "modDate": "2014-04-08",
+    "addDate": "2009-01-18",
+    "sequencingStrategy": "Whole Genome Sequencing"
+  }
+]

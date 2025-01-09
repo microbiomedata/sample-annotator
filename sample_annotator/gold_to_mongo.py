@@ -10,6 +10,10 @@ from clients.gold_client import GoldClient
 # todo might need better API error handling
 #   should be more consistent about bundling (projects in biosamples) vs getting biosamples separate from studies
 
+# todo document the fact that a biosamples key is added to studies
+#   biosamples kave no foreign keys
+#   (sequencing) projects include native study and biosample foreign keys
+
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
@@ -116,16 +120,34 @@ def main(mongo_db_name: str, study_ids_file: str, authentication_file: str,
 
     for study_id in study_ids:
         logging.info(f"Processing study {study_id}...")
-        study = gc.fetch_study(study_id, **args)
-        insert_document(study_collection, study, study_id)
 
+        # Fetch the study record
+        study = gc.fetch_study(study_id, **args)
+
+        # Fetch biosamples associated with the study
         biosamples = gc.fetch_biosamples_by_study(study_id, **args)
         logging.info(f"Retrieved {len(biosamples)} biosamples for study {study_id}")
 
+        # Collect biosampleGoldIds for the study
+        biosample_ids = []
+
         for biosample in biosamples:
+            biosample_id = biosample.get('biosampleGoldId', None)
+            if biosample_id:
+                biosample_ids.append(biosample_id)
+
+            # Handle associated projects
             for project in biosample.pop('projects', []):
                 insert_document(project_collection, project, project.get('projectGoldId', 'Unknown'))
-            insert_document(biosample_collection, biosample, biosample.get('biosampleGoldId', 'Unknown'))
+
+            # Insert biosample into MongoDB
+            insert_document(biosample_collection, biosample, biosample_id)
+
+        # Add the biosamples list to the study record
+        study['biosamples'] = biosample_ids
+
+        # Insert the study record into MongoDB
+        insert_document(study_collection, study, study_id)
 
     # Close the connection
     client.close()

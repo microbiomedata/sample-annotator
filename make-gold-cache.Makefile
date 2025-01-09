@@ -1,11 +1,8 @@
 # review and fix readmes and poetry dependencies
-# use .gitkeep for keeping directories
 
-# todo: just get environmental microbiome studies?
+MAX_STUDIES=70000 # 2025-01
 
-# in separate PRs!
-
-MAX_STUDIES=300
+.PHONY: load-gold-biosamples-into-mongo
 
 downloads/goldData.xlsx:
 	wget -O $@ "https://gold.jgi.doe.gov/download?mode=site_excel"
@@ -17,7 +14,7 @@ local/gold-studies.tsv: downloads/goldData.xlsx
 		--output-file $@
 
 local/gold-study-ids.txt: local/gold-studies.tsv
-	# this introduces some noise (non-id rows)
+	# without the grep filter, this introduces some noise (non-id rows)
 	tail -n +2 $< | cut -f 1 | sort | grep 'Gs' > $@
 
 local/gold-study-ids-subset.txt: local/gold-study-ids.txt
@@ -25,11 +22,8 @@ local/gold-study-ids-subset.txt: local/gold-study-ids.txt
 
 local/gold-cache.json: local/gold-study-ids-subset.txt
 	# ~ 3 seconds/uncached study
-	# ~ 30 studies/minute
-	# ~ 2k studies/hour
-	# ~ 50k studies/day
 	# GOLD has ~ 63k studies
-	# < 2 days to cache all studies ?
+	# < 2 days to fetch all studies ?
 	poetry run python sample_annotator/clients/gold_client.py \
 		--verbose \
 		fetch-studies \
@@ -38,6 +32,14 @@ local/gold-cache.json: local/gold-study-ids-subset.txt
 		--include-biosamples \
 		--authentication-file config/gold-key.txt \
 		$<
+
+load-gold-biosamples-into-mongo: local/gold-study-ids-subset.txt
+	# 		--purge-mongodb
+	# 		--purge-diskcache
+	poetry run python sample_annotator/gold_to_mongo.py \
+		--authentication-file config/gold-key.txt \
+		--mongo-db-name gold_metadata \
+		--study-ids-file $<
 
 #.PHONY: split-out-gold-biosamples
 #split-out-gold-biosamples: local/gold-cache.json
@@ -48,14 +50,3 @@ local/gold-cache.json: local/gold-study-ids-subset.txt
 #		--project-output-file local/gold-projects-only.json \
 #		--remove-contacts \
 #		--remove-nulls
-
-.PHONY: load-gold-biosamples-into-mongo
-load-gold-biosamples-into-mongo: local/gold-study-ids-subset.txt
-	# 		--purge-mongodb
-	# 		--purge-diskcache
-	poetry run python sample_annotator/gold_to_mongo.py \
-		--authentication-file config/gold-key.txt \
-		--mongo-db-name gold_metadata \
-		--study-ids-file $< \
-		--purge-mongodb \
-		--purge-diskcache
