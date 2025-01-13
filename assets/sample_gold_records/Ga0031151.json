@@ -1,0 +1,32 @@
+[
+  {
+    "apGoldId": "Ga0031151",
+    "organismGoldId": null,
+    "referenceApGoldId": null,
+    "apName": "Syntrophothermus lipocalidus DSM 12680",
+    "apType": "Genome Analysis (Isolate)",
+    "studyId": "Gs0000008",
+    "itsApId": 1377450,
+    "imgSubmissionId": null,
+    "imgTaxonOid": 646564577,
+    "imgPipelineVersion": "IMG/W 3.2",
+    "assemblyMethod": "Newbler v. 2.1 PreRelease-4/28/2009, Velvet v. 1.1.04, Phrap v. 4.24 SPS",
+    "publications": [],
+    "sraRuns": [],
+    "projects": [
+      "Gp0004567"
+    ],
+    "contacts": [
+      {
+        "name": "Jonathan Eisen",
+        "email": "jonathan.eisen@gmail.com",
+        "roles": [
+          "submitter",
+          "PI"
+        ]
+      }
+    ],
+    "modDate": "2023-07-05",
+    "addDate": "2009-01-18"
+  }
+]

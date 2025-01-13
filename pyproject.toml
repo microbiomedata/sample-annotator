@@ -2,33 +2,69 @@
 name = "sample-annotator"
 version = "0.1.0"
 description = "NMDC Sample Annotator"
-authors = ["Chris Mungall <cjmungall@lbl.gov>"]
+authors = [
+    "Chris Mungall <cjmungall@lbl.gov>",
+]
 license = "CC0 1.0 Universal"
+readme = "README.md"
+keywords = [
+    "microbiome",
+    "samples",
+    "metadata",
+    "linkml",
+    "nmdc"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Healthcare Industry",
+    "License :: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9"
+]
+homepage = "https://microbiomedata.github.io/sample-annotator/"
+repository = "https://github.com/microbiomedata/sample-annotator"
 
 [tool.poetry.dependencies]
-Sphinx = "^4.4.0"
-bioregistry = "^0.4.59"
-click-log = "^0.3.2"
-diskcache = "^5.4.0"
-funowl = "^0.1.11"
+#funowl = "^0.2"
+#uvicorn = "^0.30"
+Sphinx = "^8.0"
+bioregistry = "^0.11"
+click-log = "^0.4"
+diskcache = "^5.6"
 git-root = "^0.1"
 googlemaps = "^4.6.0"
-linkml = "^1.1.18"
-nmdc-schema = "^7.0.0"
-pandas = "^1.4.1"
-python = "^3.9"
-quantulum3 = "^0.7.10"
+linkml = "^1.7"
+nmdc-schema = "^11.0"
+numpy = "^2.2"
+pandas = "^2.2"
+python = "^3.10"
+python-dotenv = "^1.0"
+pyyaml = "^6.0" # to humor deptry
+quantulum3 = { extras = ["classifier"], version = "^0.9.2" }
 recommonmark = "^0.7.1"
-sphinx-rtd-theme = "^1.0.0"
-uvicorn = "^0.17.4"
-python-dotenv = "^0.21.1"
+sphinx-rtd-theme = "3.0"
 
 
 [tool.poetry.dev-dependencies]
-autopep8 = "^1.6.0"
-black = "^22.1.0"
-pytest = "^7.0.1"
-tox = "^3.24.5"
+autopep8 = "^2.0"
+black = "^24.0"
+deptry = "^0.21.2"
+pytest = "^8.0"
+tox = "4.20"
+matplotlib = "^3.9.2" # for notebooks/DataGood-NMDC-Code.ipynb
+nltk = "^3.8" # for notebooks/DataGood-NMDC-Code.ipynb
+seaborn = "^0.13" # for notebooks/DataGood-NMDC-Code.ipynb
+sqlalchemy = "^2.0" # for notebooks/DataGood-NMDC-Code.ipynb
+click = "^8.1" # recommended by deptry
+jsonschema = "^4.21" # recommended by deptry
+linkml-runtime = "^1.8" # recommended by deptry
+pydantic = "^2.10" # recommended by deptry
+requests = "^2.32.2" # recommended by deptry
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -38,3 +74,4 @@ build-backend = "poetry.core.masonry.api"
 annotate-sample = "sample_annotator.sample_annotator:cli"
 sqlite_client_cli = "sample_annotator.clients.biosample_sqlite_client:cli"
 rel_to_oxygen_example = "sample_annotator.rel_to_oxygen_example:cli"
+

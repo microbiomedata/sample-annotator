@@ -1,0 +1,70 @@
+[
+  {
+    "biosampleGoldId": "Gb0051341",
+    "biosampleName": "Hot spring microbial communities from Yellowstone National Park, Wyoming, USA - YNP2   Nymph Lake 10",
+    "ncbiTaxId": 433727,
+    "ncbiTaxName": "hot springs metagenome",
+    "sampleCollectionSite": "Combined lysosyme plus beat-beating ",
+    "geographicLocation": "USA: Yellowstone National Park, Wyoming",
+    "latitude": 44.7523206,
+    "longitude": -110.7253926,
+    "ecosystemPathId": 3992,
+    "ecosystem": "Environmental",
+    "ecosystemCategory": "Aquatic",
+    "ecosystemType": "Thermal springs",
+    "ecosystemSubtype": "Hot (42-90C)",
+    "specificEcosystem": "Unclassified",
+    "altitudeInMeters": null,
+    "altitudeInMeters2": null,
+    "dateCollected": "2007-08-20",
+    "depthInMeters": null,
+    "depthInMeters2": null,
+    "description": "Small acidic pool on hillside north of Nymph Lake.",
+    "hostDiseases": [],
+    "elevationInMeters": 2280,
+    "elevationInMeters2": null,
+    "geoLocation": "USA: Yellowstone National Park, Wyoming",
+    "habitat": "Hot spring",
+    "hostGender": null,
+    "hostName": null,
+    "hostNcbiTaxid": null,
+    "isoCountry": "USA",
+    "longhurst": null,
+    "nitrateConcentration": null,
+    "oxygenConcentration": null,
+    "ph": "3.75",
+    "pressure": null,
+    "salinity": null,
+    "salinityConcentration": null,
+    "sampleBodySite": null,
+    "sampleBodySubsite": null,
+    "sampleCollectionTemperature": "90 C",
+    "subsurfaceDepthInMeters": null,
+    "subsurfaceDepthInMeters2": null,
+    "visitNum": null,
+    "mixsPackage": "Standard",
+    "envoBroadScale": {
+      "id": "ENVO_00002030",
+      "label": "aquatic biome"
+    },
+    "envoLocalScale": {
+      "id": "ENVO_00000051",
+      "label": "hot spring"
+    },
+    "envoMedium": {
+      "id": "ENVO_03600065",
+      "label": "spring water"
+    },
+    "modDate": "2022-08-05",
+    "addDate": "2008-11-25",
+    "contacts": [
+      {
+        "name": "Zack Jay",
+        "email": "zackary.jay@montana.edu",
+        "roles": [
+          "submitter"
+        ]
+      }
+    ]
+  }
+]

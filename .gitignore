@@ -1,7 +1,8 @@
-config/gold-key.txt
 
 .idea/
 local/
+
+config/gold-key.txt
 
 data
 bin

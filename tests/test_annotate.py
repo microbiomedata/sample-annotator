@@ -4,6 +4,7 @@ from tests import MODEL_DIR, INPUT_DIR, OUTPUT_DIR, EXAMPLE_DIR, EXAMPLE_OUTDIR
 from os.path import isfile, join
 from sample_annotator import SampleAnnotator
 from sample_annotator.metadata.sample_schema import SampleSchema
+import pandas as pd
 
 """Test the module can be imported."""
 
@@ -38,7 +39,7 @@ class TestAnnotate(unittest.TestCase):
     def test_annotate(self):
         annotator = SampleAnnotator()
         with open(TEST_DATA) as stream:
-            test_obj = yaml.load(stream)
+            test_obj = yaml.load(stream, Loader=yaml.SafeLoader)
 
         cumulative_df = None
         output_samples = []
@@ -76,7 +77,8 @@ class TestAnnotate(unittest.TestCase):
             if cumulative_df is None:
                 cumulative_df = df
             else:
-                cumulative_df.append(df)
+                # cumulative_df.append(df)
+                cumulative_df = pd.concat([cumulative_df, df], ignore_index=True)
         cumulative_df.to_csv(REPORT_OUT, sep='\t', index=False)
         with open(SAMPLES_OUT, 'w') as stream:
             yaml.safe_dump(output_samples, stream)

@@ -1,0 +1,62 @@
+[
+  {
+    "studyGoldId": "Gs0000008",
+    "studyName": "A Genomic Encyclopedia of Bacteria and Archaea (GEBA)",
+    "description": "Genome sequencing of a phylogeny-driven genomic encyclopaedia of Bacteria and Archaea",
+    "modDate": "2022-08-05",
+    "addDate": "2007-11-27",
+    "contacts": [
+      {
+        "name": "Nikos Kyrpides",
+        "email": "nckyrpides@lbl.gov",
+        "roles": [
+          "submitter"
+        ]
+      },
+      {
+        "name": "Genome Biology Program",
+        "email": null,
+        "roles": [
+          "other"
+        ]
+      },
+      {
+        "name": "Jonathan Eisen",
+        "email": "jonathan.eisen@gmail.com",
+        "roles": [
+          "PI",
+          "sample contact"
+        ]
+      },
+      {
+        "name": "Ilya V. Kublanov",
+        "email": "kublanov.ilya@gmail.com",
+        "roles": [
+          "other"
+        ]
+      },
+      {
+        "name": "Lynne Goodwin",
+        "email": "lynneg@lanl.gov",
+        "roles": [
+          "PM"
+        ]
+      },
+      {
+        "name": "Nicole Shapiro",
+        "email": "nrshapiro@lbl.gov",
+        "roles": [
+          "PM"
+        ]
+      },
+      {
+        "name": "Bruce D",
+        "email": "microbe@cuba.jgi-psf.org",
+        "roles": [
+          "other",
+          "PI"
+        ]
+      }
+    ]
+  }
+]
