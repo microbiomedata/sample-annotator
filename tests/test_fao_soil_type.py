@@ -19,3 +19,6 @@ class TestSoilType(unittest.TestCase):
         print('Soil type is: ' + soil_type)
         # TODO: need to map CALCIC CAMBISOL => Cambisols
         assert soil_type == 'Cambisols'
+
+if __name__ == '__main__':
+    unittest.main()
