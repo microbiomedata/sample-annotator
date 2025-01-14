@@ -58,3 +58,13 @@ local/ecosystems_and_triads.tsv:
 		--db-name gold_metadata \
 		--collection-name biosamples \
 		--output-file $@
+
+
+local/seq_projects.tsv:
+	poetry run python sample_annotator/seq_projects_from_mongo.py \
+		--host localhost \
+		--port 27017 \
+		--db-name gold_metadata \
+		--collection-name projects \
+		--output-file $@
+
