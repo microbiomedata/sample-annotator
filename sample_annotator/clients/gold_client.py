@@ -162,7 +162,7 @@ class GoldClient:
 
         if not results:
             logging.warning(f"No study found for ID: {id}")
-            return {}  # Or handle differently depending on your needs
+            return {}  # or None?
 
         study = results[0]
         if include_biosamples:
