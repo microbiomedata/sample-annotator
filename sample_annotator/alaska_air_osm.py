@@ -1,22 +1,33 @@
 import osmnx as ox
 import pandas as pd
 import time
+from typing import List, Dict, Any
 
 # Path to the TSV file containing coordinates
-tsv_file = "../downloads/Marina Nieto-Caballero air study proposed local scale - merged and curated (1).tsv"
+tsv_file: str = "../downloads/Marina Nieto-Caballero air study proposed local scale - merged and curated (1).tsv"
 
-output_filename = "../local/osm_all_features_results.tsv"
+output_filename: str = "../local/osm_all_features_results.tsv"
 
 # Threshold for flagging uncommon features (e.g., less than 20% of samples)
-uncommon_threshold = 0.2
+uncommon_threshold: float = 0.2
 
 # Read the TSV file
-df = pd.read_csv(tsv_file, sep='\t')
+df: pd.DataFrame = pd.read_csv(tsv_file, sep='\t')
 
-# Function to fetch all features from OSM with refined search
-def fetch_osm_features(lat, lon, dist=1000):  # Reduced search distance to 1,000 meters
-    # Define expanded tag filters to include natural and man-made features
-    tags = {
+
+def fetch_osm_features(lat: float, lon: float, dist: int = 1000) -> pd.DataFrame:
+    """
+    Fetch OpenStreetMap (OSM) features near a specified latitude and longitude.
+
+    Args:
+        lat (float): Latitude of the location.
+        lon (float): Longitude of the location.
+        dist (int): Search radius in meters (default is 1000).
+
+    Returns:
+        pd.DataFrame: A DataFrame containing the fetched OSM features.
+    """
+    tags: Dict[str, bool] = {
         'aeroway': True,
         'amenity': True,
         'barrier': True,
@@ -36,16 +47,14 @@ def fetch_osm_features(lat, lon, dist=1000):  # Reduced search distance to 1,000
         'tourism': True,
         'water': True,
         'waterway': True,
-        'wetland': True,
+        'wetland': True
     }
-
-    # Use bounding box search instead of circular distance
-    west, south, east, north = ox.utils_geo.bbox_from_point((lat, lon), dist=dist)
-    features = ox.features_from_bbox((west, south, east, north), tags)
+    features: pd.DataFrame = ox.features_from_point((lat, lon), tags=tags, dist=dist)
     return features
 
+
 # Prepare a list to collect results
-results = []
+results: List[Dict[str, Any]] = []
 
 # Iterate over each coordinate and fetch OSM features
 for idx, row in df.iterrows():
@@ -55,51 +64,53 @@ for idx, row in df.iterrows():
     print(f"Processing {idx + 1}/{len(df)}: Sample '{sample_name}' at ({lat}, {lon})")
 
     try:
-        # Fetch features from OSM
-        features = fetch_osm_features(lat, lon)
+        features: pd.DataFrame = fetch_osm_features(lat, lon)
 
         if features.empty:
             print(f"No features found for Sample '{sample_name}' at ({lat}, {lon})")
             results.append({
-                'Sample Name': sample_name,
-                'Latitude': lat,
-                'Longitude': lon,
-                'Feature Info': 'No features found'
+                'sample_name': sample_name,
+                'latitude': lat,
+                'longitude': lon,
+                'feature_info': 'No features found'
             })
         else:
-            # Store relevant details in results without geometry info in Feature Info
             for _, feature in features.iterrows():
-                # Exclude geometry data from feature info
-                feature_info = ", ".join(f"{k}: {v}" for k, v in feature.items() if pd.notnull(v) and k != 'geometry')
+                feature_info: str = ", ".join(
+                    f"{k}: {v}" for k, v in feature.items()
+                    if pd.notnull(v) and k != 'geometry' and (
+                            k in ['name', 'name:en', 'old_name', 'old_name:en'] or (
+                            not k.startswith('name:') and not k.startswith('old_name:')
+                    )
+                    )
+                )
                 results.append({
-                    'Sample Name': sample_name,
-                    'Latitude': lat,
-                    'Longitude': lon,
-                    'Feature Info': feature_info
+                    'sample_name': sample_name,
+                    'latitude': lat,
+                    'longitude': lon,
+                    'feature_info': feature_info if feature_info else 'No English name found'
                 })
     except Exception as e:
         print(f"Error fetching data for Sample '{sample_name}': {e}")
-        # Explicitly record the error in the output
         results.append({
-            'Sample Name': sample_name,
-            'Latitude': lat,
-            'Longitude': lon,
-            'Feature Info': f"Error fetching data: {e}"
+            'sample_name': sample_name,
+            'latitude': lat,
+            'longitude': lon,
+            'feature_info': f"Error fetching data: {e}"
         })
 
-    # Add delay to respect OSM API rate limits
     time.sleep(1)  # 1-second delay between requests
 
 # Convert results to DataFrame
-results_df = pd.DataFrame(results)
+results_df: pd.DataFrame = pd.DataFrame(results)
 
 # Identify and flag uncommon features across samples
-feature_counts = results_df['Feature Info'].value_counts()
-total_samples = len(df)
+feature_counts: pd.Series = results_df['feature_info'].value_counts()
+total_samples: int = len(df)
 
-# Apply flagging based on threshold
-results_df['Is Uncommon Feature'] = results_df['Feature Info'].apply(
-    lambda x: 'Yes' if feature_counts[x] / total_samples < uncommon_threshold else 'No'
+dynamic_column_name: str = f"lt_{int(uncommon_threshold * 100)}_pct_of_samples"
+results_df[dynamic_column_name] = results_df['feature_info'].apply(
+    lambda x: True if feature_counts[x] / total_samples < uncommon_threshold else False
 )
 
 # Save the results to a TSV file
