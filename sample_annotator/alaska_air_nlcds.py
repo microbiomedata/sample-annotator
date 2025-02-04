@@ -1,3 +1,4 @@
+import click
 import pandas as pd
 import rasterio
 from pyproj import Transformer
@@ -25,52 +26,79 @@ NLCD_CLASSES = {
     90: "Woody Wetlands",
     95: "Emergent Herbaceous Wetlands"
 }
-# Path to the NLCD .img file
-nlcd_file = "../downloads/NLCD_2016_Land_Cover_AK_20200724.img"
 
-# Path to the TSV file containing coordinates
-tsv_file = "../downloads/Marina Nieto-Caballero air study proposed local scale - merged and curated (1).tsv"
 
-output_filename = "../local/nlcd_land_cover_results.tsv"
+def classify_land_cover(nlcd_file: str, tsv_file: str, output_file: str) -> None:
+    """
+    Classifies land cover types for coordinates in a TSV file using an NLCD raster.
 
-# Read the TSV file
-df = pd.read_csv(tsv_file, sep='\t')
+    :param nlcd_file: Path to the NLCD raster (.img) file.
+    :param tsv_file: Path to the TSV file containing coordinates.
+    :param output_file: Path to save the output TSV file with classification results.
+    """
+    try:
+        # Read input TSV file
+        df = pd.read_csv(tsv_file, sep='\t')
 
-# Open the NLCD .img file
-with rasterio.open(nlcd_file) as src:
-    # Initialize coordinate transformer
-    transformer = Transformer.from_crs("EPSG:4326", src.crs, always_xy=True)
+        # Open the NLCD raster
+        with rasterio.open(nlcd_file) as src:
+            transformer = Transformer.from_crs("EPSG:4326", src.crs, always_xy=True)
 
-    # Prepare lists to collect results
-    sample_names = []
-    nlcd_codes = []
-    nlcd_descriptions = []
+            # Prepare results
+            results = []
 
-    # Iterate over the DataFrame rows
-    for _, row in df.iterrows():
-        lon, lat = row['lon val'], row['lat val']
-        sample_name = row['sample name']
+            for _, row in df.iterrows():
+                lon, lat = row['lon val'], row['lat val']
+                sample_name = row['sample name']
 
-        # Transform coordinates to raster CRS
-        transformed_coord = transformer.transform(lon, lat)
+                # Transform coordinates to raster CRS
+                x, y = transformer.transform(lon, lat)
 
-        # Extract NLCD land cover class
-        land_cover_value = [val for val in src.sample([transformed_coord])][0][0]
-        land_cover_description = NLCD_CLASSES.get(land_cover_value, "Unknown Class")
+                # Extract NLCD land cover class
+                try:
+                    land_cover_value = next(src.sample([(x, y)]))[0]
+                    land_cover_description = NLCD_CLASSES.get(land_cover_value, "Unknown Class")
+                except StopIteration:
+                    land_cover_value = None
+                    land_cover_description = "No Data"
 
-        # Store the results
-        sample_names.append(sample_name)
-        nlcd_codes.append(land_cover_value)
-        nlcd_descriptions.append(land_cover_description)
+                # Store results
+                results.append([sample_name, land_cover_value, land_cover_description])
 
-# Create a results DataFrame
-results_df = pd.DataFrame({
-    'Sample Name': sample_names,
-    'NLCD Code': nlcd_codes,
-    'NLCD Description': nlcd_descriptions
-})
+        # Create DataFrame
+        results_df = pd.DataFrame(results, columns=['Sample Name', 'NLCD Code', 'NLCD Description'])
 
-# Save results to a new TSV file
-results_df.to_csv(output_filename, sep='\t', index=False)
+        # Save to TSV
+        results_df.to_csv(output_file, sep='\t', index=False)
 
-print(f"Land cover classification completed. Results saved to '{output_filename}'.")
+        click.echo(f"Land cover classification completed. Results saved to '{output_file}'.")
+
+    except Exception as e:
+        click.echo(f"Error: {e}", err=True)
+
+
+@click.command()
+@click.option('--nlcd-file',
+              type=click.Path(exists=True),
+              required=True,
+              default="../downloads/NLCD_2016_Land_Cover_AK_20200724.img",
+              help="Path to NLCD .img file.")
+@click.option('--tsv-file',
+              type=click.Path(exists=True),
+              required=True,
+              default="../downloads/Marina Nieto-Caballero air study proposed local scale - merged and curated (1).tsv",
+              help="Path to input TSV file with coordinates.")
+@click.option('--output-file',
+              type=click.Path(),
+              required=True,
+              default="../local/nlcd_land_cover_results.tsv",
+              help="Path to save the output TSV file.")
+def main(nlcd_file: str, tsv_file: str, output_file: str) -> None:
+    """
+    CLI tool for classifying land cover using an NLCD raster and a TSV file with coordinates.
+    """
+    classify_land_cover(nlcd_file, tsv_file, output_file)
+
+
+if __name__ == "__main__":
+    main()
