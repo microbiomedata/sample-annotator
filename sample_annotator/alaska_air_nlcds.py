@@ -3,6 +3,10 @@ import pandas as pd
 import rasterio
 from pyproj import Transformer
 
+# get Alaska land coverage files from https://s3-us-west-2.amazonaws.com/mrlc/NLCD_2016_Land_Cover_AK_20200724.zip
+# they are in the ERDAS IMAGINE (.img) raster dataset format
+# other states have newer files in GeoTIFF format
+
 # NLCD Land Cover Classification Dictionary
 NLCD_CLASSES = {
     11: "Open Water",

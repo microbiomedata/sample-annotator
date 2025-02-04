@@ -57,6 +57,10 @@ load-gold-biosamples-into-mongo: local/gold-study-ids-subset.txt
 #		--remove-contacts \
 #		--remove-nulls
 
+local/gold-emp500-study-id.txt:
+	echo "Gs0154244" > $@
+	sleep 1
+
 local/gold-emp500-cache.json: local/gold-emp500-study-id.txt
 	# ~ 3 seconds/uncached study
 	# GOLD has ~ 63k studies
