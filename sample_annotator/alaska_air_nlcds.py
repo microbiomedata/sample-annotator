@@ -7,6 +7,9 @@ from pyproj import Transformer
 # they are in the ERDAS IMAGINE (.img) raster dataset format
 # other states have newer files in GeoTIFF format
 
+# the "Marina Nieto-Caballero air study proposed local scale" file comes from
+#   https://docs.google.com/spreadsheets/d/1QpS2ZWFDGqn_NV6YcHqI58i8bS5SjN0CxIRCeUYoxuA/edit?gid=2029591052#gid=2029591052
+
 # NLCD Land Cover Classification Dictionary
 NLCD_CLASSES = {
     11: "Open Water",
