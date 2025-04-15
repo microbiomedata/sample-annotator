@@ -1,7 +1,10 @@
 import logging
-from typing import List, Set
+import os
+from typing import List, Optional, Set
+from urllib.parse import quote_plus
 
 import click
+import dotenv
 from pymongo import MongoClient, ASCENDING
 from pymongo.errors import DuplicateKeyError
 
@@ -16,6 +19,80 @@ from clients.gold_client import GoldClient
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+
+def load_mongodb_credentials(env_file: Optional[str] = None) -> dict:
+    """
+    Loads MongoDB credentials from environment variables or .env file.
+    
+    Args:
+        env_file: Optional path to .env file. If not provided, will try to load from local/.env
+
+    Returns:
+        Dictionary with MongoDB connection credentials
+    """
+    # Try to load from .env file if specified or from default location
+    if env_file:
+        dotenv.load_dotenv(env_file)
+    else:
+        default_env_path = os.path.join('local', '.env')
+        if os.path.exists(default_env_path):
+            dotenv.load_dotenv(default_env_path)
+    
+    # Get credentials from environment variables
+    creds = {
+        'user': os.environ.get('MONGODB_USER'),
+        'password': os.environ.get('MONGODB_PASSWORD'),
+        'host': os.environ.get('MONGODB_HOST', 'localhost'),
+        'port': os.environ.get('MONGODB_PORT', '27017'),
+        'auth_source': os.environ.get('MONGODB_AUTH_SOURCE', 'admin'),
+        'auth_mechanism': os.environ.get('MONGODB_AUTH_MECHANISM', 'SCRAM-SHA-256')
+    }
+    
+    return creds
+
+
+def build_mongodb_connection_string(
+    mongo_uri: Optional[str] = None, 
+    user: Optional[str] = None,
+    password: Optional[str] = None,
+    host: str = 'localhost',
+    port: str = '27017',
+    auth_source: str = 'admin',
+    auth_mechanism: str = 'SCRAM-SHA-256'
+) -> str:
+    """
+    Builds a MongoDB connection string based on provided parameters.
+    
+    Args:
+        mongo_uri: Optional complete MongoDB URI (overrides other parameters if provided)
+        user: Username for authentication
+        password: Password for authentication
+        host: MongoDB host
+        port: MongoDB port
+        auth_source: Authentication database
+        auth_mechanism: Authentication mechanism
+
+    Returns:
+        MongoDB connection string
+    """
+    # If URI is provided, use it directly
+    if mongo_uri:
+        return mongo_uri
+    
+    # If no authentication is required
+    if not user or not password:
+        return f"mongodb://{host}:{port}/"
+    
+    # Build authenticated connection string
+    escaped_user = quote_plus(user)
+    escaped_password = quote_plus(password)
+    conn_str = (
+        f"mongodb://{escaped_user}:{escaped_password}@{host}:{port}/"
+        f"?authSource={auth_source}&authMechanism={auth_mechanism}"
+    )
+    
+    return conn_str
 
 
 def create_unique_index(collection, field_name: str, index_name: str) -> None:
@@ -71,25 +148,63 @@ def process_study_ids(file_path: str) -> List[str]:
 
 @click.command()
 @click.option('--mongo-db-name', '-d', required=True,
-              help='Name of the local, unauthenticated MongoDB database to use.')
+              help='Name of the MongoDB database to use.')
 @click.option('--study-ids-file', '-i',
               type=click.Path(exists=True, dir_okay=False, readable=True),
               required=True,
               help='Path to the input text file containing one GOLD study ID per line.')
 @click.option('--authentication-file', '-a', default="config/gold-key.txt",
-              help='Path to the authentication file. Contents should be user:pass.')
+              help='Path to the GOLD authentication file. Contents should be user:pass.')
+@click.option('--mongo-uri', '-u',
+              help='MongoDB connection URI. If provided, this overrides other MongoDB connection options.')
+@click.option('--env-file', '-e',
+              help='Path to .env file with MongoDB credentials. Default: local/.env')
 @click.option('--purge-mongodb', '-p', is_flag=True, default=False,
-              help='Purge the destination MongoDB database before running.')
+              help='Purge the destination MongoDB collections before running.')
 @click.option('--purge-diskcache', '-P', is_flag=True, default=False,
               help='Purge the input disk cache before running.')
 def main(mongo_db_name: str, study_ids_file: str, authentication_file: str,
-         purge_mongodb: bool, purge_diskcache: bool, **args):
+         mongo_uri: Optional[str] = None, env_file: Optional[str] = None,
+         purge_mongodb: bool = False, purge_diskcache: bool = False, **args):
     """
     Fetch, process, and store biosamples, studies, and projects into MongoDB in real-time.
+    
+    Supports both local and remote MongoDB servers with authentication.
+    
+    Environment variables (from .env file or system):
+        MONGODB_USER: MongoDB username
+        MONGODB_PASSWORD: MongoDB password
+        MONGODB_HOST: MongoDB host (default: localhost)
+        MONGODB_PORT: MongoDB port (default: 27017)
+        MONGODB_AUTH_SOURCE: Authentication database (default: admin)
+        MONGODB_AUTH_MECHANISM: Authentication mechanism (default: SCRAM-SHA-256)
     """
-    # MongoDB setup
-    client = MongoClient('mongodb://localhost:27017/')
+    # Load MongoDB credentials
+    mongo_creds = load_mongodb_credentials(env_file)
+    
+    # Build connection string and connect to MongoDB
+    conn_str = build_mongodb_connection_string(
+        mongo_uri=mongo_uri,
+        user=mongo_creds.get('user'),
+        password=mongo_creds.get('password'),
+        host=mongo_creds.get('host'),
+        port=mongo_creds.get('port'),
+        auth_source=mongo_creds.get('auth_source'),
+        auth_mechanism=mongo_creds.get('auth_mechanism')
+    )
+    
+    logging.info(f"Connecting to MongoDB at {mongo_creds.get('host')}:{mongo_creds.get('port')}")
+    client = MongoClient(conn_str)
     db = client[mongo_db_name]
+    
+    # Test connection
+    try:
+        # Ping the server to check connection
+        client.admin.command('ping')
+        logging.info("MongoDB connection successful")
+    except Exception as e:
+        logging.error(f"MongoDB connection failed: {e}")
+        return
 
     if purge_mongodb:
         logging.info("Purging MongoDB collections...")
@@ -151,6 +266,7 @@ def main(mongo_db_name: str, study_ids_file: str, authentication_file: str,
 
     # Close the connection
     client.close()
+    logging.info("MongoDB connection closed")
 
 
 if __name__ == "__main__":

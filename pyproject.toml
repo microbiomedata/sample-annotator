@@ -42,6 +42,7 @@ linkml = "^1.7"
 nmdc-schema = "^11.0"
 numpy = "^2.2"
 pandas = "^2.2"
+pymongo = "^4.11"
 python = "^3.10"
 python-dotenv = "^1.0"
 pyyaml = "^6.0" # to humor deptry

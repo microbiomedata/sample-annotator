@@ -4,6 +4,11 @@ MAX_STUDIES=70000 # 2025-01
 
 .PHONY: load-gold-biosamples-into-mongo
 
+gold-to-mongo-all: gold-to-mongo-clean local/gold-study-ids-with-biosamples.txt
+
+gold-to-mongo-clean:
+	rm -rf downloads/goldData.xlsx local/gold-study-ids-with-biosamples.txt
+
 downloads/goldData.xlsx:
 	wget -O $@ "https://gold.jgi.doe.gov/download?mode=site_excel"
 
@@ -13,14 +18,42 @@ local/gold-studies.tsv: downloads/goldData.xlsx
 		--sheet-name Study \
 		--output-file $@
 
-local/gold-study-ids.txt: local/gold-studies.tsv
-	# without the grep filter, this introduces some noise (non-id rows)
-	tail -n +2 $< | cut -f 1 | sort | grep 'Gs' > $@
+# Extract Study GOLD IDs that have associated Biosample GOLD IDs
+local/gold-study-ids-with-biosamples.txt: downloads/goldData.xlsx
+	date && time poetry run python \
+		sample_annotator/file_utils/extract_study_ids_with_biosamples.py \
+		--excel-file $< \
+		--sheet-name 'Sequencing Project' \
+		--output-file $@.tmp && date # 8 minutes
+	sort $@.tmp | uniq > $@
+	rm -rf $@.tmp
 
-local/gold-study-ids-subset.txt: local/gold-study-ids.txt
-	head -n $(MAX_STUDIES) $< > $@
 
-local/gold-cache.json: local/gold-study-ids-subset.txt
+  #  Supports both local and remote MongoDB servers with authentication.
+  #
+  #  Environment variables (from .env file or system):
+#  MONGODB_USER: MongoDB username
+#  MONGODB_PASSWORD: MongoDB password
+#  MONGODB_HOST: MongoDB host (default: localhost)
+#  MONGODB_PORT: MongoDB port (default: 27017)
+#  MONGODB_AUTH_SOURCE: Authentication database (default: admin)
+#  MONGODB_AUTH_MECHANISM: Authentication mechanism (default: SCRAM-SHA-256)
+
+load-gold-biosamples-into-mongo: local/gold-study-ids-with-biosamples.txt
+	# 		--purge-mongodb
+	# 		--purge-diskcache
+	poetry run python sample_annotator/gold_to_mongo.py \
+		--authentication-file config/gold-key.txt \
+		--env-file local/.env \
+		--mongo-db-name gold_metadata \
+		--mongo-uri "mongodb://localhost:27017/" \
+		--purge-diskcache \
+		--purge-mongodb \
+		--study-ids-file $<
+
+####
+
+local/gold-cache.json: local/gold-studies.tsv
 	# ~ 3 seconds/uncached study
 	# GOLD has ~ 63k studies
 	# < 2 days to fetch all studies ?
@@ -32,14 +65,6 @@ local/gold-cache.json: local/gold-study-ids-subset.txt
 		--include-biosamples \
 		--authentication-file config/gold-key.txt \
 		$<
-
-load-gold-biosamples-into-mongo: local/gold-study-ids-subset.txt
-	# 		--purge-mongodb
-	# 		--purge-diskcache
-	poetry run python sample_annotator/gold_to_mongo.py \
-		--authentication-file config/gold-key.txt \
-		--mongo-db-name gold_metadata \
-		--study-ids-file $<
 
 #.PHONY: split-out-gold-biosamples
 #split-out-gold-biosamples: local/gold-cache.json
