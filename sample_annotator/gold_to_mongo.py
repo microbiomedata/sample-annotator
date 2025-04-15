@@ -8,7 +8,13 @@ import dotenv
 from pymongo import MongoClient, ASCENDING
 from pymongo.errors import DuplicateKeyError
 
-from clients.gold_client import GoldClient
+# Fix import path for both direct script execution and CLI entry point
+try:
+    # When running as a script
+    from clients.gold_client import GoldClient
+except ModuleNotFoundError:
+    # When running as an installed package
+    from sample_annotator.clients.gold_client import GoldClient
 
 # todo might need better API error handling
 #   should be more consistent about bundling (projects in biosamples) vs getting biosamples separate from studies

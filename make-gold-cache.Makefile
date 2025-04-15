@@ -6,13 +6,13 @@ RUN=poetry run
 
 .PHONY: load-gold-biosamples-into-mongo
 
-gold-to-mongo-all: gold-to-mongo-clean local/gold-study-ids-with-biosamples.txt
+gold-to-mongo-all: gold-to-mongo-clean load-gold-biosamples-into-mongo
 
 gold-to-mongo-clean:
 	rm -rf downloads/goldData.xlsx local/gold-study-ids-with-biosamples.txt
 
 downloads/goldData.xlsx:
-	wget -O $@ "https://gold.jgi.doe.gov/download?mode=site_excel"
+	curl -o $@ "https://gold.jgi.doe.gov/download?mode=site_excel"
 
 local/gold-studies.tsv: downloads/goldData.xlsx
 	$(RUN) xlsx-to-tsv \
