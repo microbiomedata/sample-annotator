@@ -13,15 +13,14 @@ downloads/goldData.xlsx:
 	wget -O $@ "https://gold.jgi.doe.gov/download?mode=site_excel"
 
 local/gold-studies.tsv: downloads/goldData.xlsx
-	poetry run python sample_annotator/file_utils/xlsx_to_tsv.py \
+	poetry run xlsx-to-tsv \
 		--excel-file $< \
 		--sheet-name Study \
 		--output-file $@
 
 # Extract Study GOLD IDs that have associated Biosample GOLD IDs
 local/gold-study-ids-with-biosamples.txt: downloads/goldData.xlsx
-	date && time poetry run python \
-		sample_annotator/file_utils/extract_study_ids_with_biosamples.py \
+	date && time poetry run extract-study-ids-with-biosamples \
 		--excel-file $< \
 		--sheet-name 'Sequencing Project' \
 		--output-file $@.tmp && date # 8 minutes
@@ -42,7 +41,7 @@ local/gold-study-ids-with-biosamples.txt: downloads/goldData.xlsx
 load-gold-biosamples-into-mongo: local/gold-study-ids-with-biosamples.txt
 	# 		--purge-mongodb
 	# 		--purge-diskcache
-	poetry run python sample_annotator/gold_to_mongo.py \
+	poetry run gold-to-mongo \
 		--authentication-file config/gold-key.txt \
 		--env-file local/.env \
 		--mongo-db-name gold_metadata \
