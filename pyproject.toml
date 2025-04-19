@@ -78,3 +78,4 @@ extract-study-ids-with-biosamples = "sample_annotator.file_utils.extract_study_i
 gold-to-mongo = "sample_annotator.gold_to_mongo:main"
 rel_to_oxygen_example = "sample_annotator.rel_to_oxygen_example:cli"
 xlsx-to-tsv = "sample_annotator.file_utils.xlsx_to_tsv:xlsx_to_tsv"
+rebuild-gold-cache = "sample_annotator.rebuild_gold_cache:rebuild_gold_cache"

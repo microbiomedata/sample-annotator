@@ -13,6 +13,7 @@ googlemaps-api-key.txt
 bin
 
 cachedir
+cache_from_local_mongodb
 examples/outputs
 
 temp/
@@ -63,7 +64,7 @@ sphinx/_build/*
 
 # Cacheing
 tests/cachedir/
-./cachedir/
+cachedir
 
 # https://raw.githubusercontent.com/github/gitignore/main/Python.gitignore
 
