@@ -1,5 +1,6 @@
 import logging
 import os
+from time import sleep
 from typing import List, Optional, Set
 from urllib.parse import quote_plus
 
@@ -148,6 +149,27 @@ def process_study_ids(file_path: str) -> List[str]:
     return sorted(ids)
 
 
+def get_processed_study_ids(db) -> Set[str]:
+    """
+    Gets the IDs of studies that have already been processed and stored in MongoDB.
+    
+    Args:
+        db: The MongoDB database object
+        
+    Returns:
+        A set of study IDs that have already been processed
+    """
+    study_collection = db['studies']
+    processed_ids = set()
+    
+    # Find all studies that have already been stored
+    for study in study_collection.find({}, {'studyGoldId': 1}):
+        if 'studyGoldId' in study:
+            processed_ids.add(study['studyGoldId'])
+            
+    return processed_ids
+
+
 @click.command()
 @click.option('--study-ids-file', '-i',
               type=click.Path(exists=True, dir_okay=False, readable=True),
@@ -163,9 +185,14 @@ def process_study_ids(file_path: str) -> List[str]:
               help='Purge the destination MongoDB collections before running.')
 @click.option('--purge-diskcache', '-P', is_flag=True, default=False,
               help='Purge the input disk cache before running.')
+@click.option('--resume', '-r', is_flag=True, default=True,
+              help='Skip studies that are already in MongoDB. Default: True')              
+@click.option('--max-retries', '-m', type=int, default=3,
+              help='Maximum number of retries for failed GOLD API calls. Default: 3')
 def main(study_ids_file: str, authentication_file: str,
          mongo_uri: Optional[str] = None, env_file: Optional[str] = None,
-         purge_mongodb: bool = False, purge_diskcache: bool = False, **args):
+         purge_mongodb: bool = False, purge_diskcache: bool = False, 
+         resume: bool = True, max_retries: int = 3, **args):
     """
     Fetch, process, and store biosamples, studies, and projects into MongoDB in real-time.
     
@@ -220,6 +247,8 @@ def main(study_ids_file: str, authentication_file: str,
         db.drop_collection('studies')
         db.drop_collection('projects')
         db.drop_collection('seq_projects')
+        # Reset the resume flag since we're starting fresh
+        resume = False
 
     # Setup collections and indexes
     biosample_collection = db['biosamples']
@@ -241,37 +270,85 @@ def main(study_ids_file: str, authentication_file: str,
 
     # Process study IDs
     study_ids = process_study_ids(study_ids_file)
+    total_studies = len(study_ids)
+    
+    # Get already processed studies if in resume mode
+    processed_study_ids = set()
+    if resume:
+        processed_study_ids = get_processed_study_ids(db)
+        if processed_study_ids:
+            logging.info(f"Found {len(processed_study_ids)} studies already in MongoDB that will be skipped")
+    
+    # Track progress
+    completed = 0
+    failed = 0
+    skipped = 0
 
     for study_id in study_ids:
-        logging.info(f"Processing study {study_id}...")
+        # Skip if already processed and in resume mode
+        if resume and study_id in processed_study_ids:
+            logging.info(f"Skipping study {study_id} (already in MongoDB)")
+            skipped += 1
+            continue
+            
+        logging.info(f"Processing study {study_id} ({completed + skipped + 1}/{total_studies})...")
 
-        # Fetch the study record
-        study = gc.fetch_study(study_id, **args)
+        # Retry logic for API failures
+        retry_count = 0
+        success = False
+        
+        while retry_count <= max_retries and not success:
+            try:
+                # Fetch the study record
+                study = gc.fetch_study(study_id, **args)
+                
+                if not study:
+                    logging.warning(f"No data returned for study {study_id}, skipping")
+                    failed += 1
+                    break
 
-        # Fetch biosamples associated with the study
-        biosamples = gc.fetch_biosamples_by_study(study_id, **args)
-        logging.info(f"Retrieved {len(biosamples)} biosamples for study {study_id}")
+                # Fetch biosamples associated with the study
+                biosamples = gc.fetch_biosamples_by_study(study_id, **args)
+                logging.info(f"Retrieved {len(biosamples)} biosamples for study {study_id}")
 
-        # Collect biosampleGoldIds for the study
-        biosample_ids = []
+                # Process was successful
+                success = True
+                
+                # Collect biosampleGoldIds for the study
+                biosample_ids = []
 
-        for biosample in biosamples:
-            biosample_id = biosample.get('biosampleGoldId', None)
-            if biosample_id:
-                biosample_ids.append(biosample_id)
+                for biosample in biosamples:
+                    biosample_id = biosample.get('biosampleGoldId', None)
+                    if biosample_id:
+                        biosample_ids.append(biosample_id)
 
-            # Handle associated projects
-            for project in biosample.pop('projects', []):
-                insert_document(project_collection, project, project.get('projectGoldId', 'Unknown'))
+                    # Handle associated projects
+                    for project in biosample.pop('projects', []):
+                        insert_document(project_collection, project, project.get('projectGoldId', 'Unknown'))
 
-            # Insert biosample into MongoDB
-            insert_document(biosample_collection, biosample, biosample_id)
+                    # Insert biosample into MongoDB
+                    insert_document(biosample_collection, biosample, biosample_id)
 
-        # Add the biosamples list to the study record
-        study['biosamples'] = biosample_ids
+                # Add the biosamples list to the study record
+                study['biosamples'] = biosample_ids
 
-        # Insert the study record into MongoDB
-        insert_document(study_collection, study, study_id)
+                # Insert the study record into MongoDB
+                insert_document(study_collection, study, study_id)
+                
+                completed += 1
+                
+            except Exception as e:
+                retry_count += 1
+                if retry_count <= max_retries:
+                    wait_time = 5 * retry_count
+                    logging.warning(f"Error processing study {study_id}: {e}. Retrying in {wait_time} seconds (attempt {retry_count}/{max_retries})")
+                    sleep(wait_time)
+                else:
+                    logging.error(f"Failed to process study {study_id} after {max_retries} attempts: {e}")
+                    failed += 1
+
+    # Log summary statistics
+    logging.info(f"Import completed: {completed} studies processed, {skipped} skipped, {failed} failed")
 
     # Close the connection
     client.close()
