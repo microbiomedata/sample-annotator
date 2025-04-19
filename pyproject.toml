@@ -42,6 +42,7 @@ linkml = "^1.7"
 nmdc-schema = "^11.0"
 numpy = "^2.2"
 pandas = "^2.2"
+pymongo = "^4.11"
 python = "^3.10"
 python-dotenv = "^1.0"
 pyyaml = "^6.0" # to humor deptry
@@ -50,21 +51,21 @@ recommonmark = "^0.7.1"
 sphinx-rtd-theme = "3.0"
 
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 autopep8 = "^2.0"
 black = "^24.0"
-deptry = "^0.21.2"
-pytest = "^8.0"
-tox = "4.20"
-matplotlib = "^3.9.2" # for notebooks/DataGood-NMDC-Code.ipynb
-nltk = "^3.8" # for notebooks/DataGood-NMDC-Code.ipynb
-seaborn = "^0.13" # for notebooks/DataGood-NMDC-Code.ipynb
-sqlalchemy = "^2.0" # for notebooks/DataGood-NMDC-Code.ipynb
 click = "^8.1" # recommended by deptry
+deptry = "^0.21.2"
 jsonschema = "^4.21" # recommended by deptry
 linkml-runtime = "^1.8" # recommended by deptry
+matplotlib = "^3.9.2" # for notebooks/DataGood-NMDC-Code.ipynb
+nltk = "^3.8" # for notebooks/DataGood-NMDC-Code.ipynb
 pydantic = "^2.10" # recommended by deptry
+pytest = "^8.0"
 requests = "^2.32.2" # recommended by deptry
+seaborn = "^0.13" # for notebooks/DataGood-NMDC-Code.ipynb
+sqlalchemy = "^2.0" # for notebooks/DataGood-NMDC-Code.ipynb
+tox = "4.20"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -72,6 +73,8 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
 annotate-sample = "sample_annotator.sample_annotator:cli"
-sqlite_client_cli = "sample_annotator.clients.biosample_sqlite_client:cli"
+cache-gold = "sample_annotator.clients.gold_client:main"
+extract-study-ids-with-biosamples = "sample_annotator.file_utils.extract_study_ids_with_biosamples:main"
+gold-to-mongo = "sample_annotator.gold_to_mongo:main"
 rel_to_oxygen_example = "sample_annotator.rel_to_oxygen_example:cli"
-
+xlsx-to-tsv = "sample_annotator.file_utils.xlsx_to_tsv:xlsx_to_tsv"
