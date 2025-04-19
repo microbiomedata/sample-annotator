@@ -51,7 +51,7 @@ recommonmark = "^0.7.1"
 sphinx-rtd-theme = "3.0"
 
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 autopep8 = "^2.0"
 black = "^24.0"
 deptry = "^0.21.2"

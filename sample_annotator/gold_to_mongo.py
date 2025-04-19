@@ -44,28 +44,24 @@ def load_mongodb_credentials(env_file: Optional[str] = None) -> dict:
         default_env_path = os.path.join('local', '.env')
         if os.path.exists(default_env_path):
             dotenv.load_dotenv(default_env_path)
-    
+
     # Get credentials from environment variables
     creds = {
         'user': os.environ.get('MONGODB_USER'),
-        'password': os.environ.get('MONGODB_PASSWORD'),
-        'host': os.environ.get('MONGODB_HOST', 'localhost'),
-        'port': os.environ.get('MONGODB_PORT', '27017'),
-        'auth_source': os.environ.get('MONGODB_AUTH_SOURCE', 'admin'),
-        'auth_mechanism': os.environ.get('MONGODB_AUTH_MECHANISM', 'SCRAM-SHA-256')
+        'password': os.environ.get('MONGODB_PASSWORD')
     }
-    
+
     return creds
 
 
 def build_mongodb_connection_string(
-    mongo_uri: Optional[str] = None, 
-    user: Optional[str] = None,
-    password: Optional[str] = None,
-    host: str = 'localhost',
-    port: str = '27017',
-    auth_source: str = 'admin',
-    auth_mechanism: str = 'SCRAM-SHA-256'
+        mongo_uri: Optional[str] = None,
+        user: Optional[str] = None,
+        password: Optional[str] = None,
+        host: str = 'localhost',
+        port: str = '27017',
+        auth_source: str = 'admin',
+        auth_mechanism: str = 'SCRAM-SHA-256'
 ) -> str:
     """
     Builds a MongoDB connection string based on provided parameters.
@@ -85,11 +81,11 @@ def build_mongodb_connection_string(
     # If URI is provided, use it directly
     if mongo_uri:
         return mongo_uri
-    
+
     # If no authentication is required
     if not user or not password:
         return f"mongodb://{host}:{port}/"
-    
+
     # Build authenticated connection string
     escaped_user = quote_plus(user)
     escaped_password = quote_plus(password)
@@ -97,7 +93,7 @@ def build_mongodb_connection_string(
         f"mongodb://{escaped_user}:{escaped_password}@{host}:{port}/"
         f"?authSource={auth_source}&authMechanism={auth_mechanism}"
     )
-    
+
     return conn_str
 
 
@@ -153,15 +149,13 @@ def process_study_ids(file_path: str) -> List[str]:
 
 
 @click.command()
-@click.option('--mongo-db-name', '-d', required=True,
-              help='Name of the MongoDB database to use.')
 @click.option('--study-ids-file', '-i',
               type=click.Path(exists=True, dir_okay=False, readable=True),
               required=True,
               help='Path to the input text file containing one GOLD study ID per line.')
 @click.option('--authentication-file', '-a', default="config/gold-key.txt",
               help='Path to the GOLD authentication file. Contents should be user:pass.')
-@click.option('--mongo-uri', '-u',
+@click.option('--mongo-uri', '-u', required=True,
               help='MongoDB connection URI. If provided, this overrides other MongoDB connection options.')
 @click.option('--env-file', '-e',
               help='Path to .env file with MongoDB credentials. Default: local/.env')
@@ -169,7 +163,7 @@ def process_study_ids(file_path: str) -> List[str]:
               help='Purge the destination MongoDB collections before running.')
 @click.option('--purge-diskcache', '-P', is_flag=True, default=False,
               help='Purge the input disk cache before running.')
-def main(mongo_db_name: str, study_ids_file: str, authentication_file: str,
+def main(study_ids_file: str, authentication_file: str,
          mongo_uri: Optional[str] = None, env_file: Optional[str] = None,
          purge_mongodb: bool = False, purge_diskcache: bool = False, **args):
     """
@@ -180,6 +174,8 @@ def main(mongo_db_name: str, study_ids_file: str, authentication_file: str,
     Environment variables (from .env file or system):
         MONGODB_USER: MongoDB username
         MONGODB_PASSWORD: MongoDB password
+
+    If needed, must be passed in the URI
         MONGODB_HOST: MongoDB host (default: localhost)
         MONGODB_PORT: MongoDB port (default: 27017)
         MONGODB_AUTH_SOURCE: Authentication database (default: admin)
@@ -187,22 +183,28 @@ def main(mongo_db_name: str, study_ids_file: str, authentication_file: str,
     """
     # Load MongoDB credentials
     mongo_creds = load_mongodb_credentials(env_file)
-    
+
     # Build connection string and connect to MongoDB
+    if not mongo_uri:
+        logging.error("Missing required --mongo-uri option. Database name must be embedded in the URI.")
+        return
+
     conn_str = build_mongodb_connection_string(
         mongo_uri=mongo_uri,
         user=mongo_creds.get('user'),
         password=mongo_creds.get('password'),
-        host=mongo_creds.get('host'),
-        port=mongo_creds.get('port'),
-        auth_source=mongo_creds.get('auth_source'),
-        auth_mechanism=mongo_creds.get('auth_mechanism')
     )
-    
+
     logging.info(f"Connecting to MongoDB at {mongo_creds.get('host')}:{mongo_creds.get('port')}")
     client = MongoClient(conn_str)
-    db = client[mongo_db_name]
-    
+
+    try:
+        db_name = MongoClient(conn_str).get_default_database().name
+        db = client[db_name]
+    except Exception as e:
+        logging.error(f"Could not determine database name from URI: {e}")
+        return
+
     # Test connection
     try:
         # Ping the server to check connection
@@ -217,11 +219,12 @@ def main(mongo_db_name: str, study_ids_file: str, authentication_file: str,
         db.drop_collection('biosamples')
         db.drop_collection('studies')
         db.drop_collection('projects')
+        db.drop_collection('seq_projects')
 
     # Setup collections and indexes
     biosample_collection = db['biosamples']
     study_collection = db['studies']
-    project_collection = db['projects']
+    project_collection = db['seq_projects']
 
     create_unique_index(biosample_collection, "biosampleGoldId", "biosampleGoldId_index")
     create_unique_index(study_collection, "studyGoldId", "studyGoldId_index")

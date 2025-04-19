@@ -30,26 +30,29 @@ local/gold-study-ids-with-biosamples.txt: downloads/goldData.xlsx
 	rm -rf $@.tmp
 
 
-  #  Supports both local and remote MongoDB servers with authentication.
-  #
-  #  Environment variables (from .env file or system):
+#  Supports both local and remote MongoDB servers with authentication.
+#
+#  Environment variables (from .env file)
 #  MONGODB_USER: MongoDB username
 #  MONGODB_PASSWORD: MongoDB password
-#  MONGODB_HOST: MongoDB host (default: localhost)
-#  MONGODB_PORT: MongoDB port (default: 27017)
-#  MONGODB_AUTH_SOURCE: Authentication database (default: admin)
-#  MONGODB_AUTH_MECHANISM: Authentication mechanism (default: SCRAM-SHA-256)
+
+
+#load-gold-biosamples-into-mongo: local/gold-study-ids-with-biosamples.txt
+#	# 		--purge-mongodb
+#	# 		--purge-diskcache
+#	# 		--env-file
+#	$(RUN) gold-to-mongo \
+#		--authentication-file config/gold-key.txt \
+#		--mongo-db-name gold_metadata \
+#		--mongo-uri "mongodb://localhost:27017/" \
+#		--purge-diskcache \
+#		--purge-mongodb \
+#		--study-ids-file $<
 
 load-gold-biosamples-into-mongo: local/gold-study-ids-with-biosamples.txt
-	# 		--purge-mongodb
-	# 		--purge-diskcache
 	$(RUN) gold-to-mongo \
 		--authentication-file config/gold-key.txt \
-		--env-file local/.env \
-		--mongo-db-name gold_metadata \
-		--mongo-uri "mongodb://localhost:27017/" \
-		--purge-diskcache \
-		--purge-mongodb \
+		--mongo-uri "mongodb://localhost:27017/gold_metadata" \
 		--study-ids-file $<
 
 ####
