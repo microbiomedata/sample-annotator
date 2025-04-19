@@ -54,18 +54,18 @@ sphinx-rtd-theme = "3.0"
 [tool.poetry.group.dev.dependencies]
 autopep8 = "^2.0"
 black = "^24.0"
-deptry = "^0.21.2"
-pytest = "^8.0"
-tox = "4.20"
-matplotlib = "^3.9.2" # for notebooks/DataGood-NMDC-Code.ipynb
-nltk = "^3.8" # for notebooks/DataGood-NMDC-Code.ipynb
-seaborn = "^0.13" # for notebooks/DataGood-NMDC-Code.ipynb
-sqlalchemy = "^2.0" # for notebooks/DataGood-NMDC-Code.ipynb
 click = "^8.1" # recommended by deptry
+deptry = "^0.21.2"
 jsonschema = "^4.21" # recommended by deptry
 linkml-runtime = "^1.8" # recommended by deptry
+matplotlib = "^3.9.2" # for notebooks/DataGood-NMDC-Code.ipynb
+nltk = "^3.8" # for notebooks/DataGood-NMDC-Code.ipynb
 pydantic = "^2.10" # recommended by deptry
+pytest = "^8.0"
 requests = "^2.32.2" # recommended by deptry
+seaborn = "^0.13" # for notebooks/DataGood-NMDC-Code.ipynb
+sqlalchemy = "^2.0" # for notebooks/DataGood-NMDC-Code.ipynb
+tox = "4.20"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
