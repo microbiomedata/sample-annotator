@@ -12,7 +12,7 @@ googlemaps-api-key.txt
 
 bin
 
-cachedir
+cachedir.prev
 examples/outputs
 
 temp/
@@ -63,7 +63,7 @@ sphinx/_build/*
 
 # Cacheing
 tests/cachedir/
-./cachedir/
+cachedir.prev/
 
 # https://raw.githubusercontent.com/github/gitignore/main/Python.gitignore
 

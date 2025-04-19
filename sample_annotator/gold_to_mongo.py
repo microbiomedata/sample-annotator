@@ -1,6 +1,8 @@
 import json
 import logging
 import os
+import shutil
+import time
 from datetime import datetime
 from time import sleep
 from typing import List, Optional, Set
@@ -61,14 +63,12 @@ def build_mongodb_connection_string(
         # Inject user/pass
         escaped_user = quote_plus(user)
         escaped_password = quote_plus(password)
-        # Find where to insert credentials
         protocol_split = mongo_uri.split("://", 1)
         if len(protocol_split) != 2:
             raise ValueError("Invalid MongoDB URI")
         scheme, rest = protocol_split
         return f"{scheme}://{escaped_user}:{escaped_password}@{rest}"
 
-    # If no URI provided, build a basic local one
     if not user or not password:
         return "mongodb://localhost:27017/"
     escaped_user = quote_plus(user)
@@ -110,8 +110,17 @@ def get_processed_study_ids(db) -> Set[str]:
     return processed_ids
 
 
+def backup_cache_dir(cache_dir: str, backup_dir: str = "local") -> None:
+    if os.path.exists(cache_dir):
+        ts = time.strftime("%Y%m%d_%H%M%S")
+        backup_path = os.path.join(backup_dir, f"{os.path.basename(cache_dir)}_backup_{ts}")
+        shutil.copytree(cache_dir, backup_path)
+        logging.info(f"Backed up cache to: {backup_path}")
+
+
 @click.command()
 @click.option('--authentication-file', '-a', default="config/gold-key.txt")
+@click.option('--backup-cache', is_flag=True, default=True)
 @click.option('--env-file', '-e')
 @click.option('--log-failures-to-file', type=click.Path(writable=True), default=None)
 @click.option('--max-retries', '-m', type=int, default=3)
@@ -122,7 +131,11 @@ def get_processed_study_ids(db) -> Set[str]:
 @click.option('--study-ids-file', '-i', type=click.Path(exists=True), required=True)
 def main(study_ids_file: str, authentication_file: str, mongo_uri: Optional[str],
          env_file: Optional[str], purge_mongodb: bool, purge_diskcache: bool,
-         resume: bool, max_retries: int, log_failures_to_file: Optional[str]):
+         resume: bool, max_retries: int, log_failures_to_file: Optional[str],
+         backup_cache: bool):
+    if backup_cache:
+        backup_cache_dir("cachedir", backup_dir="local")
+
     mongo_creds = load_mongodb_credentials(env_file)
     conn_str = build_mongodb_connection_string(
         mongo_uri=mongo_uri,
