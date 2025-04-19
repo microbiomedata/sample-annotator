@@ -42,6 +42,7 @@ local/gold-study-ids-with-biosamples.txt: downloads/goldData.xlsx
 load-gold-biosamples-into-mongo: local/gold-study-ids-with-biosamples.txt
 	$(RUN) gold-to-mongo \
 		--authentication-file config/gold-key.txt \
+		--log-failures-to-file local/gold-to-mongo-failures.json \
 		--mongo-uri "mongodb://localhost:27017/gold_metadata" \
 		--study-ids-file $<
 

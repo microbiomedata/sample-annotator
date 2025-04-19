@@ -1,5 +1,7 @@
+import json
 import logging
 import os
+from datetime import datetime
 from time import sleep
 from typing import List, Optional, Set
 from urllib.parse import quote_plus
@@ -8,6 +10,7 @@ import click
 import dotenv
 from pymongo import MongoClient, ASCENDING
 from pymongo.errors import DuplicateKeyError
+from pymongo.uri_parser import parse_uri
 
 # Fix import path for both direct script execution and CLI entry point
 try:
@@ -21,7 +24,7 @@ except ModuleNotFoundError:
 #   should be more consistent about bundling (projects in biosamples) vs getting biosamples separate from studies
 
 # todo document the fact that a biosamples key is added to studies
-#   biosamples kave no foreign keys
+#   biosamples have no foreign keys
 #   (sequencing) projects include native study and biosample foreign keys
 
 # Configure logging
@@ -29,84 +32,51 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 
 
 def load_mongodb_credentials(env_file: Optional[str] = None) -> dict:
-    """
-    Loads MongoDB credentials from environment variables or .env file.
-    
-    Args:
-        env_file: Optional path to .env file. If not provided, will try to load from local/.env
-
-    Returns:
-        Dictionary with MongoDB connection credentials
-    """
-    # Try to load from .env file if specified or from default location
     if env_file:
         dotenv.load_dotenv(env_file)
     else:
         default_env_path = os.path.join('local', '.env')
         if os.path.exists(default_env_path):
             dotenv.load_dotenv(default_env_path)
-
-    # Get credentials from environment variables
-    creds = {
+    return {
         'user': os.environ.get('MONGODB_USER'),
         'password': os.environ.get('MONGODB_PASSWORD')
     }
-
-    return creds
 
 
 def build_mongodb_connection_string(
         mongo_uri: Optional[str] = None,
         user: Optional[str] = None,
-        password: Optional[str] = None,
-        host: str = 'localhost',
-        port: str = '27017',
-        auth_source: str = 'admin',
-        auth_mechanism: str = 'SCRAM-SHA-256'
-) -> str:
+        password: Optional[str] = None) -> str:
     """
-    Builds a MongoDB connection string based on provided parameters.
-    
-    Args:
-        mongo_uri: Optional complete MongoDB URI (overrides other parameters if provided)
-        user: Username for authentication
-        password: Password for authentication
-        host: MongoDB host
-        port: MongoDB port
-        auth_source: Authentication database
-        auth_mechanism: Authentication mechanism
-
-    Returns:
-        MongoDB connection string
+    Injects user and password into an existing MongoDB URI if missing.
+    If no URI is provided, falls back to localhost unauthenticated.
     """
-    # If URI is provided, use it directly
     if mongo_uri:
-        return mongo_uri
+        parsed = parse_uri(mongo_uri)
+        if parsed.get('username') or parsed.get('password'):
+            return mongo_uri  # already has credentials
+        if not user or not password:
+            return mongo_uri  # let it connect anonymously
+        # Inject user/pass
+        escaped_user = quote_plus(user)
+        escaped_password = quote_plus(password)
+        # Find where to insert credentials
+        protocol_split = mongo_uri.split("://", 1)
+        if len(protocol_split) != 2:
+            raise ValueError("Invalid MongoDB URI")
+        scheme, rest = protocol_split
+        return f"{scheme}://{escaped_user}:{escaped_password}@{rest}"
 
-    # If no authentication is required
+    # If no URI provided, build a basic local one
     if not user or not password:
-        return f"mongodb://{host}:{port}/"
-
-    # Build authenticated connection string
+        return "mongodb://localhost:27017/"
     escaped_user = quote_plus(user)
     escaped_password = quote_plus(password)
-    conn_str = (
-        f"mongodb://{escaped_user}:{escaped_password}@{host}:{port}/"
-        f"?authSource={auth_source}&authMechanism={auth_mechanism}"
-    )
-
-    return conn_str
+    return f"mongodb://{escaped_user}:{escaped_password}@localhost:27017/"
 
 
 def create_unique_index(collection, field_name: str, index_name: str) -> None:
-    """
-    Creates a unique index on the specified field for a MongoDB collection.
-
-    Args:
-        collection: The MongoDB collection object.
-        field_name: The field to index.
-        index_name: The name of the index.
-    """
     try:
         collection.create_index([(field_name, ASCENDING)], name=index_name, unique=True)
     except Exception as e:
@@ -114,31 +84,13 @@ def create_unique_index(collection, field_name: str, index_name: str) -> None:
 
 
 def insert_document(collection, document: dict, key_name: str) -> None:
-    """
-    Inserts a document into a MongoDB collection, handling duplicate key errors.
-
-    Args:
-        collection: The MongoDB collection object.
-        document: The document to insert.
-        key_name: The key used for the unique index, for logging purposes.
-    """
     try:
         collection.insert_one(document)
-    except DuplicateKeyError as e:
-        # logging.warning(f"Duplicate key error for {key_name}: {e}")
+    except DuplicateKeyError:
         logging.warning(f"Duplicate key error for {key_name}")
 
 
 def process_study_ids(file_path: str) -> List[str]:
-    """
-    Reads and processes study IDs from a file.
-
-    Args:
-        file_path: Path to the file containing study IDs.
-
-    Returns:
-        A sorted list of unique study IDs.
-    """
     ids = set()
     with open(file_path) as file:
         for line in file:
@@ -150,79 +102,35 @@ def process_study_ids(file_path: str) -> List[str]:
 
 
 def get_processed_study_ids(db) -> Set[str]:
-    """
-    Gets the IDs of studies that have already been processed and stored in MongoDB.
-    
-    Args:
-        db: The MongoDB database object
-        
-    Returns:
-        A set of study IDs that have already been processed
-    """
     study_collection = db['studies']
     processed_ids = set()
-    
-    # Find all studies that have already been stored
     for study in study_collection.find({}, {'studyGoldId': 1}):
         if 'studyGoldId' in study:
             processed_ids.add(study['studyGoldId'])
-            
     return processed_ids
 
 
 @click.command()
-@click.option('--study-ids-file', '-i',
-              type=click.Path(exists=True, dir_okay=False, readable=True),
-              required=True,
-              help='Path to the input text file containing one GOLD study ID per line.')
-@click.option('--authentication-file', '-a', default="config/gold-key.txt",
-              help='Path to the GOLD authentication file. Contents should be user:pass.')
-@click.option('--mongo-uri', '-u', required=True,
-              help='MongoDB connection URI. If provided, this overrides other MongoDB connection options.')
-@click.option('--env-file', '-e',
-              help='Path to .env file with MongoDB credentials. Default: local/.env')
-@click.option('--purge-mongodb', '-p', is_flag=True, default=False,
-              help='Purge the destination MongoDB collections before running.')
-@click.option('--purge-diskcache', '-P', is_flag=True, default=False,
-              help='Purge the input disk cache before running.')
-@click.option('--resume', '-r', is_flag=True, default=True,
-              help='Skip studies that are already in MongoDB. Default: True')              
-@click.option('--max-retries', '-m', type=int, default=3,
-              help='Maximum number of retries for failed GOLD API calls. Default: 3')
-def main(study_ids_file: str, authentication_file: str,
-         mongo_uri: Optional[str] = None, env_file: Optional[str] = None,
-         purge_mongodb: bool = False, purge_diskcache: bool = False, 
-         resume: bool = True, max_retries: int = 3, **args):
-    """
-    Fetch, process, and store biosamples, studies, and projects into MongoDB in real-time.
-    
-    Supports both local and remote MongoDB servers with authentication.
-    
-    Environment variables (from .env file or system):
-        MONGODB_USER: MongoDB username
-        MONGODB_PASSWORD: MongoDB password
-
-    If needed, must be passed in the URI
-        MONGODB_HOST: MongoDB host (default: localhost)
-        MONGODB_PORT: MongoDB port (default: 27017)
-        MONGODB_AUTH_SOURCE: Authentication database (default: admin)
-        MONGODB_AUTH_MECHANISM: Authentication mechanism (default: SCRAM-SHA-256)
-    """
-    # Load MongoDB credentials
+@click.option('--authentication-file', '-a', default="config/gold-key.txt")
+@click.option('--env-file', '-e')
+@click.option('--log-failures-to-file', type=click.Path(writable=True), default=None)
+@click.option('--max-retries', '-m', type=int, default=3)
+@click.option('--mongo-uri', '-u', required=True)
+@click.option('--purge-diskcache', '-P', is_flag=True, default=False)
+@click.option('--purge-mongodb', '-p', is_flag=True, default=False)
+@click.option('--resume', '-r', is_flag=True, default=True)
+@click.option('--study-ids-file', '-i', type=click.Path(exists=True), required=True)
+def main(study_ids_file: str, authentication_file: str, mongo_uri: Optional[str],
+         env_file: Optional[str], purge_mongodb: bool, purge_diskcache: bool,
+         resume: bool, max_retries: int, log_failures_to_file: Optional[str]):
     mongo_creds = load_mongodb_credentials(env_file)
-
-    # Build connection string and connect to MongoDB
-    if not mongo_uri:
-        logging.error("Missing required --mongo-uri option. Database name must be embedded in the URI.")
-        return
-
     conn_str = build_mongodb_connection_string(
         mongo_uri=mongo_uri,
         user=mongo_creds.get('user'),
         password=mongo_creds.get('password'),
     )
 
-    logging.info(f"Connecting to MongoDB at {mongo_creds.get('host')}:{mongo_creds.get('port')}")
+    logging.info("Connecting to MongoDB")
     client = MongoClient(conn_str)
 
     try:
@@ -232,9 +140,7 @@ def main(study_ids_file: str, authentication_file: str,
         logging.error(f"Could not determine database name from URI: {e}")
         return
 
-    # Test connection
     try:
-        # Ping the server to check connection
         client.admin.command('ping')
         logging.info("MongoDB connection successful")
     except Exception as e:
@@ -247,110 +153,111 @@ def main(study_ids_file: str, authentication_file: str,
         db.drop_collection('studies')
         db.drop_collection('projects')
         db.drop_collection('seq_projects')
-        # Reset the resume flag since we're starting fresh
+        db.drop_collection('study_import_failures')
         resume = False
 
-    # Setup collections and indexes
     biosample_collection = db['biosamples']
     study_collection = db['studies']
     project_collection = db['seq_projects']
+    failure_collection = db['study_import_failures']
 
     create_unique_index(biosample_collection, "biosampleGoldId", "biosampleGoldId_index")
     create_unique_index(study_collection, "studyGoldId", "studyGoldId_index")
     create_unique_index(project_collection, "projectGoldId", "projectGoldId_index")
+    create_unique_index(failure_collection, "studyGoldId", "failedStudy_index")
 
-    # Initialize GoldClient
     gc = GoldClient()
-
     if purge_diskcache:
         logging.info("Purging disk cache...")
         gc.clear_cache()
-
     gc.load_key(authentication_file)
 
-    # Process study IDs
     study_ids = process_study_ids(study_ids_file)
     total_studies = len(study_ids)
-    
-    # Get already processed studies if in resume mode
+
     processed_study_ids = set()
     if resume:
         processed_study_ids = get_processed_study_ids(db)
         if processed_study_ids:
             logging.info(f"Found {len(processed_study_ids)} studies already in MongoDB that will be skipped")
-    
-    # Track progress
+
     completed = 0
     failed = 0
     skipped = 0
+    failed_study_logs = []
 
     for study_id in study_ids:
-        # Skip if already processed and in resume mode
         if resume and study_id in processed_study_ids:
             logging.info(f"Skipping study {study_id} (already in MongoDB)")
             skipped += 1
             continue
-            
+
         logging.info(f"Processing study {study_id} ({completed + skipped + 1}/{total_studies})...")
 
-        # Retry logic for API failures
         retry_count = 0
         success = False
-        
+
         while retry_count <= max_retries and not success:
             try:
-                # Fetch the study record
-                study = gc.fetch_study(study_id, **args)
-                
+                study = gc.fetch_study(study_id)
                 if not study:
                     logging.warning(f"No data returned for study {study_id}, skipping")
                     failed += 1
+                    failure_doc = {
+                        'studyGoldId': study_id,
+                        'error': "No data returned (null response)",
+                        'timestamp': datetime.utcnow(),
+                        'failed': True
+                    }
+                    insert_document(failure_collection, failure_doc, study_id)
+                    failed_study_logs.append(failure_doc)
                     break
 
-                # Fetch biosamples associated with the study
-                biosamples = gc.fetch_biosamples_by_study(study_id, **args)
+                biosamples = gc.fetch_biosamples_by_study(study_id)
                 logging.info(f"Retrieved {len(biosamples)} biosamples for study {study_id}")
 
-                # Process was successful
-                success = True
-                
-                # Collect biosampleGoldIds for the study
                 biosample_ids = []
-
                 for biosample in biosamples:
-                    biosample_id = biosample.get('biosampleGoldId', None)
+                    biosample_id = biosample.get('biosampleGoldId')
                     if biosample_id:
                         biosample_ids.append(biosample_id)
 
-                    # Handle associated projects
                     for project in biosample.pop('projects', []):
                         insert_document(project_collection, project, project.get('projectGoldId', 'Unknown'))
-
-                    # Insert biosample into MongoDB
                     insert_document(biosample_collection, biosample, biosample_id)
 
-                # Add the biosamples list to the study record
                 study['biosamples'] = biosample_ids
-
-                # Insert the study record into MongoDB
                 insert_document(study_collection, study, study_id)
-                
+
                 completed += 1
-                
+                success = True
+
             except Exception as e:
                 retry_count += 1
                 if retry_count <= max_retries:
                     wait_time = 5 * retry_count
-                    logging.warning(f"Error processing study {study_id}: {e}. Retrying in {wait_time} seconds (attempt {retry_count}/{max_retries})")
+                    logging.warning(
+                        f"Error processing study {study_id}: {e}. Retrying in {wait_time} seconds (attempt {retry_count}/{max_retries})")
                     sleep(wait_time)
                 else:
                     logging.error(f"Failed to process study {study_id} after {max_retries} attempts: {e}")
                     failed += 1
+                    failure_doc = {
+                        'studyGoldId': study_id,
+                        'error': str(e),
+                        'timestamp': datetime.utcnow(),
+                        'failed': True
+                    }
+                    insert_document(failure_collection, failure_doc, study_id)
+                    failed_study_logs.append(failure_doc)
 
-    # Log summary statistics
     logging.info(f"Import completed: {completed} studies processed, {skipped} skipped, {failed} failed")
 
-    # Close the connection
+    if log_failures_to_file and failed_study_logs:
+        with open(log_failures_to_file, 'w') as f:
+            json.dump(failed_study_logs, f, indent=2, default=str)
+        logging.info(f"Wrote failed study logs to {log_failures_to_file}")
+
     client.close()
     logging.info("MongoDB connection closed")
 
