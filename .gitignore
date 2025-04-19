@@ -12,7 +12,8 @@ googlemaps-api-key.txt
 
 bin
 
-cachedir.prev
+cachedir
+cache_from_local_mongodb
 examples/outputs
 
 temp/
