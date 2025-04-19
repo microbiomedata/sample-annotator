@@ -64,7 +64,7 @@ sphinx/_build/*
 
 # Cacheing
 tests/cachedir/
-cachedir.prev/
+cachedir
 
 # https://raw.githubusercontent.com/github/gitignore/main/Python.gitignore
 
