@@ -29,25 +29,15 @@ local/gold-study-ids-with-biosamples.txt: downloads/goldData.xlsx
 	sort $@.tmp | uniq > $@
 	rm -rf $@.tmp
 
-
-#  Supports both local and remote MongoDB servers with authentication.
+#  gold-to-mongo no supports both local and remote MongoDB servers with or without authentication.
 #
 #  Environment variables (from .env file)
 #  MONGODB_USER: MongoDB username
 #  MONGODB_PASSWORD: MongoDB password
 
-
-#load-gold-biosamples-into-mongo: local/gold-study-ids-with-biosamples.txt
 #	# 		--purge-mongodb
 #	# 		--purge-diskcache
 #	# 		--env-file
-#	$(RUN) gold-to-mongo \
-#		--authentication-file config/gold-key.txt \
-#		--mongo-db-name gold_metadata \
-#		--mongo-uri "mongodb://localhost:27017/" \
-#		--purge-diskcache \
-#		--purge-mongodb \
-#		--study-ids-file $<
 
 load-gold-biosamples-into-mongo: local/gold-study-ids-with-biosamples.txt
 	$(RUN) gold-to-mongo \
@@ -55,12 +45,10 @@ load-gold-biosamples-into-mongo: local/gold-study-ids-with-biosamples.txt
 		--mongo-uri "mongodb://localhost:27017/gold_metadata" \
 		--study-ids-file $<
 
-####
-
 local/gold-cache.json: local/gold-studies.tsv
 	# ~ 3 seconds/uncached study
 	# GOLD has ~ 63k studies
-	# < 2 days to fetch all studies ?
+	# ~ 2.5 days to fetch all studies with no hiccups
 	$(RUN) python sample_annotator/clients/gold_client.py \
 		--verbose \
 		fetch-studies \
@@ -70,12 +58,3 @@ local/gold-cache.json: local/gold-studies.tsv
 		--authentication-file config/gold-key.txt \
 		$<
 
-#.PHONY: split-out-gold-biosamples
-#split-out-gold-biosamples: local/gold-cache.json
-#	$(RUN) python sample_annotator/file_utils/split_out_gold_biosamples.py \
-#		--input-file $< \
-#		--study-output-file local/gold-studies-only.json \
-#		--biosample-output-file local/gold-biosamples-only.json \
-#		--project-output-file local/gold-projects-only.json \
-#		--remove-contacts \
-#		--remove-nulls

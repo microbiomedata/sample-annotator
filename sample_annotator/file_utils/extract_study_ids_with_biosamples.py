@@ -24,7 +24,7 @@ def extract_study_ids_with_biosamples(excel_file: str, sheet_name: str = "Sequen
         # Read the Sequencing Project sheet
         df = pd.read_excel(excel_file, sheet_name=sheet_name)
 
-        # Identify column names (normalize for variations in capitalization/spacing)
+        # Identify column names
         column_map = {}
         for col in df.columns:
             col_upper = col.upper().replace(" ", "_")
@@ -32,19 +32,28 @@ def extract_study_ids_with_biosamples(excel_file: str, sheet_name: str = "Sequen
                 column_map["study_id"] = col
             elif "BIOSAMPLE_GOLD_ID" in col_upper:
                 column_map["biosample_id"] = col
+            elif "PROJECT_GOLD_ID" in col_upper:
+                column_map["project_id"] = col
 
         if "study_id" not in column_map or "biosample_id" not in column_map:
             raise ValueError(f"Required columns not found in {sheet_name} sheet")
 
+        # Print summary statistics
+        print(f"# Rows in sheet: {len(df)}", file=sys.stderr)
+        if "project_id" in column_map:
+            print(f"# Unique Project IDs: {df[column_map['project_id']].nunique(dropna=True)}", file=sys.stderr)
+        print(f"# Unique Study IDs: {df[column_map['study_id']].nunique(dropna=True)}", file=sys.stderr)
+        print(f"# Unique Biosample IDs: {df[column_map['biosample_id']].nunique(dropna=True)}", file=sys.stderr)
+
         # Filter for rows with Biosample IDs
-        mask = df[column_map["biosample_id"]].notna() & df[column_map["biosample_id"]].str.len() > 0
+        mask = df[column_map["biosample_id"]].notna() & df[column_map["biosample_id"]].astype(str).str.len() > 0
         filtered_df = df[mask]
 
-        # Extract Study IDs
+        # Extract valid Study IDs (must start with 'Gs')
         study_ids = set(filtered_df[column_map["study_id"]].unique())
-
-        # Filter for valid Study IDs (those starting with 'Gs')
         valid_study_ids = {str(study_id) for study_id in study_ids if str(study_id).startswith('Gs')}
+
+        print(f"# Unique Study IDs linked to Biosamples: {len(valid_study_ids)}", file=sys.stderr)
 
         return valid_study_ids
 
@@ -70,10 +79,8 @@ def main(excel_file: str, sheet_name: str, output_file: Optional[str]):
         click.echo(f"No Study GOLD IDs with Biosample IDs found in {sheet_name} sheet", err=True)
         sys.exit(1)
 
-    # Sort the IDs for consistent output
     sorted_ids = sorted(study_ids)
 
-    # Output to file or stdout
     if output_file:
         with open(output_file, 'w') as f:
             for study_id in sorted_ids:
