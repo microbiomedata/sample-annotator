@@ -15,6 +15,10 @@ from .measurements.measurements import MeasurementEngine
 from .metadata.sample_schema import SampleSchema, underscore
 from .report_model import AnnotationReport, PackageCombo, AnnotationMultiSampleReport, Category, SAMPLE, STUDY
 
+from dataclasses import dataclass, field
+from sample_annotator.geolocation.geotools import GeoEngine
+from sample_annotator.metadata.sample_schema import SampleSchema
+
 KEY_ENV_PACKAGE = nmdc_slots.env_package.name
 KEY_CHECKLIST = 'checklist'
 KEY_LAT_LON = nmdc_slots.lat_lon.name
@@ -28,10 +32,10 @@ class SampleAnnotator():
     """
 
     target_class: ClassDefinition = None
-    geoengine: GeoEngine = GeoEngine()
-    measurement_engine: MeasurementEngine = MeasurementEngine()
+    geoengine: GeoEngine = field(default_factory=GeoEngine)
+    measurement_engine: MeasurementEngine = field(default_factory=MeasurementEngine)
 
-    schema: SampleSchema = SampleSchema()
+    schema: SampleSchema = field(default_factory=SampleSchema)
 
     def annotate_all(self, samples: List[SAMPLE], study: STUDY = None) -> AnnotationMultiSampleReport:
         """
