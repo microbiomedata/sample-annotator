@@ -1,0 +1,360 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NMDC Sample Annotator API &mdash; sample-annotator 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=7ab3649f" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="sample-annotator" href="../modules.html" />
+    <link rel="prev" title="Welcome to sample-annotator’s documentation!" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            sample-annotator
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">NMDC Sample Annotator API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installing">Installing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pipenv">pipenv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#venv">venv</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-it">What is it?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#command-line">Command Line</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#validation-reports">Validation reports</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#api-docs">API Docs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#testing">Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#schema-validation">Schema Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modules">Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#starting-the-web-api">Starting the web API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">sample-annotator</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">sample-annotator</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">NMDC Sample Annotator API</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/microbiomedata/sample-annotator/blob/main/sphinx/static/intro.md" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="nmdc-sample-annotator-api">
+<h1>NMDC Sample Annotator API<a class="headerlink" href="#nmdc-sample-annotator-api" title="Link to this heading"></a></h1>
+<section id="installing">
+<h2>Installing<a class="headerlink" href="#installing" title="Link to this heading"></a></h2>
+<section id="pipenv">
+<h3>pipenv<a class="headerlink" href="#pipenv" title="Link to this heading"></a></h3>
+<p>This requires python 3.7.x or later (as default python).</p>
+<p>If you have pipenv installed:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>...
+<span class="nb">cd</span><span class="w"> </span>sample-annotator
+make<span class="w"> </span><span class="nb">test</span>
+</pre></div>
+</div>
+</section>
+<section id="venv">
+<h3>venv<a class="headerlink" href="#venv" title="Link to this heading"></a></h3>
+<p>For those using venv, you’ll need something like:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>...
+<span class="nb">cd</span><span class="w"> </span>sample-annotator
+python3.7<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>env
+<span class="nb">source</span><span class="w"> </span>./env/bin/activate
+pip<span class="w"> </span>install<span class="w"> </span>pipenv
+<span class="nv">PIPENV_IGNORE_VIRTUALENVS</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>make<span class="w"> </span><span class="nb">test</span>
+</pre></div>
+</div>
+<p>While there may be more concise ways of running commands like those below, this works:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">PIPENV_IGNORE_VIRTUALENVS</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>pipenv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>sample_annotator.sample_annotator<span class="w"> </span>-R<span class="w"> </span>examples/report.tsv<span class="w"> </span>examples/gold.json
+</pre></div>
+</div>
+</section>
+</section>
+<section id="what-is-it">
+<h2>What is it?<a class="headerlink" href="#what-is-it" title="Link to this heading"></a></h2>
+<p>This is a python and flask API for performing annotation of samples from semi-structured or untidy data</p>
+<p>The API takes as input a JSON object or dictionary representing a simple sample, where each key is a metadata field</p>
+<p>It will attempt to tidy and infer missing data according to a specified schema (currently MIxS)</p>
+</section>
+<section id="command-line">
+<h2>Command Line<a class="headerlink" href="#command-line" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pipenv<span class="w"> </span>run<span class="w"> </span>annotate-sample<span class="w"> </span>--help
+
+Usage:<span class="w"> </span>annotate-samples<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>SAMPLEFILE
+
+<span class="w">  </span>Annotate<span class="w"> </span>a<span class="w"> </span>file<span class="w"> </span>of<span class="w"> </span>samples,<span class="w"> </span>producing<span class="w"> </span>a<span class="w"> </span><span class="s2">&quot;repaired&quot;</span>/enhanced<span class="w"> </span>sample<span class="w"> </span>file<span class="w"> </span>as
+<span class="w">  </span>output,<span class="w"> </span>together<span class="w"> </span>with<span class="w"> </span>a<span class="w"> </span>report
+
+<span class="w">  </span>The<span class="w"> </span>input<span class="w"> </span>file<span class="w"> </span>must<span class="w"> </span>be<span class="w"> </span>a<span class="w"> </span>JSON<span class="w"> </span>fine<span class="w"> </span>containing<span class="w"> </span>an<span class="w"> </span>array<span class="w"> </span>of<span class="w"> </span>dicts
+
+Options:
+<span class="w">  </span>-v,<span class="w"> </span>--validateonly<span class="w"> </span>/<span class="w"> </span>-g,<span class="w"> </span>--generate
+<span class="w">                                  </span>Just<span class="w"> </span>validate<span class="w"> </span>/<span class="w"> </span>generate<span class="w"> </span>output<span class="w"> </span><span class="o">(</span>default:
+<span class="w">                                  </span>generate<span class="o">)</span>
+
+<span class="w">  </span>-s,<span class="w"> </span>--output<span class="w"> </span>TEXT<span class="w">               </span>JSON<span class="w"> </span><span class="k">for</span><span class="w"> </span>tidied<span class="w"> </span>samples
+<span class="w">  </span>-R,<span class="w"> </span>--report-file<span class="w"> </span>TEXT<span class="w">          </span>report<span class="w"> </span>file
+<span class="w">  </span>-G,<span class="w"> </span>--googlemaps-api-key-path<span class="w"> </span>TEXT
+<span class="w">                                  </span>path<span class="w"> </span>to<span class="w"> </span>file<span class="w"> </span>containing<span class="w"> </span>google<span class="w"> </span>maps<span class="w"> </span>API<span class="w"> </span>KEY
+<span class="w">  </span>-B,<span class="w"> </span>--bioportal-api-key-path<span class="w"> </span>TEXT
+<span class="w">                                  </span>path<span class="w"> </span>to<span class="w"> </span>file<span class="w"> </span>containing<span class="w"> </span>bioportal<span class="w"> </span>API<span class="w"> </span>KEY
+<span class="w">  </span>--help<span class="w">                          </span>Show<span class="w"> </span>this<span class="w"> </span>message<span class="w"> </span>and<span class="w"> </span>exit.
+</pre></div>
+</div>
+<p>E.g.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pipenv<span class="w"> </span>run<span class="w"> </span>annotate-sample<span class="w"> </span>-G<span class="w"> </span>config/googlemaps-api-key.txt<span class="w"> </span>-R<span class="w"> </span>examples/report.tsv<span class="w"> </span>examples/gold.json
+</pre></div>
+</div>
+<p>This will transform input such as:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gold:Gb0108335&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;community&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;microbial communities&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;depth&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.0 m&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;ecosystem&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Environmental&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;ecosystem_category&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Terrestrial&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;ecosystem_subtype&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Wetlands&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;ecosystem_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Soil&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;env_broad_scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ENVO:00000446&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;env_local_scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ENVO:00000489&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;env_medium&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ENVO:00000134&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;geo_loc_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Sweden: Kiruna&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;habitat&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Thawing permafrost&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;identifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;studying carbon transformations&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;lat_lon&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;68.3534 19.0472&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;from the Arctic&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;mod_date&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;15-MAY-20 10.04.19.473000000 AM&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Thawing permafrost microbial communities from the Arctic, studying carbon transformations - Permafrost 712P3D&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;ncbi_taxonomy_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;permafrost metagenome&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;sample_collection_site&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Palsa&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;specific_ecosystem&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Permafrost&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;study_description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A fundamental challenge of microbial environmental science is to understand how earth systems will respond to climate change. A parallel challenge in biology is to unverstand how information encoded in organismal genes manifests as biogeochemical processes at ecosystem-to-global scales. These grand challenges intersect in the need to understand the glocal carbon (C) cycle, which is both mediated by biological processes and a key driver of climate through the greenhouse gases carbon dioxide (CO2) and methane (CH4). A key aspect of these challenges is the C cycle implications of the predicted dramatic shrinkage in northern permafrost in the coming century.&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nmdc:Biosample&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+</pre></div>
+</div>
+<p>into:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gold:Gb0108335&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;community&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;microbial communities&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;depth&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;has_numeric_value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;has_raw_value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.0 m&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;has_unit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;metre&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;ecosystem&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Environmental&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;ecosystem_category&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Terrestrial&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;ecosystem_subtype&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Wetlands&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;ecosystem_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Soil&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;elev&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;has_numeric_value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">359</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;has_unit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;meter&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;env_broad_scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ENVO:00000446&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;env_local_scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ENVO:00000489&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;env_medium&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ENVO:00000134&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;geo_loc_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Sweden: Kiruna&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;habitat&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Thawing permafrost&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;identifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;studying carbon transformations&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;lat_lon&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;latitude&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">68.3534</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;longitude&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">19.0472</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;from the Arctic&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;mod_date&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;15-MAY-20 10.04.19.473000000 AM&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Thawing permafrost microbial communities from the Arctic, studying carbon transformations - Permafrost 712P3D&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;ncbi_taxonomy_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;permafrost metagenome&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;sample_collection_site&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Palsa&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;specific_ecosystem&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Permafrost&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;study_description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A fundamental challenge of microbial environmental science is to understand how earth systems will respond to climate change. A parallel challenge in biology is to unverstand how information encoded in organismal genes manifests as biogeochemical processes at ecosystem-to-global scales. These grand challenges intersect in the need to understand the glocal carbon (C) cycle, which is both mediated by biological processes and a key driver of climate through the greenhouse gases carbon dioxide (CO2) and methane (CH4). A key aspect of these challenges is the C cycle implications of the predicted dramatic shrinkage in northern permafrost in the coming century.&quot;</span><span class="p">,</span>
+</pre></div>
+</div>
+<p>Differences between input and output:</p>
+<ul class="simple">
+<li><p>measurement fields are normalized</p></li>
+<li><p>information inferred from lat_lon (currently only <code class="docutils literal notranslate"><span class="pre">elev</span></code>)</p></li>
+<li><p>TODO: ENVO from text mining</p></li>
+<li><p>TODO: annotation sufficiency score</p></li>
+<li><p>TODO: more…</p></li>
+</ul>
+<section id="validation-reports">
+<h3>Validation reports<a class="headerlink" href="#validation-reports" title="Link to this heading"></a></h3>
+<p>These are created as report objects, and exported to pandas dataframes for basic statistical aggregation.
+See tests for details</p>
+<p>Example report:</p>
+<p>|description|severity|field|was_repaired|category|
+|—|—|—|—|—|
+|No package specified|1|||Category.MissingCore|
+|No checklist specified|1|||Category.Unclassified|
+|Key not underscored: total particulate carbon|1||True|Category.Unclassified|
+|Invalid field: id|1|||Category.UnknownField|
+|Alias used: total_particulate_carbon =&gt; tot_part_carb|1||True|Category.Unclassified|
+|Parsed unit-value: 2.0 metre|1|||Category.Unclassified|
+|Missing unit 5|1|||Category.Unclassified|
+|Skipping geo-checks|0|||Category.Unclassified|</p>
+</section>
+</section>
+<section id="api-docs">
+<h2>API Docs<a class="headerlink" href="#api-docs" title="Link to this heading"></a></h2>
+<p>TODO: readthedocs</p>
+</section>
+<section id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Link to this heading"></a></h2>
+<p>Currently the best way to understand this code is to understand the tests</p>
+<ul class="simple">
+<li><p><a class="reference external" href="tests">tests</a></p>
+<ul>
+<li><p><a class="reference external" href="tests/inputs">inputs</a></p>
+<ul>
+<li><p><a class="reference external" href="tests/inputs/test_sample_info.yaml">test_sample_info.yaml</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>This contains ‘fake’ samples that are intended to test validation and repair</p>
+</section>
+<section id="schema-validation">
+<h2>Schema Validation<a class="headerlink" href="#schema-validation" title="Link to this heading"></a></h2>
+<p>See the <a class="reference external" href="sample_annotator/model/schema/">schema</a> folder –
+this contains a copy of the LinkML rendering of the MIxS schema
+from <a class="reference external" href="https://github.com/cmungall/mixs-source">mixs-source</a> which will later be integrated by GSC</p>
+</section>
+<section id="modules">
+<h2>Modules<a class="headerlink" href="#modules" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="sample_annotator/geolocation">geo</a></p>
+<ul>
+<li><p>currently this requires a googlemaps API key</p></li>
+<li><p>TODO: rewrite to use ORNL Identify</p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="sample_annotator/measurements">measurements</a></p>
+<ul>
+<li><p>uses quantulum</p></li>
+<li><p>TODO: use http://units.ontodev.com/</p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="sample_annotator/text_mining">text mining</a></p>
+<ul>
+<li><p>basic repair</p></li>
+<li><p>NER using fields such as study fields</p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="sample_annotator/ontology">ontology</a></p>
+<ul>
+<li><p>LinkML enumerations to ontologies</p></li>
+</ul>
+</li>
+</ul>
+<p>Each module will take care of different aspects</p>
+<p>For example, the measurement module will normalized all fields in the schema with range QuantityValue</p>
+<p>E.g. Input:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">sample</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TEST:1</span>
+<span class="w">  </span><span class="nt">alt</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2m</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</pre></div>
+</div>
+<p>Repair Output:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">sample</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TEST:1</span>
+<span class="w">  </span><span class="nt">alt</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">has_numeric_value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2.0</span>
+<span class="w">    </span><span class="nt">has_raw_value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2m</span>
+<span class="w">    </span><span class="nt">has_unit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">metre</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</pre></div>
+</div>
+</section>
+<section id="starting-the-web-api">
+<h2>Starting the web API<a class="headerlink" href="#starting-the-web-api" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>TODO: write flask code</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Welcome to sample-annotator’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../modules.html" class="btn btn-neutral float-right" title="sample-annotator" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Chris Mungall; Seth Carbon; Harshad Hegde; Bill Duncan; Mark Miller; Marcin Joachimiak.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
