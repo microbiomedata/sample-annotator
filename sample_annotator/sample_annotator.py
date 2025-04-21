@@ -2,7 +2,7 @@ import json
 import logging
 import re
 import sys
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import List
 
 import bioregistry
@@ -10,9 +10,10 @@ import click
 from linkml_runtime.linkml_model.meta import ClassDefinition
 from nmdc_schema.nmdc import slots as nmdc_slots
 
-from .geolocation.geotools import GeoEngine
+from sample_annotator.geolocation.geotools import GeoEngine
+from sample_annotator.metadata.sample_schema import SampleSchema
 from .measurements.measurements import MeasurementEngine
-from .metadata.sample_schema import SampleSchema, underscore
+from .metadata.sample_schema import underscore
 from .report_model import AnnotationReport, PackageCombo, AnnotationMultiSampleReport, Category, SAMPLE, STUDY
 
 KEY_ENV_PACKAGE = nmdc_slots.env_package.name
@@ -28,10 +29,10 @@ class SampleAnnotator():
     """
 
     target_class: ClassDefinition = None
-    geoengine: GeoEngine = GeoEngine()
-    measurement_engine: MeasurementEngine = MeasurementEngine()
+    geoengine: GeoEngine = field(default_factory=GeoEngine)
+    measurement_engine: MeasurementEngine = field(default_factory=MeasurementEngine)
 
-    schema: SampleSchema = SampleSchema()
+    schema: SampleSchema = field(default_factory=SampleSchema)
 
     def annotate_all(self, samples: List[SAMPLE], study: STUDY = None) -> AnnotationMultiSampleReport:
         """
