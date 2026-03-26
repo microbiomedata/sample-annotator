@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `ABOUT.md`: General project information (last updated February 2024)
 - `CLAUDE.md`: Instructions for Claude Code (this file, updated April 2025)
 - `CONTRIBUTING.md`: Guidelines for contributors (last updated February 2024)
-- `gold-knowledge-management.md`: Technical documentation for GOLD metadata integration (updated April 2025)
+- `gold-knowledge-management.md`: Redirect to canonical GOLD/JGI data access doc in [external-metadata-awareness](https://github.com/microbiomedata/external-metadata-awareness/blob/main/docs/gold-and-jgi-data-access.md)
 - `README.md`: Main project overview and getting started guide (last updated February 2024)
 - `sphinx/static/intro.md`: Introduction for generated documentation (last updated February 2024)
 
